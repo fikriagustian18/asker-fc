@@ -1,0 +1,164 @@
+{
+    "version":  "2.0",
+    "date":  "2026-11-09",
+    "status":  "12 referensi diinspeksi; konten asli menunggu",
+    "images":  [
+                   {
+                       "id":  "04",
+                       "file":  "scr-04-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-04 Beranda, portrait viewport target 390x844. Header compact original crest and Asker FC, theme icon. Small line KICK \u0026 KUMPUL; large bold \u0027Main bola. Kumpul bareng.\u0027 labelled photo placeholder hero occupying ~180px. Friendly subtext \u0027Sepatu siap, tinggal kamu!\u0027 Next match card \u0027Sabtu Santai\u0027, \u002714 Nov 2026 · 07.00 WIB\u0027, \u0027Lapangan Komunitas\u0027, \u002724 / 32 pemain\u0027. Primary yellow CTA \u0027Gabung Main\u0027. Small statistics 128 Anggota / 24 Pertandingan / 86 Gol, labelled Data contoh. Small card \u0027Habis main? Cek skor, foto \u0026 iuran\u0027. Bottom Beranda selected. Make all elements readable and in-frame.",
+                       "target":  "390x844",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: logo, hero berlabel menunggu foto, CTA Gabung Main, statistik contoh dan empat navigasi sesuai. Ukuran logo pada raster hanya ilustratif.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "23",
+                       "file":  "scr-23-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-23 Jadwal \u0026 Daftar, portrait target 390x844. Light theme. Header Jadwal \u0026 Daftar. Week calendar strip dates 9–15 Nov, 14 selected in green. \u0027Sabtu, 14 November 2026\u0027 and label WIB. Agenda cards: Sabtu Santai, 07.00–09.00 WIB, Lapangan Komunitas, 24/32 pemain, Gratis biaya sesi, yellow \u0027Lihat sesi\u0027. Second card Liga Internal, 21 Nov, 07.00 WIB, Pendaftaran belum dibuka. Small helper \u0027Pilih sesi, ketemu di lapangan.\u0027 Bottom Jadwal selected. No fabricated map.",
+                       "target":  "390x844",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: tanggal 14 November 2026, agenda dua sesi, kuota, gratis dan status belum buka terbaca; navigasi Jadwal benar.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "05",
+                       "file":  "scr-05-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-05 Detail sesi, portrait target 390x844. Light theme. Back arrow Jadwal. Title Sabtu Santai. Badge Pendaftaran terbuka. \u002714 Nov 2026 · 07.00–09.00 WIB\u0027, \u0027Lapangan Komunitas\u0027, \u002724 / 32 pemain\u0027, \u0027Gratis biaya sesi\u0027. Simple schematic location placeholder labelled \u0027Peta lokasi\u0027 and address \u0027Alamat contoh lapangan\u0027 and link \u0027Petunjuk arah\u0027. No provider logo. Small note \u0027Iuran bulanan terpisah\u0027. Unchecked consent control labelled \u0027Saya ingin pengingat WhatsApp\u0027 and link Atur nomor \u0026 preferensi; clearly optional separate from RSVP. Main yellow sticky CTA \u0027Gabung Main\u0027 single action. Helper \u0027Masuk dahulu jika belum punya sesi aktif\u0027. Lower links Tim, Hasil, Foto, Kas \u0026 Iuran. No payment upload before joining.",
+                       "target":  "390x844",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: waktu/zona, kuota, gratis biaya sesi, peta skematis, pengingat opt-in terpisah dan CTA RSVP tersedia. Pada implementasi helper login memakai \u0027Masuk untuk melanjutkan RSVP\u0027; istilah \u0027sesi aktif\u0027 pada raster hanya ilustrasi.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "24",
+                       "file":  "scr-24-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-24 Tim \u0026 Pemain, portrait target 390x844. DARK THEME: background #101C16, cards #182A20, text #F4FAF5, secondary #B9CBBB, green accents #86EFAC, yellow CTA. Header crest and Tim \u0026 Pemain. Search Cari pemain, tabs Pemain / Tim, selected Pemain. Highlight card \u0027Pemain Terbaik Bulan Ini\u0027, \u0027Oktober 2026\u0027, \u0027Dimas • hasil voting\u0027, small Lihat hasil. Three synthetic player rows with simple initials avatars DP Dimas nomor7 Gelandang, AF Arif nomor9 Penyerang, FR Fajar nomor1 Kiper. Top skor card Dimas 6 gol, Arif 4 gol, label Rincian gol belum lengkap, Lihat statistik. Do not expose skill scores, contacts or vote counts. Button \u0027Ikut voting\u0027 and bottom Tim selected.",
+                       "target":  "390x844",
+                       "theme":  "gelap",
+                       "inspection":  "Diperiksa langsung: mode gelap, inisial/nomor/posisi, apresiasi Oktober, top skor dengan label belum lengkap, tombol voting dan nav Tim sesuai; tidak menampilkan nilai skill/kontak.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "11",
+                       "file":  "scr-11-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-11 Hasil \u0026 Klasemen, portrait target 390x844. Light theme. Header Hasil \u0026 Klasemen. Select Liga Internal, tabs Hasil selected / Klasemen. Large final result card \u0027Tim Hijau 2 – 1 Tim Putih\u0027, badge \u0027Final\u0027, \u002714 Nov 2026 · 08.00 WIB\u0027. Goals list \u0027Dimas 1 · Arif 1\u0027, \u0027Fajar 1\u0027. Yellow outlined action \u0027Voting MVP\u0027, secondary \u0027Lihat foto\u0027, green \u0027Kas \u0026 Iuran\u0027. Below compact standings preview rows Tim Hijau M1 SG+1 P3; Tim Putih M1 SG−1 P0, title Klasemen sementara and label 1 laga final. Results main CTA is \u0027Lihat foto\u0027 and available Bayar iuran. Bottom Lainnya selected.",
+                       "target":  "390x844",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: final 2–1, rincian gol 2 vs 1, poin3/0 dan SG+1/−1 konsisten; hasil/foto/voting/kas terhubung pada referensi.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "26",
+                       "file":  "scr-26-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-26 Galeri, portrait target 390x844. Light theme. Header Galeri. Large bold \u0027Momen di lapangan\u0027. Subtitle \u0027Keringat boleh hilang, kenangan jangan.\u0027 Filter Semua / Pertandingan. Two album cards with elegant photo placeholder blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. Album \u0027Sabtu Santai\u0027, \u002714 Nov 2026\u0027, \u0027Album contoh\u0027; second \u0027Liga Internal\u0027, \u00277 Nov 2026\u0027, \u0027Album contoh\u0027. Small tag \u0027Contoh tata letak • foto asli menyusul\u0027. Action Lihat album. No invented people or real photo claims. Bottom Lainnya selected.",
+                       "target":  "390x844",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: dua album contoh dengan label foto asli menyusul, filter dan Lihat album; tidak ada foto anggota/sponsor rekaan.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "28",
+                       "file":  "scr-28-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-28 Kas \u0026 Iuran, portrait target 390x844. DARK theme #101C16 background #182A20 cards #F4FAF5 text #B9CBBB secondary, green #86EFAC and yellow #FACC15 accents. Header Kas \u0026 Iuran. Period November 2026. Community balance \u0027Saldo kas Rp1.250.000\u0027, \u0027Pemasukan Rp2.000.000\u0027, \u0027Pengeluaran Rp750.000\u0027, \u0027Saldo awal Rp0\u0027. Label Ringkasan untuk anggota. Card \u0027Tagihan saya\u0027, \u0027Iuran November 2026\u0027, \u0027Rp50.000\u0027, badge \u0027Belum bayar\u0027, \u0027Jatuh tempo 20 Nov 2026\u0027, yellow CTA \u0027Bayar iuran\u0027. Smaller \u0027Biaya Sabtu Santai · Gratis\u0027. Helper \u0027Bukti transfer menunggu verifikasi petugas\u0027. No bank proof or other member debts. Bottom Lainnya selected.",
+                       "correctionPrompt":  "Use case: ui-mockup precise correction. Edit this SCR-28 Kas \u0026 Iuran DARK theme screenshot. Preserve exact original crest, all numeric totals, November2026, Belum bayar, due20Nov2026, CTA Bayar iuran, bottom navigation and data-example labels. Change ONLY these issues: replace the pale white Tagihan saya panel and all its inner pale surfaces with dark forest cards #182A20 and readable light text #F4FAF5, maintaining yellow CTA. Replace ambiguous helper \u0027Bukti transfer menunggu verifikasi petugas\u0027 with exact instruction \u0027Unggah bukti setelah transfer. Petugas akan memverifikasi.\u0027 because the current bill has no proof yet and is Belum bayar. Remove the entire irrelevant photo-placeholder card below Tagihan saya; it does not belong on a cash page. Redistribute remaining spacing neatly, keep one screen target390x844, no device frame. No new features, no photographs, no new transaction data.",
+                       "target":  "390x844",
+                       "theme":  "gelap",
+                       "inspection":  "Diperiksa ulang setelah edit terarah: seluruh kartu gelap, saldo0+2.000.000−750.000=1.250.000, tagihan belum bayar dan instruksi unggah jelas. Kartu foto yang tidak relevan dihapus.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  853,
+                                          "height":  1844
+                                      }
+                   },
+                   {
+                       "id":  "29",
+                       "file":  "scr-29-390x844-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. Screen SCR-29 Kontak \u0026 Sponsor, portrait target 390x844 light theme. Header compact original crest and Kontak \u0026 Sponsor. Bold \u0027Ngobrol dulu, main bareng nanti.\u0027 Contact card \u0027Admin Asker FC\u0027, yellow CTA \u0027WhatsApp admin\u0027, helper \u0027Nomor resmi belum diisi • contoh tampilan\u0027, CTA disabled style with clear label Belum tersedia so no false live contact. Social row \u0027Media sosial\u0027 \u0027Tautan resmi menyusul\u0027. Sponsor section \u0027Teman di balik pertandingan\u0027, empty dashed panel \u0027Logo sponsor asli menunggu unggahan\u0027. No fake sponsor logos, numbers or handles. Footer Kick \u0026 Kumpul, small \u0027Data contoh\u0027. Bottom Lainnya selected.",
+                       "target":  "390x844",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: kontak belum tersedia, sosial menyusul, sponsor menunggu unggahan; tidak membuat nomor atau sponsor fiktif.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  852,
+                                          "height":  1846
+                                      }
+                   },
+                   {
+                       "id":  "13",
+                       "file":  "scr-13-1440x900-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. For this desktop screenshot no mobile bottom navigation; use desktop sidebar as described. Screen SCR-13 Dashboard pengelola, LANDSCAPE target 1440x900. White light theme, green sidebar, bold Poppins. Desktop sidebar exact Dashboard selected / Kegiatan / Anggota / Galeri / Kas \u0026 Iuran / Pengingat / Riwayat. Header Dashboard and \u0027Data contoh\u0027. Cards \u002732/32 peserta\u0027, \u00272 hasil menunggu\u0027, \u00273 bukti menunggu\u0027, \u00271 pengingat perlu diperiksa\u0027. Table Liga Internal status Berjalan, Sabtu Santai status Pendaftaran terbuka. Action cards Pembagian tim (Acak / Skill), Kelola voting, Galeri, Kas. Bottom panel Tugas hari ini showing Tinjau hasil, Verifikasi bukti, Periksa pengingat. Yellow CTA Buat kegiatan. No fake graphs, bank data, photographs.",
+                       "target":  "1440x900",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: kartu32/32,2 hasil,3 bukti,1 pengingat perlu diperiksa; tautan skill/voting/media/kas. Tanggal sintetis dashboard merupakan skenario terpisah, bukan snapshot sama dengan mobile. Raster lebih tinggi dari rasio target.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  1487,
+                                          "height":  1058
+                                      }
+                   },
+                   {
+                       "id":  "14",
+                       "file":  "scr-14-1440x900-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. For this desktop screenshot no mobile bottom navigation; use desktop sidebar as described. Screen SCR-14 Konfigurasi sesi, LANDSCAPE target 1440x900. White light theme green sidebar Dashboard/Kegiatan selected/Galeri/Kas \u0026 Iuran/Pengingat/Riwayat. Title \u0027Konfigurasi sesi\u0027, badge Draft, small Data contoh. Two-column form: Nama Sabtu Santai; Jenis Rutin; Mode Individu; tanggal 14 November 2026; waktu 07.00–09.00; zona WIB / Asia Jakarta; lokasi Lapangan Komunitas; kapasitas32; Jumlah tim4; min8 max8. Fee section \u0027Gratis biaya kegiatan\u0027, note Iuran bulanan terpisah. Publication dropdown Anggota. Optional Pengingat WhatsApp toggle and \u002724 jam sebelum sesi\u0027, warning \u0027Provider belum dikonfigurasi\u0027. Separate yellow \u0027Simpan draft\u0027 and outline \u0027Publikasikan\u0027 disabled with \u0027Lengkapi alamat dan pengaturan wajib\u0027. Do not imply provider active.",
+                       "target":  "1440x900",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: draft Rutin/Individu32 peserta4 tim min/maks8; iuran terpisah; provider belum dikonfigurasi dan publikasi nonaktif disertai alasan. Raster lebih tinggi dari rasio target.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  1487,
+                                          "height":  1058
+                                      }
+                   },
+                   {
+                       "id":  "30",
+                       "file":  "scr-30-1440x900-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. For this desktop screenshot no mobile bottom navigation; use desktop sidebar as described. Screen SCR-30 Kelola galeri, LANDSCAPE target1440x900 light theme. Green sidebar Dashboard/Kegiatan/Galeri selected/Kas \u0026 Iuran/Riwayat. Header \u0027Kelola galeri\u0027, Data contoh. Album editor \u0027Sabtu Santai · 14 Nov 2026\u0027, badge Draft. Upload zone \u0027Unggah foto aksi asli\u0027, helper \u0027JPG, PNG, WebP · maks 10 MB/foto\u0027. Three empty thumbnail blocks labelled Foto menunggu unggahan, no synthetic people. Caption and Teks alternatif empty inputs, field Tautan highlight (HTTPS). Right preview panel \u0027Foto asli belum tersedia\u0027. Audience dropdown Anggota, unchecked \u0027Izin tayang sudah diperiksa\u0027. Buttons Simpan draft yellow; Terbitkan disabled with reason \u0027Lengkapi foto dan izin tayang\u0027. Do not claim uploaded actual members.",
+                       "target":  "1440x900",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: album Draft, unggah foto asli, alt/caption/tautan, izin belum dicentang dan Terbitkan nonaktif; tidak ada klaim foto sudah tersedia. Raster lebih tinggi dari rasio target.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  1487,
+                                          "height":  1058
+                                      }
+                   },
+                   {
+                       "id":  "31",
+                       "file":  "scr-31-1440x900-v2.png",
+                       "prompt":  "Use case: ui-mockup. Create ONE high fidelity flat web UI screenshot for Asker FC, Kick \u0026 Kumpul fun football community, Indonesian language. No device frame, no collage. Reference image is the user supplied black silver gold horse crest: retain compact recognisable crest at top without recoloring; app palette is field green #166534, white #FFFFFF, pale green #F0F7F1, yellow #FACC15 accent with very dark green text #14281D. Bold Poppins headings, friendly energetic spacious cards, accessible legible labels. All data synthetic, include subtle \u0027Data contoh\u0027 label. PHOTO RULE: no invented human photos or sponsor logos: photography slots must be elegant green-tinted empty blocks labelled \u0027Foto aksi anggota • menunggu unggahan\u0027. This is an intentional placeholder within a complete UI reference, not a photo. Mobile bottom navigation exactly Beranda, Jadwal, Tim, Lainnya; highlight relevant item. Do not show internal screen IDs. Theme icon in header. For this desktop screenshot no mobile bottom navigation; use desktop sidebar as described. Screen SCR-31 Kelola kas \u0026 iuran, LANDSCAPE target1440x900 light theme. Green sidebar Dashboard/Kegiatan/Galeri/Kas \u0026 Iuran selected/Riwayat. Header \u0027Kelola kas \u0026 iuran\u0027, November2026, Data contoh. Cards Saldo awal Rp0 / Pemasukan Rp2.000.000 / Pengeluaran Rp750.000 / Saldo akhir Rp1.250.000. Toolbar \u0027Terbitkan iuran bulanan\u0027, \u0027Catat pengeluaran\u0027. Two-column main. Left table Transaksi: Iuran November +Rp2.000.000, Sewa lapangan −Rp750.000; note Pemasukan terverifikasi dicatat sekali. Right \u0027Verifikasi bukti\u0027, payer \u0027Dimas • Iuran November • Rp50.000\u0027, badge Menunggu verifikasi. grey receipt placeholder \u0027DATA CONTOH BUKTI TRANSFER\u0027, helper \u0027Periksa mutasi bank secara manual\u0027. Input Alasan penolakan, buttons Tolak and yellow Terima pembayaran. Never show real account details. Footer Catatan audit mencatat koreksi; monthly total already verified does not include pending proof.",
+                       "target":  "1440x900",
+                       "theme":  "terang",
+                       "inspection":  "Diperiksa langsung: saldo konsisten, pemasukan sekali, biaya lapangan, bukti dummy menunggu verifikasi dan alasan tolak; tidak memakai bukti atau rekening nyata. Raster lebih tinggi dari rasio target.",
+                       "generator":  "built-in imagegen",
+                       "dimensions":  {
+                                          "width":  1487,
+                                          "height":  1058
+                                      }
+                   }
+               ]
+}
