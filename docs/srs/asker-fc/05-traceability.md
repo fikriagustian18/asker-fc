@@ -1,8 +1,8 @@
 # Traceability dan Pemeriksaan — Asker FC
 
-- Versi: 2.0 · Tanggal: 9 November 2026
+- Versi: 2.1 · Tanggal: 10 November 2026
 - Status: matriks kebutuhan revisi tersusun; hasil pemeriksaan aktual dicatat pada bagian 4, terpisah dari uji aplikasi dan kesiapan konten produksi.
-- Upstream: [rencana v1.9](./00-implementation-plan.md), [Planning v2.0](./01-product-planning.md), [PRD v2.0](./02-prd.md), [Details v2.0](./03-product-details.md), [Mockup SRS v2.0](./04-mockup-srs.md).
+- Upstream: [rencana v2.0](./00-implementation-plan.md), [Planning v2.1](./01-product-planning.md), [PRD v2.1](./02-prd.md), [Details v2.1](./03-product-details.md), [Mockup SRS v2.1](./04-mockup-srs.md).
 - Dasar otorisasi: instruksi pengguna untuk memproses implementation plan yang masih tertunda setelah revisi v1.8. Tidak menjalankan implementasi aplikasi, pengiriman pesan atau deployment.
 
 ## 1. Matriks kebutuhan
@@ -35,7 +35,7 @@ ID lama dipertahankan. FEAT-15/FEAT-16 dipromosikan ke MVP; statistik lanjutan y
 | GOAL-04 / PAIN-04 | FEAT-22 / MVP | US-22 | AC-57–AC-61 | FLOW-17 / STATE-14 | SCR-26,SCR-27,SCR-30 | SCR-26 mobile;SCR-30 desktop | Album dan publikasi, foto asli masih menunggu |
 | GOAL-05 / PAIN-05 | FEAT-23 / MVP | US-23 | AC-62–AC-67 | FLOW-18,FLOW-11 / STATE-15,STATE-16,STATE-10 | SCR-28,SCR-20,SCR-31 | SCR-28 mobile;SCR-31 desktop | Tagihan periode, pemasukan sekali, pengeluaran |
 | GOAL-03 / PAIN-03 | FEAT-24 / MVP | US-24 | AC-68–AC-70 | FLOW-19 / STATE-17 | SCR-29,SCR-35 | SCR-29 mobile | Kontak/sponsor, aset asli menunggu |
-| GOAL-01 / PAIN-01 | FEAT-25 / MVP | US-25 | AC-71–AC-73 | FLOW-20 / preferensi UI | Semua; khusus SCR-12, SCR-33 | SCR-24,SCR-28 mobile gelap;lainnya terang | Tema tidak mengubah status bisnis |
+| GOAL-01 / PAIN-01 | FEAT-25 / MVP | US-25 | AC-71–AC-73 | FLOW-20 / preferensi UI | Semua; khusus SCR-12, SCR-33 | 12 referensi v3 gelap hitam–gold; tema terang dispesifikasikan | Tema tidak mengubah status bisnis |
 | GOAL-01 / PAIN-01 | FEAT-26 / MVP | US-26 | AC-74–AC-76 | FLOW-21,FLOW-04 / STATE-05,STATE-06 | SCR-05,SCR-06,SCR-07,SCR-15,SCR-21 | SCR-05 mobile;roster/tamu teks | Akun tamu terbatas satu kegiatan |
 | GOAL-04 / PAIN-04 | FEAT-27 / Opsional nonaktif | US-27 | AC-77 | Belum diaktifkan | SCR-36 kondisional | Tidak dijadwalkan | Katalog/pesan usulan; tanpa stok/checkout |
 | GOAL-04 / PAIN-04 | FEAT-28 / Lanjutan | US-28 | AC-78 | Belum dijadwalkan | — | Tidak dijadwalkan | Statistik di luar kebutuhan dasar |
@@ -96,7 +96,7 @@ Daftar berikut adalah rencana uji aplikasi yang diturunkan dari spesifikasi, **b
 
 ## 4. Pemeriksaan aktual dokumen
 
-Pemeriksaan dilakukan 9 November 2026. Pemeriksaan dokumen bukan pengujian runtime atau pengesahan aturan klub. Hasil audit baseline tidak otomatis diklaim berlaku untuk revisi ini.
+Audit kebutuhan di bawah dilakukan 9 November 2026 pada baseline v2.0; audit revisi visual 10 November 2026 dicatat terpisah di akhir dokumen. Pemeriksaan dokumen bukan pengujian runtime atau pengesahan aturan klub. Hasil audit baseline tidak otomatis diklaim berlaku untuk revisi ini.
 
 | Pemeriksaan aktual | Hasil dan batas bukti |
 |---|---|
@@ -104,8 +104,8 @@ Pemeriksaan dilakukan 9 November 2026. Pemeriksaan dokumen bukan pengujian runti
 | Definisi/rujukan ID | Pemeriksaan struktural: 28 fitur, 28 story, 90 AC, 21 flow dan 36 layar; tidak ada definisi ganda atau rujukan ID tidak terdefinisi |
 | Cakupan | 22 fitur MVP memiliki story/AC dan mekanika/layar, 5 fitur lanjutan konseptual, 1 toko opsional; ID lama tidak digunakan ulang |
 | Alur utama | Tujuh tahap dipetakan pada matriks; foto/hasil belum terbit tidak mengunci Kas & Iuran, bukti bukan otomatis lunas |
-| Dokumen upstream | Planning/PRD/Details/Mockup/Traceability v2.0 merujuk rencana v1.9 dan versi turunan yang sama |
-| Scope lama | Skill/pengingat dipromosikan, publikasi foto/iuran manual menjadi MVP, UI hijau–putih–kuning dengan dua tema menggantikan baseline |
+| Dokumen upstream | Planning/PRD/Details/Mockup/Traceability v2.1 merujuk rencana v2.0 dan versi turunan yang sama |
+| Scope lama | Skill/pengingat dipromosikan, publikasi foto/iuran manual menjadi MVP, UI hitam–gold dominan sesuai instruksi 10 November 2026 menggantikan hijau–putih–kuning; dua tema tetap tersedia |
 | KPI | KPI-01–KPI-04 dipertahankan; KPI-05 mencakup keputusan iuran bulanan tanpa mengubah rumus kelengkapan, dengan periode relevan dan target usulan 100%. Baseline seluruh KPI belum diukur |
 | PRD | Pemeriksaan kosakata implementasi tidak menemukan detail stack/endpoint/skema dalam PRD; perilaku integrasi ditulis sebagai outcome |
 | Gambar | 12 PNG pengganti disalin lokal dan dilihat langsung: 7 mobile 852×1846, 1 mobile 853×1844 setelah koreksi, 4 desktop 1487×1058; target390×844/1440×900 berbeda dari raster, khusus desktop bukan rasio identik |
@@ -132,3 +132,12 @@ Pemeriksaan tautan/encoding dan kelengkapan AC-ke-flow/layar dijalankan ulang se
 | Validasi persona/proses/adopsi | Simulasi lalu pilot tujuh tahap dan evaluasi empat kegiatan; bukan hasil riset dokumen | Pengelola/perwakilan anggota |
 
 Keputusan di atas bukan alasan menunda penulisan spesifikasi yang independen; bagian terkait tetap berlabel usulan/belum siap produksi. Paket berstatus sebagian-tertunda untuk konten asli yang belum tersedia meskipun dokumen dan gambar referensi dapat diselesaikan.
+## 6. Audit revisi visual — 10 November 2026
+
+Otorisasi: instruksi pengguna melanjutkan SRS dan memakai hitam–gold dominan sesuai logo. FEAT-25 / US-25 / AC-71–AC-73 / FLOW-20 dan SCR-01–SCR-36 mengikuti sistem visual [Mockup SRS v2.1](./04-mockup-srs.md). AC-71/FLOW-20 menyelaraskan default gelap dan pilihan Sesuai perangkat; AC-73 memperbarui palet. ID, aturan bisnis dan scope fitur tetap. Rencana v2.0 menjadi sumber terbaru. Audit 9 November di atas adalah riwayat baseline, bukan pengujian baru.
+
+Dua belas PNG v3 diperiksa visual satu per satu: delapan mobile dan empat desktop, memakai layout v2 dengan palet baru, disimpan lokal. Prompt aktual, target, dimensi serta inspeksi tersedia pada [manifest v3](./mockups/manifest-v3.json). Kontras token dihitung ulang dan tautan/encoding diperiksa; tidak menjalankan aplikasi/UAT.
+
+Batas: logo generatif hanya referensi; implementasi memakai logo asli. SCR-05 menyisakan ikon Tim hijau kecil; implementasi mengikuti token gold. SCR-29 memperlihatkan tombol kontak gold berlabel Belum tersedia; implementasi harus disabled abu-abu tanpa tautan sampai nomor resmi diisi. Badge Berjalan hijau SCR-13 dan pemasukan hijau/pengeluaran merah SCR-31 adalah status semantik berlabel. Raster tidak menjanjikan ukuran viewport pixel-perfect. Tema terang dispesifikasikan tetapi 12 gambar revisi semuanya tema gelap hitam–gold.
+
+Status revisi warna: **selesai** dengan batas raster di atas. Paket tetap **sebagian-tertunda** untuk konten autentik dan keputusan produksi pada bagian 5.

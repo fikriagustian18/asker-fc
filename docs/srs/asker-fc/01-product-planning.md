@@ -1,8 +1,8 @@
 # Product Planning — Asker FC
 
-- Versi: 2.0 · Tanggal: 9 November 2026
-- Status: dokumentasi diselaraskan dengan rencana v1.8 yang diproses menjadi v1.9; validasi lapangan belum dilakukan.
-- Upstream: [Implementation Plan v1.9](./00-implementation-plan.md): baseline v1.1 disetujui; revisi visual, konsep dan tujuan anggota ditetapkan melalui instruksi pengguna.
+- Versi: 2.1 · Tanggal: 10 November 2026
+- Status: dokumentasi diselaraskan dengan rencana v2.0 dan arahan hitam–gold 10 November 2026; validasi lapangan belum dilakukan.
+- Upstream: [Implementation Plan v2.0](./00-implementation-plan.md): baseline v1.1 disetujui; revisi visual, konsep dan tujuan anggota ditetapkan melalui instruksi pengguna.
 - Nama kerja: **Asker FC**. Nama komunitas sudah diberikan; tidak diperlukan kandidat nama produk baru. Tidak ada klaim ketersediaan merek/domain.
 - Konsep ditetapkan pengguna: **“Kick & Kumpul” — website komunitas fun football.** Asker FC tetap nama komunitas; Kick & Kumpul menjadi konsep pengalaman dan pesan produk.
 - Sumber keputusan: jawaban pengguna, rencana disetujui; fakta eksternal pada bagian sumber. Persona, masalah operasional dan UVP adalah hipotesis kecuali disebut sebagai keputusan pengguna.
@@ -159,7 +159,7 @@ Eksperimen aktivasi: amati jumlah anggota yang menyelesaikan konfirmasi tanpa ba
 
 - Baseline diterima v1.1: 18+, liga satu putaran, dua mode terpisah, poin 3/1/0, biaya manual dan dua belas gambar. Instruksi v1.5–v1.8 menggantikan batas publikasi, skill, notifikasi dan alur bayar; instruksi terbaru pengguna mengotorisasi pengerjaan paket revisi.
 - Asumsi: operasi Indonesia, koneksi tersedia, developer penuh waktu, peserta anggota atau tamu berakun dengan cakupan kegiatan, pengelola bersedia menjadi pemilik proses.
-- Identitas visual: [logo asli pengguna](./assets/logo-asker-fc.png) dipertahankan. UI hijau lapangan/putih dengan aksen kuning sebagai rekomendasi terperinci; judul Poppins Bold, foto aksi asli dengan izin, copy akrab/humoris dan mode gelap. Pilihan dalam scope dirinci pada Mockup SRS v2.0.
+- Identitas visual: [logo asli pengguna](./assets/logo-asker-fc.png) dipertahankan. UI memakai **hitam dan gold dominan sesuai logo**, ditetapkan pengguna 10 November 2026; tema gelap default dan tema terang netral tetap tersedia; judul Poppins Bold, foto aksi asli dengan izin, copy akrab/humoris dan mode gelap. Pilihan dalam scope dirinci pada Mockup SRS v2.1.
 - Terbuka nonpenghambat dokumentasi: hosting, UI library, penyedia email/berkas dan anggaran.
 - Sebelum produksi: pemilik operasional, dasar dan retensi pemrosesan data, mekanisme laporan usia, kebijakan walkover/withdrawal dan pengembalian dana harus disahkan komunitas. Dokumen turunan menandai default usulan yang dapat diuji, bukan menyatakan aturan klub sudah ada.
 - Validasi lapangan belum dilakukan; wawancara dan penggunaan data anggota asli tidak dijalankan dalam pekerjaan ini.

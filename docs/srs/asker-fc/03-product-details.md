@@ -1,8 +1,8 @@
 # Product Details — Asker FC
 
-- Versi: 2.0 · Tanggal: 9 November 2026
+- Versi: 2.1 · Tanggal: 10 November 2026
 - Status: baseline mekanika MVP; default usulan operasional diberi label.
-- Upstream: [PRD v2.0](./02-prd.md), [Product Planning v2.0](./01-product-planning.md), [rencana v1.9](./00-implementation-plan.md). Revisi v2.0 menyelaraskan halaman, empat fitur pembeda, gaya dan alur pengguna; ID lama tetap dipakai.
+- Upstream: [PRD v2.1](./02-prd.md), [Product Planning v2.1](./01-product-planning.md), [rencana v2.0](./00-implementation-plan.md). Revisi v2.0 menyelaraskan halaman, empat fitur pembeda, gaya dan alur pengguna; ID lama tetap dipakai.
 - Batas: perilaku pengguna dan aturan domain; tidak merancang API, skema database atau kode.
 - Asumsi: komunitas tunggal, pengguna 18+, satu mode pendaftaran per kegiatan, koneksi internet. Nilai batas formulir di bawah adalah **usulan spesifikasi**, bukan aturan klub yang sudah ada.
 
@@ -19,7 +19,7 @@
 - **Hasil resmi:** versi hasil yang difinalkan pengelola, bukan draft pencatat. Koreksi membuat versi resmi baru dengan riwayat lama tetap ada.
 - **Status UI:** loading, error, empty dan saving tidak mengganti status bisnis.
 - **Zona waktu:** usulan default kegiatan Asia/Jakarta; pengelola dapat memilih sebelum publikasi. Semua layar menampilkan label zona, waktu audit dapat ditampilkan sesuai zona kegiatan. Tidak mengikuti zona komputer secara diam-diam.
-- **Identitas visual:** [logo Asker FC pengguna](./assets/logo-asker-fc.png) dipakai tanpa modifikasi, dengan UI hijau lapangan/putih dan aksen kuning, dua tema, judul Poppins Bold serta copy akrab pada Mockup SRS v2.0. Perubahan warna tidak menyatukan arti status: “diajukan”, “final”, “diterima” dan “belum terkunci” tetap mempunyai label/ikon eksplisit.
+- **Identitas visual:** [logo Asker FC pengguna](./assets/logo-asker-fc.png) dipakai tanpa modifikasi, dengan UI hitam dan gold dominan sesuai instruksi 10 November 2026, tema gelap default dan tema terang netral, judul Poppins Bold serta copy akrab pada Mockup SRS v2.1. Perubahan warna tidak menyatukan arti status: “diajukan”, “final”, “diterima” dan “belum terkunci” tetap mempunyai label/ikon eksplisit.
 
 ## 2. Matriks kewenangan
 
@@ -401,7 +401,7 @@ FEAT-24 · US-24 · AC-68–AC-70. Aktor publik dan petugas publikasi komunitas.
 
 FEAT-25 · US-25 · AC-71–AC-73. Aktor semua pembaca. Hasil tema terbaca dan pilihan tersimpan pada perangkat.
 
-1. Muat tema tersimpan; bila belum memilih ikuti preferensi perangkat. Kontrol berlabel Terang/Gelap/Sesuai perangkat di header/profil, bukan ikon tanpa nama.
+1. Muat tema tersimpan; bila belum memilih gunakan tema gelap hitam–gold. Bila pilihan tersimpan Sesuai perangkat, ikuti preferensi perangkat. Kontrol berlabel Terang/Gelap/Sesuai perangkat di header/profil, bukan ikon tanpa nama.
 2. Pilih tema menerapkan token ke halaman, modal, tabel dan semua status tanpa mengubah data formulir. Simpan di perangkat yang sama; penyimpanan tidak tersedia tetap menerapkan tema sesi dan menampilkan batas persistensi bila relevan. Sinkron lintas perangkat tidak dijanjikan.
 3. Navigasi bawah Beranda/Jadwal/Tim/Lainnya; Lainnya membuka Hasil, Galeri, Kas, Kontak dan Toko hanya bila aktif. Drawer/panel memiliki tutup dan pengembalian fokus; konten tidak tertutup nav bawah.
 4. Kembali/muat ulang mempertahankan pilihan tema dan status data yang benar. Pengelolaan memakai drawer di HP tanpa menghilangkan aksi desktop. Tidak ada notifikasi eksternal untuk pilihan tema.

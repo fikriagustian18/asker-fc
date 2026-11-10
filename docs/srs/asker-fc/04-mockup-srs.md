@@ -1,28 +1,31 @@
 # Mockup SRS — Asker FC
 
-- Versi: 2.0 · Tanggal: 9 November 2026
-- Status: spesifikasi revisi diselaraskan; manifest gambar dan hasil inspeksi terdapat pada bagian 5. Foto aksi asli, kontak dan sponsor tetap menunggu aset komunitas.
-- Upstream: [Product Details v2.0](./03-product-details.md), [PRD v2.0](./02-prd.md), [rencana v1.9](./00-implementation-plan.md). Instruksi pengguna “proses implementation plan yang sebagin masih tertunda” mengotorisasi pengerjaan revisi scope v1.8.
+- Versi: 2.1 · Tanggal: 10 November 2026
+- Status: spesifikasi hitam–gold diselaraskan; 12 gambar v3 diperiksa visual. Foto asli, kontak dan sponsor tetap menunggu aset komunitas.
+- Upstream: [Product Details v2.1](./03-product-details.md), [PRD v2.1](./02-prd.md), [rencana v2.0](./00-implementation-plan.md). Instruksi pengguna “proses implementation plan yang sebagin masih tertunda” mengotorisasi pengerjaan revisi scope v1.8.
 - Seluruh angka/nama pada contoh sintetis. Gambar referensi bukan prototipe atau bukti uji aksesibilitas; teks spesifikasi mengatur perilaku. Default domain usulan mengikuti Details, belum aturan klub yang disahkan.
 
 ## 1. Sistem visual dan layout bersama
 
-**Kick & Kumpul** tampil santai dan energik. Arah hijau lapangan/putih dengan aksen kuning berikut adalah perincian rekomendasi dalam alternatif yang diizinkan pengguna. Palet UI hitam–emas–perak baseline diganti; [logo asli pengguna](./assets/logo-asker-fc.png) tetap tanpa perubahan warna/desain/rasio 1:1. Implementasi harus memakai berkas asli, bukan menyalin logo hasil raster generatif.
+**Kick & Kumpul** tetap santai dan energik dengan **hitam dan gold dominan sesuai logo**, ditetapkan pengguna 10 November 2026, menggantikan hijau–putih–kuning v2.0. [Logo asli](./assets/logo-asker-fc.png) tidak dimodifikasi warna/desain/rasio 1:1; implementasi memakai berkas asli. Tema gelap hitam–gold adalah default, pilihan eksplisit pengguna disimpan. Tema terang tetap tersedia dengan permukaan netral, header hitam dan aksen gold.
 
-| Token | Tema terang | Tema gelap | Pemakaian |
+| Token | Tema terang | Tema gelap (default) | Pemakaian |
 |---|---|---|---|
-| Background | #F0F7F1 | #101C16 | Latar halaman |
-| Surface | #FFFFFF | #182A20 | Kartu/dialog/input |
-| Text | #14281D | #F4FAF5 | Teks utama |
-| Secondary | #3E5848 | #B9CBBB | Helper/status sekunder |
-| Brand/link | #166534 | #86EFAC | Identitas/tautan |
-| Header/sidebar | #166534 / teks #FFFFFF | #101C16 / teks #F4FAF5 | Identitas dan navigasi |
-| CTA | #FACC15 / teks #14281D | #FACC15 / teks #14281D | Aksi primer |
-| Input border | #62796A | #809A87 | Batas kontrol |
-| Focus | #166534 | #FACC15 | Outline dengan offset terhadap komponen |
+| Background | #F5F5F5 | #09090B | Latar halaman |
+| Surface | #FFFFFF | #18181B | Kartu/dialog/input |
+| Text | #18181B | #FAFAFA | Teks utama |
+| Secondary | #52525B | #C4C4CC | Helper/status sekunder |
+| Brand/link | #765600 | #E4B83F | Tautan bergaris bawah; gold terang bukan teks kecil di putih |
+| Header/sidebar | #09090B / teks #FAFAFA | #09090B / teks #FAFAFA | Item terpilih #332A14 dengan teks #E4B83F |
+| CTA | #E4B83F / teks #09090B | #E4B83F / teks #09090B | Acuan gold solid; gradien diuji pada titik terlemah |
+| Input border | #71717A | #8B8B94 | Batas kontrol |
+| Focus | #765600 | #E4B83F | Outline dengan offset; outline putih di atas CTA gold |
 | Error | #B91C1C | #FCA5A5 | Ikon + teks, bukan warna saja |
+| Disabled | #E4E4E7 / teks #52525B | #27272A / teks #A1A1AA | Alasan terlihat, tanpa perlakuan CTA gold aktif |
 
-Kontras token dihitung pada manifest. Border dekoratif boleh lebih halus tetapi field yang perlu dikenali menggunakan token input border. Status selalu memakai label/ikon. Tombol nonaktif menyertakan alasan; tidak memakai kuning aktif tanpa aksi yang dapat dijalankan. Hover/selected harus mempertahankan kontras; pengujian aktual tetap pekerjaan implementasi.
+Gold dipakai pada CTA, ikon penting, nav/tab aktif dan statistik; charcoal membedakan kartu dari latar hitam. Putih/perak menjadi pendukung. Hijau bukan warna brand; identitas jersey Tim Hijau dan status semantik berlabel boleh mempertahankannya. Gold tidak berarti sukses; setiap status memakai label/ikon eksplisit.
+
+Kontras token dihitung pada manifest. Border dekoratif boleh lebih halus tetapi field yang perlu dikenali menggunakan token input border. Status selalu memakai label/ikon. Tombol nonaktif menyertakan alasan; tidak memakai gold aktif tanpa aksi yang dapat dijalankan. Hover/selected harus mempertahankan kontras; pengujian aktual tetap pekerjaan implementasi.
 
 Rekomendasi tipografi: **Poppins Bold 700** untuk judul (mobile 24–32 px, desktop 28–40 px), Poppins 400/500 untuk isi 16 px dengan tinggi baris 1,5; fallback system-ui/sans-serif. Bebas Neue tetap alternatif contoh pengguna, tidak dipakai bersamaan tanpa alasan. Teks kecil minimum usulan 14 px untuk helper, bukan informasi kritis. Label tindakan tidak memakai huruf dekoratif atau seluruh kapital panjang.
 
@@ -57,16 +60,16 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 | ID | Tujuan/aktor | Fitur / flow / AC | Masuk → keluar | Viewport dan state representatif | Gambar |
 |---|---|---|---|---|---|
-| SCR-01 Masuk | Calon anggota/anggota | FEAT-01 / FLOW-01 / AC-01–04 | Tautan internal atau SCR-04 saat belum masuk → SCR-02, SCR-03, SCR-04 atau tujuan internal semula | Responsif; 390×844; form kosong | Sesuai manifest v2.0 |
+| SCR-01 Masuk | Calon anggota/anggota | FEAT-01 / FLOW-01 / AC-01–04 | Tautan internal atau SCR-04 saat belum masuk → SCR-02, SCR-03, SCR-04 atau tujuan internal semula | Responsif; 390×844; form kosong | Sesuai manifest v2.1 |
 | SCR-02 Daftar dan lengkapi profil | Calon anggota | FEAT-01 / FLOW-01 / AC-01–03 | SCR-01 atau penyelesaian Google → SCR-03/SCR-04 atau kembali SCR-01 | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-03 Verifikasi email dan pemulihan sandi | Pemilik akun | FEAT-01 / FLOW-01 / AC-01,04 | SCR-01/02 atau tautan email → SCR-01 atau tujuan masuk semula | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-04 Beranda komunitas | Publik/anggota sesuai cakupan konten | FEAT-19, FLOW-13, AC-45–AC-47 | Tautan komunitas/nav Beranda → SCR-05/SCR-23/SCR-24 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-05 Detail kegiatan dan RSVP | Publik pembaca sesi terbit; anggota peserta; pengelola scoped | FEAT-03, FEAT-04, FEAT-12, FEAT-20, FLOW-03, FLOW-04, FLOW-12, FLOW-13, AC-08–AC-15, AC-37–AC-38, AC-48–AC-50 | Tautan langsung/SCR-04/SCR-23 → SCR-06/SCR-07/SCR-09/SCR-27/SCR-28/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-06 Status pendaftaran dan undangan | Anggota/kapten untuk diri/tim | FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36 | SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest v2.0 |
-| SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest v2.0 |
+| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest v2.1 |
+| SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest v2.1 |
 | SCR-09 Detail hasil pertandingan | Pembaca sesuai izin hasil; petugas laga/pengelola | FEAT-07, FEAT-09, FEAT-21, FEAT-22, FEAT-23, FLOW-07, FLOW-09, FLOW-16, FLOW-17, FLOW-18, AC-22–AC-25, AC-29–AC-30, AC-51–AC-56, AC-59, AC-67 | SCR-08/SCR-11/SCR-12 → SCR-10/SCR-18/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest v2.0 |
+| SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest v2.1 |
 | SCR-11 Hasil & Klasemen | Pembaca sesuai izin publikasi | FEAT-07, FEAT-08, FEAT-22, FEAT-23, FLOW-07, FLOW-08, FLOW-17, FLOW-18, AC-22–AC-27, AC-59, AC-67 | Lainnya/SCR-05 → SCR-09/SCR-07/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-12 Profil dan statistik anggota | Pemilik profil; pembaca sesuai cakupan foto/roster | FEAT-01, FEAT-09, FEAT-10, FEAT-25, FLOW-01, FLOW-09, FLOW-10, FLOW-20, AC-01–AC-04, AC-28, AC-31–AC-32, AC-71–AC-73, AC-87–AC-90 | Header/SCR-24/SCR-07 → SCR-05/SCR-09/SCR-25/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-13 Dashboard pengelola dan tugas | Pengelola scoped; pencatat hanya tugas laga; superadmin sesuai delegasi | FEAT-02, FEAT-03, FEAT-07, FEAT-15, FEAT-16, FEAT-21, FEAT-22, FEAT-23, FEAT-24, FLOW-02, FLOW-03, FLOW-07, FLOW-14–FLOW-19, AC-05–AC-11, AC-23, AC-79–AC-86 | SCR-04 Kelola → layar pengelolaan sesuai kewenangan | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
@@ -490,7 +493,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Publik/anggota. FEAT-20, FLOW-13, AC-48–AC-50. Masuk/keluar: SCR-04/nav Jadwal → SCR-05. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Judul, zona, filter tanggal, kalender desktop/agenda HP, kartu waktu/lokasi/kuota/biaya, Lihat sesi. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Judul, zona, filter tanggal, kalender desktop/agenda HP, kartu waktu/lokasi/kuota/biaya, Lihat sesi. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Kosong filter memberi Reset; gagal peta tidak memblokir agenda; draft tidak tampil. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -506,7 +509,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota; publik hanya profil terbit. FEAT-01, FEAT-10, FEAT-21, FLOW-01, FLOW-10, FLOW-16, AC-87–AC-90, AC-55. Masuk/keluar: Nav Tim/SCR-04 → SCR-07/SCR-12/SCR-25. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Cari pemain, tab Tim/Pemain, kartu foto/inisial/posisi/nomor, top skor, apresiasi bulanan berperiode. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Cari pemain, tab Tim/Pemain, kartu foto/inisial/posisi/nomor, top skor, apresiasi bulanan berperiode. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Tidak ada hasil pencarian beda dengan data privat; belum ada pemenang tidak memalsukan prestasi; nilai/kontak orang lain tersembunyi. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -522,7 +525,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pemilih berhak/pembaca hasil berizin. FEAT-21, FLOW-16, AC-51–AC-56. Masuk/keluar: SCR-09/SCR-24 → SCR-09/SCR-24. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Jenis Laga/Bulanan, konteks/periode, aturan dan waktu, kandidat radio, pilihan tersimpan, Konfirmasi/Ganti suara; hasil setelah terbit. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Jenis Laga/Bulanan, konteks/periode, aturan dan waktu, kandidat radio, pilihan tersimpan, Konfirmasi/Ganti suara; hasil setelah terbit. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Tidak berhak/tertutup menonaktifkan kirim dengan alasan; seri/tanpa suara eksplisit; timeout Cek status. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -538,7 +541,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pembaca sesuai cakupan. FEAT-22, FLOW-17, AC-58–AC-60. Masuk/keluar: Lainnya/SCR-04 → SCR-27. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Judul Momen di lapangan, filter sesi, grid album, tanggal dan cakupan, thumbnail/foto berlabel. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Judul Momen di lapangan, filter sesi, grid album, tanggal dan cakupan, thumbnail/foto berlabel. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Belum ada album memberi pesan; foto belum tersedia berlabel; konten draft tidak muncul. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -554,7 +557,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pembaca sesuai cakupan. FEAT-22, FLOW-17, AC-58–AC-61. Masuk/keluar: SCR-26/SCR-09/SCR-05 → SCR-09/SCR-28. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Kembali, nama sesi/laga, grid foto/caption, viewer, highlight/link sumber, Kas & Iuran. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Kembali, nama sesi/laga, grid foto/caption, viewer, highlight/link sumber, Kas & Iuran. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Foto kosong/gagal dan video gagal punya pesan/fallback; konten ditarik tidak ditampilkan dari akses baru. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -570,7 +573,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota; tamu hanya tagihan kegiatan sendiri. FEAT-23, FLOW-18, AC-62–AC-67. Masuk/keluar: Lainnya/SCR-27/SCR-05 → SCR-20. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Periode, saldo awal/pemasukan/pengeluaran/saldo, tagihan saya bulanan/kegiatan dipisah, Bayar iuran, riwayat diri. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Periode, saldo awal/pemasukan/pengeluaran/saldo, tagihan saya bulanan/kegiatan dipisah, Bayar iuran, riwayat diri. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Tidak ada tagihan bukan tagihan nol rekaan; menunggu/ditolak/lunas berlabel; tamu tidak membaca ringkasan kas klub. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -586,7 +589,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Publik. FEAT-24, FLOW-19, AC-68–AC-70. Masuk/keluar: Lainnya/SCR-04 → WhatsApp/tujuan luar. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Judul ajakan akrab, WhatsApp admin publik, media sosial, sponsor nama/logo/tautan opsional. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Judul ajakan akrab, WhatsApp admin publik, media sosial, sponsor nama/logo/tautan opsional. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Kontak belum diisi tampil belum tersedia; sponsor kosong tidak diisi logo rekaan. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -602,7 +605,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pengelola sesi/petugas media berhak. FEAT-22, FLOW-17, AC-57–AC-61. Masuk/keluar: SCR-13 → SCR-26/SCR-27/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Pilih laga, album draft, unggah per item, caption/alt/izin, tautan highlight, audiens, pratinjau, Simpan/Terbitkan/Tarik. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Pilih laga, album draft, unggah per item, caption/alt/izin, tautan highlight, audiens, pratinjau, Simpan/Terbitkan/Tarik. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Unggah parsial menjelaskan item berhasil/gagal; izin kurang menahan terbit; konten lama tetap sampai perubahan sah. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -618,7 +621,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Petugas kas komunitas; biaya kegiatan sesuai penugasan. FEAT-23, FEAT-11, FLOW-18, FLOW-11, AC-62–AC-67, AC-33–AC-36. Masuk/keluar: SCR-13 → SCR-20/SCR-22/SCR-28. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Ringkasan periode, daftar transaksi, Terbitkan iuran, Catat pengeluaran, saldo awal, antrean bukti, detail/alasan, Terima/Tolak. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Ringkasan periode, daftar transaksi, Terbitkan iuran, Catat pengeluaran, saldo awal, antrean bukti, detail/alasan, Terima/Tolak. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Duplikat terbit membuka tagihan lama; bukti bukan pembayaran otomatis; konflik muat versi; akses tanpa delegasi ditolak. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -634,7 +637,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Penilai ditugaskan; pemain baca nilai diri. FEAT-16, FLOW-14, AC-42, AC-79–AC-81. Masuk/keluar: SCR-16/SCR-12 → SCR-16/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Daftar peserta tugasnya, nilai1–5, penilai/waktu, kelengkapan, alasan perubahan, Simpan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Daftar peserta tugasnya, nilai1–5, penilai/waktu, kelengkapan, alasan perubahan, Simpan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Data kurang bukan nol; nilai berubah bersamaan meminta muat ulang; tanpa izin read/write ditolak. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -650,7 +653,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota untuk diri; pengelola untuk sesi tugasnya. FEAT-15, FLOW-15, AC-41, AC-82–AC-86. Masuk/keluar: SCR-05/SCR-12/SCR-13 → asal/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Mode anggota: nomor privat/persetujuan/opt-out; mode petugas: sesi/waktu/status/referensi dimask, alasan gagal, Periksa status/Retry sah. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Mode anggota: nomor privat/persetujuan/opt-out; mode petugas: sesi/waktu/status/referensi dimask, alasan gagal, Periksa status/Retry sah. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Provider belum aktif berbeda dengan terjadwal; gagal pasti beda timeout; status baca hanya bila provider membuktikan. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -666,7 +669,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Petugas voting laga atau delegasi bulanan. FEAT-21, FLOW-16, AC-51–AC-56. Masuk/keluar: SCR-13/SCR-25 → SCR-25/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Jenis/konteks/periode, kandidat/pemilih, zona/buka/tutup, aturan, pratinjau, Buka/Terbitkan/Batalkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Jenis/konteks/periode, kandidat/pemilih, zona/buka/tutup, aturan, pratinjau, Buka/Terbitkan/Batalkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Data partisipasi kurang menahan buka; snapshot aktif tidak diedit diam-diam; seri/tanpa suara memiliki hasil sah. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -682,7 +685,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Delegasi publikasi komunitas. FEAT-24, FLOW-19, AC-68–AC-70. Masuk/keluar: SCR-13 → SCR-29/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Nomor admin publik, URL sosial, unggah logo/nama/alt/sponsor, urutan, aktif, pratinjau, Simpan/Terbitkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Nomor admin publik, URL sosial, unggah logo/nama/alt/sponsor, urutan, aktif, pratinjau, Simpan/Terbitkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** URL/logo salah diberi pesan; tanpa aset jangan isi fiktif; pengelola sesi tanpa delegasi ditolak. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -698,7 +701,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota/publik bila modul disahkan aktif. FEAT-27, AC-77. Masuk/keluar: Lainnya hanya jika aktif → WhatsApp/kembali. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Batas usulan katalog jersey/atribut asli, deskripsi/harga yang diberikan, kontak pemesanan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.0.
+**Hierarki dan konten:** Batas usulan katalog jersey/atribut asli, deskripsi/harga yang diberikan, kontak pemesanan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
 
 **State khusus:** Modul tidak aktif berarti menu/route tidak dipublikasikan; tanpa produk bukan toko siap transaksi. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -712,45 +715,45 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 ## 5. Manifest gambar dan pemeriksaan
 
-Dua belas gambar terpilih diproduksi dengan built-in imagegen dan dilihat langsung. Satu edit terarah dilakukan pada SCR-28 untuk kartu gelap, helper pembayaran dan penghapusan kartu foto yang tidak relevan. Format PNG dan dimensi asli dipertahankan. Nama file menyatakan **target viewport**, bukan dimensi raster aktual. Delapan mobile mendekati rasio target; empat desktop lebih tinggi daripada target 1440×900, sehingga bukan screenshot pixel-perfect viewport itu.
+Dua belas gambar **v3 hitam–gold** menjadi referensi aktif revisi v2.1; semuanya tema gelap. Setiap hasil built-in imagegen diperiksa visual. Format PNG asli dipertahankan, nama file menyatakan target viewport, bukan ukuran raster aktual. Tema terang tetap mempunyai spesifikasi token; belum dibuat gambar baru untuk tema tersebut.
 
-| Layar/tema | Target | Raster aktual | Gambar final | Hasil inspeksi dan batas |
+| Layar/tema | Target | Raster aktual | Gambar aktif | Inspeksi dan batas |
 |---|---|---|---|---|
-| SCR-04 / terang | 390x844 | 852×1846 | [scr-04-390x844-v2.png](./mockups/scr-04-390x844-v2.png) | Diperiksa langsung: logo, hero berlabel menunggu foto, CTA Gabung Main, statistik contoh dan empat navigasi sesuai. Ukuran logo pada raster hanya ilustratif. |
-| SCR-23 / terang | 390x844 | 852×1846 | [scr-23-390x844-v2.png](./mockups/scr-23-390x844-v2.png) | Diperiksa langsung: tanggal 14 November 2026, agenda dua sesi, kuota, gratis dan status belum buka terbaca; navigasi Jadwal benar. |
-| SCR-05 / terang | 390x844 | 852×1846 | [scr-05-390x844-v2.png](./mockups/scr-05-390x844-v2.png) | Diperiksa langsung: waktu/zona, kuota, gratis biaya sesi, peta skematis, pengingat opt-in terpisah dan CTA RSVP tersedia. Pada implementasi helper login memakai 'Masuk untuk melanjutkan RSVP'; istilah 'sesi aktif' pada raster hanya ilustrasi. |
-| SCR-24 / gelap | 390x844 | 852×1846 | [scr-24-390x844-v2.png](./mockups/scr-24-390x844-v2.png) | Diperiksa langsung: mode gelap, inisial/nomor/posisi, apresiasi Oktober, top skor dengan label belum lengkap, tombol voting dan nav Tim sesuai; tidak menampilkan nilai skill/kontak. |
-| SCR-11 / terang | 390x844 | 852×1846 | [scr-11-390x844-v2.png](./mockups/scr-11-390x844-v2.png) | Diperiksa langsung: final 2–1, rincian gol 2 vs 1, poin3/0 dan SG+1/−1 konsisten; hasil/foto/voting/kas terhubung pada referensi. |
-| SCR-26 / terang | 390x844 | 852×1846 | [scr-26-390x844-v2.png](./mockups/scr-26-390x844-v2.png) | Diperiksa langsung: dua album contoh dengan label foto asli menyusul, filter dan Lihat album; tidak ada foto anggota/sponsor rekaan. |
-| SCR-28 / gelap | 390x844 | 853×1844 | [scr-28-390x844-v2.png](./mockups/scr-28-390x844-v2.png) | Diperiksa ulang setelah edit terarah: seluruh kartu gelap, saldo0+2.000.000−750.000=1.250.000, tagihan belum bayar dan instruksi unggah jelas. Kartu foto yang tidak relevan dihapus. |
-| SCR-29 / terang | 390x844 | 852×1846 | [scr-29-390x844-v2.png](./mockups/scr-29-390x844-v2.png) | Diperiksa langsung: kontak belum tersedia, sosial menyusul, sponsor menunggu unggahan; tidak membuat nomor atau sponsor fiktif. |
-| SCR-13 / terang | 1440x900 | 1487×1058 | [scr-13-1440x900-v2.png](./mockups/scr-13-1440x900-v2.png) | Diperiksa langsung: kartu32/32,2 hasil,3 bukti,1 pengingat perlu diperiksa; tautan skill/voting/media/kas. Tanggal sintetis dashboard merupakan skenario terpisah, bukan snapshot sama dengan mobile. Raster lebih tinggi dari rasio target. |
-| SCR-14 / terang | 1440x900 | 1487×1058 | [scr-14-1440x900-v2.png](./mockups/scr-14-1440x900-v2.png) | Diperiksa langsung: draft Rutin/Individu32 peserta4 tim min/maks8; iuran terpisah; provider belum dikonfigurasi dan publikasi nonaktif disertai alasan. Raster lebih tinggi dari rasio target. |
-| SCR-30 / terang | 1440x900 | 1487×1058 | [scr-30-1440x900-v2.png](./mockups/scr-30-1440x900-v2.png) | Diperiksa langsung: album Draft, unggah foto asli, alt/caption/tautan, izin belum dicentang dan Terbitkan nonaktif; tidak ada klaim foto sudah tersedia. Raster lebih tinggi dari rasio target. |
-| SCR-31 / terang | 1440x900 | 1487×1058 | [scr-31-1440x900-v2.png](./mockups/scr-31-1440x900-v2.png) | Diperiksa langsung: saldo konsisten, pemasukan sekali, biaya lapangan, bukti dummy menunggu verifikasi dan alasan tolak; tidak memakai bukti atau rekening nyata. Raster lebih tinggi dari rasio target. |
+| SCR-04 / hitam–gold | 390x844 | 852×1846 | [scr-04-390x844-v3-black-gold.png](./mockups/scr-04-390x844-v3-black-gold.png) | Logo, hero menunggu foto, CTA Gabung Main, statistik contoh dan empat menu dipertahankan. |
+| SCR-23 / hitam–gold | 390x844 | 852×1846 | [scr-23-390x844-v3-black-gold.png](./mockups/scr-23-390x844-v3-black-gold.png) | Tanggal 14, dua agenda, kuota/gratis dan status belum buka terbaca; Jadwal aktif. |
+| SCR-05 / hitam–gold | 390x844 | 852×1846 | [scr-05-390x844-v3-black-gold.png](./mockups/scr-05-390x844-v3-black-gold.png) | Waktu/zona, peta skematis, iuran terpisah, opt-in tidak dicentang, CTA dan helper RSVP sesuai. Ikon Tim masih hijau kecil; implementasi memakai gold. |
+| SCR-24 / hitam–gold | 390x844 | 852×1846 | [scr-24-390x844-v3-black-gold.png](./mockups/scr-24-390x844-v3-black-gold.png) | Inisial/nomor/posisi, apresiasi Oktober dan top skor berlabel belum lengkap; voting dan Tim aktif; tanpa nilai skill/kontak. |
+| SCR-11 / hitam–gold | 390x844 | 852×1846 | [scr-11-390x844-v3-black-gold.png](./mockups/scr-11-390x844-v3-black-gold.png) | Skor final 2–1, gol Dimas/Arif 1 dan Fajar 1, SG +1/−1 dan poin 3/0 konsisten; jersey Hijau tetap identitas tim. |
+| SCR-26 / hitam–gold | 390x844 | 852×1846 | [scr-26-390x844-v3-black-gold.png](./mockups/scr-26-390x844-v3-black-gold.png) | Dua album, filter dan Lihat album; foto asli tetap menunggu unggahan. |
+| SCR-28 / hitam–gold | 390x844 | 853×1844 | [scr-28-390x844-v3-black-gold.png](./mockups/scr-28-390x844-v3-black-gold.png) | Saldo 0+2.000.000−750.000=1.250.000; tagihan 50.000 belum bayar dan instruksi verifikasi tetap terlihat. |
+| SCR-29 / hitam–gold | 390x844 | 852×1846 | [scr-29-390x844-v3-black-gold.png](./mockups/scr-29-390x844-v3-black-gold.png) | Kontak/sosial/sponsor belum tersedia. Tombol kontak masih gold; implementasi wajib disabled abu-abu tanpa tautan sampai data resmi diisi. |
+| SCR-13 / hitam–gold | 1440x900 | 1487×1058 | [scr-13-1440x900-v3-black-gold.png](./mockups/scr-13-1440x900-v3-black-gold.png) | 32/32 peserta, 2 hasil, 3 bukti dan 1 pengingat; akses skill/voting/media/kas dipertahankan. Badge Berjalan hijau semantik. |
+| SCR-14 / hitam–gold | 1440x900 | 1487×1058 | [scr-14-1440x900-v3-black-gold.png](./mockups/scr-14-1440x900-v3-black-gold.png) | Draft Rutin/Individu, 32 peserta/4 tim/min-maks8, biaya gratis, provider belum dikonfigurasi dan Publikasikan disabled beralasan. |
+| SCR-30 / hitam–gold | 1440x900 | 1487×1058 | [scr-30-1440x900-v3-black-gold.png](./mockups/scr-30-1440x900-v3-black-gold.png) | Album Draft, unggah/alt/caption/HTTPS; izin belum dicentang, Terbitkan disabled dengan alasan. |
+| SCR-31 / hitam–gold | 1440x900 | 1487×1058 | [scr-31-1440x900-v3-black-gold.png](./mockups/scr-31-1440x900-v3-black-gold.png) | Saldo konsisten; pemasukan sekali; bukti dummy menunggu verifikasi, alasan penolakan dan cek mutasi manual; hijau/merah semantik. |
 
-Seluruh prompt aktual per aset (termasuk prompt koreksi), tool, target, dimensi dan catatan inspeksi tersimpan pada [manifest-v2.json](./mockups/manifest-v2.json). Gunakan prompt persis dari manifest untuk reproduksi intent, bukan janji hasil identik. Input gambar adalah [logo asli](./assets/logo-asker-fc.png) sebagai referensi identitas; koreksi SCR-28 memakai raster pertama sebagai target edit. Foto asli belum tersedia dan kontak/sponsor belum diisi; area berlabel pada gambar adalah state konten yang belum siap, bukan deliverable foto autentik.
+Prompt aktual, target edit v2, generator, dimensi dan inspeksi tersedia pada [manifest v3](./mockups/manifest-v3.json). [Manifest v2](./mockups/archive/v2.0/manifest-v2.json) dan gambar v2 tetap dipertahankan sebagai riwayat; arsip [v1.1](./mockups/archive/v1.1/) dan [v1.0](./mockups/archive/v1.0/) bukan acuan aktif. Tidak menghidupkan kembali navigasi tiga menu dari gambar lama: navigasi mobile tetap Beranda, Jadwal, Tim, Lainnya.
 
-Delapan mobile: Beranda, Jadwal & Daftar, detail sesi/RSVP, Tim & Pemain (gelap), Hasil & Klasemen, Galeri, Kas & Iuran (gelap), Kontak & Sponsor. Desktop: dashboard, konfigurasi, pengelolaan galeri dan kas/verifikasi. Gambar yang tidak dipilih tidak wajib dibuat ulang untuk semua 36 layar. Baseline hitam–emas di [arsip v1.1](./mockups/archive/v1.1/) dan versi awal di [arsip v1.0](./mockups/archive/v1.0/) dipertahankan sebagai riwayat, bukan aset terpilih saat ini.
+Logo generatif dapat menyederhanakan detail; implementasi memakai [logo asli](./assets/logo-asker-fc.png). Angka/tanggal antargambar adalah skenario sintetis terpisah. Desktop mempunyai rasio lebih tinggi daripada target; seluruh gambar adalah referensi, bukan screenshot aplikasi atau bukti uji aksesibilitas. Status opt-in, disabled dan publikasi mengikuti teks, termasuk catatan SCR-05 dan SCR-29 pada tabel. Foto asli, nomor kontak, sosial dan sponsor tetap menunggu komunitas.
 
-Logo generatif dapat menyederhanakan ornamen/huruf kecil. Header/ukuran komponen pada gambar hanya referensi; implementasi memakai logo asli dan ukuran CSS pada spesifikasi. Tanggal/angka contoh antar gambar adalah skenario terpisah, bukan satu snapshot tersinkron. SCR-05 pada implementasi memakai helper “Masuk untuk melanjutkan RSVP” agar istilah sesi login tidak membingungkan. Keterbacaan raster bukan audit keyboard, fokus atau aksesibilitas komponen aktual.
+### Pemeriksaan kontras token solid — 10 November 2026
 
-### Pemeriksaan kontras token solid
+Rasio dihitung dari luminansi relatif sRGB, bukan sampling piksel raster. Teks normal ditargetkan ≥4,5:1, batas kontrol ≥3:1. Gradien, overlay, focus/hover dan komponen aktual tetap perlu diuji saat implementasi.
 
-Rasio dihitung menggunakan luminansi relatif sRGB, bukan sampling piksel raster. Target usulan teks normal ≥4,5:1 dan pembeda kontrol ≥3:1; UI aktual masih memerlukan pemeriksaan fokus/hover/disabled/foto/overlay.
-
-| Pasangan | Rasio |
+| Pasangan token | Rasio |
 |---|---|
-| Teks/surface terang (#14281D / #FFFFFF) | 15.54:1 |
-| Sekunder/surface terang (#3E5848 / #FFFFFF) | 7.79:1 |
-| Teks/surface gelap (#F4FAF5 / #182A20) | 14.26:1 |
-| Sekunder/surface gelap (#B9CBBB / #182A20) | 8.86:1 |
-| Teks/CTA kuning (#14281D / #FACC15) | 10.15:1 |
-| Putih/header hijau (#FFFFFF / #166534) | 7.13:1 |
-| Link/surface terang (#166534 / #FFFFFF) | 7.13:1 |
-| Link/surface gelap (#86EFAC / #182A20) | 10.75:1 |
-| Border/surface terang (#62796A / #FFFFFF) | 4.71:1 |
-| Border/surface gelap (#809A87 / #182A20) | 4.95:1 |
+| Teks/surface terang (#18181B / #FFFFFF) | 17.72:1 |
+| Sekunder/surface terang (#52525B / #FFFFFF) | 7.73:1 |
+| Link/surface terang (#765600 / #FFFFFF) | 6.77:1 |
+| Border/surface terang (#71717A / #FFFFFF) | 4.83:1 |
+| Teks/surface gelap (#FAFAFA / #18181B) | 16.97:1 |
+| Sekunder/surface gelap (#C4C4CC / #18181B) | 10.22:1 |
+| Gold/surface gelap (#E4B83F / #18181B) | 9.47:1 |
+| Border/surface gelap (#8B8B94 / #18181B) | 5.25:1 |
+| Teks/CTA gold (#09090B / #E4B83F) | 10.64:1 |
+| Gold/nav terpilih (#E4B83F / #332A14) | 7.58:1 |
+| Putih/header hitam (#FAFAFA / #09090B) | 19.06:1 |
+
 
 ## 6. Batas fase dan penggunaan
 
@@ -758,4 +761,5 @@ FEAT-13, FEAT-14, FEAT-17, FEAT-18 dan FEAT-28 hanya US/AC konseptual; belum dij
 
 ## 7. Riwayat dan sumber prompt
 
-Baseline v1.3 memiliki 22 spesifikasi dan 12 gambar hitam–emas; revisi v2.0 mempertahankan ID lama, menambah 14 layar termasuk toko kondisional, mengganti palet UI, memperjelas foto asli dan menghubungkan tujuh tahap perjalanan. Prompt aktual per aset dan hasil inspeksi dicatat pada manifest pendamping; provider built-in imagegen, satu permintaan per aset. Referensi logo hanya untuk identitas, bukan contoh warna UI.
+Baseline v1.3 memiliki 22 spesifikasi dan 12 gambar hitam–emas; revisi v2.0 mempertahankan ID lama, menambah 14 layar termasuk toko kondisional, mengganti palet UI, memperjelas foto asli dan menghubungkan tujuh tahap perjalanan. Prompt aktual per aset dan hasil inspeksi dicatat pada manifest pendamping; provider built-in imagegen, satu permintaan per aset. Pada v2.0 logo dipakai untuk identitas. Instruksi 10 November 2026 menetapkan hitam–gold sesuai logo sebagai palet aktif v2.1; gambar v2 menjadi riwayat.
+Revisi v2.1 — 10 November 2026: pengguna mengotorisasi hitam–gold; sistem visual, AC-73 dan 12 referensi diselaraskan. Teks mengatur state dan batas implementasi; foto asli dan keputusan produksi tetap terbuka.
