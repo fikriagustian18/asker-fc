@@ -1,8 +1,8 @@
 # Product Requirements Document — Asker FC
 
-- Versi: 2.0 · Tanggal: 9 November 2026
+- Versi: 2.1 · Tanggal: 10 November 2026
 - Status: kebutuhan diperluas dan diselaraskan; aturan operasional usulan belum disahkan untuk produksi.
-- Upstream: [Product Planning v2.0](./01-product-planning.md), [Implementation Plan v1.9](./00-implementation-plan.md). Revisi v2.0 memproses rencana v1.8; ID lama dipertahankan dan kebutuhan baru ditambahkan.
+- Upstream: [Product Planning v2.1](./01-product-planning.md), [Implementation Plan v2.0](./00-implementation-plan.md). Revisi v2.0 memproses rencana v1.8; ID lama dipertahankan dan kebutuhan baru ditambahkan.
 - Asumsi relevan: satu komunitas, peserta 18+, 100–500 anggota, koneksi internet, proses saat ini belum divalidasi lapangan.
 
 ## 1. Produk, masalah dan nilai
@@ -25,7 +25,7 @@ Hipotesis masalah awal adalah informasi pendaftaran, jadwal dan skor tersebar di
 
 Semua fungsi harus dapat digunakan di HP. Satu akun boleh memiliki beberapa peran; tindakan mengikuti cakupan penugasan yang berlaku. Pengguna tanpa akses tidak memperoleh data hanya dengan mengetahui tautannya.
 
-Identitas visual memakai logo asli Asker FC, hijau lapangan/putih dan aksen kuning yang direkomendasikan, judul tebal, foto aksi asli anggota dengan izin, serta bahasa akrab/humoris, dengan keterbacaan dan kejelasan status tetap mengikuti NFR-03/NFR-04. Revisi visual tidak mengubah fungsi, hak akses atau target KPI.
+Identitas visual memakai logo asli Asker FC, **hitam dan gold dominan sesuai logo**, ditetapkan pengguna 10 November 2026, judul tebal, foto aksi asli anggota dengan izin, serta bahasa akrab/humoris, dengan keterbacaan dan kejelasan status tetap mengikuti NFR-03/NFR-04. Revisi visual tidak mengubah fungsi, hak akses atau target KPI.
 
 Superadmin membuat/menyalin draft lalu menunjuk pengelola. Admin dapat mengonfigurasi dan memublikasikan draft yang ditugaskan, bukan membuat akses sendiri ke kegiatan di luar penugasannya.
 
@@ -270,9 +270,9 @@ Pemetaan fase ini mengikuti Planning v2.0; US-19–US-26 adalah MVP, US-27 opsio
 
 **US-25 → FEAT-25:** As a mobile member, I want a readable light or dark theme so that I can use the site comfortably on my phone.
 
-- **AC-71 → US-25:** Given belum memilih tema, when situs dibuka, then preferensi perangkat menjadi awal yang direkomendasikan; pilihan eksplisit terang/gelap tersimpan setelah muat ulang pada perangkat yang sama.
+- **AC-71 → US-25:** Given belum memilih tema, when situs dibuka, then tema gelap hitam–gold menjadi awal; pilihan eksplisit Terang/Gelap/Sesuai perangkat tersimpan setelah muat ulang pada perangkat yang sama, dan pilihan Sesuai perangkat mengikuti preferensi perangkat.
 - **AC-72 → US-25:** Given kedua tema dan lebar 360/390/430 px atau desktop, when anggota menjalankan RSVP, voting, unggah bukti atau pengelola membagi tim, then kontrol/state terbaca dan dapat dipakai tanpa luapan horizontal halaman atau drag wajib.
-- **AC-73 → US-25:** Given gaya terbaru diterapkan, when layar ditinjau, then hijau lapangan, putih pada tema terang, aksen kuning yang direkomendasikan, judul tebal dan copy akrab/humoris konsisten; pesan pembayaran/error menyebut status dan tindakan jelas, foto contoh tidak diklaim asli.
+- **AC-73 → US-25:** Given gaya terbaru diterapkan, when layar ditinjau, then hitam dan gold dominan sesuai logo, tema gelap default, tema terang netral dengan header hitam dan gold, judul tebal dan copy akrab/humoris konsisten; pesan pembayaran/error menyebut status dan tindakan jelas, foto contoh tidak diklaim asli.
 
 ### FEAT-26 — Peserta antar-komunitas
 
