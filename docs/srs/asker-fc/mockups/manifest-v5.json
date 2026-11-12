@@ -1,0 +1,211 @@
+{
+    "version":  "2.4",
+    "date":  "2026-11-12",
+    "status":  "Historical v2.4 reference inventory; superseded by manifest-v6.json. SCR-24 v5 archived under archive/v2.4.",
+    "images":  [
+                   {
+                       "id":  "04",
+                       "file":  "scr-04-390x844-v3-black-gold.png",
+                       "prompt":  "Edit Asker FC homepage preserving layout and text. Black #09090B, charcoal #18181B, white #FAFAFA, muted #C4C4CC, gold #E4B83F buttons with black text. Original crest unchanged; four navigation items, waiting-upload placeholders; no fabricated photos.",
+                       "edit_target":  "archive/v2.0/scr-04-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Logo, hero menunggu foto, CTA Gabung Main, statistik contoh dan empat menu dipertahankan.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "23",
+                       "file":  "scr-23-390x844-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame. Screen Jadwal \u0026 Daftar. Preserve both agenda cards, date strip with Sab 14 Nov selected, two statuses and four navigation items Jadwal active.",
+                       "edit_target":  "archive/v2.0/scr-23-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Tanggal 14, dua agenda, kuota/gratis dan status belum buka terbaca; Jadwal aktif.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "05",
+                       "file":  "scr-05-390x844-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame.  Replace helper under Gabung Main with exactly \u0027Masuk untuk melanjutkan RSVP\u0027. Optional WhatsApp checkbox must stay unchecked.",
+                       "edit_target":  "archive/v2.0/scr-05-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Waktu/zona, peta skematis, iuran terpisah, opt-in tidak dicentang, CTA dan helper RSVP sesuai. Ikon Tim masih hijau kecil; implementasi memakai gold.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "24",
+                       "file":  "archive/v2.4/scr-24-390x844-v5-spider.png",
+                       "prompt":  "Edit the attached Asker FC mobile UI screenshot. Preserve its black #09090B/charcoal #18181B/gold #E4B83F/white palette, original crest, typography, private owner \u0027A-Striker • Tim A\u0027, Data contoh label, Event selected and Profil tabs, overall94,84, lower profile and points-ledger cards, four bottom navigation items with Tim selected. Change the main statistics visualization from horizontal bar rows to a DEFAULT nine-axis spider/radar chart, with a small segmented chart selector \u0027Spider\u0027 selected gold and \u0027Bar\u0027 unselected charcoal. Both chart modes are optional controls, but Spider is visibly selected by default. Title remains \u0027Nilai event relatif\u0027, helper \u0027Tertinggi tiap kategori = 100\u0027. Radar has NINE spokes equally spaced clockwise starting at top: Finishing, Playmaking, Defending, Teamwork, Discipline, Commitment, Consistency, Impact, Achievement. Fixed radial grid min0 at center and rings25/50/75/100. Single gold filled translucent polygon, thin gold outline, gold points. Values in exact order [100,79.37,79.37,100,100,100,100,100,100]; shape must show indentation only on second and third axes; others touch outer100 ring. No tenth axis, no 3D, no overlay of event/profile. Labels outside plot must be legible and not clipped. Add a compact numeric two-column legend underneath listing exact values using Indonesian decimal commas: Finishing100, Playmaking79,37, Defending79,37, Teamwork100, Discipline100, Commitment100, Consistency100, Impact100, Achievement100. Keep overall event94,84 visible. Replace summary chip \u00274 Assist tim\u0027 with \u00270 Assist\u0027 (personal value), retain4 Gol and3 Penampilan. Keep profile summary Finishing66/Achievement56 and ledger Awal event50 Bonus+16 Total66. Bottom helper \u0027Nilai relatif tidak ditambahkan ke profil.\u0027 Maintain a flat portrait screenshot around 390x844 proportions, no device frame. Reflow vertical space to fit radar, nine-value legend and essential lower cards; smaller compact header allowed. Text and chart accuracy take priority over decoration. Private owner view only, no other players\u0027 values or invented real photos. No horizontal bar chart shown while Spider selected; Bar is only an unselected option.",
+                       "edit_target":  "archive/v2.2/scr-24-390x844-v4-statistics.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Inspected locally: exactly nine radar axes clockwise from Finishing, Spider selected and Bar unselected, radial ticks 0/25/50/75/100, indentation on Playmaking and Defending; all numeric legend values correct (100,79.37,79.37,100,100,100,100,100,100), overall94.84; profile F66/Ach56; ledger50+16=66; personal4Goals/0Assists/3appearances; private and example labels, Event selected, Tim active. Raster shape indicative; implementation uses exact full-precision geometry and accessible numerical table.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v4.json",
+                       "revision":  "v5"
+                   },
+                   {
+                       "id":  "11",
+                       "file":  "scr-11-390x844-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame. ",
+                       "edit_target":  "archive/v2.0/scr-11-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Skor final 2–1, gol Dimas/Arif 1 dan Fajar 1, SG +1/−1 dan poin 3/0 konsisten; jersey Hijau tetap identitas tim.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "26",
+                       "file":  "scr-26-390x844-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame. ",
+                       "edit_target":  "archive/v2.0/scr-26-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Dua album, filter dan Lihat album; foto asli tetap menunggu unggahan.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "28",
+                       "file":  "scr-28-390x844-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame. ",
+                       "edit_target":  "archive/v2.0/scr-28-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Saldo 0+2.000.000−750.000=1.250.000; tagihan 50.000 belum bayar dan instruksi verifikasi tetap terlihat.",
+                       "dimensions":  {
+                                          "height":  1844,
+                                          "width":  853
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "29",
+                       "file":  "scr-29-390x844-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame. ",
+                       "edit_target":  "archive/v2.0/scr-29-390x844-v2.png",
+                       "target":  "390x844",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Kontak/sosial/sponsor belum tersedia. Tombol kontak masih gold; implementasi wajib disabled abu-abu tanpa tautan sampai data resmi diisi.",
+                       "dimensions":  {
+                                          "height":  1846,
+                                          "width":  852
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "13",
+                       "file":  "scr-13-1440x900-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame. ",
+                       "edit_target":  "archive/v2.0/scr-13-1440x900-v2.png",
+                       "target":  "1440x900",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "32/32 peserta, 2 hasil, 3 bukti dan 1 pengingat; akses skill/voting/media/kas dipertahankan. Badge Berjalan hijau semantik.",
+                       "dimensions":  {
+                                          "height":  1058,
+                                          "width":  1487
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "14",
+                       "file":  "scr-14-1440x900-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame.  Publication remains disabled gray with its reason. WhatsApp off, provider unconfigured. 32 participants, 4 teams, min/max 8.",
+                       "edit_target":  "archive/v2.0/scr-14-1440x900-v2.png",
+                       "target":  "1440x900",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Draft Rutin/Individu, 32 peserta/4 tim/min-maks8, biaya gratis, provider belum dikonfigurasi dan Publikasikan disabled beralasan.",
+                       "dimensions":  {
+                                          "height":  1058,
+                                          "width":  1487
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "30",
+                       "file":  "scr-30-1440x900-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame.  Terbitkan remains disabled gray; consent unchecked; actual photos not uploaded.",
+                       "edit_target":  "archive/v2.0/scr-30-1440x900-v2.png",
+                       "target":  "1440x900",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Album Draft, unggah/alt/caption/HTTPS; izin belum dicentang, Terbitkan disabled dengan alasan.",
+                       "dimensions":  {
+                                          "height":  1058,
+                                          "width":  1487
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   },
+                   {
+                       "id":  "31",
+                       "file":  "scr-31-1440x900-v3-black-gold.png",
+                       "prompt":  "Edit the provided Asker FC UI screenshot. Preserve its complete layout, Indonesian labels, all numbers, logo crest original gold/silver/black colors, navigation, functional states, photo waiting-upload placeholders. Change UI palette to black and gold matching the crest: page #09090B, cards/input #18181B, white #FAFAFA text, muted #C4C4CC, gold #E4B83F primary buttons with black text, selected navigation dark gold. Replace green branding and light green/white surfaces with charcoal and subtle dark gold. Placeholder photos charcoal with gold linework, no invented photos/sponsors. Keep green ONLY for actual named Tim Hijau jersey identity; status errors may remain red with text. All content visible, one flat screenshot, no device frame.  Preserve red negative expense, clear manual verification note and mandatory rejection reason. Pending proof excluded from confirmed cash.",
+                       "edit_target":  "archive/v2.0/scr-31-1440x900-v2.png",
+                       "target":  "1440x900",
+                       "theme":  "gelap hitam–gold",
+                       "generator":  "built-in imagegen",
+                       "inspection":  "Saldo konsisten; pemasukan sekali; bukti dummy menunggu verifikasi, alasan penolakan dan cek mutasi manual; hijau/merah semantik.",
+                       "dimensions":  {
+                                          "height":  1058,
+                                          "width":  1487
+                                      },
+                       "lineage_manifest":  "manifest-v3.json",
+                       "revision":  "v3 retained",
+                       "current_scope_limit":  "Retained layout reference; v2.4 scoring/chart panels follow screen text, not this older image."
+                   }
+               ],
+    "upstream_plan":  "2.10"
+}

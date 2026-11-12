@@ -1,13 +1,13 @@
 # Traceability dan Pemeriksaan — Asker FC
 
-- Versi: 2.1 · Tanggal: 10 November 2026
-- Status: matriks kebutuhan revisi tersusun; hasil pemeriksaan aktual dicatat pada bagian 4, terpisah dari uji aplikasi dan kesiapan konten produksi.
-- Upstream: [rencana v2.0](./00-implementation-plan.md), [Planning v2.1](./01-product-planning.md), [PRD v2.1](./02-prd.md), [Details v2.1](./03-product-details.md), [Mockup SRS v2.1](./04-mockup-srs.md).
-- Dasar otorisasi: instruksi pengguna untuk memproses implementation plan yang masih tertunda setelah revisi v1.8. Tidak menjalankan implementasi aplikasi, pengiriman pesan atau deployment.
+- Versi: 2.5 · Tanggal: 12 November 2026
+- Status: paket v2.5 diselaraskan dengan statistik hanya Spider; audit revisi di bagian 9. Nominal penalti tetap sesuai klarifikasi pengguna.
+- Upstream: [rencana v2.11](./00-implementation-plan.md), [Planning v2.5](./01-product-planning.md), [PRD v2.5](./02-prd.md), [Details v2.5](./03-product-details.md), [Mockup SRS v2.5](./04-mockup-srs.md).
+- Dasar otorisasi: instruksi pengguna 11 November 2026 “proses implementation plan tersebut” setelah review v2.7. Tidak menjalankan implementasi aplikasi, pengiriman pesan atau deployment.
 
 ## 1. Matriks kebutuhan
 
-ID lama dipertahankan. FEAT-15/FEAT-16 dipromosikan ke MVP; statistik lanjutan yang semula tergabung dipisah menjadi FEAT-28. Iuran bulanan manual FEAT-23 dipisah dari penerbitan tagihan otomatis FEAT-14. Rentang AC pada tabel mencakup semua nomor di antaranya. Semua definisi AC berada di [PRD](./02-prd.md), alur di [Details](./03-product-details.md), layar/gambar di [Mockup SRS](./04-mockup-srs.md).
+ID lama dipertahankan. FEAT-15/FEAT-16 dipromosikan ke MVP; FEAT-28 kini MVP penilaian sederhana, sedangkan analitik yang memerlukan data tambahan tetap roadmap. US-29–US-33 dan AC-91–AC-130 memperluas fitur lama tanpa memakai ulang ID. Iuran bulanan manual FEAT-23 dipisah dari penerbitan tagihan otomatis FEAT-14. Rentang AC pada tabel mencakup semua nomor di antaranya. Semua definisi AC berada di [PRD](./02-prd.md), alur di [Details](./03-product-details.md), layar/gambar di [Mockup SRS](./04-mockup-srs.md).
 
 | Goal/pain | Fitur/fase | Story | AC | Flow/status | Layar | Gambar target / alasan tidak digambar | Status |
 |---|---|---|---|---|---|---|---|
@@ -35,10 +35,15 @@ ID lama dipertahankan. FEAT-15/FEAT-16 dipromosikan ke MVP; statistik lanjutan y
 | GOAL-04 / PAIN-04 | FEAT-22 / MVP | US-22 | AC-57–AC-61 | FLOW-17 / STATE-14 | SCR-26,SCR-27,SCR-30 | SCR-26 mobile;SCR-30 desktop | Album dan publikasi, foto asli masih menunggu |
 | GOAL-05 / PAIN-05 | FEAT-23 / MVP | US-23 | AC-62–AC-67 | FLOW-18,FLOW-11 / STATE-15,STATE-16,STATE-10 | SCR-28,SCR-20,SCR-31 | SCR-28 mobile;SCR-31 desktop | Tagihan periode, pemasukan sekali, pengeluaran |
 | GOAL-03 / PAIN-03 | FEAT-24 / MVP | US-24 | AC-68–AC-70 | FLOW-19 / STATE-17 | SCR-29,SCR-35 | SCR-29 mobile | Kontak/sponsor, aset asli menunggu |
-| GOAL-01 / PAIN-01 | FEAT-25 / MVP | US-25 | AC-71–AC-73 | FLOW-20 / preferensi UI | Semua; khusus SCR-12, SCR-33 | 12 referensi v3 gelap hitam–gold; tema terang dispesifikasikan | Tema tidak mengubah status bisnis |
+| GOAL-01 / PAIN-01 | FEAT-25 / MVP | US-25 | AC-71–AC-73 | FLOW-20 / preferensi UI | Semua; khusus SCR-12, SCR-33 | 12 referensi aktif hitam–gold (11 v3 + SCR-24 v6); tema terang dispesifikasikan | Tema tidak mengubah status bisnis |
 | GOAL-01 / PAIN-01 | FEAT-26 / MVP | US-26 | AC-74–AC-76 | FLOW-21,FLOW-04 / STATE-05,STATE-06 | SCR-05,SCR-06,SCR-07,SCR-15,SCR-21 | SCR-05 mobile;roster/tamu teks | Akun tamu terbatas satu kegiatan |
 | GOAL-04 / PAIN-04 | FEAT-27 / Opsional nonaktif | US-27 | AC-77 | Belum diaktifkan | SCR-36 kondisional | Tidak dijadwalkan | Katalog/pesan usulan; tanpa stok/checkout |
-| GOAL-04 / PAIN-04 | FEAT-28 / Lanjutan | US-28 | AC-78 | Belum dijadwalkan | — | Tidak dijadwalkan | Statistik di luar kebutuhan dasar |
+| GOAL-04 / PAIN-04 | FEAT-28 / MVP | US-28 | AC-78 | FLOW-24 / STATE-18 | SCR-12,SCR-24,SCR-18 | SCR-24 v6; lainnya teks | Sembilan kategori dengan sumber dan kelengkapan; analitik tambahan tetap roadmap |
+| GOAL-04 / PAIN-04 | FEAT-10 / MVP | US-29 | AC-91–AC-98, AC-131, AC-133 | FLOW-22 / STATE-18,STATE-21 | SCR-10,SCR-12,SCR-14,SCR-16,SCR-24 | SCR-24 v6; input/config teks | Poin mentah 50, input Gol/Assist, Q/maksimum/relatif dan overall event |
+| GOAL-04 / PAIN-04 | FEAT-10 / MVP | US-30 | AC-99–AC-105, AC-132 | FLOW-23 / STATE-19 | SCR-12,SCR-22,SCR-24 | SCR-24 v6; audit teks | Profil akumulasi, cap per event dan replay historis privat |
+| GOAL-04 / PAIN-04 | FEAT-28 / MVP | US-31 | AC-106–AC-114 | FLOW-24 / STATE-18,STATE-21 | SCR-10,SCR-11,SCR-12,SCR-18,SCR-22,SCR-24,SCR-34 | SCR-24 v6; lainnya teks | 12 individu + 7 tim + 2 penyesuaian negatif; sumber unik/streak |
+| GOAL-04,GOAL-05 / PAIN-04,PAIN-05 | FEAT-09 / MVP | US-32 | AC-115–AC-123 | FLOW-25 / STATE-20,STATE-22 | SCR-10,SCR-12,SCR-19,SCR-22 | Teks; panel terhubung dari Statistik Saya | Kartu/kehadiran/koreksi dan anti duplikasi; angka terlambat/absen ditetapkan 12 November |
+| GOAL-03,GOAL-04 / PAIN-03,PAIN-04 | FEAT-07 / MVP | US-33 | AC-124–AC-130 | FLOW-26 / STATE-18,STATE-19,STATE-21,STATE-22 | SCR-12,SCR-14,SCR-16,SCR-18,SCR-22 | Teks; finalisasi dan audit tidak menambah jatah gambar | Versi aturan/sumber, metadata opsional, finalisasi/retry/koreksi konsisten |
 
 ### Pemetaan alur utama dan halaman
 
@@ -141,3 +146,80 @@ Dua belas PNG v3 diperiksa visual satu per satu: delapan mobile dan empat deskto
 Batas: logo generatif hanya referensi; implementasi memakai logo asli. SCR-05 menyisakan ikon Tim hijau kecil; implementasi mengikuti token gold. SCR-29 memperlihatkan tombol kontak gold berlabel Belum tersedia; implementasi harus disabled abu-abu tanpa tautan sampai nomor resmi diisi. Badge Berjalan hijau SCR-13 dan pemasukan hijau/pengeluaran merah SCR-31 adalah status semantik berlabel. Raster tidak menjanjikan ukuran viewport pixel-perfect. Tema terang dispesifikasikan tetapi 12 gambar revisi semuanya tema gelap hitam–gold.
 
 Status revisi warna: **selesai** dengan batas raster di atas. Paket tetap **sebagian-tertunda** untuk konten autentik dan keputusan produksi pada bagian 5.
+## 7. Pelaksanaan dan audit penilaian — 11 November 2026
+
+Scope diterima dari rencana v2.7, dicatat dalam rencana v2.8. Parameter eksplisitnya digunakan sebagai baseline dokumentasi, termasuk profil awal 50 sekali/cap per event, bobot posisi, Q_e pemain tampil, rasio maksimum, kebobolan −2, metadata dan aturan tumpukan/streak. Belum merupakan hasil kalibrasi klub. Dua rincian penalti yang belum jelas pada 11 November kini ditutup oleh keputusan pengguna 12 November 2026, dengan perubahan AC-117/AC-118 dan sumber tabel yang konsisten.
+
+### 7.1. Skenario penerimaan tambahan
+
+| Kasus | Hasil acuan | Relasi |
+|---|---|---|
+| Simpan pembagian berulang | Baseline mentah 50 satu kali, bukan +50 tiap simpan | AC-91–AC-92; FLOW-22; SCR-14/SCR-16 |
+| Gol/Assist parsial dan metadata tidak diketahui | Skor dapat final, poin terkait sementara; jangan mengarang data | AC-93–AC-94, AC-125, AC-128; FLOW-22/FLOW-26; SCR-10/SCR-18 |
+| Pemain tidak tampil / Q kosong / semua nol | Tidak menjadi pembanding; nilai — atau state khusus, bukan angka rekaan | AC-95–AC-97; FLOW-22; SCR-12 |
+| Pemimpin kategori/seri dan penalti bersama | Maksimum 100; semua mentah sama dapat 100 relatif meskipun terkena potongan | AC-96, AC-98; FLOW-22; SCR-12/SCR-24 |
+| Event vs profil | F mentah 60/55/50 → relatif 100/91,67/83,33; profil delta +10/+3/0 → 63 | AC-99–AC-100, AC-103; FLOW-23; SCR-12/SCR-22 |
+| Cap dan koreksi lama | +70/−3 →100/97; koreksi +70 menjadi +40 mereplay →90/87, bukan 67 | AC-101–AC-102, AC-104; FLOW-23; SCR-22 |
+| Gol/assist tier dan defensif | F bonus +3/+6/+8; P≥2 assist +7; D clean +5, satu kebobolan +2−2=0 | AC-106–AC-109; FLOW-24; SCR-10/SCR-12 |
+| Kehadiran/streak | Tampil semua laga +4 Commitment; tiga/enam event menghasilkan satu/dua bonus Consistency | AC-110–AC-111; FLOW-24; SCR-12/SCR-19 |
+| Hasil tim final / pemain batal | Champion/Runner-Up sekali; Last Place+Winless hanya TW−9 untuk pemain tampil | AC-112–AC-114; FLOW-24; SCR-11/SCR-18 |
+| Kuning lalu merah / outlist / menolak laga | Potongan kategori sesuai sumber; kejadian sama tidak dihukum dua kali | AC-115–AC-120; FLOW-25; SCR-10/SCR-19 |
+| Alasan dan nominal final / koreksi penalti | Nominal terlambat/absen eksplisit; verifikasi admin tetap wajib dan pemilik berhak koreksi | AC-118, AC-121–AC-123; FLOW-25; SCR-12/SCR-19 |
+| Konflik/retry dan versi aturan | Snapshot poin konsisten, sumber unik; versi sama tidak mem-posting dua kali | AC-124–AC-129; FLOW-26; SCR-18/SCR-22 |
+| Enam laga/16 pemain sintetis | A/C/D/B, maksimum 66/63/63/54/50/54/50/62/56 dan overall empat posisi cocok | AC-130; FLOW-26; Details 13.5 dan rencana 13.10 |
+
+### 7.2. Bukti audit aktual revisi
+
+Audit akhir dijalankan 11 November 2026 setelah penulisan dan pembaruan tautan/versi; pemeriksaan struktural dan aritmetis berikut lulus pada paket v2.2. Riwayat audit v2.0/v2.1 pada bagian 4/6 bukan pengujian ulang aplikasi.
+
+| Area | Artefak dan hasil yang dicatat |
+|---|---|
+| Otorisasi | Instruksi pengguna memproses rencana v2.7 tersedia; rencana v2.8 merekam disetujui/dikerjakan |
+| Struktur kebutuhan | Lulus: 28 fitur, 33 story, 130 AC, 26 flow, 22 state unik, 36 layar; definisi unik dan rujukan ID terdefinisi |
+| Cakupan penilaian | AC-91–AC-130 dipetakan eksplisit pada matriks; FEAT-28 dipromosikan ke MVP, tanpa perubahan ID lama |
+| Rumus/domain | Simulasi enam laga/16 pemain dan contoh batas/replay diperiksa secara aritmetis; bukan UAT atau bukti keadilan statistik |
+| Visual | SCR-24 v4 disalin lokal dan dilihat langsung; sembilan kategori, overall 94,84, privasi, contoh data, ledger dan navigasi sesuai. Sebelas v3 digunakan kembali, bukan diklaim dibuat ulang |
+| Manifest | Lulus: manifest aktif v4 berisi 12 referensi dan setiap dimensi PNG cocok dengan header raster, termasuk SCR-24 v4 852×1846. Versi v3 tetap riwayat |
+| Batas raster | Label 4 Assist tim bukan Assist personal A-Striker; teks spesifikasi menjelaskan nilainya. Logo generatif referensi, implementasi memakai aset asli. Bukan screenshot aplikasi atau audit aksesibilitas |
+| PRD | Story/AC berupa outcome pengguna; pemeriksaan batas konten dan kosakata implementasi dilakukan sebelum penyerahan |
+| Tautan/ID/encoding | Lulus: semua definisi/rujukan ID, 130 AC pada matriks utama, 40 AC baru pada Details/Mockup, versi upstream, tabel, tautan lokal beserta anchor dan UTF-8 |
+
+### 7.3. Bagian yang tetap tertunda
+
+| Topik | Status dan langkah berikutnya |
+|---|---|
+| Kalibrasi keadilan posisi | Bobot dan kebobolan −2 baseline dokumentasi; pilot lebih dari satu skenario diperlukan sebelum aturan klub dipakai nyata |
+| Pemulihan Discipline/sumber potongan kategori lain | Katalog belum menyediakan; jangan menambahkan aturan yang tidak disetujui |
+| Konten autentik/provider/aturan produksi | Tetap sesuai bagian 5, tidak ditutup oleh penulisan SRS atau gambar sintetis |
+
+Paket revisi dapat selesai pada dokumentasi independen, tetapi status keseluruhan tetap sebagian-tertunda untuk konten autentik/keputusan layanan/kebijakan serta validasi lapangan; rincian penalti sudah ditetapkan. Belum ada aplikasi, uji runtime, pengiriman pesan, deployment atau data anggota nyata yang diproses.
+
+Audit aritmetis acuan juga memeriksa sembilan maksimum dan overall empat posisi dari enam laga, akumulasi +10/+3/0 =63, cap +70/−3 =97, koreksi +40/−3 =87 serta kasus seluruh poin Discipline 47 tetap relatif 100. Seluruh hasil cocok. Ini verifikasi dokumen/simulasi, bukan tes aplikasi atau pengesahan parameter klub.
+
+## 8. Penutupan klarifikasi penalti — 12 November 2026
+
+Sumber pengguna: terlambat 11–20 Commitment −2; >20 Commitment −3; absen Discipline −15/Commitment −12/Teamwork −5. Dua keputusan yang sebelumnya tercantum pada bagian 7.3 **selesai**, bukan lagi pekerjaan tertunda. Rencana v2.9 dan kelima dokumen v2.3 diselaraskan; AC-117/AC-118 tetap ID yang sama dengan hasil eksplisit, tanpa perubahan jumlah requirement, flow, layar atau gambar.
+
+| Keputusan | Pengujian acuan |
+|---|---|
+| Terlambat 11–20 menit | D−4/C−2; dari 50 menjadi 46/48, overall profil 49,70 tanpa perubahan lain |
+| Terlambat >20 menit | D−6/C−3; dari 50 menjadi 44/47, overall profil 49,55 tanpa perubahan lain |
+| Tidak hadir tanpa alasan mendesak | D−15/C−12/TW−5; dari 50 menjadi 35/38/45, overall profil 48,40; tidak ditambah tiga penalti melewatkan laga |
+
+Perubahan numerik tidak menghapus kewajiban bukti/alasan, admin berhak, anti duplikasi atau hak koreksi. Pemain absen tetap dikecualikan dari pembanding event, tetapi potongan profil berlaku. Gambar aktif v4 tetap relevan dan tidak perlu digenerasi ulang; spesifikasi panel SCR-19 yang menetapkan nominal.
+
+Audit revisi lulus 12 November 2026: tiga baris penalti sama pada Plan/Details; overall 49,70/49,55/48,40 sesuai potongan; struktur tetap 28 fitur/33 story/130 AC/26 flow/22 state/36 layar, cakupan AC/rujukan/versi sumber/tautan/anchor/tabel/UTF-8 dan dimensi 12 gambar aktif lulus. Ini bukan pengujian aplikasi atau perubahan aturan historis otomatis. Sisa tertunda hanya konten autentik, layanan/kebijakan operasional dan kalibrasi/validasi produksi.
+
+## 9. Review dan visualisasi hanya Spider — 12 November 2026
+
+Keputusan terbaru pengguna menghapus opsi bar chart. AC-131–AC-133 memperluas US-29/US-30 di FEAT-10/28, FLOW-22/FLOW-23 dan SCR-12/SCR-24 dengan ID tetap. Tidak ada story/flow/layar baru; total tetap 133 AC. Nilai, normalisasi, profil akumulasi, penalti dan privasi tidak berubah. Pemilih/preferensi jenis grafik dihapus dari persyaratan dan referensi aktif.
+
+| Skenario | Hasil yang disyaratkan | Relasi |
+|---|---|---|
+| Membuka statistik | Hanya Spider pada Event/Profil, tanpa pemilih jenis grafik, tabel angka tersedia | AC-131; FLOW-22/FLOW-23; SCR-12/SCR-24 |
+| Beralih tab/event | Seri/label mengikuti konteks, event terpilih dipertahankan saat kembali dari Profil, filter tidak mengubah karier atau izin | AC-132; FLOW-23; SCR-12/SCR-24 |
+| Sumbu/legenda/data kosong | Sembilan kategori berurutan dan skala 0–100, angka aksesibel, nol bukan data hilang, poin mentah >100 hanya pada rincian | AC-133; FLOW-22; SCR-12/SCR-24 |
+
+Review menemukan ketidaksinkronan kebutuhan dan mockup yang masih menawarkan pemilih grafik, serta preferensi mode yang sudah tidak diperlukan. Paket v2.5 menyelesaikannya lewat simplifikasi kontrol, bukan perubahan perhitungan. Aturan finalisasi/replay, sumber unik, verifikasi penalti dan privasi sudah terhubung ke alur/state terkait; belum diuji pada aplikasi. Kalibrasi proksi kebobolan/bobot posisi, konten autentik dan validasi produksi tetap terbuka.
+
+Audit revisi lulus: 28 fitur, 33 story, 133 AC, 26 flow, 22 state dan 36 layar unik; seluruh ID/AC terpetakan, versi/tautan/anchor/tabel/UTF-8 valid, dan dimensi 12 PNG aktif sesuai manifest v6. Grafik pengganti diperiksa visual: sembilan sumbu dan legenda benar, pemilih jenis grafik tidak ada. Pemeriksaan ini atas dokumentasi dan referensi visual, bukan pengujian aplikasi.

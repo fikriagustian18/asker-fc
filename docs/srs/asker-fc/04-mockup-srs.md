@@ -1,8 +1,8 @@
 # Mockup SRS — Asker FC
 
-- Versi: 2.1 · Tanggal: 10 November 2026
-- Status: spesifikasi hitam–gold diselaraskan; 12 gambar v3 diperiksa visual. Foto asli, kontak dan sponsor tetap menunggu aset komunitas.
-- Upstream: [Product Details v2.1](./03-product-details.md), [PRD v2.1](./02-prd.md), [rencana v2.0](./00-implementation-plan.md). Instruksi pengguna “proses implementation plan yang sebagin masih tertunda” mengotorisasi pengerjaan revisi scope v1.8.
+- Versi: 2.5 · Tanggal: 12 November 2026
+- Status: spesifikasi v2.5 menggunakan Spider sebagai satu-satunya grafik; referensi SCR-24 v6 selesai diperiksa dalam 12 slot aktif, tanpa perubahan data/rule scoring.
+- Upstream: [Product Details v2.5](./03-product-details.md), [PRD v2.5](./02-prd.md), [rencana v2.11](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna 11 November 2026. Tidak membuat aplikasi atau menambah jatah gambar.
 - Seluruh angka/nama pada contoh sintetis. Gambar referensi bukan prototipe atau bukti uji aksesibilitas; teks spesifikasi mengatur perilaku. Default domain usulan mengikuti Details, belum aturan klub yang disahkan.
 
 ## 1. Sistem visual dan layout bersama
@@ -60,16 +60,16 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 | ID | Tujuan/aktor | Fitur / flow / AC | Masuk → keluar | Viewport dan state representatif | Gambar |
 |---|---|---|---|---|---|
-| SCR-01 Masuk | Calon anggota/anggota | FEAT-01 / FLOW-01 / AC-01–04 | Tautan internal atau SCR-04 saat belum masuk → SCR-02, SCR-03, SCR-04 atau tujuan internal semula | Responsif; 390×844; form kosong | Sesuai manifest v2.1 |
+| SCR-01 Masuk | Calon anggota/anggota | FEAT-01 / FLOW-01 / AC-01–04 | Tautan internal atau SCR-04 saat belum masuk → SCR-02, SCR-03, SCR-04 atau tujuan internal semula | Responsif; 390×844; form kosong | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
 | SCR-02 Daftar dan lengkapi profil | Calon anggota | FEAT-01 / FLOW-01 / AC-01–03 | SCR-01 atau penyelesaian Google → SCR-03/SCR-04 atau kembali SCR-01 | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-03 Verifikasi email dan pemulihan sandi | Pemilik akun | FEAT-01 / FLOW-01 / AC-01,04 | SCR-01/02 atau tautan email → SCR-01 atau tujuan masuk semula | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-04 Beranda komunitas | Publik/anggota sesuai cakupan konten | FEAT-19, FLOW-13, AC-45–AC-47 | Tautan komunitas/nav Beranda → SCR-05/SCR-23/SCR-24 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-05 Detail kegiatan dan RSVP | Publik pembaca sesi terbit; anggota peserta; pengelola scoped | FEAT-03, FEAT-04, FEAT-12, FEAT-20, FLOW-03, FLOW-04, FLOW-12, FLOW-13, AC-08–AC-15, AC-37–AC-38, AC-48–AC-50 | Tautan langsung/SCR-04/SCR-23 → SCR-06/SCR-07/SCR-09/SCR-27/SCR-28/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-06 Status pendaftaran dan undangan | Anggota/kapten untuk diri/tim | FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36 | SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest v2.1 |
-| SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest v2.1 |
+| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
+| SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
 | SCR-09 Detail hasil pertandingan | Pembaca sesuai izin hasil; petugas laga/pengelola | FEAT-07, FEAT-09, FEAT-21, FEAT-22, FEAT-23, FLOW-07, FLOW-09, FLOW-16, FLOW-17, FLOW-18, AC-22–AC-25, AC-29–AC-30, AC-51–AC-56, AC-59, AC-67 | SCR-08/SCR-11/SCR-12 → SCR-10/SCR-18/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest v2.1 |
+| SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
 | SCR-11 Hasil & Klasemen | Pembaca sesuai izin publikasi | FEAT-07, FEAT-08, FEAT-22, FEAT-23, FLOW-07, FLOW-08, FLOW-17, FLOW-18, AC-22–AC-27, AC-59, AC-67 | Lainnya/SCR-05 → SCR-09/SCR-07/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-12 Profil dan statistik anggota | Pemilik profil; pembaca sesuai cakupan foto/roster | FEAT-01, FEAT-09, FEAT-10, FEAT-25, FLOW-01, FLOW-09, FLOW-10, FLOW-20, AC-01–AC-04, AC-28, AC-31–AC-32, AC-71–AC-73, AC-87–AC-90 | Header/SCR-24/SCR-07 → SCR-05/SCR-09/SCR-25/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-13 Dashboard pengelola dan tugas | Pengelola scoped; pencatat hanya tugas laga; superadmin sesuai delegasi | FEAT-02, FEAT-03, FEAT-07, FEAT-15, FEAT-16, FEAT-21, FEAT-22, FEAT-23, FEAT-24, FLOW-02, FLOW-03, FLOW-07, FLOW-14–FLOW-19, AC-05–AC-11, AC-23, AC-79–AC-86 | SCR-04 Kelola → layar pengelolaan sesuai kewenangan | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
@@ -282,8 +282,9 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Constraints dan aksesibilitas:** Form/kartu bertumpuk di HP; desktop memakai lebar konten terkontrol tanpa menyembunyikan field. Header dan CTA sticky hanya bila tidak menutup konten; bagian tengah scroll. Urutan keyboard mengikuti hierarki di atas; pesan error memindahkan fokus ke input terkait. Label status dapat dipahami tanpa warna. Modal/panel mengikuti aturan fokus bersama.
 
+**Perluasan penilaian v2.2 — FEAT-07/09/10/28, FLOW-22/FLOW-24/FLOW-25, AC-93–AC-94, AC-107–AC-109, AC-115:** urutan form aktif: skor dua tim → waktu selesai → pemain tampil → dua kolom **Gol** dan **Assist** pada setiap baris roster dua tim → penyesuaian gol bunuh diri tim → kartu → kelengkapan → panel Kejadian khusus → Kirim hasil. Gol/Assist kosong bukan nol; tombol Konfirmasi nol hanya setelah petugas memeriksa. Helper “Kebobolan dihitung dari skor lawan”. Validasi kontribusi terhadap skor/pemain tampil, tanpa input save/tackle/menit.
 
-
+Panel Kejadian khusus memiliki pemilih pencetak gol pertama, pemilih pencetak gol penentu dan Ya/Tidak/Belum diketahui untuk comeback; opsi gol bunuh diri/Tidak berlaku mengikuti hasil. Field belum diketahui menahan badge, bukan skor. Kartu ditambah per kejadian dengan label kuning/merah dan nomor sumber, bukan warna saja. Submit hanya mengajukan skor; tidak otomatis mengesahkan penalti atau memfinalkan poin. Konflik dan simpan tidak pasti mengikuti Cek status, input dipertahankan. Uji keyboard pemilih dan fokus error pertama. Pratinjau pengaruh poin membuka SCR-18 bagi pengelola, tanpa memberi hak baru kepada pencatat.
 
 ### SCR-11 — Hasil & Klasemen
 
@@ -301,6 +302,8 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
 
+**Perluasan v2.2 — FLOW-08/FLOW-24/FLOW-26, AC-112–AC-113, AC-125–AC-126:** pisahkan badge **Skor final**, **Klasemen final** dan **Poin pemain sementara/final**. Tautan penilaian event membuka SCR-12 dalam konteks event bagi pemilik/petugas berhak; tidak menampilkan nilai privat semua pemain ke pembaca hasil publik. Peringkat resmi 1/2/4 yang ambigu menahan penyesuaian kategori, tanpa mengarang Champion. Keputusan tim hanya sekali setelah event selesai; hasil administratif berlabel dan tidak memberi bonus bermain. Rincian pribadi tetap lewat cek izin meskipun skor dipublikasikan.
+
 ### SCR-12 — Profil dan statistik anggota
 
 **Konteks/izin:** Pemilik profil; pembaca sesuai cakupan foto/roster. FEAT-01, FEAT-09, FEAT-10, FEAT-25, FLOW-01, FLOW-09, FLOW-10, FLOW-20, AC-01–AC-04, AC-28, AC-31–AC-32, AC-71–AC-73, AC-87–AC-90. Masuk/keluar: Header/SCR-24/SCR-07 → SCR-05/SCR-09/SCR-25/SCR-33. Hak terbaru diperiksa pada tiap aksi.
@@ -316,6 +319,14 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 **Aksesibilitas:** Label permanen, nama ikon, heading berurutan, urutan fokus sesuai hierarki, pesan tanpa warna saja dan target sentuh usulan ≥44 px. Fokus ke field salah pertama; dialog menahan fokus dan kembali ke pemicu saat tutup. Pemilih menggantikan drag wajib. Kedua tema mengikuti token bagian 1.
 
 **Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
+
+**Spesifikasi aktif statistik v2.2 — FEAT-10/28, FLOW-22/FLOW-23/FLOW-24/FLOW-25, AC-92, AC-95–AC-114, AC-122–AC-123:** hierarki subview privat: Kembali → nama/inisial/posisi → “Privat • hanya Anda dan petugas berwenang” → tab **Event / Profil** → konteks/versi/kelengkapan → sembilan kategori → overall → sumber poin → achievement/penalti → tindakan koreksi. Profil orang lain yang boleh dibaca untuk foto/roster tidak otomatis membuka kategori privatnya.
+
+Tab Event memuat pemilih event, jumlah laga, **Nilai event relatif** dan helper “Tertinggi tiap kategori = 100”; tampilkan **spider chart** sembilan sumbu tanpa pemilih jenis grafik, dan tabel/daftar numerik tetap tersedia sebagai pendamping aksesibel. Rincian tiap baris: Awal event 50, delta per sumber, poin mentah, maksimum pembanding dan nilai relatif. Poin mentah dapat >100. Sebelum main tampilkan 50 mentah dan status relatif belum final; tidak tampil = — dengan penjelasan. Q kosong/semua nol memakai state khusus. Angka 100 tidak berarti bebas penalti. Overall memakai presisi penuh, ditampilkan dua desimal.
+
+Tab Profil memuat “Akumulasi seluruh permainan”, Spider sebagai satu-satunya jenis grafik, sembilan kategori 0–100, event/penampilan, baseline 50 satu kali dan riwayat nominal/efektif. Filter event hanya mengubah rincian yang dilihat, tidak menghapus histori karier. +10/+3/0 memberi Finishing 63; 50 +70 lalu −3 memberi 100 lalu 97. Event baru tidak memakai modal profil. Overall profil dijelaskan menurut posisi/versi historis, bukan rerata relatif.
+
+Contoh Tim A-Striker: Event F100/P79,37/D79,37/TW100/Disc100/Com100/Cons100/I100/Ach100, overall 94,84. Event pertama Profil F66/P50/D50/TW54/Disc50/Com54/Cons50/I62/Ach56. Angka contoh bukan nilai nyata anggota. Lihat rincian poin membuka panel SCR-22 yang memfilter sumber miliknya; hasil sumber ke SCR-09, Ajukan koreksi ke panel penalti SCR-19. Status replay menampilkan versi lama berlabel hingga versi baru konsisten, bukan campuran nilai. Spider/radar menjadi satu-satunya grafik; tabel numerik mendampingi untuk aksesibilitas, tidak hanya warna/hover.
 
 ### SCR-13 — Dashboard pengelola dan tugas
 
@@ -348,6 +359,8 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 **Aksesibilitas:** Label permanen, nama ikon, heading berurutan, urutan fokus sesuai hierarki, pesan tanpa warna saja dan target sentuh usulan ≥44 px. Fokus ke field salah pertama; dialog menahan fokus dan kembali ke pemicu saat tutup. Pemilih menggantikan drag wajib. Kedua tema mengikuti token bagian 1.
 
 **Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
+
+**Perluasan v2.2 — FLOW-22/FLOW-26, AC-91, AC-124:** panel Penilaian menawarkan preset empat tim/enam laga/tiga laga per tim, empat posisi, versi aturan, baseline mentah 50 dan ringkasan bobot. Parameter rencana dipakai sebagai baseline dokumentasi; tiga baris terlambat/absen memuat angka yang dikonfirmasi pengguna 12 November; versi aturan ditampilkan dan perubahan pada event final memerlukan koreksi beralasan. Mode rutin tanpa klasemen tidak memperoleh Champion otomatis. Menyalin event membawa konfigurasi sebagai draft, bukan delta/profil/riwayat. Perubahan versi setelah pembagian memerlukan tinjauan dampak; histori memakai versi sumber.
 
 ### SCR-15 — Peserta dan penerimaan tim
 
@@ -383,6 +396,8 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 **Aksesibilitas:** Label permanen, nama ikon, heading berurutan, urutan fokus sesuai hierarki, pesan tanpa warna saja dan target sentuh usulan ≥44 px. Fokus ke field salah pertama; dialog menahan fokus dan kembali ke pemicu saat tutup. Pemilih menggantikan drag wajib. Kedua tema mengikuti token bagian 1.
 
 **Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
+
+**Perluasan v2.2 — FLOW-05/FLOW-22, AC-92, AC-124, AC-129:** konfirmasi posisi penilaian sebelum Simpan pembagian. Helper “Poin awal event 50 pada sembilan kategori; bukan nilai skill”. Skill privat 1–5 tetap di panel terpisah. Pratinjau belum membentuk poin; Simpan membentuk baseline sekali, Kunci bukan baseline kedua. Acak ulang/pindah pada event sama tidak mereset poin; perubahan sesudah main memerlukan alasan/dampak, tidak memindahkan sumber lama ke pengganti. Roster antartim tidak diacak lintas tim.
 
 ### SCR-17 — Penyusunan jadwal
 
@@ -421,6 +436,9 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Constraints dan aksesibilitas:** Form/kartu bertumpuk di HP; desktop memakai lebar konten terkontrol tanpa menyembunyikan field. Header dan CTA sticky hanya bila tidak menutup konten; bagian tengah scroll. Urutan keyboard mengikuti hierarki di atas; pesan error memindahkan fokus ke input terkait. Label status dapat dipahami tanpa warna. Modal/panel mengikuti aturan fokus bersama.
 
+**Perluasan v2.2 — FLOW-26, AC-124–AC-130:** tambahkan tab **Hasil laga / Penilaian event** pada layar yang sama. Penilaian event menampilkan versi aturan/sumber, enam hasil, kelengkapan Gol/Assist/partisipasi, metadata, insiden dan klasemen. Pratinjau menampilkan delta kategori, Q/maksimum/relatif dan pengaruh profil/overall/event selanjutnya. CTA “Finalkan poin” berbeda dari Finalkan skor; disabled dengan daftar sumber wajib kurang atau status/alasan insiden belum diverifikasi. Metadata opsional dapat ditutup admin “Tidak dapat diverifikasi” dengan alasan, tanpa menutup data wajib secara palsu.
+
+Konfirmasi memuat versi dan dampak, Batal menjaga versi lama. Jika data berubah, tampilkan “Data telah berubah. Tinjau versi terbaru.” dan jangan menimpa. Finalisasi sama yang diulang tidak memberi poin lagi. Koreksi hasil lama menampilkan cakupan replay sampai event terakhir; selama proses pertahankan versi lama berlabel. Berhasil membuka SCR-12 diri atau audit SCR-22 sesuai izin, tanpa mengalihkan ke nilai privat anggota yang tidak berhak dibaca.
 
 ### SCR-19 — Presensi kegiatan
 
@@ -440,6 +458,9 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Constraints dan aksesibilitas:** Tabel/list mempunyai header, filter berlabel dan alternatif kartu di HP; scroll horizontal dibatasi pada area tabel, bukan halaman. Header dan CTA sticky hanya bila tidak menutup konten; bagian tengah scroll. Urutan keyboard mengikuti hierarki di atas; pesan error memindahkan fokus ke input terkait. Label status dapat dipahami tanpa warna. Modal/panel mengikuti aturan fokus bersama.
 
+**Perluasan v2.2 — FLOW-25, AC-115–AC-123:** tab Presensi / Insiden & Koreksi. Form insiden memuat pemain, event/laga, jenis, batas hadir/waktu aktual, tanggung jawab tampil, alasan, bukti/catatan dan keputusan admin. Jenis terlambat dipilih dari selisih waktu terverifikasi, satu tingkat saja. Pratinjau menampilkan nominal final: terlambat 11–20 Discipline −4/Commitment −2; >20 Discipline −6/Commitment −3; absen Discipline −15/Commitment −12/Teamwork −5. Tombol Sahkan aktif hanya setelah status/alasan/bukti dan kewenangan valid, bukan ditahan karena nominal ambigu. Hanya admin cakupan mengesahkan; pencatat hanya mengajukan.
+
+Panel pemilik dibuka dari SCR-12: detail penalti, kategori/angka/sumber, status, Ajukan koreksi, alasan/bukti, Kirim/Batal. Bukan akses ke daftar presensi orang lain. Panel admin menampilkan antrean Diajukan/Ditinjau serta Putuskan diterima/ditolak dengan alasan; admin yang menjadi subjek diarahkan ke admin lain/superadmin. Pengajuan tidak menghapus penalti sah. Cek status sebelum retry, nomor permohonan/status dipertahankan; sukses mengembalikan fokus ke ringkasan insiden. Bukti/alasan pribadi tidak ditampilkan pada direktori/peringkat.
 
 ### SCR-20 — Tagihan dan verifikasi pembayaran
 
@@ -489,11 +510,13 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
 
+**Perluasan v2.2 — FLOW-23–FLOW-26, AC-102–AC-104, AC-114, AC-123–AC-127:** mode Rincian poin dibatasi pada pemilik dan petugas berhak. Tampilkan sumber unik, event/laga, versi aturan, kategori, delta nominal, perubahan efektif profil, saldo sebelum/sesudah dan status sumber. Bedakan Poin mentah / Nilai relatif / Profil, serta jelaskan koreksi maksimum pemain lain dapat mengubah relatif tetapi tidak delta profil. Replay historis menampilkan rentang event dan versi aktif, tidak menghapus ledger lama. Insiden sensitif disamarkan untuk pembaca audit yang tidak punya izin bukti. Kembali mempertahankan tab/filter layar asal; loading/error tidak melakukan posting.
+
 ### SCR-23 — Jadwal & Daftar
 
 **Konteks dan izin:** Publik/anggota. FEAT-20, FLOW-13, AC-48–AC-50. Masuk/keluar: SCR-04/nav Jadwal → SCR-05. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Judul, zona, filter tanggal, kalender desktop/agenda HP, kartu waktu/lokasi/kuota/biaya, Lihat sesi. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Judul, zona, filter tanggal, kalender desktop/agenda HP, kartu waktu/lokasi/kuota/biaya, Lihat sesi. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Kosong filter memberi Reset; gagal peta tidak memblokir agenda; draft tidak tampil. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -509,7 +532,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota; publik hanya profil terbit. FEAT-01, FEAT-10, FEAT-21, FLOW-01, FLOW-10, FLOW-16, AC-87–AC-90, AC-55. Masuk/keluar: Nav Tim/SCR-04 → SCR-07/SCR-12/SCR-25. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Cari pemain, tab Tim/Pemain, kartu foto/inisial/posisi/nomor, top skor, apresiasi bulanan berperiode. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Cari pemain, tab Tim/Pemain, kartu foto/inisial/posisi/nomor, top skor, apresiasi bulanan berperiode. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Tidak ada hasil pencarian beda dengan data privat; belum ada pemenang tidak memalsukan prestasi; nilai/kontak orang lain tersembunyi. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -521,11 +544,15 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Referensi gambar:** Hanya SCR yang tercantum manifest mendapat gambar; lainnya spesifikasi teks sesuai anggaran.
 
+**Perluasan v2.2 — FLOW-10/FLOW-22/FLOW-23, AC-95–AC-105:** direktori/top skor publikasi tetap tersedia. Tambahkan aksi **Statistik Saya** bagi pengguna masuk, membuka subview privat yang secara perilaku memakai SCR-12 di konteks Tim. Inilah varian referensi v6 dalam slot gambar SCR-24; bukan halaman/ID layar baru. Tab Event/Profil, sembilan angka dan rincian poin mengikuti spesifikasi SCR-12. Nilai milik anggota lain tidak tampil dalam daftar pemain; publik tidak melihat subview privat. Kembali mengembalikan pencarian/filter direktori. Skill manual 1–5 tidak digabung dalam kartu statistik.
+
+**Referensi v6 aktif:** [Statistik Saya — Spider](./mockups/scr-24-390x844-v6-spider-only.png), target 390×844, raster 852×1846. Spider tanpa pemilih jenis grafik, sembilan sumbu dan legenda angka Event contoh A-Striker, overall 94,84, profil ringkas Finishing 66/Achievement 56, ledger 50+16=66, 4 Gol/0 Assist pribadi/3 Penampilan. Semua data contoh dan privat. Bentuk raster ilustratif, implementasi memakai nilai presisi penuh dan skala tetap; tabel/legenda numerik tetap acuan aksesibel. Referensi v4 tersimpan sebagai riwayat.
+
 ### SCR-25 — Voting dan hasil apresiasi
 
 **Konteks dan izin:** Pemilih berhak/pembaca hasil berizin. FEAT-21, FLOW-16, AC-51–AC-56. Masuk/keluar: SCR-09/SCR-24 → SCR-09/SCR-24. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Jenis Laga/Bulanan, konteks/periode, aturan dan waktu, kandidat radio, pilihan tersimpan, Konfirmasi/Ganti suara; hasil setelah terbit. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Jenis Laga/Bulanan, konteks/periode, aturan dan waktu, kandidat radio, pilihan tersimpan, Konfirmasi/Ganti suara; hasil setelah terbit. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Tidak berhak/tertutup menonaktifkan kirim dengan alasan; seri/tanpa suara eksplisit; timeout Cek status. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -541,7 +568,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pembaca sesuai cakupan. FEAT-22, FLOW-17, AC-58–AC-60. Masuk/keluar: Lainnya/SCR-04 → SCR-27. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Judul Momen di lapangan, filter sesi, grid album, tanggal dan cakupan, thumbnail/foto berlabel. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Judul Momen di lapangan, filter sesi, grid album, tanggal dan cakupan, thumbnail/foto berlabel. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Belum ada album memberi pesan; foto belum tersedia berlabel; konten draft tidak muncul. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -557,7 +584,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pembaca sesuai cakupan. FEAT-22, FLOW-17, AC-58–AC-61. Masuk/keluar: SCR-26/SCR-09/SCR-05 → SCR-09/SCR-28. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Kembali, nama sesi/laga, grid foto/caption, viewer, highlight/link sumber, Kas & Iuran. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Kembali, nama sesi/laga, grid foto/caption, viewer, highlight/link sumber, Kas & Iuran. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Foto kosong/gagal dan video gagal punya pesan/fallback; konten ditarik tidak ditampilkan dari akses baru. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -573,7 +600,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota; tamu hanya tagihan kegiatan sendiri. FEAT-23, FLOW-18, AC-62–AC-67. Masuk/keluar: Lainnya/SCR-27/SCR-05 → SCR-20. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Periode, saldo awal/pemasukan/pengeluaran/saldo, tagihan saya bulanan/kegiatan dipisah, Bayar iuran, riwayat diri. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Periode, saldo awal/pemasukan/pengeluaran/saldo, tagihan saya bulanan/kegiatan dipisah, Bayar iuran, riwayat diri. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Tidak ada tagihan bukan tagihan nol rekaan; menunggu/ditolak/lunas berlabel; tamu tidak membaca ringkasan kas klub. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -589,7 +616,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Publik. FEAT-24, FLOW-19, AC-68–AC-70. Masuk/keluar: Lainnya/SCR-04 → WhatsApp/tujuan luar. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Judul ajakan akrab, WhatsApp admin publik, media sosial, sponsor nama/logo/tautan opsional. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Judul ajakan akrab, WhatsApp admin publik, media sosial, sponsor nama/logo/tautan opsional. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Kontak belum diisi tampil belum tersedia; sponsor kosong tidak diisi logo rekaan. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -605,7 +632,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Pengelola sesi/petugas media berhak. FEAT-22, FLOW-17, AC-57–AC-61. Masuk/keluar: SCR-13 → SCR-26/SCR-27/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Pilih laga, album draft, unggah per item, caption/alt/izin, tautan highlight, audiens, pratinjau, Simpan/Terbitkan/Tarik. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Pilih laga, album draft, unggah per item, caption/alt/izin, tautan highlight, audiens, pratinjau, Simpan/Terbitkan/Tarik. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Unggah parsial menjelaskan item berhasil/gagal; izin kurang menahan terbit; konten lama tetap sampai perubahan sah. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -621,7 +648,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Petugas kas komunitas; biaya kegiatan sesuai penugasan. FEAT-23, FEAT-11, FLOW-18, FLOW-11, AC-62–AC-67, AC-33–AC-36. Masuk/keluar: SCR-13 → SCR-20/SCR-22/SCR-28. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Ringkasan periode, daftar transaksi, Terbitkan iuran, Catat pengeluaran, saldo awal, antrean bukti, detail/alasan, Terima/Tolak. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Ringkasan periode, daftar transaksi, Terbitkan iuran, Catat pengeluaran, saldo awal, antrean bukti, detail/alasan, Terima/Tolak. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Duplikat terbit membuka tagihan lama; bukti bukan pembayaran otomatis; konflik muat versi; akses tanpa delegasi ditolak. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -637,7 +664,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Penilai ditugaskan; pemain baca nilai diri. FEAT-16, FLOW-14, AC-42, AC-79–AC-81. Masuk/keluar: SCR-16/SCR-12 → SCR-16/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Daftar peserta tugasnya, nilai1–5, penilai/waktu, kelengkapan, alasan perubahan, Simpan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Daftar peserta tugasnya, nilai1–5, penilai/waktu, kelengkapan, alasan perubahan, Simpan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Data kurang bukan nol; nilai berubah bersamaan meminta muat ulang; tanpa izin read/write ditolak. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -649,11 +676,13 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Referensi gambar:** Hanya SCR yang tercantum manifest mendapat gambar; lainnya spesifikasi teks sesuai anggaran.
 
+**Perluasan v2.2 — FLOW-14/FLOW-23, AC-79–AC-81, AC-105:** label tetap **Skill manual 1–5 (privat)**. Poin mentah awal 50, normalisasi event dan profil tidak otomatis mengisi atau mengganti skill; skill kosong tidak dipalsukan dari baseline. Tautan Profil hanya untuk subjek/petugas berhak. Mengubah skill tidak memberi poin performa atau mengacak ulang roster terkunci.
+
 ### SCR-33 — Preferensi dan pemantauan pengingat
 
 **Konteks dan izin:** Anggota untuk diri; pengelola untuk sesi tugasnya. FEAT-15, FLOW-15, AC-41, AC-82–AC-86. Masuk/keluar: SCR-05/SCR-12/SCR-13 → asal/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Mode anggota: nomor privat/persetujuan/opt-out; mode petugas: sesi/waktu/status/referensi dimask, alasan gagal, Periksa status/Retry sah. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Mode anggota: nomor privat/persetujuan/opt-out; mode petugas: sesi/waktu/status/referensi dimask, alasan gagal, Periksa status/Retry sah. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Provider belum aktif berbeda dengan terjadwal; gagal pasti beda timeout; status baca hanya bila provider membuktikan. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -669,7 +698,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Petugas voting laga atau delegasi bulanan. FEAT-21, FLOW-16, AC-51–AC-56. Masuk/keluar: SCR-13/SCR-25 → SCR-25/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Jenis/konteks/periode, kandidat/pemilih, zona/buka/tutup, aturan, pratinjau, Buka/Terbitkan/Batalkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Jenis/konteks/periode, kandidat/pemilih, zona/buka/tutup, aturan, pratinjau, Buka/Terbitkan/Batalkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Data partisipasi kurang menahan buka; snapshot aktif tidak diedit diam-diam; seri/tanpa suara memiliki hasil sah. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -681,11 +710,13 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Referensi gambar:** Hanya SCR yang tercantum manifest mendapat gambar; lainnya spesifikasi teks sesuai anggaran.
 
+**Perluasan v2.2 — FLOW-16/FLOW-24, AC-114:** helper “Voting adalah apresiasi terpisah; tidak menambah poin statistik pada katalog ini”. Koreksi/penerbitan pemenang memperbarui badge voting saja; tidak memberi bonus lama +1 MVP per laga atau poin bulanan tersembunyi. Snapshot kandidat/pemilih dan aturan seri tetap berlaku.
+
 ### SCR-35 — Kelola kontak dan sponsor
 
 **Konteks dan izin:** Delegasi publikasi komunitas. FEAT-24, FLOW-19, AC-68–AC-70. Masuk/keluar: SCR-13 → SCR-29/SCR-22. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Nomor admin publik, URL sosial, unggah logo/nama/alt/sponsor, urutan, aktif, pratinjau, Simpan/Terbitkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Nomor admin publik, URL sosial, unggah logo/nama/alt/sponsor, urutan, aktif, pratinjau, Simpan/Terbitkan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** URL/logo salah diberi pesan; tanpa aset jangan isi fiktif; pengelola sesi tanpa delegasi ditolak. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -701,7 +732,7 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 **Konteks dan izin:** Anggota/publik bila modul disahkan aktif. FEAT-27, AC-77. Masuk/keluar: Lainnya hanya jika aktif → WhatsApp/kembali. Periksa hak terbaru pada tiap aksi.
 
-**Hierarki dan konten:** Batas usulan katalog jersey/atribut asli, deskripsi/harga yang diberikan, kontak pemesanan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.1.
+**Hierarki dan konten:** Batas usulan katalog jersey/atribut asli, deskripsi/harga yang diberikan, kontak pemesanan. Semua nilai/nama yang belum diberikan memakai label Data contoh; aturan domain mengikuti Details v2.5.
 
 **State khusus:** Modul tidak aktif berarti menu/route tidak dipublikasikan; tanpa produk bukan toko siap transaksi. Default, loading, selected, saving, sukses, error, kosong, tanpa izin dan fokus mengikuti bagian 2. Tombol berulang dicegah selama simpan; status tidak diketahui memakai Cek status.
 
@@ -715,14 +746,14 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 ## 5. Manifest gambar dan pemeriksaan
 
-Dua belas gambar **v3 hitam–gold** menjadi referensi aktif revisi v2.1; semuanya tema gelap. Setiap hasil built-in imagegen diperiksa visual. Format PNG asli dipertahankan, nama file menyatakan target viewport, bukan ukuran raster aktual. Tema terang tetap mempunyai spesifikasi token; belum dibuat gambar baru untuk tema tersebut.
+Dua belas gambar aktif revisi v2.5 terdiri dari **11 referensi v3 hitam–gold dan satu SCR-24 v6 Spider**; semuanya tema gelap. Setiap hasil built-in imagegen diperiksa visual. Format PNG asli dipertahankan, nama file menyatakan target viewport, bukan ukuran raster aktual. Tema terang tetap mempunyai spesifikasi token; belum dibuat gambar baru untuk tema tersebut.
 
 | Layar/tema | Target | Raster aktual | Gambar aktif | Inspeksi dan batas |
 |---|---|---|---|---|
 | SCR-04 / hitam–gold | 390x844 | 852×1846 | [scr-04-390x844-v3-black-gold.png](./mockups/scr-04-390x844-v3-black-gold.png) | Logo, hero menunggu foto, CTA Gabung Main, statistik contoh dan empat menu dipertahankan. |
 | SCR-23 / hitam–gold | 390x844 | 852×1846 | [scr-23-390x844-v3-black-gold.png](./mockups/scr-23-390x844-v3-black-gold.png) | Tanggal 14, dua agenda, kuota/gratis dan status belum buka terbaca; Jadwal aktif. |
 | SCR-05 / hitam–gold | 390x844 | 852×1846 | [scr-05-390x844-v3-black-gold.png](./mockups/scr-05-390x844-v3-black-gold.png) | Waktu/zona, peta skematis, iuran terpisah, opt-in tidak dicentang, CTA dan helper RSVP sesuai. Ikon Tim masih hijau kecil; implementasi memakai gold. |
-| SCR-24 / hitam–gold | 390x844 | 852×1846 | [scr-24-390x844-v3-black-gold.png](./mockups/scr-24-390x844-v3-black-gold.png) | Inisial/nomor/posisi, apresiasi Oktober dan top skor berlabel belum lengkap; voting dan Tim aktif; tanpa nilai skill/kontak. |
+| SCR-24 / hitam–gold, Statistik Saya | 390x844 | 852×1846 | [scr-24-390x844-v6-spider-only.png](./mockups/scr-24-390x844-v6-spider-only.png) | Spider tanpa pemilih jenis grafik, sembilan sumbu dan legenda angka, overall 94,84, profil 66/56, ledger 50+16=66; data contoh dan privat. |
 | SCR-11 / hitam–gold | 390x844 | 852×1846 | [scr-11-390x844-v3-black-gold.png](./mockups/scr-11-390x844-v3-black-gold.png) | Skor final 2–1, gol Dimas/Arif 1 dan Fajar 1, SG +1/−1 dan poin 3/0 konsisten; jersey Hijau tetap identitas tim. |
 | SCR-26 / hitam–gold | 390x844 | 852×1846 | [scr-26-390x844-v3-black-gold.png](./mockups/scr-26-390x844-v3-black-gold.png) | Dua album, filter dan Lihat album; foto asli tetap menunggu unggahan. |
 | SCR-28 / hitam–gold | 390x844 | 853×1844 | [scr-28-390x844-v3-black-gold.png](./mockups/scr-28-390x844-v3-black-gold.png) | Saldo 0+2.000.000−750.000=1.250.000; tagihan 50.000 belum bayar dan instruksi verifikasi tetap terlihat. |
@@ -732,7 +763,7 @@ Dua belas gambar **v3 hitam–gold** menjadi referensi aktif revisi v2.1; semuan
 | SCR-30 / hitam–gold | 1440x900 | 1487×1058 | [scr-30-1440x900-v3-black-gold.png](./mockups/scr-30-1440x900-v3-black-gold.png) | Album Draft, unggah/alt/caption/HTTPS; izin belum dicentang, Terbitkan disabled dengan alasan. |
 | SCR-31 / hitam–gold | 1440x900 | 1487×1058 | [scr-31-1440x900-v3-black-gold.png](./mockups/scr-31-1440x900-v3-black-gold.png) | Saldo konsisten; pemasukan sekali; bukti dummy menunggu verifikasi, alasan penolakan dan cek mutasi manual; hijau/merah semantik. |
 
-Prompt aktual, target edit v2, generator, dimensi dan inspeksi tersedia pada [manifest v3](./mockups/manifest-v3.json). [Manifest v2](./mockups/archive/v2.0/manifest-v2.json) dan gambar v2 tetap dipertahankan sebagai riwayat; arsip [v1.1](./mockups/archive/v1.1/) dan [v1.0](./mockups/archive/v1.0/) bukan acuan aktif. Tidak menghidupkan kembali navigasi tiga menu dari gambar lama: navigasi mobile tetap Beranda, Jadwal, Tim, Lainnya.
+Manifest aktif [v6](./mockups/manifest-v6.json) mencatat prompt/target edit, dimensi dan inspeksi SCR-24 Spider serta 11 referensi v3 yang digunakan kembali. [Manifest v5](./mockups/manifest-v5.json) dan [gambar v5](./mockups/archive/v2.4/scr-24-390x844-v5-spider.png) menjadi riwayat sebelum penghapusan pemilih jenis grafik. [Manifest v4](./mockups/manifest-v4.json) tetap riwayat visual sebelum Spider default; [gambar SCR-24 v4](./mockups/archive/v2.2/scr-24-390x844-v4-statistics.png) dipindahkan ke archive/v2.2 karena sudah digantikan v5. [Manifest v3](./mockups/manifest-v3.json) dan gambar SCR-24 v3 tetap riwayat, bukan dihapus. [Manifest v2](./mockups/archive/v2.0/manifest-v2.json) dan gambar v2 tetap dipertahankan sebagai riwayat; arsip [v1.1](./mockups/archive/v1.1/) dan [v1.0](./mockups/archive/v1.0/) bukan acuan aktif. Tidak menghidupkan kembali navigasi tiga menu dari gambar lama: navigasi mobile tetap Beranda, Jadwal, Tim, Lainnya.
 
 Logo generatif dapat menyederhanakan detail; implementasi memakai [logo asli](./assets/logo-asker-fc.png). Angka/tanggal antargambar adalah skenario sintetis terpisah. Desktop mempunyai rasio lebih tinggi daripada target; seluruh gambar adalah referensi, bukan screenshot aplikasi atau bukti uji aksesibilitas. Status opt-in, disabled dan publikasi mengikuti teks, termasuk catatan SCR-05 dan SCR-29 pada tabel. Foto asli, nomor kontak, sosial dan sponsor tetap menunggu komunitas.
 
@@ -757,9 +788,35 @@ Rasio dihitung dari luminansi relatif sRGB, bukan sampling piksel raster. Teks n
 
 ## 6. Batas fase dan penggunaan
 
-FEAT-13, FEAT-14, FEAT-17, FEAT-18 dan FEAT-28 hanya US/AC konseptual; belum dijadwalkan detail layar. FEAT-27/SCR-36 opsional dan belum diaktifkan. FEAT-15/FEAT-16 kini MVP dengan FLOW-14/FLOW-15 dan SCR-16/SCR-32/SCR-33. Gambar hanya subset representatif, bukan kewajiban satu gambar per layar. Implementasi aplikasi, deployment dan pengiriman pesan tidak termasuk tugas ini.
+FEAT-13, FEAT-14, FEAT-17 dan FEAT-18 hanya US/AC konseptual; belum dijadwalkan detail layar. FEAT-27/SCR-36 opsional dan belum diaktifkan. FEAT-15/FEAT-16 tetap MVP; FEAT-28 kini MVP penilaian dengan FLOW-22–26 pada layar/panel lama. Analitik yang membutuhkan data tambahan tetap lanjutan. Gambar hanya subset representatif, bukan kewajiban satu gambar per layar. Implementasi aplikasi, deployment dan pengiriman pesan tidak termasuk tugas ini.
 
 ## 7. Riwayat dan sumber prompt
 
 Baseline v1.3 memiliki 22 spesifikasi dan 12 gambar hitam–emas; revisi v2.0 mempertahankan ID lama, menambah 14 layar termasuk toko kondisional, mengganti palet UI, memperjelas foto asli dan menghubungkan tujuh tahap perjalanan. Prompt aktual per aset dan hasil inspeksi dicatat pada manifest pendamping; provider built-in imagegen, satu permintaan per aset. Pada v2.0 logo dipakai untuk identitas. Instruksi 10 November 2026 menetapkan hitam–gold sesuai logo sebagai palet aktif v2.1; gambar v2 menjadi riwayat.
 Revisi v2.1 — 10 November 2026: pengguna mengotorisasi hitam–gold; sistem visual, AC-73 dan 12 referensi diselaraskan. Teks mengatur state dan batas implementasi; foto asli dan keputusan produksi tetap terbuka.
+## 8. Relasi penilaian v2.2 dan batas visual
+
+Inventaris tetap 36 layar (35 MVP dan satu toko kondisional); lima flow baru memakai panel/tab pada layar lama. Tidak menambah notification center atau halaman khusus baru. Anggaran aktif tetap 12 gambar; SCR-24 v6 menggantikan satu slot statistik, bukan gambar ke-13. Sebelas gambar lama dipertahankan sebagai referensi layout, belum menggambarkan setiap panel penilaian; spesifikasi teks berikut mengatur perluasannya.
+
+| Layar/panel | Relasi baru | State yang wajib dispesifikasi |
+|---|---|---|
+| SCR-10 | FLOW-22/FLOW-24/FLOW-25; AC-93–AC-94, AC-107–AC-109, AC-115 | Gol/Assist parsial, kartu, metadata belum diketahui, simpan tidak pasti |
+| SCR-12/SCR-24 | FLOW-22/FLOW-23/FLOW-24; AC-91–AC-114 | Event relatif vs Profil, no participation/Q kosong/nol, sumber tertunda, replay, privat |
+| SCR-14/SCR-16 | FLOW-22/FLOW-26; AC-91–AC-92, AC-124, AC-129 | Preset empat tim, posisi, baseline sekali, aturan belum ditetapkan |
+| SCR-18/SCR-22 | FLOW-26/FLOW-23; AC-102–AC-104, AC-124–AC-130 | Kelengkapan, pratinjau dampak, konflik, final idempoten, ledger nominal/efektif |
+| SCR-19 | FLOW-25; AC-115–AC-123 | Verifikasi, potongan kategori terkonfirmasi, pengajuan koreksi, keputusan ditinjau/diterima/ditolak |
+| SCR-11/SCR-34/SCR-32 | FLOW-24/FLOW-14/FLOW-16; AC-112–AC-114, AC-79–AC-81 | Klasemen vs poin final, voting terpisah, skill tidak dikonversi |
+
+Riwayat referensi v4: dibuat dengan built-in imagegen melalui edit target SCR-24 v3, disimpan PNG asli dan dilihat langsung. Kesembilan label/angka, pembeda Event/Profil, privasi, ledger dan navigasi diperiksa; tidak mengklaim screenshot aplikasi atau uji kontras raster. Aset foto asli, kontak/sponsor, provider dan validasi produksi tidak diselesaikan oleh produksi gambar. Rincian penalti telah ditutup lewat klarifikasi pengguna 12 November 2026. Prompt persis dan inspeksi versi historis ada pada manifest v4.
+
+## 9. Visualisasi statistik v2.5 — hanya Spider
+
+SCR-12/SCR-24 · FLOW-22/FLOW-23 · AC-131–AC-133. Urutan layout: identitas/privasi → Event/Profil → konteks → spider chart → legenda/tabel angka → overall → rincian sumber. Tidak ada pemilih jenis grafik. Tab Event/Profil tetap tersedia; event yang dipilih dipertahankan saat kembali dari Profil. Label konteks, periode dan sumber diperbarui bersama seri aktif agar angka Event tidak tertukar dengan Profil.
+
+Spider: tepat sembilan sumbu, searah jarum jam dari Finishing di atas; Playmaking, Defending, Teamwork, Discipline, Commitment, Consistency, Impact, Achievement mengikuti. Grid 0–100 dengan cincin 25/50/75/100; poligon gold transparan, outline/titik dan label kategori. Event contoh A-Striker = 100/79,37/79,37/100/100/100/100/100/100. Profil contoh = 66/50/50/54/50/54/50/62/56. Jangan membuat profil memenuhi cincin 100 dengan rescale; overall 94,84 event bukan sumbu kesepuluh.
+
+Angka dan nama lengkap tersedia melalui legenda/tabel, tidak wajib hover. Pada 360/390/430 px label dapat ditempatkan lewat legenda agar tidak terpotong; plot tidak membuat halaman melebar. Keyboard mengakses tab/filter/rincian dan pembaca layar mendapat judul grafik, konteks serta sembilan nilai. Data hilang — menampilkan state, tidak digambar sebagai nol atau poligon lengkap palsu; data nol sah tetap nol. Tabel tetap bisa dibaca jika grafik gagal atau tidak cukup data.
+
+Tidak ada overlay Event/Profil yang menggabungkan dua makna atau membuka data privat pemain lain. Poin mentah hanya di rincian. Referensi v6 menggantikan v5 dalam satu slot statistik; v5 dipindahkan ke archive/v2.4 dan v4 tetap archive/v2.2. Prompt asli historis tetap disimpan, bukan ditulis ulang seolah gambar lama tidak pernah memuat pilihan jenis grafik.
+
+Inspeksi referensi v6: PNG asli 852×1846 dilihat langsung; pemilih jenis grafik sudah tidak ada, sembilan sumbu/legenda, skala, overall 94,84, 4 Gol/0 Assist/3 Penampilan, profil ringkas, ledger dan konteks privat tetap sesuai. Sebelas referensi v3 dipakai ulang. Referensi raster bukan pengujian grafik aplikasi atau bukti presisi geometri.
