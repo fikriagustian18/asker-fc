@@ -1,8 +1,8 @@
 # Implementation Plan Proyek — Asker Football Club
 
-- Versi: 2.0
-- Tanggal: 10 November 2026
-- Status workflow: **sebagian-tertunda** — revisi hitam–gold diotorisasi pengguna 10 November 2026; dokumen v2.1 dan 12 referensi baru diselaraskan. Konten autentik dan keputusan produksi tetap terbuka; implementasi aplikasi belum dijalankan.
+- Versi: 2.11
+- Tanggal: 12 November 2026
+- Status workflow: **selesai untuk review dan optimasi dokumentasi** — rencana v2.11 menyelaraskan paket v2.5: statistik Event/Profil hanya memakai spider chart. Konten autentik, layanan/kebijakan dan validasi produksi tetap terbuka.
 - Bahasa: Indonesia; user story mengikuti format Inggris pada referensi skill.
 - Tujuan file: rencana penyusunan paket SRS dan gambaran pembangunan produk; bukan otorisasi implementasi aplikasi.
 - Upstream: jawaban pengguna butir 1–8 pada percakapan ini (tanpa nomor versi), ide awal, lampiran Untitled-1.txt, dan skill srs-documentation beserta referensi intake-and-plan.
@@ -432,3 +432,426 @@ Status akhir: **dokumen dan 12 gambar referensi selesai; paket tetap sebagian-te
 Instruksi pengguna melanjutkan SRS dengan skill srs-documentation dan hitam–gold mengotorisasi revisi paket yang ada, tanpa gate baru. Rencana v2.0 dan dokumen v2.1 mempertahankan ID dan scope: 28 fitur/story, 90 AC, 21 flow, 36 layar. AC-71 dan FLOW-20 diselaraskan untuk default tema gelap; AC-73 diselaraskan ke palet baru. Dua belas referensi v3 menjadi acuan aktif: delapan mobile dan empat desktop. Berkas v2 serta arsip v1 dipertahankan sebagai riwayat.
 
 Inspeksi visual, dimensi PNG, kontras token solid, tautan lokal dan encoding dicatat pada [Mockup SRS](./04-mockup-srs.md) dan [Traceability](./05-traceability.md). Foto asli/izin, kontak, sponsor, provider dan pengesahan aturan produksi masih tertunda. Tidak ada implementasi aplikasi, deployment atau pengiriman pesan.
+
+## 13. Implementation plan penilaian pemain berbasis posisi — 11 November 2026
+
+### 13.1. Dasar, otorisasi dan batas tahap
+
+**Tahap saat ini: pelaksanaan rencana v2.7 yang disetujui.** Instruksi pengguna 11 November 2026 “proses implementation plan tersebut” diberikan setelah review v2.7. Ini menerima scope dan rekomendasi eksplisit untuk baseline dokumentasi. Persetujuan pemrosesan tidak mengarang jawaban atas nominal penalti yang saat itu ambigu. Klarifikasi pengguna 12 November 2026 kini menetapkan nominal pada 13.6/13.12; konten asli dan keputusan produksi tetap terpisah. Riwayat sebelumnya meminta rencana disusun dahulu; gate tersebut sudah terpenuhi. Tidak menjalankan implementasi aplikasi.
+
+Bagian 13 menjadi acuan aktif untuk perubahan penilaian pemain. Bagian 1–12 merekam baseline/riwayat sebelumnya; aturan statistik, fase atau persetujuan historis yang bertentangan tidak mengungguli keputusan pengguna terbaru di bagian ini. Review historis saja tidak mengotorisasi pemrosesan, tetapi instruksi terbaru mengotorisasi dokumen turunan dan visual dalam scope; implementasi aplikasi tetap di luar tugas. Status/progres terbaru ada pada 13.11. Stack inti React, TypeScript, ASP.NET Core Web API, PostgreSQL dan Docker tetap berlaku. Model ini menggunakan perhitungan berbasis aturan tanpa kebutuhan AI atau layanan statistik tambahan.
+
+| Sumber | Kebutuhan atau keputusan |
+|---|---|
+| Instruksi pengguna 11 November 2026 | Satu event berisi 4 tim, masing-masing 3 pertandingan, total 6 pertandingan |
+| Instruksi pengguna | Statistik individu pertandingan hanya Gol dan Assist untuk seluruh tim; kebobolan berasal dari skor tim |
+| Instruksi pengguna | Gol/Assist menjadi dasar utama Striker dan Midfielder; kebobolan tim menjadi dasar utama Defender dan Goalkeeper |
+| Instruksi pengguna | Achievement memberikan poin peningkat statistik; instruksi penalti terbaru menggantikan potongan semua kategori dengan potongan kategori terkait |
+| Keputusan pengguna mengenai cakupan | Sembilan kategori tetap skala 0–100; statistik event menempatkan pemain dengan poin tertinggi pada setiap kategori di 100, sedangkan statistik profil adalah akumulasi seluruh permainan, bukan rerata event |
+| Klarifikasi pengguna mengenai baseline | Setiap pemain memiliki poin mentah awal 50 pada kesembilan kategori setelah tim dibentuk/diacak dalam setiap event; nilai mentah ini berbeda dari normalisasi event dan profil |
+| Masukan achievement terbaru pengguna | Pertimbangkan 12 achievement individu dan 9 achievement/penyesuaian tim dengan nominal dan kategori tujuan yang dirinci pada 13.5; Brace/Hat-Trick tidak ditumpuk, penyesuaian klasemen sekali setelah event selesai, hanya pemain yang benar-benar berpartisipasi |
+| Instruksi penalti terbaru | Kartu dicatat per pertandingan; penalti keikutsertaan meliputi outlist setelah pengacakan, terlambat, absen dan tidak mengikuti laga. Status/alasan harus diverifikasi admin; kejadian yang sama tidak dihitung dua kali dan pemain berhak mengajukan koreksi |
+| Keputusan kategori yang sudah diklarifikasi | Gunakan sembilan kategori: Finishing, Playmaking, Defending, Teamwork, Discipline, Commitment, Consistency, Impact dan Achievement. Penyebutan awal “lima” tidak lagi menjadi pertanyaan terbuka setelah klarifikasi pengguna |
+| Usulan agen untuk review | Nilai awal 50 per kategori/event sudah ditetapkan pengguna. Bobot posisi, potongan kebobolan, metode rasio normalisasi, kelayakan perbandingan event dan formula akumulasi profil (baseline 50 sekali, cap setelah setiap event) masih usulan. Nominal achievement/penalti mengikuti masukan pengguna; definisi gol penentu, metadata hasil, aturan seri, streak dan pengecualian tumpukan selain Brace/Hat-Trick adalah usulan perincian, bukan aturan klub yang sudah diuji |
+
+### 13.2. Format event dan input sederhana
+
+Gunakan satu putaran dengan pasangan **A–B, A–C, A–D, B–C, B–D, C–D**. Pemeriksaan: 4 × 3 ÷ 2 = 6 pertandingan; setiap pasangan bertemu tepat sekali, tanpa tim melawan diri sendiri. Urutan pelaksanaan mengikuti slot, lapangan dan waktu istirahat, sehingga daftar pasangan bukan janji jadwal serentak. Format ini menjadi preset event yang diminta, bukan penghapusan konfigurasi kegiatan lain.
+
+| Kelompok data | Input atau sumber | Batas kesederhanaan |
+|---|---|---|
+| Konfigurasi event | Empat tim, jadwal enam laga, roster dan posisi event | Posisi disalin dari profil untuk dikonfirmasi sebelum main; tidak otomatis mengikuti perubahan profil berikutnya |
+| Hasil tiap laga | Skor dua tim | Kebobolan tim otomatis = skor lawan; tidak ada kolom input kebobolan pemain |
+| Statistik individu | Gol dan Assist tiap pemain yang tampil | Dua kolom bilangan bulat nonnegatif; tidak meminta tackle, save, shot, passing, menit bermain atau rating manual |
+| Metadata partisipasi | Konfirmasi pemain tampil/tidak tampil per laga | Daftar tampil dapat diprapenuhi dari roster hadir tetapi harus dikonfirmasi petugas; hadir event tidak otomatis berarti tampil tiga laga |
+| Insiden pengecualian | Kartu, outlist, terlambat, absen dan keputusan alasan mendesak | Dicatat hanya bila ada kejadian; ini catatan disiplin/keikutsertaan, terpisah dari dua statistik performa |
+| Achievement | Dihitung dari Gol/Assist, skor, partisipasi, posisi event, presensi dan klasemen sah | Bonus hanya pada kategori tujuan; tidak ada pemberian poin bebas |
+| Metadata hasil khusus | Pencetak gol pertama, pencetak gol penentu dan konfirmasi comeback bila diketahui | Pilihan pemain/konfirmasi kejadian, bukan statistik individu baru; rincian dan status belum diketahui pada 13.5.4 |
+
+Petugas mengonfirmasi kelengkapan Gol dan Assist per tim/laga. Kolom kosong berarti belum dicatat, sedangkan angka 0 berarti sudah dikonfirmasi nol. Gol bunuh diri dicatat sebagai penyesuaian skor tim beserta alasan, bukan statistik individu ketiga dan bukan Gol/Assist pemain lawan. Usulan satu gol hanya dapat memiliki maksimal satu assist; pencetak gol dan pemberi assist harus berbeda, satu tim dan tercatat tampil. Karena input berupa total, validasi minimal adalah jumlah Gol + gol bunuh diri lawan = skor tim, jumlah Assist ≤ Gol pemain tim, serta Assist seorang pemain ≤ Gol pemain tim selain dirinya. Hubungan assist dengan gol tertentu tidak diklaim tersedia dari input agregat.
+
+Skor tetap dapat final saat rincian belum lengkap sebagaimana baseline. Namun penilaian komparatif baru menunggu kelengkapan seluruh enam laga; data parsial ditampilkan sebagai sementara, tidak dianggap nol. Walkover, laga batal dan skor administratif tidak menghasilkan gol, clean sheet atau bonus performa bermain. Event yang tidak menyelesaikan enam laga tidak diberi label penilaian event lengkap.
+
+### 13.3. Model saldo statistik: mulai 50 setiap event
+
+**Keputusan pengguna terbaru:** setelah pembentukan/pengacakan tim disimpan, setiap pemain dalam roster event memperoleh **50 pada kesembilan kategori**. Nilai 50 adalah titik awal netral event, bukan hasil Gol, Assist atau penilaian kemampuan. Model ini menggantikan seluruh rumus nilai dasar lama: 1 Gol = 50, 1 Assist = 50, Defending/Discipline/Commitment mulai 100, Achievement mulai 0, serta Consistency/Impact yang sebelumnya dihitung sebagai skor turunan.
+
+| Kategori | Nilai awal setiap event |
+|---|---|
+| Finishing | 50 |
+| Playmaking | 50 |
+| Defending | 50 |
+| Teamwork | 50 |
+| Discipline | 50 |
+| Commitment | 50 |
+| Consistency | 50 |
+| Impact | 50 |
+| Achievement | 50 |
+
+Untuk pemain p dan kategori C pada event e, simpan **`delta_p,e,C = total_tambahan_p,e,C − total_pengurangan_p,e,C`**, kemudian **`poin_mentah_p,e,C = max(0, 50 + delta_p,e,C)`**. Delta bertanda tetap disimpan utuh walaupun poin mentah mencapai batas 0. Poin mentah bukan nilai tampilan event; tidak dibatasi 100 sebelum normalisasi agar nilai 110 dan 120 tetap dapat dibedakan. Semua sumber dihitung ulang dari data sah, bukan ditambah lagi saat halaman dibuka atau disimpan ulang. Metode normalisasi pada 13.5.1 mengubah poin mentah menjadi skala 0–100 event.
+
+Tiga besaran harus diberi nama/label berbeda: **Poin mentah event**, **Nilai event (relatif)** dan **Statistik profil (akumulasi)**. Contoh 1 Gol memberi Goal Scorer +3: delta Finishing +3 dan poin mentah 53; nilai event bergantung poin tertinggi peserta, sedangkan profil hanya menerima perubahan +3 sekali.
+
+Siklus yang direncanakan:
+
+1. Sebelum tim dibentuk, belum ada saldo penilaian event untuk pemain tersebut. Pratinjau pengacakan belum membuat saldo.
+2. Pembagian tim disimpan: buat satu saldo awal 50 per pemain/kategori/event dan snapshot posisi penilaian. Menyimpan ulang atau mengacak ulang tim pada event yang sama tidak memberi 50 lagi dan tidak menghapus perubahan yang sudah sah.
+3. Selama event, hasil laga dan kejadian yang disahkan menambah/mengurangi kategori terkait. Semua perubahan menampilkan sumber, angka, waktu dan status; sumber belum diverifikasi ditandai tertunda.
+4. Event selesai: hitung bonus/potongan tingkat tim sekali, verifikasi kelengkapan, normalisasikan setiap kategori terhadap maksimum peserta event dan finalkan snapshot nilai event. Posting delta sumber yang sah ke akumulasi profil sekali; jangan mem-posting nilai normalisasi atau baseline event. Kehadiran event tidak otomatis berarti tampil tiga laga.
+5. Event berikutnya mempunyai saldo baru 50 untuk semua kategori, bukan membawa saldo akhir atau nilai profil event sebelumnya. Histori event terdahulu tidak direset.
+
+Posisi penilaian ditetapkan sebelum main dan tidak diganti untuk mengejar bonus sesudah hasil diketahui. Statistik individu tetap hanya Gol dan Assist per pertandingan; status tampil, kartu, kehadiran dan metadata hasil khusus merupakan catatan pendukung. Gol/Assist memicu bonus pada katalog 13.5; **tidak ada tambahan 50 per Gol/Assist atau poin dasar lain yang dihitung lagi di luar katalog**. Contoh 1 gol menghasilkan Goal Scorer Finishing +3 sehingga 50 menjadi 53, sebelum bonus atau potongan lain.
+
+**Rancangan pengurangan defensif yang masih usulan agen:** Defender/Goalkeeper yang terkonfirmasi tampil mendapat Defending −2 per gol kebobolan tim pada laga tersebut. Tidak perlu input kebobolan individu; sumbernya skor lawan. Clean Sheet +5 atau Defensive Resilience +2 tetap mengikuti katalog, sehingga laga kebobolan 1 memberi bersih +2 −2 = 0, laga clean sheet +5, dan laga kebobolan 2 memberi −4 sebelum bonus event. Angka −2 belum ditetapkan pengguna; perlu kalibrasi agar kebobolan menjadi sumber penurunan yang jelas dalam model saldo. Striker/Midfielder tidak otomatis dipotong Defending dari aturan khusus ini.
+
+Kebobolan tetap proksi pertahanan tim; dua Defender yang tampil pada laga sama menerima perubahan defensif yang sama. Tidak ada klaim mengukur tackle/save atau menit bermain. Pemain tidak tampil tidak mendapat bonus laga atau potongan kebobolan laga itu. Poin mentah dapat tetap 50 tanpa kontribusi tercatat; ini **baseline netral**, bukan bukti kemampuan. Setelah normalisasi, kategori dengan semua peserta berpoin sama akan menampilkan nilai sama 100 bila maksimum lebih dari 0; ini menunjukkan kesetaraan relatif, bukan performa sempurna. Jumlah penampilan wajib ditampilkan untuk konteks.
+
+### 13.4. Ringkasan perubahan sembilan kategori dan overall
+
+| Kategori | Poin mentah awal event | Sumber tambahan | Sumber pengurangan |
+|---|---|---|---|
+| Finishing | 50 | First Blood +2; Goal Scorer +3; Brace +3 tambahan atau Hat-Trick +5 tambahan | Belum ada potongan langsung Finishing dalam katalog pengguna; tidak mencetak Gol bukan penalti otomatis |
+| Playmaking | 50 | Assist Maker +3; Playmaker +4 tambahan | Belum ada potongan langsung Playmaking; Assist nol bukan penalti otomatis |
+| Defending | 50 | Clean Sheet +5 atau Defensive Resilience +2; Best Defense +3, khusus Defender/Goalkeeper | Usulan −2 per kebobolan tim pada laga tampil untuk Defender/Goalkeeper |
+| Teamwork | 50 | Unbeaten +4 atau Perfect Victory +6; Comeback +3 per laga sah | Merah −3; Last Place −6; Winless −3; tidak hadir tanpa alasan mendesak −5 |
+| Discipline | 50 | Belum ada bonus Discipline pada katalog pengguna | Kuning −3; merah −10; outlist −12; terlambat −2/−4/−6; absen −15 sesuai 13.6 |
+| Commitment | 50 | Perfect Attendance +4 | Outlist −8; terlambat 11–20 menit −2, >20 menit −3; absen tanpa alasan mendesak −12; tidak mengikuti laga −4 |
+| Consistency | 50 | Consistent Performer +4 pada event penutup streak tiga event | Belum ada potongan langsung; tidak lagi memakai simpangan performa otomatis |
+| Impact | 50 | First Blood +1; Goal Contribution +3; Match Winner +4; Best Attack +2 | Belum ada potongan langsung; tidak lagi dihitung ulang dari F/P/D |
+| Achievement | 50 | Champion +6; Runner-Up +3 | Belum ada potongan langsung; tidak lagi mulai 0 atau mengonversi poin ×10 |
+
+Contoh poin mentah tanpa perubahan lain: Perfect Attendance menghasilkan Commitment **54**, Champion menghasilkan Achievement **56**, Runner-Up **53**. Nilai tampilan event masih dinormalisasi terhadap maksimum kategori; angka tersebut bukan nilai profil. Tidak memperoleh achievement berarti kategori terkait tetap 50, bukan 0. Pada katalog sekarang Discipline hanya dapat tetap/menurun, sementara beberapa kategori hanya tetap/naik; kebutuhan penambahan sumber poin lain merupakan review lanjutan, bukan aturan yang diasumsikan ada.
+
+**Usulan bobot overall baru per posisi:** karena Impact sekarang saldo mandiri, bobot lama 70% Impact tidak lagi menjadikan Gol/Assist atau kebobolan dasar utama. Ganti dengan rerata tertimbang langsung atas sembilan saldo akhir berikut. Angka bobot adalah usulan agen untuk diuji, bukan keputusan pengguna.
+
+| Posisi event | Finishing | Playmaking | Defending | Teamwork | Discipline | Commitment | Consistency | Impact | Achievement |
+|---|---|---|---|---|---|---|---|---|---|
+| Striker | 45% | 20% | 5% | 5% | 5% | 5% | 5% | 5% | 5% |
+| Midfielder | 20% | 45% | 5% | 5% | 5% | 5% | 5% | 5% | 5% |
+| Defender | 5% | 5% | 60% | 5% | 5% | 5% | 5% | 5% | 5% |
+| Goalkeeper | 0% | 0% | 70% | 5% | 5% | 5% | 5% | 5% | 5% |
+
+Setiap baris berjumlah 100%. Tampilkan overall dengan konteks yang jelas: `overall_event_relatif = sum(bobot_posisi_event,C × nilai_normalisasi_event_C)`; nilai ini bergantung peserta event dan tidak diposting ke profil. Seluruh poin mentah 50 memberikan overall mentah 50; setelah semua kategori dinormalisasi dengan maksimum 50, overall relatif seluruh pemain menjadi 100. Jangan menjanjikan bahwa baseline tampilan event selalu 50.
+
+Gol/Assist menjadi komponen utama Striker/Midfielder melalui Finishing/Playmaking; hasil pertahanan menjadi utama Defender/Goalkeeper. Tidak ada potongan overall tambahan di luar kategori. Peringkat seri tetap bersama, bukan dipecahkan memakai Gol sebagai aturan universal. Top skor dan voting MVP tetap mekanisme terpisah. Bobot dan skala perubahan per posisi perlu diuji; baseline setara dan normalisasi maksimum belum membuktikan keadilan distribusi peran. Formula overall profil terpisah pada 13.5.1.
+
+### 13.5. Achievement dan pembatasan pertumbuhan
+
+Rancangan terbaru menggunakan **bonus langsung pada kategori yang dituju**. Katalog ini menggantikan enam achievement usulan sebelumnya, bonus universal maksimal +5 dan konversi semua poin ×10. MVP laga dan Pemain Terbaik Bulan Ini tetap tersedia sebagai hasil voting/badge, tetapi tidak menambah nilai dalam katalog ini agar tidak ada bonus lama yang terselip. Tidak ada bonus achievement ke Discipline pada daftar terbaru; kategori tersebut tetap dipengaruhi penalti Discipline.
+
+Nominal pada tabel mengikuti masukan pengguna. Detail operasional di bawah merupakan usulan untuk review. Achievement laga dievaluasi pada hasil final dengan data lengkap; achievement event dievaluasi setelah seluruh enam laga bermain selesai dan sumbernya disahkan. Laga administratif tidak menghasilkan bonus bermain.
+
+#### Achievement individu — 12 jenis
+
+| Achievement | Syarat | Bonus kategori | Frekuensi/sumber |
+|---|---|---|---|
+| First Blood | Mencetak gol pertama pertandingan, bukan gol pertama setiap tim | Finishing +2; Impact +1 | Maksimal satu pemain per laga; metadata gol pertama terkonfirmasi |
+| Goal Scorer | Mencetak ≥1 gol | Finishing +3 | Sekali per pemain/laga, bukan +3 untuk setiap gol |
+| Brace | Mencetak tepat 2 gol dalam satu pertandingan | Finishing +3 tambahan | Sekali per pemain/laga; diganti Hat-Trick jika mencapai ≥3 gol |
+| Hat-Trick | Mencetak ≥3 gol dalam satu pertandingan | Finishing +5 tambahan | Sekali per pemain/laga, tanpa Brace |
+| Assist Maker | Membuat ≥1 assist | Playmaking +3 | Sekali per pemain/laga, bukan per assist |
+| Playmaker | Membuat ≥2 assist dalam satu pertandingan | Playmaking +4 tambahan | Sekali per pemain/laga, dapat ditambah Assist Maker |
+| Goal Contribution | Minimal satu gol dan satu assist dalam laga yang sama | Impact +3 | Sekali per pemain/laga |
+| Clean Sheet | Tim tidak kebobolan; pemain tampil sebagai Defender/Goalkeeper menurut posisi penilaian event | Defending +5 | Sekali per pemain/laga; bukan untuk pemain di bangku cadangan yang tidak tampil |
+| Defensive Resilience | Defender/Goalkeeper tampil dan tim kebobolan maksimal 1 gol | Defending +2 | Sekali per pemain/laga; bila 0 kebobolan, usulan hanya Clean Sheet yang memberi bonus |
+| Match Winner | Mencetak gol penentu kemenangan menurut definisi 13.5.4 | Impact +4 | Maksimal satu pemain pada tim pemenang per laga; tidak ada pada hasil seri |
+| Perfect Attendance | Hadir dan bermain pada seluruh tiga laga tim dalam event | Commitment +4 | Sekali per pemain/event; terlambat atau kartu tidak menghapus badge ini, tetapi penalti terpisah tetap berlaku |
+| Consistent Performer | Berkontribusi dalam tiga event berturut-turut menurut 13.5.3 | Consistency +4 | Sekali pada event yang menyelesaikan satu blok streak tiga event |
+
+#### Achievement dan penyesuaian tim — 9 jenis
+
+| Achievement/penyesuaian | Kondisi tim | Bonus/potongan untuk pemain yang memenuhi partisipasi | Waktu/sumber |
+|---|---|---|---|
+| Champion | Peringkat 1 event | Achievement +6 | Sekali setelah klasemen event final |
+| Runner-Up | Peringkat 2 event | Achievement +3 | Sekali setelah klasemen event final |
+| Unbeaten Team | Tidak kalah pada ketiga pertandingan tim | Teamwork +4 | Sekali setelah event selesai; usulan diganti Perfect Victory jika seluruhnya menang |
+| Perfect Victory | Menang seluruh tiga pertandingan | Teamwork +6 | Sekali setelah event selesai, tidak ditambah Unbeaten Team |
+| Best Defense | Kebobolan total paling sedikit dari empat tim | Defending +3, hanya Defender/Goalkeeper | Sekali setelah event selesai; tim dengan jumlah minimum yang sama mendapat penghargaan bersama |
+| Best Attack | Total gol tim terbanyak dari empat tim | Impact +2 | Sekali setelah event selesai; tim dengan jumlah maksimum yang sama mendapat penghargaan bersama |
+| Comeback Victory | Menang setelah pernah tertinggal pada laga tersebut | Teamwork +3 | Sekali per laga yang memenuhi syarat; hanya pemain tim pemenang yang tampil pada laga itu |
+| Last Place | Peringkat 4 event | Teamwork −6 | Sekali setelah klasemen event final |
+| Winless Team | Tidak menang satu pun dari ketiga pertandingan | Teamwork −3 | Sekali setelah event selesai |
+
+Last Place dan Winless Team adalah penyesuaian negatif hasil tim, ditampilkan terpisah dari badge prestasi positif dan dari pelanggaran individu. Potongan keduanya **hanya Teamwork**, bukan seluruh kategori. Anggota yang resmi dibatalkan sebelum pembagian tim tidak menerima bonus/potongan tim. Aturan penerima selengkapnya ada pada 13.5.2.
+
+**Keputusan terbaru pengguna membedakan event dan profil:** pemilik poin tertinggi setiap kategori pada event ditampilkan sebagai 100; profil mengakumulasi seluruh permainan. Nilai event bukan angka yang dirata-ratakan atau dijumlahkan ke profil. Rekap Gol/Assist tetap fakta pertandingan tersendiri.
+
+#### 13.5.1. Poin mentah, normalisasi event dan akumulasi profil
+
+Untuk pemain p, event e dan kategori C, gunakan sumber unik:
+
+- `B_p,e,C`: jumlah bonus kategori dari achievement laga/event/streak yang sah setelah aturan tumpukan.
+- `T_p,e,C`: potongan hasil tim, hanya Teamwork, bernilai 0/3/6/9.
+- `P_p,e,C`: potongan pelanggaran kategori dari insiden sah pada 13.6.
+- `K_p,e,C`: usulan potongan kebobolan, hanya Defending pada Defender/Goalkeeper, 2 × kebobolan pada laga tampil.
+- `delta_p,e,C = B_p,e,C − T_p,e,C − P_p,e,C − K_p,e,C`.
+
+**A. Poin mentah event:** `mentah_p,e,C = max(0, 50 + delta_p,e,C)`. Baseline 50 dibuat sekali per event, bukan sekali per laga atau pengacakan. Delta asli tetap tersimpan; nilai mentah tidak dicap 100 karena masih menjadi bahan perbandingan event. Bonus pertandingan tidak dibagi jumlah laga, bonus event tidak dikalikan tiga, dan satu sumber tidak masuk dua komponen potongan.
+
+**B. Nilai event relatif (usulan rumus rasio):** tentukan kelompok pembanding Q_e berupa pemain snapshot event yang terkonfirmasi tampil minimal satu laga sah. Perbandingan mencakup empat tim dan semua posisi, bukan hanya satu tim/posisi. Peserta batal sebelum pembagian tim atau snapshot dibatalkan secara sah dikecualikan. Outlist/absen tanpa penampilan tetap memiliki poin mentah dan penalti profil, tetapi **tidak masuk maksimum, nilai relatif atau peringkat event**, sehingga baseline pemain yang tidak bermain tidak menjadi acuan performa. Pemain tampil sebagian tetap memiliki nilai relatif dengan jumlah laga terlihat; usulan peringkat overall event mensyaratkan tampil ketiga laga.
+
+Hitung `maks_e,C = max(mentah_p,e,C untuk p dalam Q_e)`. Untuk maksimum >0, `nilai_event_p,e,C = 100 × mentah_p,e,C / maks_e,C` hanya bagi anggota Q_e. Tampilkan dua desimal setelah perhitungan penuh; penyimpanan, bobot overall dan penentuan seri memakai nilai penuh, sehingga peringkat tidak bergantung pembulatan UI. Tertinggi tiap kategori mendapat 100 dan seri tertinggi mendapat 100 bersama. Satu pemain tidak harus menjadi pemilik 100 pada semua kategori. Kelayakan Q_e adalah usulan optimasi, bukan penghapusan histori pelanggaran pemain yang tidak tampil.
+
+Contoh Finishing A/B/C memiliki poin mentah 60/55/50: nilai event masing-masing **100/91,67/83,33**. Achievement mentah Champion 56, Runner-Up 53 dan peserta lain 50 menjadi **100/94,64/89,29**. Nilai 100 menandakan posisi tertinggi pada kategori/event itu, bukan 100 poin tambahan atau performa absolut sempurna. Bila semua peserta masih 50 dan maksimum 50, semuanya 100 secara relatif; sebelum pertandingan tampilkan poin awal 50 dengan label “Nilai relatif belum final”, tanpa menerbitkan peringkat prestasi dari event yang belum dimainkan.
+
+Jika Q_e kosong, tampilkan “Belum ada pemain tampil terkonfirmasi” dan jangan menerbitkan normalisasi/peringkat. Jika maksimum seluruh anggota Q_e pada suatu kategori 0, pembagian tidak dapat dilakukan. Usulan state khusus: tampilkan poin mentah 0 dan nilai relatif “Tidak dapat dinormalisasi — seluruh poin 0”, bukan mengarang nilai sempurna atau membagi nol. Ini pengecualian degenerat yang perlu dicatat pada AC. Perbandingan yang belum lengkap diberi label sementara; bonus/koreksi satu pemain dapat mengubah maksimum sehingga nilai relatif semua peserta pada kategori terkait harus dihitung ulang. Kejadian ini tidak mengubah delta atau profil peserta lain.
+
+**Batas interpretasi penalti relatif:** bila semua anggota Q_e mendapat potongan Discipline yang sama sehingga seluruh poin menjadi 47, normalisasi tetap menampilkan semuanya 100. Potongan tetap tercatat pada delta dan profil; jangan menyimpulkan bahwa nilai relatif 100 berarti bebas kartu. Jika pemimpin kategori terkena potongan tetapi masih tertinggi, ia juga tetap 100. Selalu sediakan poin mentah dan riwayat perubahan di samping angka relatif. Tidak ada normalisasi tambahan overall yang menjanjikan pemenang overall pasti 100; aturan maksimum 100 berlaku per kategori.
+
+**C. Akumulasi profil (usulan optimasi batas 0–100):** baseline profil `profil_0,C = 50` hanya sekali. Urutkan event yang sumbernya final menurut waktu mulai event lalu ID event yang stabil; untuk setiap event e, hitung **`profil_e,C = clamp(profil_sebelum_e,C + delta_p,e,C, 0, 100)`**. Akumulasi mengikuti urutan event permainan, bukan urutan admin menginput atau memperbaiki data. Semua perubahan dalam event digabung menjadi delta bersih sebelum cap, sehingga urutan pencatatan kejadian dalam event yang sama tidak memberi hasil berbeda.
+
+Metode cap per event ini menggantikan usulan cap tampilan setelah menjumlah delta sepanjang karier: bonus melampaui 100 atau potongan melampaui 0 tidak menjadi cadangan tersembunyi yang melindungi saldo pada event berikutnya. Ledger tetap menyimpan delta nominal dan perubahan efektif yang benar-benar diterapkan. Baseline profil 50 dan pilihan cap per event masih **usulan untuk review**, bukan keputusan pengguna yang sudah disahkan. Keputusan pengguna yang tetap adalah akumulasi seluruh permainan; profil tidak dirata-ratakan, tidak direset, tidak ditambah baseline 50 per event dan tidak memakai nilai relatif event.
+
+Contoh perubahan Finishing tiga event +10, +3 dan 0 memberikan profil **63**, bukan rerata 54,33 atau jumlah poin mentah 163. Contoh Teamwork +6, −9 dan −3 memberi profil **44**. Baseline event berikutnya tetap 50 meskipun profil Finishing sudah 63. Karena katalog Finishing belum mempunyai potongan langsung, nilai itu tidak turun hanya karena event baru tanpa Gol; ini berbeda dari model rerata yang sudah dibatalkan.
+
+Akumulasi mencakup sumber seluruh pertandingan/event yang sah, termasuk penalti outlist/absen terverifikasi walaupun pemain tidak tampil. Gol/Assist dan bonus laga memerlukan partisipasi sebenarnya; baseline netral tidak menghasilkan penampilan atau badge palsu. Pembatalan sebelum pembagian tim tidak menghasilkan snapshot atau delta. Event dibatalkan tidak mem-posting perubahan; hasil sah pada event yang belum selesai ditampilkan sebagai delta sementara hingga finalisasi/salvage sumber disahkan pengelola. Achievement tim tetap menunggu klasemen final, streak hanya diposting pada event penutupnya sekali.
+
+Contoh batas: profil awal 50, event pertama delta +70 menghasilkan 100 dengan kenaikan efektif +50; event kedua delta −3 menghasilkan **97**, bukan tetap 100. Sebaliknya delta −70 menghasilkan 0, lalu event berikutnya +3 menghasilkan 3. Selisih nominal dan efektif tetap bisa diaudit, tetapi tidak disimpan sebagai saldo cadangan. Akumulasi jumlah delta mentah boleh menjadi data audit terpisah, bukan nilai kategori profil yang ditampilkan.
+
+**Usulan overall profil:** hitung `delta_overall_e = sum_C(bobot_posisi_p,e,C × perubahan_efektif_profil_e,C)` menggunakan posisi/versi aturan event sumber. Akumulasikan `overall_e = clamp(overall_sebelum_e + delta_overall_e, 0, 100)` dengan baseline overall 50 satu kali. Menggunakan perubahan efektif kategori memastikan bonus yang seluruhnya tertahan batas kategori tidak menaikkan overall. Overall profil bukan normalisasi dan bukan rerata overall event. Untuk posisi/bobot tetap dan tanpa cap overall, hasilnya setara bobot atas kategori profil; pergantian posisi dapat berbeda sehingga rincian pengaruh per event perlu ditampilkan. Bobot posisi tetap usulan untuk kalibrasi.
+
+Koreksi sumber mengganti delta aktif lama dengan versi baru, kemudian menghitung ulang poin mentah event dan maksimum/normalisasi peserta terkait. Untuk profil, replay dari event paling awal yang berubah sampai event terbaru dengan urutan permainan tetap, termasuk streak dan overall; tidak cukup menambah selisih koreksi pada saldo terkini karena cap historis dapat mengubah perubahan efektif sesudahnya. Mengoreksi poin pemain A yang mengubah maksimum event dapat mengubah nilai relatif pemain B, tetapi **tidak** mengubah profil B karena delta B tetap. Sumber unik, versi aturan dan finalisasi idempoten mencegah poin ganda. Filter event menampilkan nilai relatif dan poin mentah; profil menampilkan akumulasi berikut jumlah event/penampilan, riwayat perubahan dan sumbernya. Tidak ada data berarti belum ada riwayat; baseline profil usulan 50 diberi label awal, bukan bukti penampilan.
+
+**Versi aturan dan finalisasi yang perlu dirinci saat implementasi:** snapshot baseline, posisi, bobot, katalog, aturan tumpukan dan himpunan sumber dikaitkan dengan versi aturan event saat pembagian tim disimpan. Perubahan usulan setelahnya berlaku untuk event baru; perhitungan ulang histori memakai versi event sumber. Migrasi histori harus eksplisit, beralasan, berjejak dan mereplay profil, bukan otomatis menerapkan konfigurasi terbaru.
+
+Pisahkan status skor laga, kelengkapan statistik dan pengesahan poin. Untuk kejadian khusus, gunakan Terverifikasi ada / Terverifikasi tidak ada / Tidak berlaku / Belum diketahui. “Belum diketahui” menahan badge terkait, bukan skor pertandingan. Jika kejadian tidak mungkin diverifikasi, admin dapat menutupnya dengan status “Tidak dapat diverifikasi” dan alasan: tidak memberi bonus, tidak mengklaim kejadian tidak terjadi, dan tetap memberi label kekurangan bukti. Koreksi kemudian dapat membuka revisi poin. Data wajib Gol/Assist, partisipasi, kartu atau alasan kehadiran yang belum diperiksa tidak boleh ditutup dengan mekanisme metadata opsional ini.
+
+Finalisasi poin adalah satu versi snapshot konsisten untuk poin mentah, Q_e/maksimum, nilai relatif dan delta posting profil. Retry terhadap versi yang sama tidak mem-posting ulang. Dua admin yang menyimpan koreksi bersamaan harus membandingkan versi dan meninjau perubahan terbaru; jangan mencampur skor versi lama dengan badge/penalti versi baru. Rincian teknis transaksi diuji pada implementasi; rencana ini tidak mengklaim aplikasi sudah dibangun.
+
+#### 13.5.2. Partisipasi, tumpukan dan klasemen
+
+- Achievement individu laga mensyaratkan pemain terkonfirmasi tampil; Goal Scorer/Assist Maker berlaku bagi semua posisi. Defender/Goalkeeper mengikuti posisi penilaian event yang ditetapkan sebelum bermain; perubahan posisi sesudah hasil diketahui tidak digunakan untuk berburu badge. Rotasi posisi dalam laga tetap keterbatasan model sederhana.
+- Penerima bonus/potongan tim tingkat event adalah anggota roster tim tersebut yang tercatat tampil minimal satu laga sah dalam event. Satu penampilan cukup untuk Champion/Last Place, tetapi tidak cukup untuk Perfect Attendance. Pemain tidak tampil, peserta batal resmi sebelum pembagian tim, dan pengganti yang belum bermain tidak menerima penyesuaian tim. Pemain yang sudah tampil lalu mengundurkan diri tetap menerima hasil tim terkait penampilannya; penalti outlist jika berlaku dihitung terpisah.
+- **Aturan pengguna:** Goal Scorer +3 tetap diberikan pada ≥1 gol; pilih tepat satu bonus tambahan Brace +3 untuk 2 gol atau Hat-Trick +5 untuk ≥3 gol. Total Finishing: 1 gol +3, 2 gol +6, ≥3 gol +8, sebelum First Blood +2 jika sah. Tidak ada perkalian badge dasar dengan jumlah gol.
+- Assist Maker +3 dan Playmaker +4 dapat ditumpuk: ≥2 assist menghasilkan Playmaking +7, bukan +3 untuk setiap assist. Goal Contribution, First Blood dan Match Winner dapat ditumpuk bila seluruh syarat masing-masing terbukti, tanpa cap 100 pada poin mentah; skala 0–100 diterapkan pada normalisasi event dan saldo profil.
+- **Usulan pengecualian tumpukan tambahan:** Clean Sheet +5 menggantikan Defensive Resilience +2 untuk laga tanpa kebobolan; kebobolan tepat 1 mendapat +2. Perfect Victory +6 menggantikan Unbeaten Team +4. Badge tingkat lebih rendah boleh ditunjukkan sebagai tercakup, tetapi tidak mendapat poin kedua.
+- **Usulan penyesuaian independen:** Last Place −6 dan Winless Team −3 dapat bersamaan, menghasilkan Teamwork −9. Tim dengan tiga seri memenuhi Unbeaten Team +4 dan Winless Team −3; keduanya tetap tercatat, bersih +1 sebelum cap dan penyesuaian lainnya. Best Defense/Best Attack dapat berdampingan dengan achievement lain. Kombinasi ini perlu masuk simulasi agar tidak dianggap kesalahan penghitungan.
+- Champion/Runner-Up/Last Place mengikuti peringkat resmi event, bukan peringkat performa individu. Gunakan aturan klasemen yang diumumkan sebelum main (baseline usulan poin, selisih gol, gol memasukkan). Jangan menciptakan tiebreak setelah hasil diketahui. Jika seri masih menyisakan peringkat bersama dan penerima posisi 1/2/4 ambigu, tahan tiga penyesuaian peringkat tersebut sebagai “Menunggu penetapan peringkat”; Best Defense/Best Attack yang memiliki sumber lengkap boleh final bersama. Jangan memberikan Champion sekaligus Runner-Up pada tim yang sama.
+- Unbeaten/Perfect Victory/Winless mensyaratkan tepat tiga laga bermain sah per tim, Best Defense/Best Attack mensyaratkan keenam laga lengkap, dan semua penyesuaian event menunggu event selesai. Event terpotong, hasil administratif atau walkover menahan achievement tim event; tidak diperlakukan sebagai clean sheet atau kemenangan bermain. Comeback Victory tetap per laga, bukan peringkat, sehingga dapat terjadi pada lebih dari satu laga event.
+
+#### 13.5.3. Consistent Performer dan koreksi sumber
+
+Usulan definisi “berkontribusi”: pada event lengkap pemain tampil minimal satu laga dan mencatat ≥1 Gol atau ≥1 Assist; alternatif setara kesempatan untuk Defender/Goalkeeper adalah tampil tiga laga dengan rerata kebobolan tim maksimal 1 per laga. Semua posisi dapat memenuhi jalur Gol/Assist. Ini proksi terukur, bukan klaim tingkat kesulitannya sudah setara.
+
+Urutan streak memakai waktu mulai event lalu ID event sebagai pemecah waktu sama, bukan waktu data dimasukkan. Tiga event komitmen pemain yang memenuhi kontribusi secara berurutan menghasilkan Consistency +4 pada event ketiga. Usulan blok tidak tumpang tindih: streak enam event menghasilkan dua penghargaan pada event ketiga dan keenam; event keempat tidak otomatis memberi +4 lagi. Event tidak berkontribusi atau absen/outlist tanpa alasan mendesak memutus streak. Event yang tidak diikuti tanpa kewajiban roster, batal atau ketidakhadiran mendesak yang disetujui dilewati; event dengan sumber belum lengkap menahan evaluasi lanjutan, tidak dilewati untuk menciptakan streak palsu.
+
+Simpan identitas pemain, kode achievement, kategori, sumber laga/event, nilai perubahan, versi aturan, status dan waktu evaluasi. Kunci sumber unik mencegah pemberian ulang saat retry: achievement laga per pemain/kode/laga; achievement event per pemain/kode/event; streak per pemain/kode/event penutup beserta tiga event sumber. Finalisasi event menghitung sumber yang belum diproses, bukan mengulang bonus semua laga. Koreksi Gol/Assist, skor, metadata hasil, partisipasi, posisi atau klasemen menarik/mengganti award terkait dan menghitung ulang kategori. Koreksi event lama menghitung ulang streak sesudahnya, termasuk pemindahan event penerima bonus; jejak versi lama disimpan tetapi tidak masuk agregat aktif dua kali.
+
+#### 13.5.4. Data minimum untuk kejadian berurutan
+
+Total Gol/Assist dan skor akhir tidak membuktikan gol pertama, gol penentu atau pernah tertinggal. **Usulan input tambahan minimal:** tiga metadata terstruktur dalam panel “Kejadian khusus” pada form hasil; statistik individu tetap dua kolom Gol dan Assist. Tidak meminta seluruh menit atau urutan gol. Petugas mencatat fakta yang disaksikan dan pengelola mengesahkan; validasi sistem hanya dapat memeriksa kecocokan dengan total dan hasil, bukan membuktikan urutan tanpa log kronologis.
+
+| Metadata | Definisi dan validasi | Jika tidak diketahui |
+|---|---|---|
+| Gol pertama | Pilih pemain pencetak gol pertama pertandingan; harus tampil dan memiliki ≥1 Gol. Opsi khusus gol bunuh diri tidak memberikan First Blood kepada pemain lawan. Hasil 0–0 otomatis tidak memiliki gol pertama | Status belum terverifikasi; jangan memilih pencetak gol dari urutan roster atau total tertinggi |
+| Gol penentu kemenangan | Usulan definisi: gol tim pemenang ke-(jumlah gol akhir lawan + 1). Contoh hasil 3–1: gol kedua pemenang menjadi penentu, tidak selalu gol terakhir. Pilih pencetaknya yang tampil dan memiliki ≥1 Gol; petugas memastikan urutannya. Jika gol tersebut bunuh diri, tidak ada penerima Match Winner | Status belum terverifikasi; skor akhir tetap dapat final, bonus ditahan. Hasil seri otomatis tidak memiliki penerima |
+| Comeback | Konfirmasi apakah tim pemenang pernah tertinggal pada laga: Ya/Tidak/Belum diketahui. Ya hanya sah bila tim menang dan lawan mencetak ≥1 gol; semua pemain tim pemenang yang tampil mendapat bonus | “Belum diketahui” tidak disamakan dengan Tidak; tidak menghasilkan bonus sampai dikonfirmasi |
+
+Tidak ada kewajiban mengarang metadata agar skor dapat difinalkan. Profil menandai kelengkapan bonus tertunda dan diperbarui sesudah konfirmasi. Catatan koreksi alasan diwajibkan saat mengubah metadata yang sudah disahkan. Kombinasi yang pasti bertentangan ditolak, misalnya comeback pada kemenangan 1–0, penerima Match Winner dari tim kalah, atau First Blood pada 0–0. Perluasan form kecil ini merupakan usulan untuk mendukung achievement yang diminta; bila input benar-benar dibatasi tanpa metadata tambahan, tiga achievement tersebut harus berstatus tidak dapat diverifikasi dan tidak diberikan otomatis.
+
+### 13.6. Penalti per kategori, verifikasi dan hak koreksi
+
+Masukan terbaru pengguna menggantikan potongan universal: setiap pelanggaran hanya memotong kategori yang disebutkan, lalu dapat menurunkan overall melalui bobot kategori pada 13.4. Finishing, Playmaking, Defending, Consistency, Impact dan Achievement tidak dipotong langsung oleh katalog pelanggaran ini; usulan potongan kebobolan Defending pada 13.3 terpisah dari pelanggaran. Potongan Last Place/Winless Team tetap khusus Teamwork dan dihitung terpisah. Nominal berikut mengikuti masukan pengguna dan klarifikasi 12 November 2026; dua ambiguitas sebelumnya telah ditutup.
+
+| Pelanggaran | Potongan kategori | Lingkup/status |
+|---|---|---|
+| Kartu kuning | Discipline −3 | Per kartu sah, per pertandingan |
+| Kartu merah | Discipline −10; Teamwork −3 | Per kartu sah, per pertandingan |
+| Outlist setelah tim diacak tanpa alasan mendesak | Discipline −12; Commitment −8 | Sekali per kejadian event; pengacakan sudah disimpan dan diumumkan |
+| Terlambat 1–10 menit | Discipline −2 | Satu tingkat keterlambatan per event |
+| Terlambat 11–20 menit | Discipline −4; Commitment −2 | Satu tingkat keterlambatan per event; angka ditetapkan pengguna 12 November 2026 |
+| Terlambat lebih dari 20 menit | Discipline −6; Commitment −3 | Satu tingkat keterlambatan per event; angka ditetapkan pengguna 12 November 2026 |
+| Tidak hadir tanpa alasan mendesak | Discipline −15; Commitment −12; Teamwork −5 | Sekali per kejadian event setelah verifikasi admin; bukan Commitment −17 |
+| Tidak mengikuti pertandingan tanpa alasan yang disetujui | Commitment −4 | Per laga yang seharusnya diikuti, setelah admin memverifikasi tanggung jawab dan alasan |
+
+Ketiga baris terlambat/absen yang sebelumnya ditahan kini mempunyai nominal final dari pengguna. Insiden tetap memerlukan verifikasi admin dan aturan satu kejadian tidak boleh dihitung dua kali. Sumber terlambat adalah batas hadir yang diumumkan sebelum event dan waktu hadir aktual. Usulan perincian durasi: 0 atau lebih awal = tepat waktu; lebih dari 0 sampai 10 menit = tingkat pertama, lebih dari 10 sampai 20 = kedua, lebih dari 20 = ketiga. Dengan demikian 10 menit 1 detik masuk tingkat kedua, tanpa celah pembulatan. Usulan toleransi bebas penalti 10 menit sebelumnya dihapus. Satu kejadian hanya mendapat tingkat tertinggi yang sesuai, bukan jumlah semua tingkat. Alasan mendesak yang disetujui tetap menjadi pengecualian kehadiran sesuai prinsip pengguna sebelumnya.
+
+#### Perhitungan kategori dan overall
+
+`P_p,e,C` adalah jumlah potongan kategori dari insiden sah unik. Masukkan potongan itu ke delta pada 13.5.1, lalu turunkan poin mentah event dari 50. Normalisasi menggunakan maksimum event setelah potongan. Pada profil, potongan yang sama masuk akumulasi delta sekali; **tidak** dirata-ratakan per event dan **tidak** dipotong lagi setelah nilai normalisasi. Last Place/Winless hanya T_p,e,Teamwork; usulan kebobolan hanya K_p,e,Defending. Nominal Commitment/Teamwork pada tabel telah ditetapkan pengguna 12 November 2026; perubahan berlaku melalui versi aturan yang tercatat, bukan mengubah histori final diam-diam.
+
+Contoh baseline 50 tanpa perubahan lain: satu kuning menghasilkan Discipline mentah 47; jika maksimum Discipline event 50, nilai relatifnya **94**, sedangkan profil awal 50 menjadi **47**. Satu merah menghasilkan Discipline mentah 40 dan Teamwork mentah 47; jika maksimum kedua kategori 50, nilai event **80 dan 94**. Profil pertama dengan sumber yang sama menjadi Discipline 40 dan Teamwork 47. Nilai event akan berbeda bila maksimum peserta berbeda; potongan profil tetap −10/−3 sesuai sumber.
+
+Overall profil dengan bobot usulan 5% untuk Discipline/Teamwork/Commitment: satu kuning memberi delta −0,15; satu merah −0,65; outlist −1,00, sebelum cap dan perubahan lain. Satu merah sepanjang lima event netral tetap mengurangi akumulasi profil Discipline 10 dan Teamwork 3, dengan overall awal 50 menjadi **49,35**, bukan 49,87. Overall event relatif dihitung terpisah dari kategori yang telah dinormalisasi; jangan memakai contoh angka overall profil sebagai nilai event.
+
+Menambah insiden pada kumpulan sumber yang sama tidak menaikkan poin mentah atau profil kategori terkait. Namun nilai relatif pemain tetap dapat naik/turun ketika maksimum peserta lain berubah, sehingga UI harus selalu membedakan peringkat relatif dan akumulasi personal. Event berikutnya tanpa bonus/potongan **tidak memulihkan** penalti profil; delta 0 mempertahankan nilai karier. Pemulihan memerlukan tambahan poin kategori terkait atau koreksi insiden. Katalog saat ini belum menyediakan bonus Discipline, sehingga kategori itu tidak pulih hanya dengan hadir bersih; catat kebutuhan aturan pemulihan untuk review tanpa mengarang nominal.
+
+#### Aturan kartu dan pencegahan hitung ganda
+
+1. Kartu dicatat dengan pemain, pertandingan, jenis, kejadian dan pengesahan. Kartu merah **tidak otomatis menghapus kartu kuning sebelumnya**. Contoh satu kuning lalu merah langsung: Discipline −13, Teamwork −3. Dua kuning lalu merah menghasilkan Discipline −16, Teamwork −3 bila ketiga kartu tercatat sah. Ini beberapa kartu dalam satu rangkaian, bukan duplikasi entri kartu yang sama. Pengecualian hanya jika peraturan komunitas secara eksplisit menetapkan penggantian, disimpan sebagai versi sebelum berlaku; tidak diterapkan surut diam-diam.
+2. Outlist sebelum pembagian tim bebas penalti. Pengacakan ulang/admin menghapus roster untuk koreksi, atau event batal, tidak otomatis menjadi pelanggaran. Outlist setelah pengacakan tetap memerlukan pemeriksaan alasan; persetujuan penghapusan dari roster bukan otomatis persetujuan alasan mendesak.
+3. Outlist yang sudah disetujui keluar dari roster tidak ditambah penalti tidak hadir atau tidak mengikuti laga untuk kejadian yang sama. Tidak hadir seluruh event tidak ditambah tiga penalti tidak mengikuti pertandingan. Pemain yang tidak pernah tiba berstatus tidak hadir, bukan sekaligus terlambat.
+4. Tidak mengikuti laga karena keterlambatan yang sama dicatat sebagai dampak insiden terlambat, tanpa potongan Commitment −4 tambahan untuk kejadian tersebut. Jika pemain kemudian menolak laga lain tanpa alasan yang disetujui, kejadian berbeda dapat dikenai −4 per laga yang terverifikasi. Ketidakhadiran tidak boleh disimpulkan hanya dari Gol/Assist nol atau kolom partisipasi kosong.
+5. Usulan batas tanggung jawab: pemain yang dicadangkan oleh pengelola, cedera dengan alasan disetujui, tidak boleh bermain karena kartu merah, atau laganya batal tidak otomatis terkena penalti tidak mengikuti laga. Admin harus memastikan pemain memang dijadwalkan/diwajibkan tampil, tidak tampil atas keputusannya dan tanpa alasan yang disetujui. Tanpa bukti tanggung jawab, status menunggu verifikasi.
+6. Satu identitas insiden beserta pemain dan sumber event/laga hanya memiliki satu keputusan aktif. Retry atau penyimpanan ulang tidak menambah potongan. Perubahan status terlambat/absen/outlist mengganti sumber terkait, bukan menambahkan hukuman untuk fakta yang sama.
+
+#### Verifikasi admin dan pengajuan koreksi
+
+- Insiden kehadiran memuat status presensi/partisipasi, batas hadir dan waktu aktual bila relevan, snapshot pembagian tim, laga terdampak, alasan pemain, catatan/bukti yang relevan, pencatat dan admin pemeriksa. Status: Dicatat → Menunggu verifikasi → Disahkan atau Ditolak. Hanya insiden disahkan masuk nilai final; alasan yang belum diputuskan memberi label sementara.
+- Alasan mendesak/disetujui menghasilkan pembebasan sesuai jenis pelanggaran. Penolakan alasan memuat penjelasan admin. Data pribadi/alasan sensitif hanya dapat dibaca pemain terkait dan petugas berwenang; tidak diumumkan di peringkat.
+- Pemain dapat melihat rincian penalti miliknya dan mengajukan koreksi dengan alasan/bukti. Usulan status koreksi: Diajukan → Ditinjau → Diterima atau Ditolak. Pengajuan sendiri tidak otomatis menghapus penalti yang sudah disahkan; tampilkan “Dalam peninjauan”. Admin memutuskan dengan alasan dan jejak audit; bila admin adalah pemain terkait, pemeriksaan dialihkan ke admin lain/superadmin.
+- Koreksi diterima memperbarui/membatalkan insiden, lalu menghitung ulang kategori, overall, peringkat dan achievement/streak yang terpengaruh tanpa menghapus histori. Koreksi ditolak mempertahankan nilai dengan alasan keputusan yang dapat dibaca pemohon. Simpan aktor, waktu, versi dan nilai sebelum/sesudah; UI mempertahankan permintaan saat gagal simpan dan retry tidak menggandakan permohonan.
+- Koreksi hasil, metadata kejadian, partisipasi, posisi, kartu atau klasemen mengikuti mekanisme perhitungan ulang yang sama. Koreksi voting hanya memperbarui badge voting karena katalog ini tidak memberi poin statistik untuk voting.
+
+### 13.7. Dampak SRS dan urutan pekerjaan setelah review
+
+| Urutan | Deliverable | Perubahan yang direncanakan | Status saat ini |
+|---|---|---|---|
+| 1 | Rencana ini | Kebutuhan, formula, pembatasan, simulasi dan scope sinkronisasi | v2.7 disetujui, pelaksanaan v2.8 dan klarifikasi v2.9 |
+| 2 | [Product Planning](./01-product-planning.md) | Perluas FEAT-07/09/10/16 dan promosikan bagian FEAT-28 yang diminta ke MVP; metrik berbasis data sederhana, manfaat untuk semua posisi dan risiko proksi tim | Diselaraskan v2.5; penilaian pada 13.11, penalti pada 13.12, visualisasi pada 13.13 dan review pada 13.14 |
+| 3 | [PRD](./02-prd.md) | Revisi kebutuhan hasil/statistik/skill; tambahkan story dan AC untuk Assist, sembilan kategori, 21 achievement/penyesuaian, partisipasi penerima, tumpukan, metadata hasil, streak dan koreksi. Pertahankan ID lama; AC baru setelah AC-90 | Diselaraskan v2.5; penilaian pada 13.11, penalti pada 13.12, visualisasi pada 13.13 dan review pada 13.14 |
+| 4 | [Product Details](./03-product-details.md) | Perluas FLOW-03/05/06/07/08/09/10/14/16; rincikan bonus per kategori, penyesuaian klasemen sekali, kelengkapan metadata, baseline 50 per event, sumber tambahan/potongan, pemisahan tim/disiplin/kebobolan, poin mentah, maksimum/normalisasi event, akumulasi delta profil, bobot posisi, streak dan rekalkulasi | Diselaraskan v2.5; penilaian pada 13.11, penalti pada 13.12, visualisasi pada 13.13 dan review pada 13.14 |
+| 5 | [Mockup SRS](./04-mockup-srs.md) | Perluas SCR-10/11/12/14/16/18/19/22/24/32/34; dua kolom Gol/Assist, panel Kejadian khusus, penyesuaian tim, sembilan poin mentah awal 50, nilai event relatif dengan maksimum 100, akumulasi profil, rincian delta, kelengkapan dan peringkat posisi | Diselaraskan v2.5; penilaian pada 13.11, penalti pada 13.12, visualisasi pada 13.13 dan review pada 13.14 |
+| 6 | [Traceability](./05-traceability.md) | Pemetaan kebutuhan → story/AC → flow → layar; perbarui fase dan audit konsistensi, rumus, versi, ID dan tautan | Diselaraskan v2.5; penilaian pada 13.11, penalti pada 13.12, visualisasi pada 13.13 dan review pada 13.14 |
+
+FEAT-28 tidak tetap diberi label seluruhnya fase lanjutan apabila penilaian ini masuk MVP; hanya analitik di luar input sederhana yang tetap lanjutan. Nilai performa otomatis dan skill manual 1–5 harus dibedakan. Usulan tahap awal: pertahankan skill manual untuk pembagian tim, tampilkan performa sebagai konteks; jangan otomatis memetakan nilai 0–100 menjadi skill 1–5 atau mengacak ulang roster terkunci. Pemakaian performa otomatis untuk pembagian tim memerlukan aturan terpisah agar achievement/penalti tidak dianggap murni kemampuan teknis.
+
+Visual tetap hitam–gold, mobile-first dan mengikuti cakupan tayang profil/nilai privat baseline. Penambahan kategori tidak otomatis mengumumkan nilai ke publik; rincian alasan sensitif hanya bagi pemilik dan petugas berwenang. Gunakan spesifikasi tertulis untuk state baru. Anggaran tetap 12 gambar referensi; tahap revisi dapat mengganti subset Tim & Pemain dalam slot yang sama, mengarsipkan versi sebelumnya dan menginspeksi penggantinya. Input skor/insiden dan rincian profil mendapat spesifikasi tertulis; tidak menjanjikan gambar tambahan di luar anggaran.
+
+### 13.8. Simulasi dan kriteria penerimaan rancangan
+
+Contoh sintetis berikut menguji tiga besaran berbeda, bukan hasil uji aplikasi atau bukti keadilan posisi. Rumus normalisasi rasio dan baseline profil satu kali 50 masih usulan untuk review.
+
+| Skenario | Poin mentah/perubahan | Nilai event relatif | Profil akumulasi usulan |
+|---|---|---|---|
+| Pembagian tim baru, belum ada pertandingan | Semua kategori mentah 50 | Belum final; jika rasio dihitung saat semua sama, semuanya 100 | Pembentukan roster tidak memberi delta profil |
+| Finishing A/B/C: 60/55/50 | Delta +10/+5/0 | 100 / 91,67 / 83,33 | Profil awal masing-masing menjadi 60/55/50 setelah sumber final diposting |
+| Hat-Trick dan First Blood | Delta Finishing +10; mentah 60 | 100 jika maksimum Finishing event 60 | Finishing awal 50 menjadi 60; bukan otomatis 100 |
+| Perfect Attendance | Delta Commitment +4; mentah 54 | 100 jika maksimum Commitment 54 | Commitment awal 50 menjadi 54 |
+| Champion dibanding Runner-Up | Achievement mentah 56 dan 53 | 100 dan 94,64 jika maksimum 56 | Achievement awal 50 menjadi 56 atau 53 |
+| Kartu kuning, maksimum Discipline 50 | Delta −3; mentah 47 | Discipline 94 | Discipline awal 50 menjadi 47 |
+| Kartu merah, maksimum Discipline dan Teamwork 50 | Delta Discipline −10, Teamwork −3; mentah 40/47 | Discipline 80 dan Teamwork 94 | Discipline 40, Teamwork 47; overall awal 50 menjadi 49,35 sesuai usulan bobot |
+| Finishing tiga event memberi delta +10, +3, 0 | Mentah per event 60, 53, 50 | Masing-masing bergantung maksimum event | Finishing 63, bukan rerata 54,33 |
+| Koreksi A mengubah maksimum Finishing 60 menjadi 66, B tetap mentah 55 | Delta B tetap +5 | Nilai B berubah 91,67 menjadi 83,33 | Profil B tidak berubah |
+| Semua peserta pada satu kategori mentah 50 | Tidak ada delta | Semua 100 relatif, bukan performa sempurna | Tidak menambah profil |
+| Semua pemain pembanding pada kategori mentah 0 | Delta masing-masing ≤−50 | State khusus pembagi nol, tidak menghasilkan angka palsu | Saldo mengikuti cap per event, minimal 0 |
+
+Kriteria penerimaan yang perlu diturunkan ke AC saat pemrosesan SRS:
+
+- Empat tim menghasilkan enam pasangan unik dan tiga laga per tim. Pembagian tim disimpan membentuk satu baseline mentah 50 per kategori/pemain/event; pratinjau, retry dan pengacakan ulang tidak membuat baseline tambahan atau menghapus delta.
+- Poin mentah menggunakan baseline 50 dan penjumlahan perubahan sah. Nilai mentah 110 dan 120 tetap berbeda sebelum normalisasi; nilai relatif tertingginya 100. Jangan mencap poin mentah di 100 lebih dulu atau mencampurnya dengan kategori profil.
+- Normalisasi independen per kategori atas Q_e (pemain terkonfirmasi tampil); pemain tidak tampil tetap memiliki delta penalti profil tetapi nilai relatif ditampilkan —. Seri maksimum mendapat 100 bersama; Q_e kosong atau maksimum 0 memakai state khusus. Nilai sama positif memberi semua pemain pembanding 100; potongan identik juga bisa tetap 100. Tampilkan poin mentah, sumber dan label relatif agar 100 tidak disalahartikan sebagai bebas penalti.
+- Penilaian belum final saat data pertandingan/bonus/koreksi belum lengkap. Finalisasi menghitung bonus klasemen sekali, menormalisasi semua peserta dan mem-posting delta unik ke profil; normalisasi bukan sumber poin.
+- Semua 12 achievement individu dan 9 achievement/penyesuaian tim memiliki nominal/kategori benar, dengan aturan tumpukan dan penerima partisipasi pada 13.5.2. Laga administratif, pemain batal sebelum pembagian dan pemain tidak tampil tidak mendapat badge bermain palsu.
+- Uji sumber Gol/Assist nol vs kosong, gol bunuh diri, pemain tidak tampil, metadata First Blood/Match Winner/Comeback, seri klasemen dan streak tiga/enam event. Koreksi sumber lama menghitung ulang streak sesudahnya tanpa bonus ganda.
+- Penalti sesuai kategori, kartu kuning/merah kumulatif dan tanpa duplikasi insiden; verifikasi admin dan hak koreksi berlaku. Uji nominal final pengguna: terlambat 11–20 Discipline −4/Commitment −2; >20 Discipline −6/Commitment −3; absen Discipline −15/Commitment −12/Teamwork −5.
+- Akumulasi profil memakai baseline usulan 50 satu kali dan seluruh delta final, bukan rerata, jumlah poin mentah event atau jumlah nilai normalisasi. Event tanpa perubahan tidak memberi +50 atau memulihkan penalti. Tidak ada pembatasan lima event terakhir.
+- Potongan kebobolan usulan hanya Defender/Goalkeeper pada laga tampil; jangan dihitung ulang sebagai pelanggaran. Potongan tim/individu/streak diposting tepat sekali. Kategori profil tetap dibatasi 0–100, akumulasi mentah bertanda tetap tersedia untuk audit.
+- Uji cap profil per event: baseline 50, delta +70 menghasilkan 100, lalu event berikutnya −3 menghasilkan 97; baseline 50, delta −70 menghasilkan 0, lalu +3 menjadi 3. Ledger menyimpan nominal dan efektif tanpa cadangan. Mengubah urutan input tidak mengubah hasil bila urutan permainan sama; koreksi event lama wajib replay seluruh event sesudahnya.
+- Koreksi pemain A dapat mengubah nilai event pemain B lewat maksimum, tetapi tidak mengubah delta/profil B. Perhitungan ulang profil hanya akibat perubahan sumber milik pemain atau sumber tim/streak yang memang berlaku baginya.
+- Bobot posisi berjumlah 100%; overall relatif event memakai nilai relatif, overall profil mengakumulasi perubahan efektif kategori berbobot posisi/versi event. Tidak memakai posisi terbaru untuk mengubah histori. Uji pergantian posisi antar-event, seri dan cap yang membuat overall tidak selalu sama dengan bobot atas kategori profil yang sudah dicap.
+- Simulasi satu event lengkap dan pilot membandingkan peluang kenaikan semua posisi serta dampak baseline netral. Normalisasi maksimum tidak dianggap bukti keadilan individual; kebobolan tetap proksi tim tanpa data save/tackle/menit.
+
+### 13.9. Keputusan review, risiko dan progres
+
+| Topik | Dasar terbaru | Status/tindak lanjut |
+|---|---|---|
+| Baseline event | Keputusan pengguna: sembilan poin mentah awal 50 setelah pembagian tim | Ditetapkan; berbeda dari normalisasi event dan profil |
+| Nilai event | Keputusan pengguna: tertinggi tiap kategori = 100 | Usulan rasio maksimum atas pemain tampil lintas empat tim; tangani seri, semua sama, Q_e kosong dan pembagi nol |
+| Profil | Keputusan pengguna: akumulasi seluruh permainan, bukan rerata | Usulan baseline profil 50 satu kali + delta setiap event dengan cap 0–100 setelah event; baseline dan cap belum disahkan eksplisit |
+| Batas akumulasi | Usulan cap profil setelah delta bersih setiap event, dengan ledger nominal/efektif | Menghindari cadangan poin di atas 100/bawah 0; koreksi harus replay urutan event. Baseline profil dan mekanisme ini belum disahkan |
+| Keterkaitan pemain | Normalisasi bergantung pemain lain, profil akumulasi personal tidak | Koreksi maksimum memperbarui nilai event semua peserta tanpa mengubah profil pemain yang deltanya tetap |
+| Tambahan/pengurangan | Katalog kategori terarah tetap berlaku | Tidak menambah poin Gol/Assist kedua atau meneruskan nilai relatif ke profil |
+| Overall per posisi | Bobot usulan pada 13.4 | Pisahkan overall relatif event dan akumulasi delta overall profil; perlu simulasi |
+| Kebobolan | Usulan Defending −2 per gol kebobolan pada laga tampil Defender/Goalkeeper | Angka belum disahkan; diuji bersama peluang kenaikan posisi lain |
+| Sumber yang belum tersedia | Discipline belum mempunyai bonus, beberapa kategori belum punya potongan | Event bersih tidak memulihkan profil dengan sendirinya; mekanisme pemulihan belum ditetapkan |
+| Metadata hasil | First Blood/Match Winner/Comeback memerlukan konfirmasi | Data belum diketahui tidak diberi bonus otomatis |
+| Klarifikasi penalti | Keputusan pengguna 12 November 2026: terlambat Commitment −2/−3 dan absen Discipline −15/Commitment −12/Teamwork −5 | Selesai; tabel, AC dan UI diselaraskan pada v2.9/v2.3, tanpa potongan Commitment ganda |
+| Skill pembagian tim | Skill manual 1–5 tetap terpisah | Profil atau nilai relatif tidak otomatis dikonversi menjadi skill atau mengubah roster |
+| Paket turunan | Perubahan saat ini hanya implementation plan | Planning/PRD/Details/Mockup/Traceability, gambar dan aplikasi belum diproses |
+
+### 13.10. Hasil review dan simulasi sintetis v2.7
+
+Review permintaan pengguna berfokus pada keputusan/scope sekitar bagian 13.1–13.2 beserta dampak rumus di seluruh bagian 13. Ini review rencana, bukan persetujuan seluruh parameter, pemrosesan SRS atau hasil pengujian aplikasi.
+
+| Temuan review | Dampak | Optimasi atau status |
+|---|---|---|
+| Kategori sembilan masih ditulis sebagai interpretasi awal, padahal sudah diklarifikasi | Dapat memicu pertanyaan yang sama atau salah jumlah | Dicatat sebagai keputusan terbaru; ruang lingkup keikutsertaan juga mencakup tidak mengikuti laga |
+| Beberapa kalimat tumpukan masih menyebut cap kategori 100 tanpa membedakan besaran | Poin mentah di atas 100 bisa salah dipotong sebelum normalisasi | Diperjelas: mentah minimal 0 tanpa batas atas, relatif 0–100, profil memakai cap tersendiri |
+| Pemain tidak tampil ikut maksimum dari baseline 50 | Pemain absen dapat menjadi pembanding/pemilik nilai kategori tertinggi tanpa bermain | Usulan Q_e hanya pemain terkonfirmasi tampil; histori penalti profil tetap berlaku |
+| Penalti sama untuk semua atau pemimpin tetap tertinggi tidak mengubah angka relatif 100 | Nilai relatif dapat disalahartikan sebagai bebas pelanggaran | Contoh dan aturan interpretasi ditambahkan; poin mentah/delta wajib bisa dilihat |
+| Cap tampilan setelah akumulasi sepanjang karier menyimpan kelebihan poin | Penalti event berikutnya bisa tidak menurunkan profil yang tampak 100 | Usulan diganti cap setelah setiap event dengan nominal/efektif terpisah dan replay koreksi kronologis |
+| Overall dapat meningkat meskipun bonus kategori tertahan cap | Overall dan kategori menjadi sulit dijelaskan | Usulan overall profil memakai perubahan efektif kategori, bukan delta nominal yang tidak diterapkan |
+| Ketidakjelasan metadata opsional berpotensi menahan seluruh event | Skor sah dan penilaian lain menunggu kejadian yang tidak dapat dibuktikan | Disposisi metadata disahkan admin, dengan label bukti kurang; data wajib tetap wajib |
+| Versi aturan/finalisasi belum cukup eksplisit | Perubahan serentak, retry dan koreksi bisa mencampur snapshot atau menggandakan profil | Rekomendasi snapshot versi konsisten, sumber unik dan replay histori ditambahkan |
+
+#### Skenario enam pertandingan
+
+Data ini sengaja sintetis. Setiap tim A/B/C/D memiliki empat pemain contoh: Striker, Midfielder, Defender dan Goalkeeper. Semua tampil tiga laga, hadir tepat waktu, tidak ada kartu, outlist atau streak sebelumnya; bukan keputusan jumlah pemain nyata tiap tim. Semua gol tim dicetak Striker dan semua assist diberikan Midfielder tim itu, sehingga Gol/Assist tidak dibuat oleh pemain yang sama. Tidak ada gol bunuh diri. Urutan gol pada laga seri dan kejadian khusus ditetapkan pada tabel agar tidak disimpulkan dari skor akhir saja. Tidak ada comeback pada keenam laga.
+
+| Laga | Skor | Pencetak gol pertama | Pencetak gol penentu |
+|---|---|---|---|
+| A–B | 2–0 | A-Striker | A-Striker (gol pertama A) |
+| A–C | 1–1 | C-Striker | Tidak berlaku |
+| A–D | 1–0 | A-Striker | A-Striker |
+| B–C | 0–1 | C-Striker | C-Striker |
+| B–D | 1–1 | B-Striker | Tidak berlaku |
+| C–D | 0–0 | Tidak berlaku | Tidak berlaku |
+
+Klasemen memakai usulan 3/1/0: A peringkat 1, 7 poin, GF 4/GA 1; C peringkat 2, 5 poin, GF 2/GA 1; D peringkat 3, 2 poin, GF 1/GA 2; B peringkat 4, 1 poin, GF 1/GA 4. Semua tim bermain tiga laga dan jumlah pertandingan enam. Best Defense bersama A/C; Best Attack A; Unbeaten A/C; tidak ada Perfect Victory; Winless B/D; Last Place B. Hasil ini tidak memakai tiebreak ambigu.
+
+Poin mentah sembilan kategori untuk empat posisi contoh tim A, setelah achievement, dengan usulan kebobolan −2 dan aturan tumpukan yang ada:
+
+| Pemain sintetis | F | P | D | TW | Disc | Com | Cons | I | Ach | Overall event relatif |
+|---|---|---|---|---|---|---|---|---|---|---|
+| A-Striker | 66 | 50 | 50 | 54 | 50 | 54 | 50 | 62 | 56 | 94,84 |
+| A-Midfielder | 50 | 63 | 50 | 54 | 50 | 54 | 50 | 52 | 56 | 93,31 |
+| A-Defender | 50 | 50 | 63 | 54 | 50 | 54 | 50 | 52 | 56 | 96,95 |
+| A-Goalkeeper | 50 | 50 | 63 | 54 | 50 | 54 | 50 | 52 | 56 | 99,19 |
+
+Singkatan kolom mengikuti sembilan kategori pada 13.4. Maksimum seluruh 16 pemain sintetis: Finishing 66, Playmaking 63, Defending 63, Teamwork 54, Discipline 50, Commitment 54, Consistency 50, Impact 62 dan Achievement 56. Normalisasi menghitung tiap kategori terhadap maksimumnya; hasil yang disimpan belum dibulatkan. Contoh A-Striker memperoleh Finishing 100 tetapi Playmaking 79,37 dan Defending 79,37. A-Goalkeeper memperoleh Defending 100 tanpa Gol/Assist. Pada event pertama dengan profil usulan mulai 50 dan belum menyentuh cap, sembilan nilai profil sama dengan poin mentah tabel, **bukan** sembilan nilai relatif event.
+
+**Hasil perhitungan:** contoh ini memperlihatkan posisi bertahan dapat bersaing, tetapi overall Goalkeeper 99,19 dibanding Striker 94,84 juga menegaskan perlunya kalibrasi bobot dan peluang bonus dengan lebih banyak skenario. Angka ini tidak membuktikan model sudah adil atau bahwa Goalkeeper harus selalu unggul. Discipline/Consistency yang seluruhnya 50 dinormalisasi menjadi 100 untuk semua pemain; bukan bukti semua kategori sudah memberikan pembeda. Bobot, kebobolan −2, baseline profil dan cap per event masih berstatus usulan.
+
+**Keputusan yang masih diperlukan sebelum aturan produksi difinalkan:** tanda Commitment pada keterlambatan dan pengulangan Commitment pada absen; baseline profil/cap per event; bobot posisi/kebobolan; serta aturan tumpukan dan metadata tambahan yang masih usulan. Rencana review dapat selesai tanpa mengarang keputusan tersebut. Pengguna telah mengotorisasi review/optimasi rencana, bukan pembuatan dokumen turunannya dalam instruksi ini.
+
+**Progres revisi 11 November 2026:** rencana v2.7 selesai direview dan dioptimalkan pada keputusan, pemisahan tiga besaran, batas poin, partisipasi, interpretasi normalisasi, akumulasi profil, pengaruh overall, versi/finalisasi dan koreksi. Perhitungan sintetis enam laga/16 pemain serta kasus cap/normalisasi menjadi bukti aritmetis review; bukan UAT atau implementasi aplikasi. Dokumen turunan dan gambar belum diselaraskan. Keputusan pengguna tetap dipisahkan dari parameter rekomendasi; dua rincian penalti belum dijawab.
+
+### 13.11. Pelaksanaan rencana v2.7 — 11 November 2026
+
+**Bukti persetujuan terbaru:** pengguna meminta “proses implementation plan tersebut” dengan rujukan berkas ini setelah review v2.7. Status disetujui → dikerjakan. Rencana menjadi v2.8 untuk mencatat pelaksanaan; lima dokumen turunan menjadi v2.2. Tidak ada gate per dokumen, implementasi aplikasi, deployment atau pengiriman pesan dalam pekerjaan ini.
+
+Ruang lingkup diterima meliputi parameter rekomendasi eksplisit sebagai baseline dokumentasi yang dapat diuji: poin mentah event mulai 50; Q_e pemain tampil; rasio maksimum relatif; profil baseline 50 satu kali dan cap setelah delta event; overall memakai perubahan efektif kategori/posisi historis; kebobolan −2 bagi Defender/Goalkeeper; katalog/tumpukan/streak/metadata dan privasi sebagaimana rencana. Label “usulan/belum disahkan” pada riwayat review 13.9–13.10 tidak berarti persetujuan pemrosesan masih menunggu: parameter tersebut sudah dipakai dalam SRS, tetapi kalibrasi lapangan/kebijakan produksi klub tetap diperlukan.
+
+Persetujuan ini **tidak** memilih tanda Commitment 2/3 pada dua tingkat terlambat atau menentukan maksud Commitment −12/−5 pada absen. Tiga baris tersebut tetap ditandai menunggu klarifikasi pada PRD/Details/UI; pengesahan insiden terkait tidak boleh menebak potongan. Parameter yang tidak mempunyai pilihan konkret, aset asli dan provider juga tetap terbuka. Kelengkapan dokumen dipisahkan dari kesiapan produksi.
+
+| Deliverable | Pelaksanaan |
+|---|---|
+| Product Planning v2.2 | FEAT-07/09/10 diperluas, FEAT-28 dipromosikan ke MVP penilaian; analitik berinput tambahan tetap roadmap |
+| PRD v2.2 | 28 fitur, 33 story, 130 AC; US-29–US-33 dan AC-91–AC-130 baru, seluruh ID lama dipertahankan |
+| Product Details v2.2 | Rumus/catalog 21 achievement/penyesuaian, delapan jenis pelanggaran, lima flow baru (26 total), lima state baru (22 unik), validasi/notifikasi/koreksi dirinci |
+| Mockup SRS v2.2 | Inventaris tetap 36 layar (35 MVP + toko kondisional); 11 layar/panel lama diperluas, tanpa halaman baru |
+| Visual aktif | Tetap 12 referensi: 11 v3 dan pengganti SCR-24 v4 berlabel Statistik Saya/Privat/Data contoh; versi lama tidak dihapus |
+| Traceability v2.2 | Seluruh AC baru dipetakan ke flow/layar; audit aktual dan keputusan tertunda dicatat pada bagian terbaru |
+
+Contoh sintetis dan hitungan baseline berada di 13.10 serta Details. Data/visual pada [examples/event-01/](./examples/event-01/) adalah pekerjaan contoh terpisah yang sudah ada dan tidak ditimpa atau diklaim sebagai hasil audit v2.2; perubahan ini memakai simulasi yang tercantum eksplisit di rencana/Details. Riset kompetitor/provider lama tidak diberi tanggal verifikasi baru karena revisi ini berfokus pada domain penilaian.
+
+Audit akhir lulus: 28 fitur, 33 story, 130 AC, 26 flow, 22 state unik, 36 layar; seluruh rujukan ID, 130 AC pada matriks utama dan 40 AC baru pada Details/Mockup; versi upstream, tabel, UTF-8, tautan lokal/anchor; PRD tanpa detail stack/endpoint/skema; 12 PNG cocok dimensi manifest. Simulasi enam laga/16 pemain, maksimum sembilan kategori, overall empat posisi, normalisasi serta cap/replay cocok secara aritmetis. SCR-24 v4 diperiksa visual, 11 v3 dipakai ulang. Hasil aktual pada Traceability bagian 7. Konten autentik, dua rincian penalti, provider/aturan operasional dan validasi lapangan tetap terbuka. Status akhir sebagian-tertunda hanya pada hal-hal tersebut; bukan pekerjaan dokumen independen yang belum dijalankan.
+
+### 13.12. Klarifikasi penalti — 12 November 2026
+
+Instruksi pengguna menetapkan: terlambat 11–20 menit **Commitment −2**; terlambat >20 menit **Commitment −3**; tidak hadir tanpa alasan mendesak **Discipline −15, Commitment −12, Teamwork −5**. Potongan Discipline terlambat yang sudah ditetapkan tetap −4/−6. Tidak ada penambahan Commitment positif, penggabungan menjadi −17 atau potongan absen tambahan pada kategori lain. Tiga baris aktif 13.6 kini lengkap; catatan “belum diklarifikasi” pada riwayat review/pelaksanaan 11 November hanya menggambarkan status saat itu dan telah ditutup oleh keputusan ini.
+
+Paket turunan v2.3 memperbarui Planning, PRD (AC-117/AC-118), Details (katalog, verifikasi, contoh), Mockup (panel SCR-19), dan Traceability. ID, jumlah kebutuhan, rumus baseline/normalisasi/profil, gambar aktif serta achievement tidak berubah. Penalti terkonfirmasi dapat disahkan admin ketika status/alasan/bukti memenuhi ketentuan; tidak lagi ditahan karena tanda/kategori nominal belum diketahui. Hak koreksi dan anti duplikasi tetap berlaku.
+
+Versi aturan baru memuat klarifikasi pengguna. Event draft/insiden yang selama ini ditahan dapat ditinjau dengan versi lengkap sebelum disahkan. Riwayat yang sudah final tidak diubah diam-diam: jika perlu koreksi, admin mencatat alasan, meninjau dampak, mengesahkan versi baru dan mereplay profil sesuai aturan historis yang telah dipilih. Klarifikasi ini bukan alasan memotong absensi lagi atas outlist yang sudah diproses.
+
+Contoh baseline 50 tanpa bonus/potongan lain: terlambat 11–20 → Discipline 46, Commitment 48; terlambat >20 → Discipline 44, Commitment 47; absen → Discipline 35, Commitment 38, Teamwork 45. Overall profil/event mentah pertama berkurang 0,30 / 0,45 / 1,60 menurut bobot 5% kategori terkait, menjadi 49,70 / 49,55 / 48,40. Nilai relatif event dihitung terpisah; pemain absen tanpa penampilan tetap bukan anggota Q_e.
+
+Status keputusan penalti: **selesai**. Audit revisi lulus: nilai tabel Plan/Details konsisten, contoh potongan/overall sesuai, ID/cakupan tetap 28 fitur/33 story/130 AC/26 flow/36 layar, versi/tautan/anchor/tabel/encoding dan 12 dimensi gambar cocok; hasil pada Traceability bagian 8. Konten autentik, provider/aturan operasional lain dan validasi produksi tetap terbuka; tidak menjalankan aplikasi atau deployment.
+
+### 13.13. Visualisasi statistik — keputusan berlaku
+
+Statistik Event dan Profil memakai **spider chart (radar) sebagai satu-satunya jenis grafik**. Pemilih jenis grafik dan preferensi mode dihapus sesuai instruksi terbaru pengguna. Tab Event/Profil dan pemilih event tetap tersedia karena menentukan konteks data. Tabel/daftar angka sembilan kategori mendampingi grafik untuk aksesibilitas dan ketelitian.
+
+Urutan sumbu tetap searah jarum jam dari Finishing di atas: Finishing, Playmaking, Defending, Teamwork, Discipline, Commitment, Consistency, Impact, Achievement. Pusat 0 dan cincin 25/50/75/100, tanpa penyesuaian skala otomatis. Event memakai nilai relatif, Profil memakai akumulasi personal; profil tidak dinormalisasi ulang. Overall terpisah dan poin mentah >100 hanya di rincian/ledger. Data hilang memakai — dan penjelasan; jangan membuat titik nol atau poligon penuh dari data tidak lengkap.
+
+AC-131–AC-133 tetap memakai ID semula dengan perilaku yang direvisi; FLOW-22/FLOW-23 dan SCR-12/SCR-24 diselaraskan. Satu slot gambar diganti SCR-24 v6; total tetap 12 referensi. Referensi v4 berada di archive/v2.2, v5 dipindahkan ke archive/v2.4, dan manifest historis mempertahankan asal edit.
+
+### 13.14. Review hasil pemrosesan dan optimasi — 12 November 2026
+
+Otorisasi: pengguna meminta review/optimasi hasil implementation plan dan penghapusan opsi bar chart. Temuan: opsi lama masih ada pada AC, alur, spesifikasi layar dan gambar; aturan penyimpanan pilihan grafik ikut menjadi tidak relevan. Tindakan: sederhanakan menjadi satu grafik, pertahankan konteks Event/Profil dan tabel aksesibel, revisi AC-131/AC-132 tanpa mengganti ID atau menambah scope. Tidak ada perubahan rumus, poin, penalti, achievement atau izin baca.
+
+Review juga membedakan hasil dokumentasi dari aplikasi: finalisasi/replay, anti duplikasi, privasi, status data hilang dan normalisasi tercakup dalam spesifikasi; penerapannya memerlukan pengujian aplikasi tersendiri. Proksi kebobolan tim dan bobot posisi tetap baseline yang memerlukan kalibrasi lapangan. Konten autentik, layanan/kebijakan dan validasi produksi belum ditutup oleh revisi ini.
+
+Audit revisi lulus: 28 fitur, 33 story, 133 AC, 26 flow, 22 state dan 36 layar unik; seluruh ID/AC terpetakan, versi/tautan/anchor/tabel/UTF-8 valid, dan dimensi 12 PNG aktif sesuai manifest v6. Grafik pengganti diperiksa visual: sembilan sumbu dan legenda benar, pemilih jenis grafik tidak ada. Pemeriksaan ini atas dokumentasi dan referensi visual, bukan pengujian aplikasi.

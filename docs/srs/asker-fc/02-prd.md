@@ -1,8 +1,8 @@
 # Product Requirements Document — Asker FC
 
-- Versi: 2.1 · Tanggal: 10 November 2026
-- Status: kebutuhan diperluas dan diselaraskan; aturan operasional usulan belum disahkan untuk produksi.
-- Upstream: [Product Planning v2.1](./01-product-planning.md), [Implementation Plan v2.0](./00-implementation-plan.md). Revisi v2.0 memproses rencana v1.8; ID lama dipertahankan dan kebutuhan baru ditambahkan.
+- Versi: 2.5 · Tanggal: 12 November 2026
+- Status: kebutuhan v2.5 diselaraskan; visual statistik hanya Spider dan 133 AC, tanpa perubahan rumus atau nominal penilaian.
+- Upstream: [Product Planning v2.5](./01-product-planning.md), [Implementation Plan v2.11](./00-implementation-plan.md), pelaksanaan rencana v2.7 yang disetujui pengguna 11 November 2026. ID lama dipertahankan.
 - Asumsi relevan: satu komunitas, peserta 18+, 100–500 anggota, koneksi internet, proses saat ini belum divalidasi lapangan.
 
 ## 1. Produk, masalah dan nilai
@@ -31,7 +31,7 @@ Superadmin membuat/menyalin draft lalu menunjuk pengelola. Admin dapat mengonfig
 
 ## 3. Goals dan success metrics
 
-Definisi mengikuti Planning v2.0 dan tidak diubah di PRD. KPI mengukur kelancaran operasional untuk mendukung pengalaman Kick & Kumpul. Observasi pilot memeriksa apakah anggota dapat menemukan jadwal, menyelesaikan pendaftaran dan proses bayar/statusnya; umpan balik kualitatif memeriksa rasa dilibatkan dan kebersamaan tim. Kehadiran atau skor tidak otomatis menjadi bukti kebersamaan. Baseline seluruh KPI **belum diukur**; target **usulan**. Denominator nol berarti tidak berlaku.
+Definisi mengikuti Planning v2.5 dan tidak diubah di PRD. KPI mengukur kelancaran operasional untuk mendukung pengalaman Kick & Kumpul. Observasi pilot memeriksa apakah anggota dapat menemukan jadwal, menyelesaikan pendaftaran dan proses bayar/statusnya; umpan balik kualitatif memeriksa rasa dilibatkan dan kebersamaan tim. Kehadiran atau skor tidak otomatis menjadi bukti kebersamaan. Baseline seluruh KPI **belum diukur**; target **usulan**. Denominator nol berarti tidak berlaku.
 
 | Goal/KPI | Definisi operasional | Target usulan dan periode | Cara ukur |
 |---|---|---|---|
@@ -108,7 +108,7 @@ Setiap US mengacu fitur Planning. Setiap AC memuat kondisi, aksi dan hasil yang 
 
 **US-07 → FEAT-07:** As a scorekeeper or organizer, I want to submit and validate match results so that official results are accountable.
 
-- **AC-22 → US-07:** Given petugas ditugaskan pada laga, when skor bilangan bulat nonnegatif dan waktu selesai aktual yang valid dikirim, then hasil berstatus diajukan; klasemen belum berubah. Rincian pencetak gol boleh belum lengkap dan ditandai demikian.
+- **AC-22 → US-07:** Given petugas ditugaskan pada laga, when skor bilangan bulat nonnegatif dan waktu selesai aktual yang valid dikirim, then hasil berstatus diajukan; klasemen belum berubah. Rincian Gol/Assist boleh belum lengkap dan ditandai demikian.
 - **AC-23 → US-07:** Given hasil diajukan, when pengelola memfinalkan setelah pemeriksaan, then hasil final memperbarui klasemen/statistik satu kali. Pencatat tanpa peran pengelola tidak dapat memfinalkan.
 - **AC-24 → US-07:** Given hasil final, when pengelola mengonfirmasi koreksi beserta alasan, then versi baru menjadi resmi, dampak dihitung ulang dan versi lama tetap dapat ditelusuri.
 - **AC-25 → US-07:** Given data sudah berubah oleh petugas lain atau hasil penyimpanan belum diketahui karena koneksi, when pengguna mencoba menyimpan ulang, then sistem memeriksa status terbaru dan mencegah penimpaan diam-diam maupun hasil ganda.
@@ -130,10 +130,10 @@ Setiap US mengacu fitur Planning. Setiap AC memuat kondisi, aksi dan hasil yang 
 
 ### FEAT-10 — Statistik dasar
 
-**US-10 → FEAT-10:** As a member, I want to see attendance, appearances and goals with completeness labels so that I can interpret my contribution correctly.
+**US-10 → FEAT-10:** As a member, I want to see attendance, appearances, goals and assists with completeness labels so that I can interpret my contribution correctly.
 
-- **AC-31 → US-10:** Given data sah tersedia dan filter periode/kegiatan dipilih, when statistik ditampilkan, then kehadiran dihitung per kegiatan, penampilan per laga final dan gol dari rincian gol hasil final; gol bunuh diri tidak dikreditkan pada pemain lawan.
-- **AC-32 → US-10:** Given rincian pencetak gol belum lengkap atau belum ada laga final, when statistik dibuka, then kelengkapan/keadaan kosong ditampilkan dan tidak mengarang angka pemain; koreksi hasil tercermin pada ringkasan.
+- **AC-31 → US-10:** Given data sah tersedia dan filter periode/kegiatan dipilih, when statistik ditampilkan, then kehadiran dihitung per kegiatan, penampilan per laga final serta Gol/Assist dari rincian terkonfirmasi pada hasil final; gol bunuh diri tidak dikreditkan pada pemain lawan.
+- **AC-32 → US-10:** Given rincian Gol/Assist belum lengkap atau belum ada laga final, when statistik dibuka, then kelengkapan/keadaan kosong ditampilkan dan tidak mengarang angka pemain; koreksi hasil tercermin pada ringkasan.
 
 ### FEAT-11 — Pembayaran manual
 
@@ -196,7 +196,7 @@ Target numerik di bawah adalah **usulan perancangan**, perlu diuji pada lingkung
 - Satu komunitas penyelenggara, peserta anggota/tamu berakun 18+, satu mode daftar per kegiatan; koneksi dibutuhkan. Mode acak atau seimbang berdasarkan skill menjaga kapasitas dan pratinjau roster.
 - Jenis liga satu putaran; kegiatan rutin adalah sesi terpisah dengan laga persahabatan, bukan pengulangan kalender otomatis.
 - Tidak ada pemain tamu tanpa akun, waiting list otomatis, sinkronisasi offline, refund otomatis, streaming sendiri, marketplace atau pembukuan penuh. Halaman publik/foto masuk MVP dengan izin publikasi; video berupa tautan/preview.
-- Multi-komunitas operasional, format tambahan, kanal notifikasi selain pengingat jadwal WhatsApp, gateway/penerbitan tagihan otomatis, statistik lanjutan dan peserta anak merupakan roadmap. Toko opsional tidak aktif otomatis.
+- Multi-komunitas operasional, format tambahan, kanal notifikasi selain pengingat jadwal WhatsApp, gateway/penerbitan tagihan otomatis, analitik di luar penilaian sederhana dan peserta anak merupakan roadmap. Toko opsional tidak aktif otomatis.
 - Kebijakan walkover, pengunduran tim, penentuan juara ketika seri, tenggat bayar, retensi dan kontak laporan harus jelas sebelum kegiatan relevan dipublikasikan/produksi. Details menyediakan default usulan yang ditandai.
 - Negara operasional Indonesia masih asumsi. Kebijakan 18+ membatasi scope, bukan bukti kepatuhan hukum.
 
@@ -208,7 +208,7 @@ Tidak ada klaim riset pengguna, performa atau keamanan yang telah lulus. Keputus
 
 ## 11. Kebutuhan perluasan v2.0
 
-Pemetaan fase ini mengikuti Planning v2.0; US-19–US-26 adalah MVP, US-27 opsional dan US-28 lanjutan. Rincian default di Details berlabel usulan untuk diuji, bukan aturan klub yang sudah disahkan.
+Pemetaan fase ini mengikuti Planning v2.5; US-19–US-26 adalah MVP, US-27 opsional dan US-28 kini MVP penilaian sederhana. Rincian default di Details berlabel usulan untuk diuji, bukan aturan klub yang sudah disahkan.
 
 ### FEAT-19 — Beranda komunitas
 
@@ -288,11 +288,11 @@ Pemetaan fase ini mengikuti Planning v2.0; US-19–US-26 adalah MVP, US-27 opsio
 
 - **AC-77 → US-27:** Given modul belum diaktifkan, when navigasi dibuka, then toko disembunyikan; bila kelak katalog/pemesanan WhatsApp disahkan dan diaktifkan, produk nyata serta cara memesan terlihat tanpa mengasumsikan stok, checkout atau pengiriman terintegrasi.
 
-### FEAT-28 — Statistik lanjutan
+### FEAT-28 — Penilaian sembilan kategori dan achievement (MVP)
 
-**US-28 → FEAT-28:** As an organizer, I want future performance metrics with agreed definitions so that deeper analysis can be based on reliable data.
+**US-28 → FEAT-28:** As a player, I want position-aware performance categories and sourced achievements so that my contribution is recognized beyond goals alone.
 
-- **AC-78 → US-28:** Given metrik dan kualitas data disepakati pada fase lanjutan, when laporan dibuat, then definisi, cakupan dan data yang belum lengkap terlihat; angka tidak direkayasa dari data yang tidak dicatat.
+- **AC-78 → US-28:** Given aturan penilaian kegiatan ditetapkan, when pemain membaca sembilan kategori, then poin mentah, nilai relatif event dan profil akumulasi diberi label berbeda, posisi penilaian/sumber terlihat, dan data yang belum lengkap tidak direkayasa; analitik yang memerlukan data tambahan tetap lanjutan.
 
 ### Perincian AC pada fitur lama yang dipromosikan/diperluas
 
@@ -316,3 +316,81 @@ Publik hanya membaca Beranda, kontak/sponsor, jadwal/hasil/media yang secara eks
 NFR-02 diperluas ke foto, pilihan suara, nilai skill dan nomor pengingat. NFR-07 mencakup perubahan nilai, voting, publikasi dan kas beserta koreksi. NFR-08 berlaku juga pada suara, pengingat dan transaksi kas. NFR-03/NFR-04 berlaku pada kedua tema. Tidak ada notification center baru atau kanal tambahan selain yang disepakati.
 
 Skenario penerimaan utama mengikuti tujuh tahap alur; uji juga foto/hasil belum tersedia, kuota terakhir, skill kosong, suara ganda/seri/tanpa suara, jadwal berubah sebelum kirim, berhenti menerima, tagihan terbit ulang, keputusan verifikasi ganda, akses tamu ke kas dan preferensi tema setelah muat ulang. Ini kebutuhan pengujian produk, belum hasil eksekusi.
+## 13. Kebutuhan penilaian pemain v2.2
+
+Baseline dokumentasi dari rencana yang disetujui: sembilan kategori Finishing, Playmaking, Defending, Teamwork, Discipline, Commitment, Consistency, Impact dan Achievement. Besaran dan mekanika di Details menjadi acuan yang bisa diuji, bukan klaim validasi lapangan. Nilai skill manual, voting, top skor dan penilaian sembilan kategori tidak disatukan diam-diam. Akses rincian nilai pemain/insiden mengikuti izin, bukan otomatis publik.
+
+### US-29 → FEAT-10 — Statistik event yang dapat dijelaskan
+
+**US-29 → FEAT-10:** As a player, I want event scores to distinguish starting points from relative performance so that I understand my standing in each category.
+
+- **AC-91 → US-29:** Given preset empat tim dipilih, when jadwal dibuat, then enam pasangan unik dan tiga laga per tim tersedia tanpa melanggar benturan/istirahat; preset tidak menghapus konfigurasi kegiatan lain.
+- **AC-92 → US-29:** Given pembagian tim disimpan, when penilaian event dibuka, then satu baseline 50 pada sembilan kategori tersedia per pemain; pratinjau, simpan ulang dan pengacakan ulang pada event sama tidak menambah baseline atau menghapus perubahan.
+- **AC-93 → US-29:** Given pemain tampil, when petugas mencatat statistik individu, then hanya Gol/Assist nonnegatif diperlukan; nol terkonfirmasi dibedakan dari belum diisi, kebobolan bersumber skor lawan, dan total kontribusi diperiksa terhadap skor/roster.
+- **AC-94 → US-29:** Given First Blood/Match Winner/Comeback dievaluasi, when urutan kejadian tidak tersedia, then status belum diketahui terlihat dan bonus tidak dibuat dari total Gol/Assist; konfirmasi khusus dapat ditinjau tanpa meminta seluruh menit gol.
+- **AC-95 → US-29:** Given ada partisipasi sah, when pembanding event ditetapkan, then hanya pemain terkonfirmasi tampil masuk maksimum lintas empat tim; pemain tidak tampil tetap memiliki riwayat penalti tetapi tidak memperoleh peringkat relatif.
+- **AC-96 → US-29:** Given pembanding berpoin positif, when kategori dibandingkan, then poin tertinggi menjadi 100 dan seri tertinggi bersama; semua sama positif menjadi 100 relatif. Pembanding kosong atau seluruh poin nol mempunyai state penjelasan, tanpa pembagian nol.
+- **AC-97 → US-29:** Given poin mentah melebihi 100, when ditampilkan, then poin tetap dapat dibedakan sebelum normalisasi; batas 0–100 hanya berlaku pada nilai relatif dan profil, bukan memotong poin mentah sebelum perbandingan.
+- **AC-98 → US-29:** Given nilai event tersedia, when overall/peringkat dibaca, then posisi penilaian dan konteks relatif terlihat, pembulatan tampilan tidak menentukan seri, dan nilai 100 tidak dianggap bukti bebas pelanggaran atau performa absolut sempurna.
+
+### US-30 → FEAT-10 — Profil akumulasi seluruh permainan
+
+**US-30 → FEAT-10:** As a player, I want my profile to accumulate my own game-point changes so that my history is independent of other players' event scores.
+
+- **AC-99 → US-30:** Given belum ada riwayat final, when profil dibuka, then baseline profil 50 satu kali berlabel awal dan tidak mengarang penampilan; event berikutnya mulai mentah 50 tanpa mereset profil.
+- **AC-100 → US-30:** Given perubahan Finishing +10, +3 dan 0 dari tiga event final, when profil diperbarui, then Finishing menjadi 63; tidak dirata-ratakan atau ditambah baseline/nilai relatif tiap event.
+- **AC-101 → US-30:** Given saldo 50 lalu event +70 dan event berikutnya −3, when akumulasi diproses, then profil menjadi 100 lalu 97; saldo 50 lalu −70 dan +3 menjadi 0 lalu 3, dengan perubahan nominal/efektif tersimpan untuk penjelasan.
+- **AC-102 → US-30:** Given event lama dikoreksi, when perubahan disahkan, then seluruh event sesudahnya diproses ulang menurut urutan bermain dan aturan historis; saldo terkini tidak sekadar ditambah selisih yang mengabaikan batas historis.
+- **AC-103 → US-30:** Given koreksi pemain A mengubah maksimum event, when nilai relatif pemain B berubah tetapi sumber B sama, then profil B tetap sama.
+- **AC-104 → US-30:** Given posisi atau bobot berbeda antar-event, when overall profil dihitung, then perubahan efektif kategori memakai posisi/versi event sumber; overall bukan rerata relatif dan bonus yang tertahan batas kategori tidak menaikkannya.
+- **AC-105 → US-30:** Given profil atau rincian poin diminta, when hak baca diperiksa, then pemain membaca miliknya dan petugas cakupan berhak saja; data pribadi/alasan sensitif tidak tampil di direktori publik.
+
+### US-31 → FEAT-28 — Achievement dan perubahan hasil tim
+
+**US-31 → FEAT-28:** As a player, I want individual and team achievements with explicit point effects so that rewards and deductions can be checked consistently.
+
+- **AC-106 → US-31:** Given katalog penilaian berlaku, when penghargaan dievaluasi, then 12 achievement individu, 7 tim dan 2 penyesuaian negatif tim mempunyai syarat/kategori/nominal yang terlihat; tidak ada bonus universal atau poin voting tersembunyi.
+- **AC-107 → US-31:** Given pemain mencetak 1/2/≥3 gol dalam satu laga, when bonus dievaluasi, then Finishing mendapat +3/+6/+8 sebelum First Blood; Brace tidak ditumpuk dengan Hat-Trick dan bonus dasar tidak dikali jumlah gol.
+- **AC-108 → US-31:** Given pemain mempunyai ≥2 assist atau Gol dan Assist pada laga sama, when achievement dievaluasi, then Assist Maker/Playmaker memberi Playmaking +7 dan Goal Contribution memberi Impact +3 bila sah, tanpa assist diri sendiri.
+- **AC-109 → US-31:** Given Defender/Goalkeeper tampil, when kebobolan dan bonus defensif diproses, then Clean Sheet menggantikan Resilience pada nol kebobolan, bonus serta potongan kebobolan bersumber laga tampil saja; pemain tidak tampil tidak menerima poin defensif laga.
+- **AC-110 → US-31:** Given pemain hadir dan bermain ketiga laga event, when Perfect Attendance dievaluasi, then Commitment bertambah 4 sekali; terlambat/kartu tidak menghapus fakta tampil tetapi penalti terkait tetap diproses terpisah.
+- **AC-111 → US-31:** Given tiga/enam event komitmen berkontribusi berurutan, when streak dievaluasi, then satu/dua bonus Consistency +4 ditempatkan pada event penutup blok; data belum lengkap menahan penetapan dan koreksi lama memperbaiki streak berikutnya.
+- **AC-112 → US-31:** Given event selesai dan klasemen sah, when achievement tim diterapkan, then Champion/Runner-Up, Unbeaten/Perfect Victory, Best Defense/Attack mengikuti aturan sekali per event, posisi/partisipasi dan seri; Comeback tetap per laga.
+- **AC-113 → US-31:** Given tim terakhir dan tanpa kemenangan, when penyesuaian tim diterapkan, then hanya Teamwork pemain yang benar-benar berpartisipasi dipotong 6+3 sekali; peserta batal sebelum pembagian tidak dihukum dan potongan tidak masuk lagi sebagai pelanggaran individu.
+- **AC-114 → US-31:** Given sumber badge diubah atau diproses ulang, when hasil terbaru diterbitkan, then award lama diganti/dibatalkan dengan jejak; retry tidak memberi poin kedua dan voting laga/bulanan tetap badge tanpa bonus katalog ini.
+
+### US-32 → FEAT-09 — Penalti terverifikasi dan hak koreksi
+
+**US-32 → FEAT-09:** As a player, I want verified category-specific penalties and an appeal path so that deductions are fair and correctable.
+
+- **AC-115 → US-32:** Given kartu kuning lalu merah tercatat sah pada laga, when potongan diproses, then Discipline −13 dan Teamwork −3; dua kuning lalu merah menjadi −16/−3 kecuali aturan komunitas berversi menetapkan pengecualian, tanpa menggandakan kartu sama.
+- **AC-116 → US-32:** Given outlist, when waktunya dibandingkan pembagian tim dan alasan diperiksa, then sebelum pembagian bebas penalti; sesudah pengacakan tanpa alasan mendesak memberi Discipline −12/Commitment −8 dan tidak otomatis ditambah absen.
+- **AC-117 → US-32:** Given waktu hadir dan alasan telah diverifikasi, when keterlambatan diklasifikasikan, then hanya satu tingkat berlaku: 1–10 menit Discipline −2; 11–20 menit Discipline −4 dan Commitment −2; >20 menit Discipline −6 dan Commitment −3. Tepat waktu bebas dan ketiga tingkat tidak dijumlah.
+- **AC-118 → US-32:** Given tidak hadir tanpa alasan mendesak telah diverifikasi admin, when penalti disahkan, then Discipline dikurangi 15, Commitment 12 dan Teamwork 5 sekali pada event terkait; bukan Commitment 17, dan tidak ditambah tiga penalti tidak mengikuti laga untuk kejadian yang sama.
+- **AC-119 → US-32:** Given pemain diwajibkan mengikuti laga namun menolak tanpa alasan disetujui, when admin memverifikasi kejadian, then Commitment −4 per laga sah; dicadangkan, cedera disetujui, larangan akibat merah atau laga batal tidak otomatis menjadi pelanggaran ini.
+- **AC-120 → US-32:** Given satu kejadian menyebabkan outlist/absen/terlambat/laga terlewat, when penalti direkonsiliasi, then fakta yang sama tidak dipotong dua kali; tidak hadir seluruh event tidak ditambah tiga penalti tidak mengikuti laga.
+- **AC-121 → US-32:** Given insiden kehadiran dicatat, when admin meninjau status, waktu, tanggung jawab dan alasan, then hanya keputusan disahkan mengubah poin final; alasan diterima membebaskan sesuai aturan, status belum diverifikasi terlihat sementara.
+- **AC-122 → US-32:** Given pemain mengajukan koreksi penalti miliknya, when alasan/bukti dikirim, then pengajuan dapat ditinjau petugas berhak dengan keputusan beralasan; pengajuan tidak otomatis menghapus potongan dan data sensitif tidak dibuka ke pemain lain.
+- **AC-123 → US-32:** Given koreksi diterima/ditolak atau retry terjadi, when hasil dikonfirmasi, then sumber aktif, riwayat sebelum/sesudah, kategori/overall/streak terkait konsisten; tidak ada permohonan atau pengurangan ganda.
+
+### US-33 → FEAT-07 — Finalisasi penilaian yang konsisten
+
+**US-33 → FEAT-07:** As an organizer, I want versioned point finalization and corrections so that scores, badges and profiles stay consistent.
+
+- **AC-124 → US-33:** Given tim dibentuk, when versi aturan dipasangkan, then baseline, posisi, bobot, katalog/tumpukan dan sumber point memakai versi event; perubahan aturan berikutnya tidak mengubah histori diam-diam dan tidak menutup aturan penalti yang belum ditetapkan.
+- **AC-125 → US-33:** Given skor final namun rincian belum lengkap, when penilaian dibuka, then status skor, kelengkapan statistik, metadata, insiden, koreksi dan poin dibedakan; skor final bukan otomatis semua poin final.
+- **AC-126 → US-33:** Given sumber wajib diperiksa dan event lengkap, when pengelola memfinalkan poin, then poin mentah, pembanding/maksimum, nilai relatif dan perubahan profil diterbitkan pada satu versi konsisten; retry versi sama tidak menambah poin.
+- **AC-127 → US-33:** Given dua pengelola mengubah sumber bersamaan atau simpan tidak diketahui, when simpan dicoba, then versi terbaru/status diperiksa sebelum retry dan hasil lama tidak menimpa diam-diam.
+- **AC-128 → US-33:** Given metadata kejadian opsional tidak dapat dibuktikan, when admin menutup dengan alasan “Tidak dapat diverifikasi”, then badge terkait tidak diberikan dan kekurangan bukti tetap terlihat; data wajib Gol/Assist/partisipasi/kehadiran tidak boleh ditutup dengan pengecualian tersebut.
+- **AC-129 → US-33:** Given pengacakan ulang, pembatalan atau penarikan roster resmi, when dampak dinilai, then tidak membuat baseline/posting ganda, tidak menghapus penalti sah tanpa audit dan tidak memberi bonus pertandingan administratif; sumber yang dibatalkan ditarik secara konsisten.
+- **AC-130 → US-33:** Given contoh sintetis enam laga dan 16 pemain pada Details, when dihitung dengan baseline dokumentasi, then jadwal/klasemen, sembilan maksimum, nilai event serta profil cocok dengan contoh; hasil simulasi bukan klaim validasi keadilan lapangan.
+
+Tidak ada flow atau layar terpisah baru yang wajib: panel/modal memakai SCR-10/12/14/16/18/19/22/24/32/34. Nominal penalti terlambat/absen telah ditetapkan; pengesahan pada event nyata tetap memeriksa status, alasan dan versi aturan, tanpa menambah penalti kejadian yang sama. Contoh dan teks nilai rinci bukan izin membuka profil orang lain ke publik.
+
+## 14. Visualisasi statistik — FEAT-10/FEAT-28
+
+Perluasan US-29/US-30 mempertahankan makna angka, izin dan rumus; jenis grafik hanya penyajian.
+
+- **AC-131 → US-29:** Given pemain membuka statistik, when Event atau Profil ditampilkan, then spider chart/radar adalah satu-satunya jenis grafik dengan sembilan kategori berlabel dan overall terpisah; tidak ada pemilih jenis grafik. Tabel/daftar angka tetap tersedia.
+- **AC-132 → US-30:** Given pemain melihat statistik Event/Profil, when pemain beralih tab atau memilih event, then spider chart dan daftar angka menampilkan seri konteks aktif yang sama dengan label sumber/periode jelas. Pilihan event dipertahankan saat kembali dari Profil; filter rincian tidak mengubah akumulasi karier, izin baca atau poin. Profil tidak dinormalisasi ulang sebagai nilai relatif event.
+- **AC-133 → US-29:** Given grafik dapat dibaca, when nilai ditinjau, then urutan sembilan kategori dan skala 0–100 tetap sama pada kedua jenis grafik, data numerik tersedia dengan keyboard/pembaca layar, data hilang tidak diisi 0 dan tidak bergantung warna/hover; poin mentah >100 hanya dibaca pada rincian sumber.

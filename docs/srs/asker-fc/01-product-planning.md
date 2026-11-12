@@ -1,8 +1,8 @@
 # Product Planning — Asker FC
 
-- Versi: 2.1 · Tanggal: 10 November 2026
-- Status: dokumentasi diselaraskan dengan rencana v2.0 dan arahan hitam–gold 10 November 2026; validasi lapangan belum dilakukan.
-- Upstream: [Implementation Plan v2.0](./00-implementation-plan.md): baseline v1.1 disetujui; revisi visual, konsep dan tujuan anggota ditetapkan melalui instruksi pengguna.
+- Versi: 2.5 · Tanggal: 12 November 2026
+- Status: dokumentasi v2.5; spider chart menjadi satu-satunya visualisasi statistik sesuai keputusan pengguna. Penalti lengkap; konten autentik dan validasi lapangan tetap terbuka.
+- Upstream: [Implementation Plan v2.11](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna “proses implementation plan tersebut”, 11 November 2026. Parameter rencana menjadi baseline dokumentasi, belum hasil kalibrasi klub.
 - Nama kerja: **Asker FC**. Nama komunitas sudah diberikan; tidak diperlukan kandidat nama produk baru. Tidak ada klaim ketersediaan merek/domain.
 - Konsep ditetapkan pengguna: **“Kick & Kumpul” — website komunitas fun football.** Asker FC tetap nama komunitas; Kick & Kumpul menjadi konsep pengalaman dan pesan produk.
 - Sumber keputusan: jawaban pengguna, rencana disetujui; fakta eksternal pada bagian sumber. Persona, masalah operasional dan UVP adalah hipotesis kecuali disebut sebagai keputusan pengguna.
@@ -81,10 +81,10 @@ Seluruh MVP masuk scope yang disetujui. Urutan di bawah menunjukkan dependensi p
 | FEAT-04 | Daftar individu/antartim, konfirmasi roster, pembatalan | PAIN-01 → GOAL-01 | MVP; mengendalikan kuota dan identitas | FEAT-01,03 |
 | FEAT-05 | Pembagian tim acak/skill dengan kapasitas terjaga dan roster terkunci | PAIN-02 → GOAL-02 | MVP; mengurangi rekap tim | FEAT-04 |
 | FEAT-06 | Jadwal liga satu putaran dan laga rutin | PAIN-02 → GOAL-02 | MVP; menghindari benturan | FEAT-03,05 |
-| FEAT-07 | Skor, finalisasi dan koreksi beralasan | PAIN-03 → GOAL-03 | MVP; satu sumber hasil sah | FEAT-02,06 |
+| FEAT-07 | Skor, Gol/Assist, kartu, metadata hasil, finalisasi poin dan koreksi beralasan | PAIN-03 → GOAL-03 | MVP; satu sumber hasil sah | FEAT-02,06 |
 | FEAT-08 | Klasemen dari hasil final | PAIN-03 → GOAL-03 | MVP; transparansi peringkat | FEAT-07 |
-| FEAT-09 | Presensi kegiatan dan partisipasi pertandingan | PAIN-04 → GOAL-04 | MVP; dasar statistik yang jujur | FEAT-04,06 |
-| FEAT-10 | Statistik dasar anggota dan pencetak gol | PAIN-04 → GOAL-04 | MVP; keterlibatan dan kontribusi terlihat | FEAT-07,09 |
+| FEAT-09 | Presensi, partisipasi laga, insiden dan hak koreksi penalti | PAIN-04 → GOAL-04 | MVP; dasar statistik yang jujur | FEAT-04,06 |
+| FEAT-10 | Rekap faktual, poin mentah event, nilai relatif event dan akumulasi profil | PAIN-04 → GOAL-04 | MVP; keterlibatan dan kontribusi terlihat | FEAT-07,09 |
 | FEAT-11 | Biaya opsional dan bukti transfer privat | PAIN-05 → GOAL-05 | MVP; menghindari pemeriksaan berulang | FEAT-03,04 |
 | FEAT-12 | Berbagi tautan kegiatan lewat WhatsApp | PAIN-03 → GOAL-03 | MVP; mengarahkan komunikasi ke informasi resmi | FEAT-03,06 |
 | FEAT-13 | Multi-komunitas operasional | PAIN-05 → GOAL-05 | Lanjutan; kebutuhan MVP hanya satu komunitas | Uji isolasi lintas komunitas |
@@ -105,7 +105,7 @@ Seluruh MVP masuk scope yang disetujui. Urutan di bawah menunjukkan dependensi p
 | FEAT-25 | Mode gelap dan preferensi tampilan mobile-first | PAIN-01 → GOAL-01 | MVP; pemakaian mayoritas dari HP | Token dua tema dan aksesibilitas |
 | FEAT-26 | Tim peserta antar-komunitas | PAIN-01 → GOAL-01 | MVP; tim tamu dalam kegiatan Asker FC | FEAT-01,02,04; akun tamu terbatas |
 | FEAT-27 | Toko/Merchandise opsional | PAIN-04 → GOAL-04 | Opsional; belum aktif, katalog/pesan WhatsApp sebagai usulan batas awal | Keputusan aktivasi, produk asli |
-| FEAT-28 | Statistik lanjutan | PAIN-04 → GOAL-04 | Lanjutan; dipisahkan dari skill MVP agar tidak menunda fitur pembeda | Kualitas data dan definisi metrik |
+| FEAT-28 | Penilaian sembilan kategori, achievement dan keterlacakan sumber poin | PAIN-04 → GOAL-04 | MVP; apresiasi lintas posisi dengan input sederhana sesuai instruksi terbaru | FEAT-03,05,07,08,09,10; aturan penilaian berversi |
 
 ## 7. Goals, OKR dan definisi KPI
 
@@ -193,3 +193,24 @@ Riset integrasi 9 November 2026: dokumentasi resmi Twilio menjelaskan jendela la
 - S7: [Twilio notification templates](https://www.twilio.com/docs/whatsapp/tutorial/send-whatsapp-notification-messages-templates), diakses 9 November 2026; pengiriman proaktif dan template yang dapat ditolak/dijeda.
 
 Keputusan default operasional di Details v2.0 adalah usulan yang dapat diuji dengan data sintetis. Harus disahkan pemilik komunitas sebelum kegiatan nyata: nilai skill, eligibility voting, waktu pengingat, tarif/periode kas, publikasi media dan akses tamu. Foto aksi asli/kontak/sponsor belum diberikan; contoh visual diberi label. Provider dan validasi lapangan tidak ditutup secara fiktif oleh kelengkapan dokumen.
+## 14. Penilaian pemain v2.2 — scope yang diproses
+
+Instruksi pengguna memproses implementation plan v2.7 mengotorisasi perincian paket SRS dan parameter rekomendasinya untuk dokumentasi. Penilaian sembilan kategori masuk MVP melalui perluasan FEAT-07/09/10 dan promosi FEAT-28, tanpa mengubah stack, konsep Kick & Kumpul, toko opsional atau status privasi. Analitik yang memerlukan menit, tackle, passing atau save tetap di luar MVP input sederhana; bukan penundaan seluruh FEAT-28.
+
+| Besaran | Nilai bagi pemain | Batas dan sumber |
+|---|---|---|
+| Poin mentah event | Mulai 50 di sembilan kategori saat pembagian tim disimpan; berubah dari bonus/potongan | Minimal 0, tidak dicap 100 sebelum perbandingan; bukan skill manual |
+| Nilai event relatif | Tertinggi tiap kategori = 100; seri tertinggi bersama | Perbandingan pemain tampil lintas empat tim; dipengaruhi peserta lain dan bukan kemampuan absolut |
+| Profil akumulasi | Seluruh perubahan poin permainan dipertahankan lintas event | Baseline spesifikasi 50 sekali, cap 0–100 setelah setiap event; bukan rerata dan bukan penjumlahan nilai relatif |
+
+Preset event berisi 4 tim, 6 pasangan unik dan 3 laga per tim. Individu hanya diinput Gol/Assist; kebobolan berasal skor lawan. Partisipasi, kartu, presensi dan tiga konfirmasi kejadian khusus dipisahkan sebagai metadata. Skill manual 1–5 tetap privat dan tidak otomatis diganti oleh sembilan kategori.
+
+Manfaat yang akan diuji: pemain bertahan dapat memperoleh penghargaan tanpa Gol/Assist, pemain memahami asal perubahan nilainya, dan koreksi tidak menggandakan poin. Katalog terdiri dari 12 achievement individu, 7 achievement tim dan 2 penyesuaian negatif tim. Voting MVP/bulanan tetap apresiasi terpisah tanpa bonus statistik pada katalog ini. Nama, syarat, nominal dan penumpukan dirinci di [Product Details](./03-product-details.md#13-penilaian-pemain-dan-sumber-poin-v22).
+
+Risiko: nilai relatif 100 bisa timbul saat semua sama atau sama-sama terkena penalti; pemain tidak tampil harus dikecualikan dari pembanding. Bobot posisi dan kebobolan −2 merupakan baseline simulasi yang perlu kalibrasi, bukan bukti adil. Discipline belum mempunyai bonus pemulihan dan sejumlah kategori belum punya potongan; jangan menambahkan aturan fiktif. Klarifikasi pengguna 12 November 2026 menutup tiga baris penalti: terlambat 11–20 Commitment −2, >20 Commitment −3, absen Discipline −15/Commitment −12/Teamwork −5. Pengesahan tetap memerlukan verifikasi insiden, bukan hambatan nominal yang belum jelas.
+
+Pilot tetap empat kegiatan menurut KPI lama; tambahkan pengamatan beban input Gol/Assist, kelengkapan sumber, koreksi penalti dan distribusi peringkat/achievement per posisi. Belum ada target numerik atau baseline baru. Riset pembanding dan provider pada bagian 3/12/13 tetap catatan bertanggal 9 November; tidak diklaim diverifikasi ulang pada revisi domain ini. Estimasi pembangunan perlu dihitung ulang dari perluasan Details, bukan memakai kalender historis.
+
+## 15. Penyajian statistik v2.5
+
+Spider chart/radar menjadi satu-satunya jenis grafik pada Event dan Profil; tidak ada pemilih jenis grafik. Tujuannya membantu anggota melihat bentuk kontribusi sembilan kategori tanpa mengubah nilai atau menyamakan makna nilai event relatif dan akumulasi profil. Data numerik tetap tersedia untuk aksesibilitas/ketelitian. Jenis grafik tidak menambah input statistik atau hak baca; detail implementasi mengikuti Details/Mockup. Ini perluasan presentasi FEAT-10/FEAT-28 yang sudah diminta pengguna, bukan penambahan metrik atau klaim hasil uji kegunaan.

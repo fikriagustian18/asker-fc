@@ -1,0 +1,990 @@
+{
+  "source": "00-implementation-plan.md v2.4; nilai EVENT, bukan Consistency profil sepanjang waktu",
+  "synthetic": true,
+  "matches": [
+    {
+      "id": "M1",
+      "home": "A",
+      "away": "B",
+      "goals": [
+        [
+          "B",
+          "B1",
+          "B2"
+        ],
+        [
+          "A",
+          "S",
+          "M"
+        ],
+        [
+          "A",
+          "S",
+          "D"
+        ],
+        [
+          "A",
+          "M",
+          "S"
+        ]
+      ],
+      "score": [
+        3,
+        1
+      ],
+      "first": "B1",
+      "winner": "A",
+      "decisive": "S",
+      "comeback": true
+    },
+    {
+      "id": "M2",
+      "home": "A",
+      "away": "C",
+      "goals": [
+        [
+          "A",
+          "S",
+          "M"
+        ],
+        [
+          "A",
+          "S",
+          "M"
+        ]
+      ],
+      "score": [
+        2,
+        0
+      ],
+      "first": "S",
+      "winner": "A",
+      "decisive": "S",
+      "comeback": false
+    },
+    {
+      "id": "M3",
+      "home": "A",
+      "away": "D",
+      "goals": [
+        [
+          "A",
+          "D",
+          "M"
+        ]
+      ],
+      "score": [
+        1,
+        0
+      ],
+      "first": "D",
+      "winner": "A",
+      "decisive": "D",
+      "comeback": false
+    },
+    {
+      "id": "M4",
+      "home": "B",
+      "away": "C",
+      "goals": [
+        [
+          "B",
+          "B1",
+          "B2"
+        ],
+        [
+          "C",
+          "C1",
+          "C2"
+        ]
+      ],
+      "score": [
+        1,
+        1
+      ],
+      "first": "B1",
+      "winner": null,
+      "decisive": null,
+      "comeback": false
+    },
+    {
+      "id": "M5",
+      "home": "B",
+      "away": "D",
+      "goals": [
+        [
+          "B",
+          "B1",
+          "B2"
+        ],
+        [
+          "B",
+          "B2",
+          "B1"
+        ]
+      ],
+      "score": [
+        2,
+        0
+      ],
+      "first": "B1",
+      "winner": "B",
+      "decisive": "B1",
+      "comeback": false
+    },
+    {
+      "id": "M6",
+      "home": "C",
+      "away": "D",
+      "goals": [
+        [
+          "C",
+          "C1",
+          "C2"
+        ]
+      ],
+      "score": [
+        1,
+        0
+      ],
+      "first": "C1",
+      "winner": "C",
+      "decisive": "C1",
+      "comeback": false
+    }
+  ],
+  "ranking": [
+    {
+      "team": "A",
+      "played": 3,
+      "w": 3,
+      "d": 0,
+      "l": 0,
+      "gf": 6,
+      "ga": 1,
+      "pts": 9
+    },
+    {
+      "team": "B",
+      "played": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 4,
+      "ga": 4,
+      "pts": 4
+    },
+    {
+      "team": "C",
+      "played": 3,
+      "w": 1,
+      "d": 1,
+      "l": 1,
+      "gf": 2,
+      "ga": 3,
+      "pts": 4
+    },
+    {
+      "team": "D",
+      "played": 3,
+      "w": 0,
+      "d": 0,
+      "l": 3,
+      "gf": 0,
+      "ga": 4,
+      "pts": 0
+    }
+  ],
+  "categories": [
+    "Finishing",
+    "Playmaking",
+    "Defending",
+    "Teamwork",
+    "Discipline",
+    "Commitment",
+    "Consistency",
+    "Impact",
+    "Achievement"
+  ],
+  "players": [
+    {
+      "id": "S",
+      "name": "Raka",
+      "position": "Striker",
+      "w": [
+        0.7,
+        0.25,
+        0.05
+      ],
+      "color": "#e8bd62",
+      "matches": [
+        {
+          "match": "M1",
+          "goals": 2,
+          "assists": 1,
+          "ga": 1,
+          "F": 100,
+          "P": 50,
+          "D": 75,
+          "R": 86.25
+        },
+        {
+          "match": "M2",
+          "goals": 2,
+          "assists": 0,
+          "ga": 0,
+          "F": 100,
+          "P": 0,
+          "D": 100,
+          "R": 75
+        },
+        {
+          "match": "M3",
+          "goals": 0,
+          "assists": 0,
+          "ga": 0,
+          "F": 0,
+          "P": 0,
+          "D": 100,
+          "R": 5
+        }
+      ],
+      "awards": [
+        {
+          "name": "Goal Scorer",
+          "source": "M1",
+          "deltas": {
+            "Finishing": 3
+          }
+        },
+        {
+          "name": "Brace",
+          "source": "M1",
+          "deltas": {
+            "Finishing": 3
+          }
+        },
+        {
+          "name": "Assist Maker",
+          "source": "M1",
+          "deltas": {
+            "Playmaking": 3
+          }
+        },
+        {
+          "name": "Goal Contribution",
+          "source": "M1",
+          "deltas": {
+            "Impact": 3
+          }
+        },
+        {
+          "name": "Match Winner",
+          "source": "M1",
+          "deltas": {
+            "Impact": 4
+          }
+        },
+        {
+          "name": "Comeback Victory",
+          "source": "M1",
+          "deltas": {
+            "Teamwork": 3
+          }
+        },
+        {
+          "name": "Goal Scorer",
+          "source": "M2",
+          "deltas": {
+            "Finishing": 3
+          }
+        },
+        {
+          "name": "Brace",
+          "source": "M2",
+          "deltas": {
+            "Finishing": 3
+          }
+        },
+        {
+          "name": "First Blood",
+          "source": "M2",
+          "deltas": {
+            "Finishing": 2,
+            "Impact": 1
+          }
+        },
+        {
+          "name": "Match Winner",
+          "source": "M2",
+          "deltas": {
+            "Impact": 4
+          }
+        },
+        {
+          "name": "Perfect Attendance",
+          "source": "Event",
+          "deltas": {
+            "Commitment": 4
+          }
+        },
+        {
+          "name": "Champion",
+          "source": "Event",
+          "deltas": {
+            "Achievement": 6
+          }
+        },
+        {
+          "name": "Perfect Victory",
+          "source": "Event",
+          "deltas": {
+            "Teamwork": 6
+          }
+        },
+        {
+          "name": "Best Attack",
+          "source": "Event",
+          "deltas": {
+            "Impact": 2
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "name": "Kartu kuning",
+          "source": "M2",
+          "deltas": {
+            "Discipline": 3
+          }
+        }
+      ],
+      "bonus": [
+        14,
+        3,
+        0,
+        9,
+        0,
+        4,
+        0,
+        14,
+        6
+      ],
+      "penalty": [
+        0,
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0
+      ],
+      "base": [
+        66.66666666666667,
+        16.666666666666668,
+        91.66666666666667,
+        54.16666666666667,
+        100,
+        100,
+        18.75,
+        55.416666666666664,
+        0
+      ],
+      "final": [
+        80.66666666666667,
+        19.666666666666668,
+        91.66666666666667,
+        63.16666666666667,
+        97,
+        100,
+        18.75,
+        69.41666666666666,
+        6
+      ],
+      "effectiveBonus": [
+        14,
+        3,
+        0,
+        9,
+        0,
+        0,
+        0,
+        13.999999999999993,
+        6
+      ],
+      "overall": 63.13749999999999,
+      "goals": 4,
+      "assists": 1
+    },
+    {
+      "id": "M",
+      "name": "Bima",
+      "position": "Midfielder",
+      "w": [
+        0.35,
+        0.6,
+        0.05
+      ],
+      "color": "#58d5c9",
+      "matches": [
+        {
+          "match": "M1",
+          "goals": 1,
+          "assists": 1,
+          "ga": 1,
+          "F": 50,
+          "P": 50,
+          "D": 75,
+          "R": 51.25
+        },
+        {
+          "match": "M2",
+          "goals": 0,
+          "assists": 2,
+          "ga": 0,
+          "F": 0,
+          "P": 100,
+          "D": 100,
+          "R": 65
+        },
+        {
+          "match": "M3",
+          "goals": 0,
+          "assists": 1,
+          "ga": 0,
+          "F": 0,
+          "P": 50,
+          "D": 100,
+          "R": 35
+        }
+      ],
+      "awards": [
+        {
+          "name": "Goal Scorer",
+          "source": "M1",
+          "deltas": {
+            "Finishing": 3
+          }
+        },
+        {
+          "name": "Assist Maker",
+          "source": "M1",
+          "deltas": {
+            "Playmaking": 3
+          }
+        },
+        {
+          "name": "Goal Contribution",
+          "source": "M1",
+          "deltas": {
+            "Impact": 3
+          }
+        },
+        {
+          "name": "Comeback Victory",
+          "source": "M1",
+          "deltas": {
+            "Teamwork": 3
+          }
+        },
+        {
+          "name": "Assist Maker",
+          "source": "M2",
+          "deltas": {
+            "Playmaking": 3
+          }
+        },
+        {
+          "name": "Playmaker",
+          "source": "M2",
+          "deltas": {
+            "Playmaking": 4
+          }
+        },
+        {
+          "name": "Assist Maker",
+          "source": "M3",
+          "deltas": {
+            "Playmaking": 3
+          }
+        },
+        {
+          "name": "Perfect Attendance",
+          "source": "Event",
+          "deltas": {
+            "Commitment": 4
+          }
+        },
+        {
+          "name": "Champion",
+          "source": "Event",
+          "deltas": {
+            "Achievement": 6
+          }
+        },
+        {
+          "name": "Perfect Victory",
+          "source": "Event",
+          "deltas": {
+            "Teamwork": 6
+          }
+        },
+        {
+          "name": "Best Attack",
+          "source": "Event",
+          "deltas": {
+            "Impact": 2
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "name": "Terlambat 5 menit tanpa alasan mendesak",
+          "source": "Event",
+          "deltas": {
+            "Discipline": 2
+          }
+        }
+      ],
+      "bonus": [
+        3,
+        13,
+        0,
+        9,
+        0,
+        4,
+        0,
+        5,
+        6
+      ],
+      "penalty": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0
+      ],
+      "base": [
+        16.666666666666668,
+        66.66666666666667,
+        91.66666666666667,
+        79.16666666666667,
+        100,
+        100,
+        70,
+        50.416666666666664,
+        0
+      ],
+      "final": [
+        19.666666666666668,
+        79.66666666666667,
+        91.66666666666667,
+        88.16666666666667,
+        98,
+        100,
+        70,
+        55.416666666666664,
+        6
+      ],
+      "effectiveBonus": [
+        3,
+        13,
+        0,
+        9,
+        0,
+        0,
+        0,
+        5,
+        6
+      ],
+      "overall": 57.199999999999996,
+      "goals": 1,
+      "assists": 4
+    },
+    {
+      "id": "D",
+      "name": "Danu",
+      "position": "Defender",
+      "w": [
+        0.05,
+        0.05,
+        0.9
+      ],
+      "color": "#80aeff",
+      "matches": [
+        {
+          "match": "M1",
+          "goals": 0,
+          "assists": 1,
+          "ga": 1,
+          "F": 0,
+          "P": 50,
+          "D": 75,
+          "R": 70
+        },
+        {
+          "match": "M2",
+          "goals": 0,
+          "assists": 0,
+          "ga": 0,
+          "F": 0,
+          "P": 0,
+          "D": 100,
+          "R": 90
+        },
+        {
+          "match": "M3",
+          "goals": 1,
+          "assists": 0,
+          "ga": 0,
+          "F": 50,
+          "P": 0,
+          "D": 100,
+          "R": 92.5
+        }
+      ],
+      "awards": [
+        {
+          "name": "Assist Maker",
+          "source": "M1",
+          "deltas": {
+            "Playmaking": 3
+          }
+        },
+        {
+          "name": "Defensive Resilience",
+          "source": "M1",
+          "deltas": {
+            "Defending": 2
+          }
+        },
+        {
+          "name": "Comeback Victory",
+          "source": "M1",
+          "deltas": {
+            "Teamwork": 3
+          }
+        },
+        {
+          "name": "Clean Sheet",
+          "source": "M2",
+          "deltas": {
+            "Defending": 5
+          }
+        },
+        {
+          "name": "Goal Scorer",
+          "source": "M3",
+          "deltas": {
+            "Finishing": 3
+          }
+        },
+        {
+          "name": "First Blood",
+          "source": "M3",
+          "deltas": {
+            "Finishing": 2,
+            "Impact": 1
+          }
+        },
+        {
+          "name": "Match Winner",
+          "source": "M3",
+          "deltas": {
+            "Impact": 4
+          }
+        },
+        {
+          "name": "Clean Sheet",
+          "source": "M3",
+          "deltas": {
+            "Defending": 5
+          }
+        },
+        {
+          "name": "Perfect Attendance",
+          "source": "Event",
+          "deltas": {
+            "Commitment": 4
+          }
+        },
+        {
+          "name": "Champion",
+          "source": "Event",
+          "deltas": {
+            "Achievement": 6
+          }
+        },
+        {
+          "name": "Perfect Victory",
+          "source": "Event",
+          "deltas": {
+            "Teamwork": 6
+          }
+        },
+        {
+          "name": "Best Attack",
+          "source": "Event",
+          "deltas": {
+            "Impact": 2
+          }
+        },
+        {
+          "name": "Best Defense",
+          "source": "Event",
+          "deltas": {
+            "Defending": 3
+          }
+        }
+      ],
+      "penalties": [
+        {
+          "name": "Kartu kuning",
+          "source": "M1",
+          "deltas": {
+            "Discipline": 3
+          }
+        },
+        {
+          "name": "Kartu merah langsung pada akhir laga terakhir",
+          "source": "M3",
+          "deltas": {
+            "Discipline": 10,
+            "Teamwork": 3
+          }
+        }
+      ],
+      "bonus": [
+        5,
+        3,
+        15,
+        9,
+        0,
+        4,
+        0,
+        7,
+        6
+      ],
+      "penalty": [
+        0,
+        0,
+        0,
+        3,
+        13,
+        0,
+        0,
+        0,
+        0
+      ],
+      "base": [
+        16.666666666666668,
+        16.666666666666668,
+        91.66666666666667,
+        54.16666666666667,
+        100,
+        100,
+        77.5,
+        84.16666666666667,
+        0
+      ],
+      "final": [
+        21.666666666666668,
+        19.666666666666668,
+        100,
+        60.16666666666667,
+        87,
+        100,
+        77.5,
+        91.16666666666667,
+        6
+      ],
+      "effectiveBonus": [
+        5,
+        3,
+        8.333333333333329,
+        9,
+        0,
+        0,
+        0,
+        7,
+        6
+      ],
+      "overall": 80.64999999999999,
+      "goals": 1,
+      "assists": 1
+    },
+    {
+      "id": "G",
+      "name": "Fajar",
+      "position": "Goalkeeper",
+      "w": [
+        0,
+        0,
+        1
+      ],
+      "color": "#c6a1ff",
+      "matches": [
+        {
+          "match": "M1",
+          "goals": 0,
+          "assists": 0,
+          "ga": 1,
+          "F": 0,
+          "P": 0,
+          "D": 75,
+          "R": 75
+        },
+        {
+          "match": "M2",
+          "goals": 0,
+          "assists": 0,
+          "ga": 0,
+          "F": 0,
+          "P": 0,
+          "D": 100,
+          "R": 100
+        },
+        {
+          "match": "M3",
+          "goals": 0,
+          "assists": 0,
+          "ga": 0,
+          "F": 0,
+          "P": 0,
+          "D": 100,
+          "R": 100
+        }
+      ],
+      "awards": [
+        {
+          "name": "Defensive Resilience",
+          "source": "M1",
+          "deltas": {
+            "Defending": 2
+          }
+        },
+        {
+          "name": "Comeback Victory",
+          "source": "M1",
+          "deltas": {
+            "Teamwork": 3
+          }
+        },
+        {
+          "name": "Clean Sheet",
+          "source": "M2",
+          "deltas": {
+            "Defending": 5
+          }
+        },
+        {
+          "name": "Clean Sheet",
+          "source": "M3",
+          "deltas": {
+            "Defending": 5
+          }
+        },
+        {
+          "name": "Perfect Attendance",
+          "source": "Event",
+          "deltas": {
+            "Commitment": 4
+          }
+        },
+        {
+          "name": "Champion",
+          "source": "Event",
+          "deltas": {
+            "Achievement": 6
+          }
+        },
+        {
+          "name": "Perfect Victory",
+          "source": "Event",
+          "deltas": {
+            "Teamwork": 6
+          }
+        },
+        {
+          "name": "Best Attack",
+          "source": "Event",
+          "deltas": {
+            "Impact": 2
+          }
+        },
+        {
+          "name": "Best Defense",
+          "source": "Event",
+          "deltas": {
+            "Defending": 3
+          }
+        }
+      ],
+      "penalties": [],
+      "bonus": [
+        0,
+        0,
+        15,
+        9,
+        0,
+        4,
+        0,
+        2,
+        6
+      ],
+      "penalty": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "base": [
+        0,
+        0,
+        91.66666666666667,
+        45.833333333333336,
+        100,
+        100,
+        75,
+        91.66666666666667,
+        0
+      ],
+      "final": [
+        0,
+        0,
+        100,
+        54.833333333333336,
+        100,
+        100,
+        75,
+        93.66666666666667,
+        6
+      ],
+      "effectiveBonus": [
+        0,
+        0,
+        8.333333333333329,
+        9,
+        0,
+        0,
+        0,
+        2,
+        6
+      ],
+      "overall": 82.65833333333333,
+      "goals": 0,
+      "assists": 0
+    }
+  ]
+}

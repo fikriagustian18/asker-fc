@@ -1,8 +1,8 @@
 # Product Details — Asker FC
 
-- Versi: 2.1 · Tanggal: 10 November 2026
-- Status: baseline mekanika MVP; default usulan operasional diberi label.
-- Upstream: [PRD v2.1](./02-prd.md), [Product Planning v2.1](./01-product-planning.md), [rencana v2.0](./00-implementation-plan.md). Revisi v2.0 menyelaraskan halaman, empat fitur pembeda, gaya dan alur pengguna; ID lama tetap dipakai.
+- Versi: 2.5 · Tanggal: 12 November 2026
+- Status: mekanika v2.5 menetapkan Spider sebagai satu-satunya jenis grafik pada Event/Profil; rumus dan nominal tetap, konten autentik/validasi produksi masih terbuka.
+- Upstream: [PRD v2.5](./02-prd.md), [Product Planning v2.5](./01-product-planning.md), [rencana v2.11](./00-implementation-plan.md), pelaksanaan persetujuan v2.7 tanggal 11 November 2026. ID lama dipertahankan; FLOW-22–26 baru untuk penilaian.
 - Batas: perilaku pengguna dan aturan domain; tidak merancang API, skema database atau kode.
 - Asumsi: komunitas tunggal, pengguna 18+, satu mode pendaftaran per kegiatan, koneksi internet. Nilai batas formulir di bawah adalah **usulan spesifikasi**, bukan aturan klub yang sudah ada.
 
@@ -19,7 +19,7 @@
 - **Hasil resmi:** versi hasil yang difinalkan pengelola, bukan draft pencatat. Koreksi membuat versi resmi baru dengan riwayat lama tetap ada.
 - **Status UI:** loading, error, empty dan saving tidak mengganti status bisnis.
 - **Zona waktu:** usulan default kegiatan Asia/Jakarta; pengelola dapat memilih sebelum publikasi. Semua layar menampilkan label zona, waktu audit dapat ditampilkan sesuai zona kegiatan. Tidak mengikuti zona komputer secara diam-diam.
-- **Identitas visual:** [logo Asker FC pengguna](./assets/logo-asker-fc.png) dipakai tanpa modifikasi, dengan UI hitam dan gold dominan sesuai instruksi 10 November 2026, tema gelap default dan tema terang netral, judul Poppins Bold serta copy akrab pada Mockup SRS v2.1. Perubahan warna tidak menyatukan arti status: “diajukan”, “final”, “diterima” dan “belum terkunci” tetap mempunyai label/ikon eksplisit.
+- **Identitas visual:** [logo Asker FC pengguna](./assets/logo-asker-fc.png) dipakai tanpa modifikasi, dengan UI hitam dan gold dominan sesuai instruksi 10 November 2026, tema gelap default dan tema terang netral, judul Poppins Bold serta copy akrab pada Mockup SRS v2.5. Perubahan warna tidak menyatukan arti status: “diajukan”, “final”, “diterima” dan “belum terkunci” tetap mempunyai label/ikon eksplisit.
 
 ## 2. Matriks kewenangan
 
@@ -193,14 +193,14 @@ FEAT-09 · US-09 · AC-28–AC-30. Aktor pengelola untuk presensi; pencatat ditu
 4. Partisipasi satu pemain satu kali per laga; tidak mencatat menit bermain/pergantian secara rinci pada MVP. Tautan pencetak gol harus konsisten dengan pemain tampil.
 5. Koreksi setelah selesai memerlukan alasan, memperlihatkan dampak dan menjaga riwayat. Jika hendak menandai tidak hadir pemain yang sudah tampil, selesaikan koreksi partisipasi/gol terkait lebih dahulu atau tolak dengan penjelasan.
 
-### FLOW-10 — Statistik dasar
+### FLOW-10 — Rekap faktual dan akses penilaian
 
-FEAT-10 · US-10 · AC-31–AC-32, AC-89–AC-90. Aktor anggota aktif; hasil angka bermakna dan berlabel.
+FEAT-10 · US-10 · AC-31–AC-32, AC-89–AC-90. Aktor anggota atau pembaca profil sesuai izin; statistik rinci tetap pemilik/petugas berhak.
 
-1. Buka profil/statistik SCR-12, pilih kegiatan atau rentang tanggal kegiatan, bukan tanggal input hasil.
-2. Kehadiran = jumlah kegiatan hadir; penampilan = laga nonadministratif final dengan partisipasi tampil; gol = rincian gol non-bunuh-diri pada hasil final.
-3. Tampilkan cakupan data, misalnya “5 dari 6 laga memiliki rincian gol lengkap”. Jangan menampilkan tidak tampil sebagai fakta bila partisipasi belum dicatat.
-4. Top skor pada SCR-24 memakai jumlah gol sah dengan filter periode kegiatan yang sama; nilai seri memakai peringkat bersama. Apresiasi pada SCR-24/SCR-12 menautkan hasil voting terbit di SCR-25 dengan laga/bulan yang jelas; tidak ada pemenang tidak diartikan nol prestasi. Angka nol dibedakan dari data belum tersedia. Koreksi hasil/presensi diperlihatkan setelah data terbaru termuat. Kembali ke kegiatan dari riwayat melalui SCR-05/09.
+1. SCR-12 membuka rekap kehadiran, penampilan, Gol/Assist dari hasil sah. Kehadiran per kegiatan, penampilan per laga tampil final nonadministratif; filter tanggal memakai waktu kegiatan, bukan waktu input.
+2. Nol terkonfirmasi berbeda dari belum diisi; tampilkan jumlah laga lengkap. Gol bunuh diri tidak dikreditkan pada penyerang. Koreksi hasil/partisipasi memperbarui rekap tanpa penampilan ganda.
+3. Pilihan Event menuju FLOW-22 dan Profil menuju FLOW-23. Tiga besaran berlabel Poin mentah event, Nilai event relatif dan Profil akumulasi tidak disatukan dalam satu angka. Filter rekap Gol/top skor tidak menghapus histori dari profil akumulasi.
+4. SCR-24 tetap direktori/top skor dan badge voting terbit; Statistik Saya membuka subview privat SCR-12 dalam konteks Tim. Apresiasi ke SCR-25, hasil sumber ke SCR-09; belum ada pemenang tidak dibuat sebagai nol prestasi.
 
 ### FLOW-11 — Tagihan, bukti dan verifikasi
 
@@ -292,7 +292,7 @@ Default usulan yang harus disahkan untuk kegiatan nyata: zona waktu, jumlah tim/
 
 ## 9. Batas fitur lanjutan
 
-FEAT-13, FEAT-14, FEAT-17, FEAT-18 dan FEAT-28 belum dijadwalkan untuk detail alur/layar. FEAT-15 dan FEAT-16 kini MVP dan dirinci berikut. Tidak ada flow MVP yang mengaktifkan tenant baru, gateway, kanal otomatis tambahan, AI, format tambahan atau akun anak. FEAT-27 opsional belum diaktifkan. Persiapan batas komunitas tidak sama dengan fitur multi-komunitas operasional.
+FEAT-13, FEAT-14, FEAT-17 dan FEAT-18 belum dijadwalkan untuk detail alur/layar. FEAT-15/16 tetap MVP; FEAT-28 dipromosikan ke MVP penilaian sederhana pada bagian 13. Analitik yang memerlukan data tambahan tetap di luar MVP. Tidak ada flow MVP yang mengaktifkan tenant baru, gateway, kanal otomatis tambahan, AI, format tambahan atau akun anak. FEAT-27 opsional belum diaktifkan. Persiapan batas komunitas tidak sama dengan fitur multi-komunitas operasional.
 
 ## 10. Keputusan operasional usulan v2.0
 
@@ -475,3 +475,209 @@ Transisi langsung Menunggu verifikasi → Lunas oleh pengirim, Draft media → P
 ### Perjalanan utuh untuk pilot
 
 Buka tautan SCR-04/SCR-05 → pilih sesi SCR-23/SCR-05 → RSVP FLOW-04 → preferensi/pengingat FLOW-15 → main/presensi FLOW-09 → hasil SCR-09/SCR-11 dan foto SCR-27 → Kas & Iuran SCR-28 → bukti/verifikasi SCR-20/FLOW-18. Skenario mengecek konten belum tersedia, gagal kirim, tanpa tagihan dan pembayaran ditolak. Pilot belum dijalankan; ini spesifikasi yang diturunkan dari instruksi pengguna.
+## 13. Penilaian pemain dan sumber poin v2.2
+
+Bagian ini menjadi acuan aktif penilaian; FLOW-03/05/06/07/08/09/10/14/16 tetap berlaku dengan perluasan berikut. Instruksi pengguna memproses rencana v2.7 menerima rekomendasi eksplisitnya sebagai baseline dokumentasi: profil mulai 50 sekali dan cap per event, rasio maksimum atas pemain tampil, bobot posisi, kebobolan −2, aturan tumpukan/streak dan metadata khusus. Itu bukan bukti kalibrasi keadilan atau pengesahan kebijakan klub untuk kegiatan nyata. Dua rincian penalti yang sebelumnya belum dipilih kini ditetapkan melalui klarifikasi pengguna 12 November 2026, bukan diasumsikan dari persetujuan lama.
+
+### 13.1. Input, istilah dan rumus aktif
+
+Preset penilaian: empat tim, enam laga, tiga laga per tim. Daftar pasangan A–B/A–C/A–D/B–C/B–D/C–D; penjadwalan tetap memeriksa waktu, lapangan dan istirahat. Mode rutin lain tetap dapat digunakan; penghargaan peringkat memerlukan event berklasemen yang dikonfigurasi eksplisit, bukan mengubah semua sesi rutin menjadi liga diam-diam.
+
+Setelah pembagian tim disimpan, setiap pemain/posisi event mempunyai satu poin awal **50 pada kesembilan kategori**. Antartim memakai penerimaan/pengesahan susunan tim sebelum main sebagai titik pembentukan; tidak melakukan pengacakan lintas tim tamu. Pratinjau tidak membuat saldo; pengacakan ulang tidak memberi 50 lagi. Pemain pengganti hanya memperoleh satu baseline setelah penerimaan roster beralasan dan hanya poin laga yang benar-benar diikuti; sumber historis tidak dipindahkan kepadanya.
+
+Individu hanya mengisi **Gol dan Assist**, bilangan bulat nonnegatif per laga. Tampil/tidak tampil, kartu, presensi dan metadata khusus merupakan catatan terpisah. Kebobolan otomatis = skor lawan. Rincian terkonfirmasi memenuhi: Gol pemain tim + gol bunuh diri lawan = skor tim; Assist tim ≤ Gol pemain tim; Assist pemain ≤ Gol rekan setim selain dirinya. Pemberi assist dan pencetak harus berbeda, tampil dan satu tim. Karena input agregat, hubungan gol-assist per kejadian tidak diklaim tersedia. Nol adalah konfirmasi; kosong belum dicatat. Skor dapat final saat rincian belum lengkap, tetapi poin terkait tetap sementara.
+
+Gunakan delta per kategori dari sumber unik: bonus individu/tim/streak B, potongan hasil tim T (hanya Teamwork 0/3/6/9), pelanggaran P dan kebobolan K. `delta = B − T − P − K`; `mentah = max(0, 50 + delta)`. Mentah tidak dibatasi 100, delta bertanda tetap tersimpan. Kebobolan Defender/Goalkeeper yang tampil: K_Defending = 2 × skor lawan per laga; Striker/Midfielder tidak dipotong otomatis. Clean Sheet +5 pada nol kebobolan; Resilience +2 pada satu kebobolan memberi bersih 0 setelah K=2; dua kebobolan memberi −4. Ini proksi hasil tim, bukan pengukuran tackle/save/menit. Posisi penilaian satu per event, ditetapkan sebelum main; rotasi menit tidak diukur.
+
+Q_e = pemain terkonfirmasi tampil minimal satu laga sah. `maks_C = max(mentah_C pada Q_e)`; jika >0, `relatif_C = 100 × mentah_C / maks_C`. Perbandingan lintas empat tim dan posisi. Tertinggi/seri tertinggi 100; semua sama positif semuanya 100. Pemain tidak tampil mempunyai poin mentah/penalti profil tetapi nilai relatif — dan bukan pembanding. Q kosong: “Belum ada pemain tampil terkonfirmasi”. Maksimum 0: “Tidak dapat dinormalisasi — seluruh poin 0”; overall/peringkat yang membutuhkan kategori itu belum diterbitkan. Sebelum main, tampilkan poin awal 50, nilai relatif belum final. Jika semua terkena potongan sama, 100 relatif tetap mungkin; selalu tampilkan sumber/mentah agar tidak berarti bebas pelanggaran. Penentuan seri dan overall menggunakan presisi penuh, tampilan dua desimal. Overall event hanya dirangking untuk pemain tampil tiga laga dan event lengkap; pemain tampil sebagian tetap dapat membaca nilai relatif dengan jumlah sampel jelas.
+
+Profil tidak memakai normalisasi: baseline 50 satu kali pada sembilan kategori. Event final diurut menurut waktu mulai lalu ID stabil; `profil_baru_C = clamp(profil_lama_C + delta_event_C, 0, 100)`. Gabung seluruh sumber satu event sebelum cap; simpan nominal dan perubahan efektif. Tidak ada cadangan di luar batas: 50 +70 =100, event berikutnya −3 =97; 50 −70 =0, berikutnya +3 =3. +10/+3/0 menjadi 63, bukan rerata. Event baru tetap mentah 50. Event tanpa delta tidak menaikkan profil atau memulihkan Discipline; katalog belum mempunyai bonus pemulihan Discipline.
+
+Kartu kuning/merah dan potongan kategori diproses sekali melalui delta; tidak ada pengurangan kedua dari profil. Profil mencakup seluruh event sah, termasuk outlist/absen yang memiliki kewajiban roster dan keputusan sah. Batal sebelum pembagian tanpa kewajiban tidak mempunyai posting; pembatalan event tidak memberi bonus bermain. Penyelamatan hasil laga sah dari event terpotong memerlukan keputusan admin beralasan; bonus event lengkap tetap ditahan, tidak otomatis menjadi kemenangan/clean sheet administratif.
+
+| Posisi event | Finishing | Playmaking | Defending | Teamwork | Discipline | Commitment | Consistency | Impact | Achievement |
+|---|---|---|---|---|---|---|---|---|---|
+| Striker | 45% | 20% | 5% | 5% | 5% | 5% | 5% | 5% | 5% |
+| Midfielder | 20% | 45% | 5% | 5% | 5% | 5% | 5% | 5% | 5% |
+| Defender | 5% | 5% | 60% | 5% | 5% | 5% | 5% | 5% | 5% |
+| Goalkeeper | 0% | 0% | 70% | 5% | 5% | 5% | 5% | 5% | 5% |
+
+
+Bobot adalah baseline dokumentasi dari rencana yang diterima, perlu kalibrasi pilot. Overall event = bobot posisi × sembilan nilai relatif; tidak dinormalisasi lagi agar pemenang overall selalu 100. Overall profil baseline 50 sekali; perubahan overall per event = jumlah bobot posisi/versi event × perubahan **efektif** kategori profil, lalu cap overall 0–100. Bonus yang tertahan batas kategori tidak menaikkan overall. Posisi baru tidak mengubah bobot histori. Untuk posisi tetap tanpa cap overall, overall setara bobot atas kategori profil; perubahan posisi dapat berbeda dan rincian pengaruh per event wajib tersedia.
+
+### 13.2. Katalog achievement, penyesuaian dan penalti
+
+#### Achievement individu — 12 jenis
+
+| Achievement | Syarat | Bonus kategori | Frekuensi/sumber |
+|---|---|---|---|
+| First Blood | Mencetak gol pertama pertandingan, bukan gol pertama setiap tim | Finishing +2; Impact +1 | Maksimal satu pemain per laga; metadata gol pertama terkonfirmasi |
+| Goal Scorer | Mencetak ≥1 gol | Finishing +3 | Sekali per pemain/laga, bukan +3 untuk setiap gol |
+| Brace | Mencetak tepat 2 gol dalam satu pertandingan | Finishing +3 tambahan | Sekali per pemain/laga; diganti Hat-Trick jika mencapai ≥3 gol |
+| Hat-Trick | Mencetak ≥3 gol dalam satu pertandingan | Finishing +5 tambahan | Sekali per pemain/laga, tanpa Brace |
+| Assist Maker | Membuat ≥1 assist | Playmaking +3 | Sekali per pemain/laga, bukan per assist |
+| Playmaker | Membuat ≥2 assist dalam satu pertandingan | Playmaking +4 tambahan | Sekali per pemain/laga, dapat ditambah Assist Maker |
+| Goal Contribution | Minimal satu gol dan satu assist dalam laga yang sama | Impact +3 | Sekali per pemain/laga |
+| Clean Sheet | Tim tidak kebobolan; pemain tampil sebagai Defender/Goalkeeper menurut posisi penilaian event | Defending +5 | Sekali per pemain/laga; bukan untuk pemain di bangku cadangan yang tidak tampil |
+| Defensive Resilience | Defender/Goalkeeper tampil dan tim kebobolan maksimal 1 gol | Defending +2 | Sekali per pemain/laga; bila 0 kebobolan, usulan hanya Clean Sheet yang memberi bonus |
+| Match Winner | Mencetak gol penentu kemenangan menurut definisi 13.5.4 | Impact +4 | Maksimal satu pemain pada tim pemenang per laga; tidak ada pada hasil seri |
+| Perfect Attendance | Hadir dan bermain pada seluruh tiga laga tim dalam event | Commitment +4 | Sekali per pemain/event; terlambat atau kartu tidak menghapus badge ini, tetapi penalti terpisah tetap berlaku |
+| Consistent Performer | Berkontribusi dalam tiga event berturut-turut menurut 13.5.3 | Consistency +4 | Sekali pada event yang menyelesaikan satu blok streak tiga event |
+
+#### Achievement dan penyesuaian tim — 9 jenis
+
+| Achievement/penyesuaian | Kondisi tim | Bonus/potongan untuk pemain yang memenuhi partisipasi | Waktu/sumber |
+|---|---|---|---|
+| Champion | Peringkat 1 event | Achievement +6 | Sekali setelah klasemen event final |
+| Runner-Up | Peringkat 2 event | Achievement +3 | Sekali setelah klasemen event final |
+| Unbeaten Team | Tidak kalah pada ketiga pertandingan tim | Teamwork +4 | Sekali setelah event selesai; usulan diganti Perfect Victory jika seluruhnya menang |
+| Perfect Victory | Menang seluruh tiga pertandingan | Teamwork +6 | Sekali setelah event selesai, tidak ditambah Unbeaten Team |
+| Best Defense | Kebobolan total paling sedikit dari empat tim | Defending +3, hanya Defender/Goalkeeper | Sekali setelah event selesai; tim dengan jumlah minimum yang sama mendapat penghargaan bersama |
+| Best Attack | Total gol tim terbanyak dari empat tim | Impact +2 | Sekali setelah event selesai; tim dengan jumlah maksimum yang sama mendapat penghargaan bersama |
+| Comeback Victory | Menang setelah pernah tertinggal pada laga tersebut | Teamwork +3 | Sekali per laga yang memenuhi syarat; hanya pemain tim pemenang yang tampil pada laga itu |
+| Last Place | Peringkat 4 event | Teamwork −6 | Sekali setelah klasemen event final |
+| Winless Team | Tidak menang satu pun dari ketiga pertandingan | Teamwork −3 | Sekali setelah event selesai |
+
+
+Aturan tumpukan: Goal Scorer sekali per laga (≥1 Gol) ditambah tepat satu Brace untuk 2 atau Hat-Trick untuk ≥3, total +3/+6/+8 sebelum First Blood. Assist Maker dan Playmaker dapat ditambah, total +7 untuk ≥2 Assist. First Blood, Goal Contribution dan Match Winner boleh bersamaan jika fakta sah. Clean Sheet menggantikan Resilience; Perfect Victory menggantikan Unbeaten. Tidak ada cap 100 pada mentah; hanya normalisasi/profil yang 0–100.
+
+Last Place −6 dan Winless −3 dapat bersamaan, hanya Teamwork −9. Tiga seri memberi Unbeaten +4 dan Winless −3 (bersih +1). Penerima penghargaan/penyesuaian event tim adalah roster yang tampil minimal satu laga; Perfect Attendance mensyaratkan ketiga laga. Comeback hanya pemain pemenang yang tampil pada laga terkait. Pemain batal sebelum pembagian atau tidak tampil tidak menerima bonus/potongan tim. Pemain yang tampil lalu mundur tetap menerima hasil tim dan penalti outlist sah yang merupakan sumber terpisah.
+
+Champion/Runner-Up/Last Place menunggu peringkat resmi setelah semua enam laga bermain sah; jika seri belum menentukan posisi 1/2/4 menurut aturan pra-event, tahan penyesuaian posisi sebagai “Menunggu penetapan peringkat”. Best Defense/Attack dengan min/max sama mendapat penghargaan bersama. Semua data wajib diperiksa; tidak memberi penghargaan event lengkap pada walkover atau event yang terpotong.
+
+Consistent Performer: event lengkap dengan minimal satu penampilan dan ≥1 Gol atau Assist; jalur defensif alternatif bagi Defender/Goalkeeper adalah tiga penampilan dengan rerata kebobolan ≤1. Urut event komitmen menurut waktu mulai/ID; blok tiga event berkontribusi tidak bertumpuk, enam menghasilkan award event ketiga/keenam. Event tanpa kontribusi atau absen/outlist tanpa alasan memutus; tidak ikut tanpa kewajiban, batal atau alasan mendesak disetujui dilewati. Sumber belum lengkap menahan evaluasi, bukan dilewati. Koreksi lama mereplay streak setelahnya. Katalog hanya memakai data sederhana dan belum membuktikan tingkat kesulitan setara per posisi.
+
+Metadata khusus di SCR-10: Gol pertama memilih pemain tampil dengan Gol≥1 atau opsi gol bunuh diri tanpa penerima First Blood; hasil 0–0 tidak berlaku. Gol penentu memilih pemain tim pemenang yang mencetak gol ke-(gol akhir lawan+1), misalnya gol kedua pada 3–1; petugas memastikan urutan, bukan menebak dari total, gol bunuh diri tidak memberi Match Winner. Comeback: Ya/Tidak/Belum diketahui, Ya memerlukan tim menang dan lawan Gol≥1. Menang 1–0 tidak bisa comeback. Total agregat tidak dapat membuktikan urutan; pengelola mengesahkan catatan kejadian. Status metadata belum diketahui menahan badge saja; admin boleh menutup “Tidak dapat diverifikasi” dengan alasan dan label kekurangan bukti, bukan mengaku kejadian tidak terjadi. Mekanisme itu tidak boleh menggantikan data wajib Gol/Assist/partisipasi/presensi.
+
+MVP laga/bulanan tetap hasil voting dan badge tanpa tambahan poin. Tidak ada bonus universal atau konversi ×10. Penghargaan Champion memberi mentah Achievement 56, bukan mulai 0; Perfect Attendance memberi Commitment 54.
+
+| Pelanggaran | Potongan kategori | Lingkup/status |
+|---|---|---|
+| Kartu kuning | Discipline −3 | Per kartu sah, per pertandingan |
+| Kartu merah | Discipline −10; Teamwork −3 | Per kartu sah, per pertandingan |
+| Outlist setelah tim diacak tanpa alasan mendesak | Discipline −12; Commitment −8 | Sekali per kejadian event; pengacakan sudah disimpan dan diumumkan |
+| Terlambat 1–10 menit | Discipline −2 | Satu tingkat keterlambatan per event |
+| Terlambat 11–20 menit | Discipline −4; Commitment −2 | Satu tingkat keterlambatan per event; angka ditetapkan pengguna 12 November 2026 |
+| Terlambat lebih dari 20 menit | Discipline −6; Commitment −3 | Satu tingkat keterlambatan per event; angka ditetapkan pengguna 12 November 2026 |
+| Tidak hadir tanpa alasan mendesak | Discipline −15; Commitment −12; Teamwork −5 | Sekali per kejadian event setelah verifikasi admin; bukan Commitment −17 |
+| Tidak mengikuti pertandingan tanpa alasan yang disetujui | Commitment −4 | Per laga yang seharusnya diikuti, setelah admin memverifikasi tanggung jawab dan alasan |
+
+
+**Klarifikasi final pengguna 12 November 2026:** terlambat 11–20 Commitment −2, >20 Commitment −3; absen Discipline −15/Commitment −12/Teamwork −5. Tidak ada Commitment −17 atau potongan positif. Ketiga baris kini boleh dievaluasi dengan versi aturan lengkap setelah status, tanggung jawab dan alasan diverifikasi admin; bukan otomatis menghukum karena nominal sudah tersedia.
+
+Keterlambatan diukur dari batas hadir yang diumumkan ke waktu aktual: tepat waktu ≤0, pertama >0–10, kedua >10–20, ketiga >20 menit. Hanya satu tingkat; tidak ada toleransi bebas penalti 10 menit. Alasan mendesak yang disetujui membebaskan sesuai aturan. Kartu per kejadian laga bersifat kumulatif: satu kuning lalu merah −13 Discipline/−3 Teamwork; dua kuning lalu merah −16/−3 jika ketiganya sah. Pengecualian penggantian kartu memerlukan peraturan komunitas berversi; entri kartu sama tidak boleh ganda.
+
+Outlist sebelum pembagian bebas penalti. Setelah pengacakan disimpan/diumumkan, verifikasi alasan; persetujuan keluar roster tidak otomatis alasan mendesak, tetapi tidak ditambah absen. Tidak hadir seluruh event tidak ditambah tiga penalti melewatkan laga; tidak tiba berarti absen, bukan terlambat. Laga terlewat akibat keterlambatan sama tidak ditambah −4; penolakan laga berbeda yang memang wajib diikuti dapat −4. Dicadangkan, cedera disetujui, larangan akibat merah atau laga batal tidak otomatis penolakan. Gol/Assist nol bukan bukti tidak hadir.
+
+### 13.3. Status, validasi dan notifikasi penilaian
+
+| Entitas / state | Asal | Pemicu/aktor | Kondisi | Tujuan dan efek | Gagal/pemulihan |
+|---|---|---|---|---|---|
+| Penilaian event / STATE-18 | Belum dibentuk | Simpan pembagian/pengelola | Roster sah, versi aturan tersedia | Sementara; mentah 50 sekali | Pratinjau/batal tidak membuat saldo |
+| Penilaian event / STATE-18 | Sementara | Periksa/pengelola | Skor/data wajib lengkap; metadata terdisposisi; insiden diputuskan | Siap difinalkan | Tampilkan sumber kurang, bukan nol |
+| Penilaian event / STATE-18 | Siap difinalkan | Finalkan/pengelola | Versi sumber terbaru dan semua prasyarat | Final; snapshot mentah/maksimum/relatif dan posting profil konsisten | Konflik mempertahankan versi sebelumnya; muat ulang |
+| Profil / STATE-19 | Versi berlaku | Finalisasi/koreksi/proses terkait | Sumber aktif unik dan urutan event diketahui | Versi baru setelah replay; histori lama tetap | Saat menghitung ulang tampil status, jangan campur angka versi |
+| Penalti / STATE-22 | Dicatat | Ajukan pencatat | Pemain/laga/waktu/jenis dan alasan tersedia | Menunggu verifikasi | Input dipertahankan dan field salah ditandai |
+| Penalti / STATE-22 | Menunggu verifikasi | Putuskan/admin cakupan | Bukti tanggung jawab/status/alasan cukup dan versi aturan terkonfirmasi | Disahkan memberi delta; Ditolak tidak memberi delta | Status/alasan belum diverifikasi tetap menunggu |
+| Koreksi penalti / STATE-20 | Belum ada | Ajukan/pemain terkait | Penalti miliknya, alasan/bukti | Diajukan → Ditinjau; potongan aktif belum otomatis hilang | Cek status sebelum retry, tidak membuat permohonan ganda |
+| Koreksi penalti / STATE-20 | Ditinjau | Putuskan/admin lain bila konflik diri | Alasan keputusan wajib | Diterima merevisi sumber/replay; Ditolak mempertahankan dengan alasan | Tidak boleh diputus akun tanpa kewenangan |
+| Metadata / STATE-21 | Belum diketahui | Konfirmasi/petugas lalu pengelola | Sesuai hasil dan roster | Terverifikasi ada/tidak ada atau Tidak berlaku | Data bertentangan ditolak; tetap belum diketahui |
+| Metadata / STATE-21 | Belum diketahui | Tutup/admin | Alasan tidak dapat membuktikan kejadian | Tidak dapat diverifikasi, bonus ditahan dan kekurangan bukti berlabel | Tidak berlaku untuk data statistik wajib |
+
+Skor final STATE-09 tidak otomatis berarti STATE-18 final. Insiden/perubahan sumber setelah final membuat revisi yang memerlukan pengesahan ulang; snapshot final lama tetap berlabel versi sampai versi baru siap. Koreksi tidak boleh menghapus audit.
+
+| Field/aksi | Pemeriksaan dan pesan | Pemulihan |
+|---|---|---|
+| Gol/Assist | Nonnegatif, integer, pemain tampil, satu tim, total konsisten; “Rincian Gol/Assist belum cocok dengan skor.” | Periksa roster/angka/gol bunuh diri; data tetap tersimpan sebagai draft |
+| Posisi event | Salah satu empat posisi, snapshot pra-main; perubahan pascahasil beralasan | Tinjau dampak badge/bobot, hitung ulang, bukan mengejar nilai terbaik |
+| Gol pertama/penentu | Pemain punya Gol dan memenuhi tim/hasil; “Kejadian belum sesuai hasil pertandingan.” | Perbaiki atau tandai belum diketahui |
+| Pengesahan penalti | Status, waktu, kewajiban laga dan alasan admin; “Status atau alasan kejadian belum diverifikasi.” | Lengkapi verifikasi dan tinjau potongan kategori yang sudah ditetapkan |
+| Q/maksimum | Kosong atau maksimum 0 bukan error data angka nol | Tampilkan state khusus dan jangan menerbitkan overall palsu |
+| Simpan bersamaan/tidak diketahui | Bandingkan versi/status terbaru; “Data telah berubah. Tinjau versi terbaru.” | Cek status lalu muat ulang dan pratinjau dampak sebelum simpan ulang |
+| Finalisasi/replay gagal | Jangan menampilkan separuh profil baru dan separuh nilai lama | Pertahankan versi final lama berlabel, proses ulang sumber unik |
+
+Notifikasi penilaian hanya konfirmasi/status dalam situs pada SCR-12/18/19/22, tidak menambah kanal WhatsApp/email yang tidak diminta. Pengajuan koreksi memperlihatkan nomor/konteks dan status; admin melihat antrean di SCR-19. Keputusan beralasan terlihat kepada pemohon di SCR-12/panel SCR-19 sesuai izin. Kegagalan memuat umpan balik tidak menggandakan permohonan atau membatalkan hasil tersimpan. Tidak ada pengiriman pesan nyata dalam tugas dokumentasi.
+
+### 13.4. Alur baru dan perluasan layar lama
+
+### FLOW-22 — Poin mentah dan nilai relatif event
+
+FEAT-03/05/07/09/10/28 · US-29 · AC-91–AC-98, AC-131, AC-133. Aktor pemain terkait/pengelola.
+
+1. SCR-14 memilih preset penilaian empat tim dan versi aturan; SCR-16 menyimpan pembagian setelah posisi dikonfirmasi. Poin awal 50 terbentuk sekali; antartim menggunakan susunan diterima, tidak diacak lintas tim.
+2. SCR-10 mencatat Gol/Assist pada dua tim, pemain tampil, kartu dan panel kejadian khusus. Kirim hasil bukan finalisasi bagi pencatat. FLOW-07 tetap memisahkan pengiriman/finalisasi skor.
+3. SCR-12/24 subview Statistik Saya memilih Event. Tampilkan identitas/konteks, jumlah laga, poin mentah pada rincian dan nilai relatif sebagai spider chart dengan label jelas; angka sumber tetap tersedia sesuai 13.7. Awal event belum final, bukan prestasi 100 sebelum main.
+4. Jika pemain tampil dan data tersedia, kategori dinormalisasi atas Q_e; tidak tampil menampilkan — dan alasan. Angka 100 dapat berarti setara seluruh pembanding, bukan bebas kartu.
+5. Lihat rincian membuka panel ledger SCR-22 terbatas pada sumber miliknya; hasil sumber ke SCR-09. Loading/error mempertahankan filter, Coba lagi hanya memuat, bukan mem-posting poin.
+
+### FLOW-23 — Profil akumulasi dan replay histori
+
+FEAT-10 · US-30 · AC-99–AC-105, AC-132. Aktor pemain/petugas berhak; dependensi sumber final pada FLOW-26.
+
+1. Pilih Profil pada SCR-12/Statistik Saya; jelaskan “Akumulasi seluruh permainan”, baseline 50 satu kali, jumlah event/penampilan. Gunakan Spider sebagai satu-satunya jenis grafik, tanpa normalisasi ulang angka profil. Belum ada riwayat tidak membuat penampilan palsu.
+2. Telusuri event menurut waktu main/ID. Setiap event menambah delta bersih lalu cap 0–100; ledger menampilkan nominal/efektif dan versi. Filter rekap Gol tidak menjadi filter perhitungan karier.
+3. Overall mengikuti perubahan efektif dengan posisi/bobot historis. Memilih event lain tidak membawa nilai relatif ke profil atau mengubah modal event berikutnya.
+4. Koreksi lama mereplay dari event paling awal yang berubah sampai terbaru, termasuk streak/overall. Sampai konsisten, tampilkan versi final sebelumnya dan status perhitungan ulang; retry tidak membuat delta kedua.
+5. Koreksi pembanding lain hanya mengubah relatif event, bukan profil pemain yang sumbernya sama. Pengguna tanpa hak yang membuka tautan profil rinci ditolak tanpa nilai privat; Kembali ke direktori tetap tersedia.
+
+### FLOW-24 — Achievement individu/tim dan streak
+
+FEAT-07/08/09/28 · US-28/US-31 · AC-78, AC-106–AC-114. Aktor petugas/pengelola, pemain membaca hasil diri.
+
+1. Setelah laga sah, evaluasi sumber katalog; Gol/Assist, tampil dan posisi membatasi kandidat. Kejadian khusus belum diketahui menahan award terkait.
+2. Cocokkan aturan tumpukan dan kunci unik pemain/kode/laga; sumber event memakai pemain/kode/event. Jangan memberi Brace dan Hat-Trick bersamaan.
+3. Setelah event lengkap/klasemen final, evaluasi Champion/Runner-Up, Best Defense/Attack, Unbeaten/Perfect Victory dan Last Place/Winless sekali. Tampilkan penerima dan potongan terarah; seri posisi belum sah menahan award posisi saja sampai pengesahan.
+4. Urutan event komitmen mengevaluasi streak; event penutup tiga/enam memberi +4 sekali per blok. Pembatalan/koreksi mengoreksi sumber award dan replay profil.
+5. Pemain melihat badge, syarat, angka dan sumber pada SCR-12, rincian di SCR-22. Voting SCR-25/34 tetap badge tanpa bonus statistik; peringkat statistik tidak menentukan pemenang voting.
+
+### FLOW-25 — Insiden, verifikasi dan pengajuan koreksi
+
+FEAT-09/02 · US-32 · AC-115–AC-123. Aktor pencatat, admin kegiatan, pemain terkait.
+
+1. Pencatat memasukkan kartu di SCR-10; admin memasukkan status hadir/waktu/outlist/laga terlewat di SCR-19 dengan alasan. Sumber dicatat belum otomatis sah.
+2. Admin membuka panel verifikasi SCR-19; periksa snapshot pengacakan, waktu, kewajiban laga dan alasan. Bukti, status atau alasan yang belum lengkap mempertahankan Menunggu verifikasi tanpa potongan final; nominal terlambat/absen sudah ditetapkan.
+3. Putusan sah menghasilkan delta kategori; Tolak insiden tidak menghasilkan potongan. Outlist/absen/terlambat yang berasal kejadian sama direkonsiliasi dahulu; kartu terpisah tetap kumulatif.
+4. Pemain membuka detail penalti dari SCR-12, memilih Ajukan koreksi, mengisi alasan/bukti dan mengirim. Batal tidak mengirim; timeout Cek status sebelum retry. Dalam peninjauan tidak otomatis mencabut keputusan aktif.
+5. Admin yang tidak berkepentingan pada kasus dirinya meninjau dan memutuskan dengan alasan. Diterima merevisi sumber; Ditolak mempertahankan keputusan dengan penjelasan. Status tersedia hanya bagi pemilik/petugas, bukti tidak dibuka ke direktori.
+6. Putusan dan hasil replay ke SCR-12/22; jika proses gagal, pertahankan versi berlaku dan opsi pemulihan. Tidak ada pemberitahuan WhatsApp/email baru.
+
+### FLOW-26 — Pengesahan poin berversi dan koreksi konsisten
+
+FEAT-07/10/28 · US-33 · AC-124–AC-130. Aktor pengelola berhak.
+
+1. SCR-18 mode Penilaian event memuat versi sumber: skor, Gol/Assist, partisipasi, presensi, metadata, keputusan insiden dan klasemen. Tampilkan kelengkapan per sumber dan aturan pembekuan saat pembagian.
+2. Pengelola menyelesaikan data wajib/disposisi metadata. Pastikan versi aturan memuat nominal terkonfirmasi pengguna. Insiden dengan verifikasi belum lengkap menghalangi poin final sampai admin memutuskan; tidak ada lagi hambatan tanda Commitment pada tabel aktif.
+3. Pratinjau memuat mentah, Q/maksimum, relatif, badge/penalti, delta profil/overall dan event selanjutnya yang terdampak. Bila versi berubah sebelum simpan, muat ulang dan tinjau dampak baru.
+4. Konfirmasi menerbitkan snapshot poin dan mengganti kontribusi profil tepat sekali. Versi sama yang diulang hanya mengembalikan hasil. Jangan menggandakan baseline/award atau memublikasikan snapshot campur.
+5. Koreksi final memuat alasan dan versi lama/baru. Replay seluruh event selanjutnya, bukan menambah selisih pada profil terkini. Pengubahan maksimum A memperbarui relatif B tanpa mengubah profil B.
+6. Pembatalan sumber menarik poin dengan audit dan replay; batal event tidak otomatis menghapus histori. Event terpotong mempertahankan sumber sah dengan status yang jelas dan tidak memberi badge event lengkap secara palsu.
+
+### 13.5. Contoh hitung acuan dan keputusan terbuka
+
+Contoh enam pertandingan/16 pemain, sumber Gol/Assist, urutan kejadian, sembilan maksimum dan overall ada pada [rencana, simulasi v2.7](./00-implementation-plan.md#1310-hasil-review-dan-simulasi-sintetis-v27). Keempat contoh Tim A mempunyai mentah: Striker F66/P50/D50/TW54/Disc50/Com54/Cons50/I62/Ach56; Midfielder F50/P63/D50/TW54/Disc50/Com54/Cons50/I52/Ach56; Defender dan Goalkeeper F50/P50/D63/TW54/Disc50/Com54/Cons50/I52/Ach56. Maksimum 66/63/63/54/50/54/50/62/56. Overall relatif 94,84/93,31/96,95/99,19; profil event pertama sesuai poin mentah, bukan nilai relatif.
+
+Kasus cap: +70 lalu −3 memberikan 100 lalu 97; koreksi event pertama menjadi +40 mereplay menjadi 90 lalu 87, bukan menambahkan selisih −30 ke saldo 97 (hasil salah 67). Semua sama Discipline 47 memberi relatif 100 bersama, tetapi profil terkena −3; angka relatif bukan pembebasan pelanggaran. Baseline profil/bobot/kebobolan/tumpukan kini baseline dokumentasi dari persetujuan rencana, tetap perlu ditinjau klub sebelum produksi dan dipilotkan; bukti aritmetis tidak membuktikan adil secara statistik. Nominal Commitment/absen telah ditetapkan pengguna 12 November; konten asli/provider dan kebijakan operasional lainnya tetap terbuka.
+
+### 13.6. Contoh verifikasi penalti terkonfirmasi v2.3
+
+| Kejadian sah tanpa perubahan lain | Discipline mentah/profil pertama | Commitment mentah/profil pertama | Teamwork mentah/profil pertama | Overall profil pertama |
+|---|---|---|---|---|
+| Terlambat 11–20 menit | 46 | 48 | 50 | 49,70 |
+| Terlambat >20 menit | 44 | 47 | 50 | 49,55 |
+| Tidak hadir tanpa alasan mendesak | 35 | 38 | 45 | 48,40 |
+
+Semua contoh mulai 50, memakai bobot 5% pada tiga kategori tersebut, mengasumsikan verifikasi admin selesai dan tanpa award/potongan lain. Nilai relatif berbeda: bila maksimum pembanding 50, keterlambatan 11–20 menghasilkan Discipline 92/Commitment 96; >20 menghasilkan 88/94. Pemain absen tanpa penampilan tidak memperoleh nilai relatif/peringkat, tetapi potongan profil tetap diproses. Jika terlambat tetap tampil ketiga laga, Perfect Attendance +4 dapat mengubah Commitment; hitung kedua sumber yang berbeda, bukan menghapus fakta terlambat.
+
+Versi aturan yang memuat klarifikasi dipasang sebelum pengesahan insiden tertunda. Koreksi event yang sudah final mengikuti persetujuan admin, alasan, snapshot sumber dan replay, tidak mengubah histori tanpa audit. Angka lama yang ambigu tidak pernah menjadi nilai final dan tidak boleh dipakai sebagai potongan kedua. AC-117/AC-118 mempertahankan ID dan kini menguji nominal eksplisit, bukan menunggu keputusan yang sudah diterima.
+
+### 13.7. Penyajian statistik hanya Spider
+
+FEAT-10/28 · US-29/US-30 · AC-131–AC-133 · FLOW-22/FLOW-23 · SCR-12/SCR-24. Spider/radar adalah satu-satunya jenis grafik. Tidak ada kontrol atau preferensi jenis grafik. Tab Event/Profil menentukan seri aktif; pemilih event menentukan rincian event, bukan modal atau perhitungan karier. Event terpilih tetap dipertahankan saat kembali dari Profil. Pergantian konteks hanya membaca sumber yang sesuai izin; tidak mem-posting atau menghitung ulang poin.
+
+Seri Event = nilai relatif sembilan kategori untuk event terpilih, dengan helper “Tertinggi tiap kategori = 100”; seri Profil = akumulasi sembilan kategori personal, helper “Akumulasi seluruh permainan”. Jangan tumpuk kedua seri yang berbeda makna pada satu spider atau mengganti angka profil dengan normalisasi event. Overall tetap kartu angka terpisah. Poin mentah >100 tetap di ledger, tidak dicap untuk membuat bentuk grafik.
+
+Sumbu selalu urutan tetap searah jarum jam mulai Finishing di atas: Finishing, Playmaking, Defending, Teamwork, Discipline, Commitment, Consistency, Impact, Achievement. Spider memiliki tepat sembilan sumbu, pusat 0, cincin 25/50/75/100 dan maksimum 100; tidak menyesuaikan skala otomatis agar profil tampak penuh. Tidak ada sumbu untuk overall atau metrik tambahan.
+
+Spider menyediakan label/nilai tanpa hover wajib, judul konteks dan tabel/daftar numerik aksesibel dengan nama kategori lengkap. Tab Event/Profil dan pemilih event dapat dioperasikan keyboard dengan status terpilih yang terbaca; pergantian konteks tidak memindahkan fokus tanpa alasan. Warna gold, outline/titik dan label teks membedakan seri dari grid, bukan warna saja. Jika label pendek diperlukan di HP, legenda numerik memakai nama lengkap; label/angka tidak boleh terpotong. Area chart responsif tidak menyebabkan scroll horizontal halaman.
+
+Loading, kosong, tidak tampil, Q_e kosong/maksimum 0 dan sumber belum lengkap mengikuti status statistik semula. Nilai belum tersedia ditampilkan —/penjelasan, bukan 0; jangan menutup poligon sembilan nilai dengan mengarang titik kosong. Jika seri belum lengkap, tampilkan state “Grafik belum lengkap” dan daftar nilai sah; nol yang memang terkonfirmasi tetap titik 0. Gagal menggambar tidak menghilangkan tabel, filter atau aksi rincian.
