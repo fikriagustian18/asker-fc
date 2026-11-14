@@ -1,11 +1,11 @@
 # Implementation Plan Proyek — Asker Football Club
 
-- Versi: 2.11
-- Tanggal: 12 November 2026
-- Status workflow: **selesai untuk review dan optimasi dokumentasi** — rencana v2.11 menyelaraskan paket v2.5: statistik Event/Profil hanya memakai spider chart. Konten autentik, layanan/kebijakan dan validasi produksi tetap terbuka.
+- Versi: 2.13
+- Tanggal: 14 November 2026
+- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
 - Bahasa: Indonesia; user story mengikuti format Inggris pada referensi skill.
 - Tujuan file: rencana penyusunan paket SRS dan gambaran pembangunan produk; bukan otorisasi implementasi aplikasi.
-- Upstream: jawaban pengguna butir 1–8 pada percakapan ini (tanpa nomor versi), ide awal, lampiran Untitled-1.txt, dan skill srs-documentation beserta referensi intake-and-plan.
+- Upstream: jawaban pengguna butir 1–8 pada percakapan ini (tanpa nomor versi), ide awal, lampiran Untitled-1.txt, dan skill srs-documentation beserta referensi intake-and-plan. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Prioritas sumber: jawaban terbaru pengguna mengungguli lampiran awal yang masih menyebut “pengelola ruang”.
 
 ## 1. Ringkasan dan dasar keputusan
@@ -855,3 +855,32 @@ Otorisasi: pengguna meminta review/optimasi hasil implementation plan dan pengha
 Review juga membedakan hasil dokumentasi dari aplikasi: finalisasi/replay, anti duplikasi, privasi, status data hilang dan normalisasi tercakup dalam spesifikasi; penerapannya memerlukan pengujian aplikasi tersendiri. Proksi kebobolan tim dan bobot posisi tetap baseline yang memerlukan kalibrasi lapangan. Konten autentik, layanan/kebijakan dan validasi produksi belum ditutup oleh revisi ini.
 
 Audit revisi lulus: 28 fitur, 33 story, 133 AC, 26 flow, 22 state dan 36 layar unik; seluruh ID/AC terpetakan, versi/tautan/anchor/tabel/UTF-8 valid, dan dimensi 12 PNG aktif sesuai manifest v6. Grafik pengganti diperiksa visual: sembilan sumbu dan legenda benar, pemilih jenis grafik tidak ada. Pemeriksaan ini atas dokumentasi dan referensi visual, bukan pengujian aplikasi.
+
+## 14. Loyalitas dan klaim reward — 14 November 2026
+
+**Otorisasi:** pengguna meminta menggunakan srs-documentation untuk menambahkan fitur klaim reward/poin member yang sering main, dengan poin loyalitas terpisah dari statistik pemain. Ini revisi paket yang sudah ada, sehingga instruksi tersebut mengotorisasi penyelarasan dokumen tanpa gate baru. FEAT-29 masuk MVP diperluas.
+
+**Keputusan pengguna:** perolehan poin loyalitas, saldo/riwayat pribadi, katalog hadiah, klaim dan status pemenuhan. Tidak ada konversi dengan sembilan kategori statistik, overall, skill, voting atau klasemen. Perfect Attendance/Consistent Performer tetap achievement statistik.
+
+**Usulan baseline operasional:** saldo loyalitas mulai 0, tanpa cap 100. Anggota komunitas aktif saat event memperoleh nominal tetap sekali per event selesai dengan kehadiran dan minimal satu laga bermain terverifikasi, termasuk sesi rutin. Tidak mensyaratkan gol, assist, kemenangan, tiga laga atau streak. RSVP, pembayaran dan roster saja tidak memberi poin; tamu tidak otomatis ikut program. Nominal dan versi program ditetapkan sebelum event mulai; event sebelum aktivasi tidak dikreditkan otomatis. Tidak ada pembelian, transfer, pencairan, kedaluwarsa poin atau penalti perilaku langsung pada baseline MVP. Koreksi kehadiran dapat membalik kredit tidak sah.
+
+Klaim mereservasi saldo dan stok bersama; penolakan/pembatalan sebelum pemenuhan melepaskan keduanya. Pemenuhan mengonsumsi poin sekali. Koreksi yang membuat saldo tidak cukup menahan klaim belum dipenuhi; saldo negatif setelah reward diterima menjadi selisih poin, bukan utang uang. Rincian pada [Details bagian 14](./03-product-details.md#14-loyalitas-dan-klaim-reward).
+
+| Dampak | Scope revisi |
+|---|---|
+| Planning | FEAT-29, PAIN-06/GOAL-06/KPI-06; risiko biaya dan dependensi presensi |
+| PRD | US-34–US-36 dan AC-134–AC-153; total 29 fitur, 36 story dan 153 AC |
+| Details | FLOW-27–FLOW-29 dan STATE-23–STATE-25; total 29 flow dan 25 state |
+| Mockup | SCR-37 Reward Saya dan SCR-38 Kelola Reward; total 38 layar dengan spesifikasi teks responsif |
+| Visual | 14 referensi aktif: 12 sebelumnya dan dua gambar loyalitas SCR-37/SCR-38, sesuai instruksi kelanjutan sampai mockup SRS |
+| Pembangunan | Identitas/izin dan presensi → program/riwayat → katalog/klaim → pemenuhan/koreksi → pilot. Estimasi lama perlu reestimasi |
+
+**Sebelum aktivasi:** sahkan baseline operasional, nominal poin per event, hadiah nyata/harga poin, stok/anggaran, ketentuan manfaat, tanggal berlaku/zona dan petugas reward. Program tetap Belum aktif sampai konfigurasi lengkap. Contoh "10 kali main" bukan ambang yang telah dipilih pengguna. Gratis main/merchandise dapat menjadi hadiah dengan pemenuhan manual tercatat; klaim tidak otomatis mengubah tagihan/kas atau mengaktifkan toko.
+
+Progres: enam dokumen diselaraskan; pemeriksaan revisi dicatat pada [Traceability bagian 10](./05-traceability.md#10-revisi-loyalitas--14-november-2026). Scope revisi adalah dokumentasi, bukan pembangunan aplikasi. Keputusan program/produksi tetap terbuka.
+
+### 14.1. Kelanjutan sampai mockup SRS
+
+Instruksi pengguna melanjutkan hingga mockup SRS mengotorisasi dua gambar tambahan: SCR-37 Reward Saya (390x844) dan SCR-38 Kelola Reward (1440x900). Total referensi aktif menjadi 14 setelah produksi dan inspeksi. Ketentuan sebelumnya yang membatasi revisi loyalitas pada teks digantikan oleh scope ini. Angka gambar adalah data sintetis, bukan penetapan nominal program. Produksi menggunakan built-in imagegen; status produksi dan inspeksi selesai. Rencana v2.13 menyelaraskan paket v2.7 dengan manifest-v7.
+
+Hasil kelanjutan: dua PNG asli tersimpan lokal, diperiksa visual, prompt aktual dan dimensi tercatat pada [manifest v7](./mockups/manifest-v7.json). Kedua layar memakai wordmark referensi; implementasi tetap memakai logo asli. Angka sintetis tidak menetapkan nominal klub. Seluruh kebutuhan sampai Mockup SRS tersedia; aktivasi program tetap memerlukan parameter yang tercatat.

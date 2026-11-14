@@ -1,8 +1,8 @@
 # Product Requirements Document — Asker FC
 
-- Versi: 2.5 · Tanggal: 12 November 2026
-- Status: kebutuhan v2.5 diselaraskan; visual statistik hanya Spider dan 133 AC, tanpa perubahan rumus atau nominal penilaian.
-- Upstream: [Product Planning v2.5](./01-product-planning.md), [Implementation Plan v2.11](./00-implementation-plan.md), pelaksanaan rencana v2.7 yang disetujui pengguna 11 November 2026. ID lama dipertahankan.
+- Versi: 2.7 · Tanggal: 14 November 2026
+- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
+- Upstream: [Product Planning v2.7](./01-product-planning.md), [Implementation Plan v2.13](./00-implementation-plan.md), pelaksanaan rencana v2.7 yang disetujui pengguna 11 November 2026. ID lama dipertahankan. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Asumsi relevan: satu komunitas, peserta 18+, 100–500 anggota, koneksi internet, proses saat ini belum divalidasi lapangan.
 
 ## 1. Produk, masalah dan nilai
@@ -394,3 +394,44 @@ Perluasan US-29/US-30 mempertahankan makna angka, izin dan rumus; jenis grafik h
 - **AC-131 → US-29:** Given pemain membuka statistik, when Event atau Profil ditampilkan, then spider chart/radar adalah satu-satunya jenis grafik dengan sembilan kategori berlabel dan overall terpisah; tidak ada pemilih jenis grafik. Tabel/daftar angka tetap tersedia.
 - **AC-132 → US-30:** Given pemain melihat statistik Event/Profil, when pemain beralih tab atau memilih event, then spider chart dan daftar angka menampilkan seri konteks aktif yang sama dengan label sumber/periode jelas. Pilihan event dipertahankan saat kembali dari Profil; filter rincian tidak mengubah akumulasi karier, izin baca atau poin. Profil tidak dinormalisasi ulang sebagai nilai relatif event.
 - **AC-133 → US-29:** Given grafik dapat dibaca, when nilai ditinjau, then urutan sembilan kategori dan skala 0–100 tetap sama pada kedua jenis grafik, data numerik tersedia dengan keyboard/pembaca layar, data hilang tidak diisi 0 dan tidak bergantung warna/hover; poin mentah >100 hanya dibaca pada rincian sumber.
+
+## 15. FEAT-29 — Loyalitas dan klaim reward (MVP diperluas)
+
+Sumber: Planning v2.6, GOAL-06/PAIN-06. KPI-06 mengikuti kohort bulanan pada Planning; baseline/target belum ditetapkan. Perilaku operasional berikut merupakan usulan spesifikasi yang perlu disahkan sebelum aktivasi; pemisahan poin merupakan keputusan pengguna.
+
+### US-34 → FEAT-29 — Perolehan poin
+
+**US-34 → FEAT-29:** As a member, I want loyalty points for verified participation so that regular play earns redeemable rewards independently of my performance statistics.
+
+- **AC-134 → US-34:** Given belum ada kredit, when saldo dibuka, then loyalitas mulai 0 dan terpisah dari sembilan kategori, overall, skill, voting dan klasemen; tidak ada konversi antar-sistem.
+- **AC-135 → US-34:** Given program berlaku pada event selesai dan anggota aktif saat event hadir serta bermain minimal satu laga terverifikasi, when kelayakan diproses, then nominal versi program event diberikan sekali tanpa syarat gol/assist/kemenangan atau dikali jumlah laga.
+- **AC-136 → US-34:** Given hanya RSVP/bayar/roster, verifikasi belum lengkap, event batal/sebelum aktivasi atau peserta tamu, when kelayakan diperiksa, then tidak dikreditkan; kekurangan data berlabel menunggu, bukan otomatis tidak hadir.
+- **AC-137 → US-34:** Given kredit telah diproses, when verifikasi diulang atau aturan baru terbit, then tidak terjadi kredit ganda/perubahan histori diam-diam; koreksi memakai versi historis dan jejak sumber.
+- **AC-138 → US-34:** Given pemilik membuka riwayat, when saldo dibaca, then total, direservasi, tersedia, kredit/debit/pembalikan, sumber event/klaim, waktu dan alasan terlihat; anggota lain/publik/tamu ditolak.
+- **AC-139 → US-34:** Given sumber kehadiran/partisipasi dikoreksi berwenang, when disahkan, then kredit disesuaikan sekali, klaim belum dipenuhi yang kekurangan saldo ditahan, dan saldo negatif setelah pemenuhan ditampilkan sebagai selisih poin tanpa tagihan uang; rumus statistik tidak berubah.
+
+### US-35 → FEAT-29 — Klaim reward
+
+**US-35 → FEAT-29:** As a member, I want to redeem loyalty points and track my claim so that I know which reward I will receive.
+
+- **AC-140 → US-35:** Given katalog dibuka, when hadiah ditinjau, then nama, deskripsi, harga poin positif, stok tersedia, periode/zona, syarat dan cara pemenuhan terlihat; hadiah belum terbit/kedaluwarsa tidak dapat diklaim.
+- **AC-141 → US-35:** Given anggota/program aktif, hadiah valid, saldo dan stok cukup, when klaim dikonfirmasi, then satu klaim Menunggu dibuat dengan reservasi poin dan satu stok bersama serta snapshot harga/ketentuan.
+- **AC-142 → US-35:** Given klaim bersamaan berebut saldo/stok terakhir, when dikonfirmasi, then hanya yang memenuhi kondisi terkini diterima; lainnya ditolak tanpa reservasi sebagian atau saldo tersedia negatif.
+- **AC-143 → US-35:** Given respons klaim belum diketahui atau aksi diulang, when status diperiksa/retry, then klaim semula dipulihkan tanpa klaim/debit/reservasi kedua.
+- **AC-144 → US-35:** Given klaim belum dipenuhi, when pemilik membatalkan atau petugas menolak dengan alasan, then status Dibatalkan/Ditolak dan reservasi poin/stok dilepas sekali; klaim Dipenuhi tidak dapat dibatalkan mandiri.
+- **AC-145 → US-35:** Given riwayat klaim dibuka, when status ditinjau, then Menunggu/Ditahan/Dipenuhi/Ditolak/Dibatalkan dan alasan/catatan penyerahan yang diizinkan terlihat; perubahan katalog tidak mengganti ketentuan klaim lama.
+- **AC-146 → US-35:** Given program dijeda atau akun tidak aktif, when klaim baru dicoba, then ditolak; saldo/riwayat tidak dihapus dan klaim lama tetap ditangani petugas sesuai ketentuan tersimpan.
+
+### US-36 → FEAT-29 — Kelola dan penuhi reward
+
+**US-36 → FEAT-29:** As an authorized rewards administrator, I want to manage and fulfill claims with an audit trail so that rewards are delivered without duplicate spending.
+
+- **AC-147 → US-36:** Given program belum lengkap, when aktivasi dicoba, then nominal, waktu/zona dan kebijakan wajib harus lengkap; hanya superadmin/petugas delegasi reward eksplisit boleh mengelola, bukan otomatis semua pengelola event.
+- **AC-148 → US-36:** Given katalog dikelola, when harga/stok/publikasi diubah, then perubahan hanya berlaku bagi klaim baru; stok total tidak boleh di bawah yang telah dipenuhi dan direservasi; histori tetap ada.
+- **AC-149 → US-36:** Given klaim Menunggu dengan saldo/sumber sah, when penyerahan dikonfirmasi dengan catatan/bukti dan waktu, then Dipenuhi, poin didebit dan stok dikonsumsi sekali meskipun aksi diulang/bersamaan.
+- **AC-150 → US-36:** Given klaim Ditahan, when ditinjau, then petugas hanya dapat melanjutkan ke Menunggu jika saldo/sumber cukup atau menolak dengan alasan; klaim Ditahan tidak dapat dipenuhi.
+- **AC-151 → US-36:** Given akses tidak sah, versi usang atau simpan belum diketahui, when perubahan dicoba, then ditolak atau status diperiksa dahulu tanpa menimpa versi terbaru atau efek ganda.
+- **AC-152 → US-36:** Given reward gratis main/merchandise, when dipenuhi, then manfaat/penyerahan dicatat; tidak otomatis melunasi tagihan, mencatat kas atau mengaktifkan toko. Koreksi biaya dilakukan petugas kas dengan rujukan klaim.
+- **AC-153 → US-36:** Given klaim Dipenuhi perlu dikoreksi, when petugas merekonsiliasi dengan alasan/bukti, then histori asli tetap ada, poin dikembalikan sekali setelah manfaat dibatalkan/dikembalikan dan stok hanya dipulihkan bila dapat digunakan kembali; retry tidak menggandakan pengembalian.
+
+Batas baseline MVP: tanpa transfer/pembelian/pencairan/kedaluwarsa poin, migrasi statistik atau kredit retroaktif otomatis. Nominal, hadiah nyata, harga poin, anggaran dan kebijakan program perlu ditetapkan sebelum aktivasi.

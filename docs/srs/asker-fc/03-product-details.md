@@ -1,8 +1,8 @@
 # Product Details — Asker FC
 
-- Versi: 2.5 · Tanggal: 12 November 2026
-- Status: mekanika v2.5 menetapkan Spider sebagai satu-satunya jenis grafik pada Event/Profil; rumus dan nominal tetap, konten autentik/validasi produksi masih terbuka.
-- Upstream: [PRD v2.5](./02-prd.md), [Product Planning v2.5](./01-product-planning.md), [rencana v2.11](./00-implementation-plan.md), pelaksanaan persetujuan v2.7 tanggal 11 November 2026. ID lama dipertahankan; FLOW-22–26 baru untuk penilaian.
+- Versi: 2.7 · Tanggal: 14 November 2026
+- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
+- Upstream: [PRD v2.7](./02-prd.md), [Product Planning v2.7](./01-product-planning.md), [rencana v2.13](./00-implementation-plan.md), pelaksanaan persetujuan v2.7 tanggal 11 November 2026. ID lama dipertahankan; FLOW-22–26 baru untuk penilaian. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Batas: perilaku pengguna dan aturan domain; tidak merancang API, skema database atau kode.
 - Asumsi: komunitas tunggal, pengguna 18+, satu mode pendaftaran per kegiatan, koneksi internet. Nilai batas formulir di bawah adalah **usulan spesifikasi**, bukan aturan klub yang sudah ada.
 
@@ -681,3 +681,87 @@ Sumbu selalu urutan tetap searah jarum jam mulai Finishing di atas: Finishing, P
 Spider menyediakan label/nilai tanpa hover wajib, judul konteks dan tabel/daftar numerik aksesibel dengan nama kategori lengkap. Tab Event/Profil dan pemilih event dapat dioperasikan keyboard dengan status terpilih yang terbaca; pergantian konteks tidak memindahkan fokus tanpa alasan. Warna gold, outline/titik dan label teks membedakan seri dari grid, bukan warna saja. Jika label pendek diperlukan di HP, legenda numerik memakai nama lengkap; label/angka tidak boleh terpotong. Area chart responsif tidak menyebabkan scroll horizontal halaman.
 
 Loading, kosong, tidak tampil, Q_e kosong/maksimum 0 dan sumber belum lengkap mengikuti status statistik semula. Nilai belum tersedia ditampilkan —/penjelasan, bukan 0; jangan menutup poligon sembilan nilai dengan mengarang titik kosong. Jika seri belum lengkap, tampilkan state “Grafik belum lengkap” dan daftar nilai sah; nol yang memang terkonfirmasi tetap titik 0. Gagal menggambar tidak menghilangkan tabel, filter atau aksi rincian.
+
+## 14. Loyalitas dan klaim reward
+
+FEAT-29 → US-34–US-36 → AC-134–AC-153. Sumber: PRD v2.6. Pemisahan poin ditetapkan pengguna; baseline operasional merupakan usulan spesifikasi untuk pengesahan sebelum aktivasi. Poin loyalitas mulai 0, tanpa cap 100, tanpa konversi ke statistik/skill/klasemen/voting. Perfect Attendance dan Consistent Performer tidak menghasilkan kredit loyalitas tambahan. Perubahan statistik saja tidak memicu kredit; koreksi fakta partisipasi dapat memengaruhi kedua sistem secara independen.
+
+### 14.1. Izin, saldo dan konfigurasi
+
+Anggota aktif membaca saldo/klaim sendiri dan mengajukan/membatalkan klaim sendiri. Tamu/publik/anggota lain ditolak. Pengelola kegiatan hanya memverifikasi sumber pada event tugasnya; tidak otomatis menguasai saldo global/katalog. Superadmin atau petugas dengan delegasi reward eksplisit mengatur program, katalog, meninjau klaim dan koreksi. Petugas kas tetap memerlukan delegasi kas untuk mengubah tagihan. Akses diperiksa lagi saat setiap aksi, termasuk tautan langsung. Akun nonaktif tidak dapat login/membuat klaim; riwayat dipertahankan dan petugas dapat menyelesaikan/menolak klaim lamanya.
+
+Program berisi nominal kredit bilangan bulat positif per event, tanggal mulai/zona, versi kebijakan dan penanggung jawab. Baseline: tanpa kedaluwarsa poin, transfer, pembelian, pencairan, bonus performa atau penalti perilaku langsung. Versi program dipasangkan pada event sebelum mulai; tidak dapat diubah setelah berjalan. Event sebelum aktivasi atau tanpa versi program tidak menerima kredit retroaktif otomatis. Program dijeda menghentikan pemasangan pada event baru dan klaim baru; sumber event yang sudah mendapat versi tetap diproses sesuai janji historis, demikian juga koreksinya.
+
+Kredit: anggota komunitas aktif pada saat event, peserta sah, hadir dan minimal satu laga benar-benar dimainkan/terverifikasi, event Selesai dan tidak dibatalkan. Berlaku bagi sesi rutin tanpa syarat tepat tiga laga, gol/assist/menang atau streak. Kredit diberikan sekali per anggota/event, nominal tidak dikali laga. Selesai dengan pengecualian presensi tidak membuat data anggota yang kurang menjadi terverifikasi. Finalisasi poin statistik tidak menjadi prasyarat kredit loyalitas; status sumber kehadiran/partisipasi tetap wajib. Data sumber yang belum lengkap menunggu perbaikan, bukan kredit perkiraan.
+
+Total = kredit sah - debit pemenuhan + pengembalian/koreksi neto. Reservasi = jumlah harga klaim Menunggu atau Ditahan. Saldo tersedia = max(0, total - reservasi). Tampilkan total negatif atau selisih reservasi secara eksplisit; jangan menyembunyikan defisit dengan angka tersedia 0. Saldo tersedia 0 tidak menghapus utang poin internal akibat koreksi dan tidak membuat tagihan uang. Kredit berikutnya menutup selisih secara aritmetis, bukan bonus baru.
+
+Reward memuat nama, deskripsi manfaat, harga poin bulat positif, stok total bulat nonnegatif, periode klaim dengan zona, syarat dan instruksi pemenuhan. Stok tersedia = total - dipenuhi neto - direservasi. Stok total tidak boleh diturunkan di bawah jumlah terpakai/reservasi. Satu klaim untuk satu unit; nominal/ketentuan snapshot tidak berubah saat katalog direvisi. Reward dijeda/kedaluwarsa menutup klaim baru tetapi tetap menghormati klaim yang sudah diterima. Tanpa pemenuhan otomatis, tanpa kedaluwarsa klaim otomatis; penyelesaian lama dilakukan petugas dengan alasan dan ketentuan yang tersimpan.
+
+### FLOW-27 — Perolehan dan pemeriksaan loyalitas
+
+US-34 → AC-134–AC-139 → STATE-23/STATE-24 → SCR-19/SCR-37/SCR-38.
+
+1. Petugas memverifikasi hadir dan partisipasi melalui SCR-19; sumber berizin tetap mengikuti FLOW-09. Saat event Selesai, sistem mengevaluasi anggota terhadap versi program yang telah dipasangkan.
+2. Sumber belum lengkap diberi Menunggu verifikasi, tidak memenuhi syarat diberi alasan tanpa kredit. Kelayakan sah menghasilkan kredit sekali per anggota/event. Verifikasi ulang mengembalikan hasil yang sama; koreksi menerapkan selisih antara hak terkini dan kredit neto sumber itu, bukan menambah nominal penuh lagi.
+3. Anggota membuka Lainnya → Reward Saya SCR-37 atau tautan profil SCR-12. Tampil total, reservasi, tersedia dan riwayat sumber; kosong menampilkan 0 dan cara memperoleh, sedangkan loading/error tidak disajikan sebagai saldo 0.
+4. Koreksi fakta oleh pengelola berwenang menyesuaikan kredit memakai nominal historis. Jika total tidak lagi menutup reservasi, semua klaim Menunggu anggota itu menjadi Ditahan dalam perubahan yang sama; reservasi tetap ada. Petugas menolak sebagian atau menunggu kredit sah tambahan, lalu melanjutkan klaim hanya bila total menutup seluruh reservasi tersisa. Pemenuhan selalu memeriksa konsistensi sumber/saldo terkini agar tidak berlomba dengan koreksi.
+5. Bila reward sudah Dipenuhi, koreksi kredit tetap dicatat walau total negatif; klaim baru tertahan sampai saldo cukup. Tidak otomatis menarik hadiah, menghapus histori atau memotong kategori statistik. Anggota dapat meminta koreksi fakta melalui petugas event; pengajuan sendiri belum mengubah saldo. Kembali dari rincian mempertahankan tab/filter.
+
+### FLOW-28 — Klaim, pelacakan dan pembatalan
+
+US-35 → AC-140–AC-146 → STATE-25 → SCR-37.
+
+1. Anggota membuka katalog di SCR-37, membaca manfaat, harga, stok, periode/zona dan cara pemenuhan. Reward tidak tersedia memiliki alasan dan CTA nonaktif.
+2. Pilih Klaim → dialog menampilkan harga dan sisa tersedia sesudah reservasi. Batal menutup tanpa efek. Konfirmasi memeriksa ulang keaktifan, periode, versi reward, saldo dan stok; jika harga/syarat berubah, minta tinjau dan konfirmasi ulang, bukan memakai harga baru diam-diam.
+3. Sukses membuat klaim Menunggu dan mereservasi poin/stok sebagai satu kesatuan. Kegagalan satu syarat tidak membuat reservasi parsial. Klaim bersamaan memakai kondisi terbaru; permintaan yang kalah mendapat alasan spesifik. Aksi yang sama diulang memulihkan nomor klaim yang sama.
+4. Respons hilang: tampilkan "Status klaim belum diketahui. Cek status sebelum mencoba lagi." Pertahankan konteks aksi melalui muat ulang/login dan pulihkan klaim, jangan membuat permintaan baru otomatis. Klaim terkonfirmasi masuk tab Riwayat; fokus ke status/nomor klaim.
+5. Pemilik dapat membatalkan Menunggu/Ditahan lewat konfirmasi; reservasi poin dan stok dilepas sekali. Jika sudah Dipenuhi saat tombol ditekan, tolak pembatalan dan tampilkan status terbaru. Riwayat menampilkan alasan penolakan/penahanan dan catatan pemenuhan yang boleh dibaca. Keluar halaman tidak membatalkan klaim.
+
+### FLOW-29 — Program, katalog, pemenuhan dan rekonsiliasi
+
+US-36 → AC-147–AC-153 → STATE-23/STATE-25 → SCR-38/SCR-22.
+
+1. Dari SCR-13, petugas berdelegasi membuka SCR-38. Lengkapi dan sahkan konfigurasi sebelum Aktif. Nominal dan syarat yang belum diputuskan tidak diisi dengan angka contoh. Reward diterbitkan hanya setelah stok/ketentuan lengkap; revisi aturan untuk event mendatang tidak mengubah histori.
+2. Pilih klaim Menunggu, periksa anggota/sumber/reservasi, serahkan manfaat, lalu Konfirmasi pemenuhan dengan waktu dan catatan/bukti penyerahan. Simpan memeriksa versi terbaru dan saldo/sumber; Dipenuhi mendebit harga snapshot, melepas reservasi dan mengonsumsi stok sekali. Catatan internal/bukti sensitif hanya petugas berhak; anggota melihat ringkasan yang diizinkan.
+3. Menolak memerlukan alasan dan melepaskan reservasi. Klaim Ditahan tidak boleh dipenuhi; setelah total cukup untuk seluruh reservasi dan sumber sah, petugas melanjutkan ke Menunggu atau menolak. Program/reward dijeda atau akun nonaktif tidak menghapus klaim lama; pemenuhan tetap harus mengikuti ketentuan snapshot.
+4. Gratis main membutuhkan catatan event/manfaat tujuan dan rujukan klaim; pembebasan biaya hanya oleh petugas kas melalui koreksi tagihan yang berwenang. Klaim tidak merupakan pembayaran/pemasukan kas dan tidak membuat kuota RSVP. Merchandise mencatat penyerahan nyata, tanpa mengaktifkan checkout/toko.
+5. Kesalahan pada klaim Dipenuhi menggunakan rekonsiliasi beralasan dan bukti bahwa manfaat dikembalikan/dibatalkan. Usulan MVP hanya pengembalian penuh: status tetap Dipenuhi dengan label "Dikoreksi - manfaat dibatalkan", penyesuaian kredit sekali dan stok dipulihkan hanya bila unit/manfaat masih dapat digunakan. Klaim itu tidak boleh dipenuhi ulang. Jika manfaat belum dikembalikan, catat permohonan tanpa refund. Audit SCR-22 mempertahankan catatan asli dan koreksi.
+6. Versi usang ditolak; tampilkan perubahan terbaru dan minta tinjau. Simpan belum diketahui memakai Cek status, bukan ulang penyerahan. Form belum tersimpan dipertahankan saat error; Batal hanya membuang draft setelah konfirmasi, tidak mengubah transaksi yang telah tersimpan. Kembali memulihkan filter antrean.
+
+### 14.2. Transisi bisnis
+
+| Entitas | Asal | Pemicu/aktor dan syarat | Tujuan | Efek/gagal |
+|---|---|---|---|---|
+| Program / STATE-23 | Belum aktif | Aktifkan/petugas reward; konfigurasi dan kebijakan sah lengkap | Aktif | Event baru dapat dipasangkan, klaim dibuka; kurang data tetap belum aktif |
+| Program / STATE-23 | Aktif | Jeda/petugas, alasan | Dijeda | Tutup event/claim baru; sumber dan klaim lama tetap sah |
+| Program / STATE-23 | Dijeda | Aktifkan/petugas; konfigurasi sah | Aktif | Buka lagi, tanpa kredit retroaktif otomatis |
+| Kredit sumber / STATE-24 | Belum dievaluasi/Menunggu verifikasi | Evaluasi setelah event selesai; sumber lengkap | Dikreditkan/Tidak memenuhi syarat | Kredit sekali bila sah; jika kurang tetap Menunggu verifikasi |
+| Kredit sumber / STATE-24 | Dikreditkan/Tidak memenuhi syarat | Koreksi fakta berwenang, alasan dan versi | Dikreditkan/Dibatalkan | Selisih neto sesuai hak terkini, audit lama tetap ada; koreksi tidak sah ditolak |
+| Kredit sumber / STATE-24 | Dibatalkan | Koreksi pemulihan kelayakan berwenang | Dikreditkan | Pulihkan hanya selisih neto dengan nominal historis; retry tanpa tambahan |
+| Klaim / STATE-25 | Belum ada | Konfirmasi anggota; program/anggota/reward aktif, saldo/stok cukup | Menunggu | Reservasi bersama; gagal tidak ada perubahan |
+| Klaim / STATE-25 | Menunggu | Koreksi sumber membuat total kurang dari reservasi | Ditahan | Reservasi tetap, alasan terlihat, pemenuhan dilarang |
+| Klaim / STATE-25 | Ditahan | Tinjau petugas; sumber sah dan total >= seluruh reservasi | Menunggu | Boleh diproses lagi; jika kurang tetap Ditahan |
+| Klaim / STATE-25 | Menunggu/Ditahan | Batal pemilik atau tolak petugas dengan alasan | Dibatalkan/Ditolak | Lepas reservasi sekali; konflik versi ditolak |
+| Klaim / STATE-25 | Menunggu | Penuhi petugas, sumber/saldo sah, catatan/waktu | Dipenuhi | Debit/consume sekali; gagal tetap asal |
+| Klaim / STATE-25 | Dipenuhi | Rekonsiliasi petugas, bukti manfaat dibatalkan/dikembalikan | Dipenuhi dengan label koreksi | Kredit balik sekali; stok kondisional; tanpa pemenuhan ulang |
+
+Status Ditolak/Dibatalkan tidak dibuka kembali; pengajuan berikutnya adalah klaim baru dengan syarat terbaru. Status loading/error UI bukan status bisnis. Kredit Dibatalkan merujuk sumber kredit, bukan event atau klaim.
+
+### 14.3. Validasi, pemulihan dan umpan balik
+
+| Field/kondisi | Aturan dan waktu cek | Pesan/pemulihan | AC |
+|---|---|---|---|
+| Nominal/harga | Wajib bilangan bulat >0 saat simpan/aktivasi/terbit | "Isi jumlah poin berupa bilangan bulat lebih dari 0." | AC-147–AC-148 |
+| Stok total | Bulat >=0 dan >= dipenuhi neto + reservasi; cek saat simpan | "Stok sudah digunakan atau dipesan. Tinjau klaim aktif." | AC-142, AC-148 |
+| Periode/zona | Mulai < selesai; zona wajib; mulai inklusif, akhir eksklusif; cek lagi saat klaim | "Periode klaim sudah berakhir." | AC-140–AC-141 |
+| Nama/manfaat/syarat | Wajib bukan whitespace; pemenuhan jelas sebelum terbit | "Lengkapi manfaat dan cara menerima reward." | AC-140, AC-148 |
+| Koreksi/tolak/penuhi | Alasan koreksi/tolak wajib; waktu dan catatan/bukti untuk pemenuhan | Sorot data kurang, pertahankan form; jangan unggah bukti pribadi ke publik | AC-149–AC-153 |
+| Saldo/stok berubah | Cek bersama saat konfirmasi, pemenuhan dan koreksi | "Poin atau stok berubah. Tinjau kondisi terbaru." Tidak reservasi sebagian | AC-139, AC-142 |
+| Versi/harga berubah | Tolak snapshot form usang | Muat terbaru dan konfirmasi ulang; input belum tersimpan tetap dapat ditinjau | AC-151 |
+| Sesi habis/akses dicabut | Periksa izin setiap aksi | Login kembali ke konteks aman; tidak melanjutkan submit otomatis; akses ditolak tanpa data | AC-138, AC-146, AC-151 |
+| Timeout/retry | Hasil mungkin tersimpan | Cek status berdasarkan aksi sebelumnya; cegah transaksi ganda termasuk sesudah reload | AC-143, AC-149, AC-153 |
+
+Notifikasi eksternal baru tidak diperlukan. Kredit, klaim, penahanan dan keputusan terlihat pada riwayat SCR-37; sukses/error diumumkan pada layar yang sedang dibuka. Pengelola melihat antrean SCR-38. Tidak menambahkan email, WhatsApp otomatis atau notification center; refresh gagal tidak membatalkan transaksi yang sudah sah.
+
+Contoh sintetis, bukan tarif klub: kredit 10 per event dan reward 30. Tiga event sah → total 30. Klaim → total 30/reservasi 30/tersedia 0. Penuhi → total 0/reservasi 0. Batal sebelum dipenuhi → total 30/reservasi 0. Koreksi satu event sebelum penuhi → total 20/reservasi 30/tersedia 0, klaim Ditahan dan selisih 10 terlihat. Koreksi setelah penuhi → total -10/reservasi 0/tersedia 0; tidak ada tagihan uang. Koreksi saldo karena sumber berbeda dari pembatalan manfaat, sehingga keduanya mempunyai alasan dan transaksi terpisah.

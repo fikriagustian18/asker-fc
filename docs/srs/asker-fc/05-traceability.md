@@ -1,8 +1,8 @@
 # Traceability dan Pemeriksaan — Asker FC
 
-- Versi: 2.5 · Tanggal: 12 November 2026
-- Status: paket v2.5 diselaraskan dengan statistik hanya Spider; audit revisi di bagian 9. Nominal penalti tetap sesuai klarifikasi pengguna.
-- Upstream: [rencana v2.11](./00-implementation-plan.md), [Planning v2.5](./01-product-planning.md), [PRD v2.5](./02-prd.md), [Details v2.5](./03-product-details.md), [Mockup SRS v2.5](./04-mockup-srs.md).
+- Versi: 2.7 · Tanggal: 14 November 2026
+- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
+- Upstream: [rencana v2.13](./00-implementation-plan.md), [Planning v2.7](./01-product-planning.md), [PRD v2.7](./02-prd.md), [Details v2.7](./03-product-details.md), [Mockup SRS v2.7](./04-mockup-srs.md). Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Dasar otorisasi: instruksi pengguna 11 November 2026 “proses implementation plan tersebut” setelah review v2.7. Tidak menjalankan implementasi aplikasi, pengiriman pesan atau deployment.
 
 ## 1. Matriks kebutuhan
@@ -223,3 +223,50 @@ Keputusan terbaru pengguna menghapus opsi bar chart. AC-131–AC-133 memperluas 
 Review menemukan ketidaksinkronan kebutuhan dan mockup yang masih menawarkan pemilih grafik, serta preferensi mode yang sudah tidak diperlukan. Paket v2.5 menyelesaikannya lewat simplifikasi kontrol, bukan perubahan perhitungan. Aturan finalisasi/replay, sumber unik, verifikasi penalti dan privasi sudah terhubung ke alur/state terkait; belum diuji pada aplikasi. Kalibrasi proksi kebobolan/bobot posisi, konten autentik dan validasi produksi tetap terbuka.
 
 Audit revisi lulus: 28 fitur, 33 story, 133 AC, 26 flow, 22 state dan 36 layar unik; seluruh ID/AC terpetakan, versi/tautan/anchor/tabel/UTF-8 valid, dan dimensi 12 PNG aktif sesuai manifest v6. Grafik pengganti diperiksa visual: sembilan sumbu dan legenda benar, pemilih jenis grafik tidak ada. Pemeriksaan ini atas dokumentasi dan referensi visual, bukan pengujian aplikasi.
+
+## 10. Revisi loyalitas — 14 November 2026
+
+Otorisasi: pengguna meminta penambahan klaim reward/poin anggota yang sering main dengan loyalitas terpisah dari statistik, menggunakan srs-documentation. Rencana v2.12 dan lima dokumen v2.6 menyelaraskan fitur tanpa mengubah rumus atau katalog statistik. Matriks berikut melengkapi matriks utama; ID lama tetap.
+
+| Goal/pain | Fitur/fase | Story | AC | Flow/status | Layar | Gambar/status |
+|---|---|---|---|---|---|---|---|
+| GOAL-06 / PAIN-06 | FEAT-29 / MVP diperluas | US-34 | AC-134–AC-139 | FLOW-27 / STATE-23/STATE-24 | SCR-19/SCR-37/SCR-38 | Spesifikasi teks; kredit sekali dan koreksi independen |
+| GOAL-06 / PAIN-06 | FEAT-29 / MVP diperluas | US-35 | AC-140–AC-146 | FLOW-28 / STATE-25 | SCR-37 | Spesifikasi teks; saldo/stok direservasi bersama |
+| GOAL-06 / PAIN-06 | FEAT-29 / MVP diperluas | US-36 | AC-147–AC-153 | FLOW-29 / STATE-23/STATE-25 | SCR-13/SCR-38/SCR-22 | Spesifikasi teks; delegasi, pemenuhan dan rekonsiliasi |
+
+Tambahan NFR: privasi saldo/klaim mengikuti NFR-02, aksesibilitas/HP mengikuti NFR-03/04, audit mengikuti NFR-07 dan pemulihan simpan mengikuti NFR-08. Konsistensi reservasi/sumber perlu diuji bersama transaksi bersamaan; dokumen tidak mengklaim uji aplikasi telah berjalan.
+
+| Skenario penerimaan | Hasil yang disyaratkan | AC |
+|---|---|---|
+| Saldo awal dan statistik | Loyalitas 0; sembilan kategori/baseline 50 dan overall tidak berubah | AC-134 |
+| Main terverifikasi tanpa gol/assist; beberapa laga/event | Kredit tetap sekali/event, tidak berbasis performa | AC-135–AC-137 |
+| RSVP saja, tamu, event batal/sebelum aktivasi, sumber parsial | Tidak ada kredit; sumber parsial menunggu | AC-136 |
+| Koreksi presensi sebelum/sesudah pemenuhan | Klaim Ditahan atau selisih negatif tercatat; tanpa tagihan uang | AC-139, AC-150 |
+| Dua klaim berebut poin/stok terakhir | Tidak ada reservasi sebagian/double spend | AC-141–AC-143 |
+| Pembatalan versus pemenuhan bersamaan | Hanya satu transisi sah, reservasi dilepas/debit sekali | AC-144, AC-149, AC-151 |
+| Harga berubah/program dijeda/akun nonaktif | Klaim baru mengikuti syarat terbaru, ketentuan klaim lama dipertahankan | AC-145–AC-148 |
+| Pengelola event mencoba kelola reward tanpa delegasi | Ditolak meskipun berhak verifikasi presensi | AC-138, AC-147, AC-151 |
+| Timeout lalu reload/retry | Pulihkan aksi/klaim semula tanpa penyerahan/debit kedua | AC-143, AC-149, AC-153 |
+| Gratis main/merchandise | Manfaat tercatat; tidak otomatis mengubah tagihan/kas/toko atau slot RSVP | AC-152 |
+| Manfaat dikembalikan sesudah Dipenuhi | Pengembalian poin sekali, stok hanya bila dapat dipakai lagi, histori tetap | AC-153 |
+
+Keputusan belum ditutup: pengesahan baseline operasional, nominal kredit, hadiah nyata/harga/stok/anggaran, ketentuan manfaat, tanggal/zona dan petugas. Semua menahan aktivasi program, bukan penulisan bagian independen. Tidak ada ambang "10 kali main" yang dianggap keputusan pengguna. Dua layar baru hanya spesifikasi teks; 12 gambar aktif lama tidak diklaim menggambarkan reward. Paket tetap mempunyai pekerjaan produksi/konten terdahulu.
+
+### Pemeriksaan aktual revisi
+
+Hasil pemeriksaan struktural dicatat setelah verifikasi berkas; skenario di atas merupakan rencana uji produk, bukan hasil runtime.
+
+Pemeriksaan berkas 14 November 2026: 29 ID fitur, 36 story, 153 definisi AC unik, 29 flow, 25 state dan 38 layar berurutan tanpa celah; 20 AC baru tercakup pada Details/Mockup/Traceability. Target tautan lokal dan anchor bagian baru valid, berkas UTF-8 terbaca. Lima contoh saldo/reservasi pada Details cocok secara aritmetis. Pemeriksaan Problems editor tidak menemukan error. Gambar lama tidak diubah atau diaudit ulang; tidak menjalankan aplikasi/UAT. Revisi dokumentasi selesai, parameter aktivasi dan pekerjaan produksi tetap terbuka.
+
+## 11. Penyelesaian sampai mockup SRS
+
+Kelanjutan pengguna mengotorisasi dua gambar loyalitas, menggantikan batas teks saja pada revisi sebelumnya. Rencana v2.13 dan paket v2.7 mempertahankan 29 fitur, 36 story, 153 AC, 29 flow, 25 state dan 38 layar. Total referensi aktif kini 14 pada [manifest-v7](./mockups/manifest-v7.json).
+
+| Kebutuhan | Gambar/perilaku diperiksa | Batas |
+|---|---|---|
+| US-34/US-35, AC-134/AC-138/AC-140/AC-141 | SCR-37: saldo/reservasi/tersedia, pemisahan statistik, harga/stok/periode, CTA cukup/kurang dan privasi | State alternatif dan modal mengikuti teks, nominal tetap sintetis |
+| US-36, AC-149/AC-150/AC-152 | SCR-38: antrean tiga status, detail Menunggu, konfirmasi pemenuhan/catatan/waktu dan audit; batas tagihan/RSVP | Bukan hasil transaksi nyata; koreksi mengikuti teks |
+
+Inspeksi visual dilakukan pada kedua keluaran; prompt aktual, dimensi PNG dan keterbatasan dicatat di Mockup bagian 11/manifest. Dua belas gambar lama dipertahankan tanpa klaim audit visual baru. Dokumen sampai mockup selesai; kebijakan/nominal program dan kesiapan produksi tetap terbuka.
+
+Audit berkas kelanjutan: enam dokumen UTF-8 dan seluruh target tautan lokal valid; 14 PNG ada dan dimensi cocok manifest; 153 definisi AC tetap unik. Saldo contoh 50-20=30 dan 50-30=20 diperiksa; harga jersey 80 minus tersedia 30 = kekurangan 50. Tidak ada aplikasi yang diuji.

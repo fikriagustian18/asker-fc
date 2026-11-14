@@ -1,8 +1,8 @@
 # Mockup SRS — Asker FC
 
-- Versi: 2.5 · Tanggal: 12 November 2026
-- Status: spesifikasi v2.5 menggunakan Spider sebagai satu-satunya grafik; referensi SCR-24 v6 selesai diperiksa dalam 12 slot aktif, tanpa perubahan data/rule scoring.
-- Upstream: [Product Details v2.5](./03-product-details.md), [PRD v2.5](./02-prd.md), [rencana v2.11](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna 11 November 2026. Tidak membuat aplikasi atau menambah jatah gambar.
+- Versi: 2.7 · Tanggal: 14 November 2026
+- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
+- Upstream: [Product Details v2.7](./03-product-details.md), [PRD v2.7](./02-prd.md), [rencana v2.13](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna 11 November 2026. Tidak membuat aplikasi atau menambah jatah gambar. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Seluruh angka/nama pada contoh sintetis. Gambar referensi bukan prototipe atau bukti uji aksesibilitas; teks spesifikasi mengatur perilaku. Default domain usulan mengikuti Details, belum aturan klub yang disahkan.
 
 ## 1. Sistem visual dan layout bersama
@@ -60,16 +60,16 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 
 | ID | Tujuan/aktor | Fitur / flow / AC | Masuk → keluar | Viewport dan state representatif | Gambar |
 |---|---|---|---|---|---|
-| SCR-01 Masuk | Calon anggota/anggota | FEAT-01 / FLOW-01 / AC-01–04 | Tautan internal atau SCR-04 saat belum masuk → SCR-02, SCR-03, SCR-04 atau tujuan internal semula | Responsif; 390×844; form kosong | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
+| SCR-01 Masuk | Calon anggota/anggota | FEAT-01 / FLOW-01 / AC-01–04 | Tautan internal atau SCR-04 saat belum masuk → SCR-02, SCR-03, SCR-04 atau tujuan internal semula | Responsif; 390×844; form kosong | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
 | SCR-02 Daftar dan lengkapi profil | Calon anggota | FEAT-01 / FLOW-01 / AC-01–03 | SCR-01 atau penyelesaian Google → SCR-03/SCR-04 atau kembali SCR-01 | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-03 Verifikasi email dan pemulihan sandi | Pemilik akun | FEAT-01 / FLOW-01 / AC-01,04 | SCR-01/02 atau tautan email → SCR-01 atau tujuan masuk semula | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-04 Beranda komunitas | Publik/anggota sesuai cakupan konten | FEAT-19, FLOW-13, AC-45–AC-47 | Tautan komunitas/nav Beranda → SCR-05/SCR-23/SCR-24 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-05 Detail kegiatan dan RSVP | Publik pembaca sesi terbit; anggota peserta; pengelola scoped | FEAT-03, FEAT-04, FEAT-12, FEAT-20, FLOW-03, FLOW-04, FLOW-12, FLOW-13, AC-08–AC-15, AC-37–AC-38, AC-48–AC-50 | Tautan langsung/SCR-04/SCR-23 → SCR-06/SCR-07/SCR-09/SCR-27/SCR-28/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-06 Status pendaftaran dan undangan | Anggota/kapten untuk diri/tim | FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36 | SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
-| SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
+| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
+| SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
 | SCR-09 Detail hasil pertandingan | Pembaca sesuai izin hasil; petugas laga/pengelola | FEAT-07, FEAT-09, FEAT-21, FEAT-22, FEAT-23, FLOW-07, FLOW-09, FLOW-16, FLOW-17, FLOW-18, AC-22–AC-25, AC-29–AC-30, AC-51–AC-56, AC-59, AC-67 | SCR-08/SCR-11/SCR-12 → SCR-10/SCR-18/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v6; bila tidak tercantum, spesifikasi teks |
+| SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
 | SCR-11 Hasil & Klasemen | Pembaca sesuai izin publikasi | FEAT-07, FEAT-08, FEAT-22, FEAT-23, FLOW-07, FLOW-08, FLOW-17, FLOW-18, AC-22–AC-27, AC-59, AC-67 | Lainnya/SCR-05 → SCR-09/SCR-07/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-12 Profil dan statistik anggota | Pemilik profil; pembaca sesuai cakupan foto/roster | FEAT-01, FEAT-09, FEAT-10, FEAT-25, FLOW-01, FLOW-09, FLOW-10, FLOW-20, AC-01–AC-04, AC-28, AC-31–AC-32, AC-71–AC-73, AC-87–AC-90 | Header/SCR-24/SCR-07 → SCR-05/SCR-09/SCR-25/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-13 Dashboard pengelola dan tugas | Pengelola scoped; pencatat hanya tugas laga; superadmin sesuai delegasi | FEAT-02, FEAT-03, FEAT-07, FEAT-15, FEAT-16, FEAT-21, FEAT-22, FEAT-23, FEAT-24, FLOW-02, FLOW-03, FLOW-07, FLOW-14–FLOW-19, AC-05–AC-11, AC-23, AC-79–AC-86 | SCR-04 Kelola → layar pengelolaan sesuai kewenangan | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
@@ -96,6 +96,8 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 | SCR-34 Kelola voting | Petugas voting laga atau delegasi bulanan | FEAT-21, FLOW-16, AC-51–AC-56 | SCR-13/SCR-25 → SCR-25/SCR-22 | Responsif 390×844/1440×900; default/empty/error | Sesuai manifest; lainnya teks |
 | SCR-35 Kelola kontak dan sponsor | Delegasi publikasi komunitas | FEAT-24, FLOW-19, AC-68–AC-70 | SCR-13 → SCR-29/SCR-22 | Responsif 390×844/1440×900; default/empty/error | Sesuai manifest; lainnya teks |
 | SCR-36 Toko/Merchandise kondisional | Anggota/publik bila modul disahkan aktif | FEAT-27, AC-77 | Lainnya hanya jika aktif → WhatsApp/kembali | Responsif 390×844/1440×900; default/empty/error | Sesuai manifest; lainnya teks |
+
+Inventaris diperluas menjadi 38 layar dengan SCR-37/SCR-38 pada [bagian 10](#10-loyalitas-dan-reward--perluasan-v26); keduanya memiliki spesifikasi teks dan gambar referensi baru. Navigasi Lainnya dan profil diri menautkan Reward Saya, dashboard pengelola menautkan Kelola Reward sesuai delegasi.
 
 ## 4. Spesifikasi screen-by-screen
 
@@ -820,3 +822,63 @@ Angka dan nama lengkap tersedia melalui legenda/tabel, tidak wajib hover. Pada 3
 Tidak ada overlay Event/Profil yang menggabungkan dua makna atau membuka data privat pemain lain. Poin mentah hanya di rincian. Referensi v6 menggantikan v5 dalam satu slot statistik; v5 dipindahkan ke archive/v2.4 dan v4 tetap archive/v2.2. Prompt asli historis tetap disimpan, bukan ditulis ulang seolah gambar lama tidak pernah memuat pilihan jenis grafik.
 
 Inspeksi referensi v6: PNG asli 852×1846 dilihat langsung; pemilih jenis grafik sudah tidak ada, sembilan sumbu/legenda, skala, overall 94,84, 4 Gol/0 Assist/3 Penampilan, profil ringkas, ledger dan konteks privat tetap sesuai. Sebelas referensi v3 dipakai ulang. Referensi raster bukan pengujian grafik aplikasi atau bukti presisi geometri.
+
+## 10. Loyalitas dan reward — perluasan v2.6
+
+Sumber: Details v2.6 bagian 14; FEAT-29, US-34–US-36, AC-134–AC-153, FLOW-27–FLOW-29. Angka contoh berlabel sintetis. Pemisahan loyalitas dari statistik wajib; parameter program masih usulan sampai disahkan. Dua layar berikut dilengkapi gambar referensi berdasarkan instruksi kelanjutan pengguna. Total 14 referensi aktif pada manifest-v7; 12 referensi lama dipakai ulang.
+
+| Layar | Aktor/tujuan | Relasi | Masuk/keluar | Viewport/state | Gambar |
+|---|---|---|---|---|---|
+| SCR-37 Reward Saya | Anggota; saldo, katalog dan klaim pribadi | FLOW-27/FLOW-28; AC-134–AC-146; STATE-24/STATE-25 | Lainnya/SCR-12 → rincian/dialog dalam layar; kembali asal | 390x844/1440x900; kosong, terisi, ditahan, error | Gambar v1 tersedia; lihat bagian 11 |
+| SCR-38 Kelola Reward | Superadmin/petugas delegasi reward | FLOW-29; AC-147–AC-153; STATE-23/STATE-25 | SCR-13 → detail klaim/form inline → SCR-22 audit; kembali antrean | 390x844/1440x900; draft, aktif, konflik, antrean | Gambar v1 tersedia; lihat bagian 11 |
+
+### SCR-37 — Reward Saya
+
+**Konteks/izin:** hanya data pemilik, login mempertahankan tujuan. Tautan Reward Saya ditambahkan pada Lainnya dan profil SCR-12 untuk diri sendiri; tidak muncul pada profil orang lain. Statistik SCR-12/SCR-24 tetap sembilan sumbu tanpa saldo loyalitas, konversi atau sumbu kesepuluh.
+
+**Hierarki:** Kembali → Reward Saya → status program/ketentuan → kartu "Poin loyalitas" (total, direservasi, tersedia) → helper "Untuk klaim reward; terpisah dari statistik pemain" → tab Katalog / Riwayat poin / Klaim saya → daftar dan detail. Nominal negatif/defisit memiliki teks "Koreksi poin" dan alasan, bukan tagihan uang. Riwayat sumber memuat event/klaim, nominal, versi, waktu dan alasan tanpa bukti sensitif. Kartu reward memuat manfaat, harga poin, stok, periode/zona dan cara menerima; tidak memakai harga rupiah untuk saldo poin.
+
+**Interaksi:** Klaim membuka dialog manfaat/harga/sisa saldo; Batal/Escape tidak berefek. Konfirmasi → loading → sukses nomor klaim dan tab Klaim saya. Harga berubah → dialog perlu ditinjau ulang; stok/saldo kurang → pesan konkret. Respons tidak diketahui → Cek status, bukan CTA klaim baru. Detail klaim Menunggu/Ditahan menyediakan Batalkan dengan konfirmasi; Dipenuhi tidak menyediakan batal mandiri. Kembali/detail ditutup mempertahankan tab, filter dan posisi daftar; keluar tidak membatalkan klaim.
+
+**State:** kosong saldo 0 hanya setelah pembacaan sukses; loading skeleton tanpa 0 palsu; katalog kosong "Belum ada reward tersedia"; program Belum aktif/Dijeda menjelaskan bahwa klaim baru belum tersedia. CTA disabled mempunyai alasan untuk saldo kurang, stok habis atau periode lewat. Ditahan menampilkan alasan koreksi dan reservasi yang belum dilepas. Sukses/error/status tidak mengandalkan warna. Akun nonaktif mengikuti penolakan akses, riwayat dipertahankan untuk petugas.
+
+**Responsif/aksesibilitas:** satu kolom HP, kartu lebih lebar di desktop; teks panjang membungkus, tanpa scroll horizontal halaman. Nav bawah Lainnya aktif, konten berjarak dari nav sticky. Tombol/angka berlabel poin; urutan keyboard mengikuti visual. Fokus ke judul saat masuk, ke dialog saat dibuka, kembali pemicu saat ditutup, dan ke hasil setelah submit. Status diumumkan pembaca layar; dialog menjebak fokus dan memiliki Batal.
+
+### SCR-38 — Kelola Reward
+
+**Konteks/izin:** masuk dari SCR-13 dengan delegasi reward; menebak tautan tidak memberi akses. Pengelola event tetap memverifikasi sumber di SCR-19, bukan mendapat izin hadiah global. SCR-19 menambahkan ringkasan dampak kredit setelah koreksi fakta; data hadiah privat tidak dibuka ke petugas event tanpa izin reward.
+
+**Hierarki:** Kembali dashboard → Kelola Reward → status program → tab Program / Katalog / Klaim → filter/status → daftar → panel detail/form → audit SCR-22. Program berisi nominal per event, versi, tanggal/zona dan kebijakan, CTA Aktifkan/Jeda dengan konfirmasi. Katalog berisi nama/manfaat, harga, stok total/terpakai/reservasi/tersedia, periode dan cara pemenuhan. Klaim berisi anggota, nomor, snapshot manfaat/harga, sumber, reservasi, status, waktu dan catatan.
+
+| Aksi | Kondisi | Respons/tujuan |
+|---|---|---|
+| Aktifkan/Terbitkan | Konfigurasi lengkap dan izin sah | Konfirmasi versi/waktu; sukses pada SCR-38, error fokus field pertama |
+| Ubah harga/stok/Jeda | Versi terbaru dan stok mencukupi reservasi/terpakai | Tampilkan dampak hanya ke klaim baru; klaim lama tetap tersimpan |
+| Penuhi | Menunggu, sumber/saldo sah | Dialog penyerahan dengan waktu/catatan; sukses Dipenuhi, debit sekali |
+| Lanjutkan | Ditahan, total menutup semua reservasi | Menunggu setelah tinjau sumber; jika kurang tetap Ditahan |
+| Tolak | Menunggu/Ditahan | Alasan wajib; lepas reservasi sekali |
+| Rekonsiliasi | Dipenuhi, manfaat dibatalkan/dikembalikan | Bukti/alasan, pratinjau pengembalian poin dan stok kondisional; label koreksi tanpa hapus histori |
+| Audit | Izin objek terkait | SCR-22 terfilter klaim/sumber loyalitas, terpisah dari ledger statistik; kembali mempertahankan filter |
+
+**State/pemulihan:** draft belum lengkap menonaktifkan aktivasi dengan daftar kekurangan; antrean kosong berbeda dari filter kosong; saving mencegah submit ulang. Konflik versi menampilkan data terbaru tanpa menimpa; timeout memakai Cek status dan tidak meminta penyerahan ulang. Batal form kotor meminta konfirmasi buang perubahan. Tidak ada tombol penuhi untuk Ditahan atau penuhi ulang klaim terkoreksi. Bukti internal terpisah dari ringkasan yang boleh dibaca anggota.
+
+**Layout/aksesibilitas:** tabel desktop menjadi kartu di HP; panel detail full-width pada HP, scroll konten tanpa CTA menutupi field. Label permanen, pesan field/ringkasan, keyboard dan fokus dialog mengikuti sistem visual bersama. Tombol destructive memiliki teks jelas dan konfirmasi dampak; status punya ikon/teks, bukan gold sebagai tanda sukses. Gambar dan prompt aktual tersedia pada bagian 11; state alternatif tetap mengikuti spesifikasi teks.
+
+## 11. Referensi visual loyalitas dan inspeksi v2.7
+
+Instruksi pengguna melanjutkan sampai mockup SRS mengotorisasi dua gambar tambahan. Dibuat melalui built-in imagegen, disimpan dalam format PNG asli tanpa resize. Prompt persis: [reward-prompts-v1.json](./mockups/reward-prompts-v1.json). Inventaris aktif lengkap: [manifest-v7.json](./mockups/manifest-v7.json); manifest-v6 tetap riwayat.
+
+| Layar/state | Target viewport | Referensi |
+|---|---|---|
+| SCR-37 / Katalog aktif, saldo cukup dan kurang | 390x844 mobile | [Reward Saya](./mockups/scr-37-390x844-v1-loyalty.png) |
+| SCR-38 / Antrean dan detail Menunggu | 1440x900 desktop | [Kelola Reward](./mockups/scr-38-1440x900-v1-rewards.png) |
+
+![SCR-37 Reward Saya - data contoh](./mockups/scr-37-390x844-v1-loyalty.png)
+
+![SCR-38 Kelola Reward - data contoh](./mockups/scr-38-1440x900-v1-rewards.png)
+
+Inspeksi langsung SCR-37: total 50 dikurangi reservasi 20 menghasilkan tersedia 30. Gratis main 30 poin dapat diklaim; jersey 80 poin disabled dengan kekurangan 50 poin. Katalog, periode/stok, privasi, pemisahan statistik dan navigasi Lainnya terlihat. SCR-38: tiga status dibedakan teks, detail Menunggu memakai 50/30/20, catatan/waktu serta konfirmasi pemenuhan terlihat; klaim Ditahan harus ditinjau. Kedua contoh adalah akun/kondisi independen, bukan snapshot anggota yang sama.
+
+Batas visual: wordmark ASKER FC dipakai pada referensi agar tidak membuat crest rekaan; implementasi tetap menggunakan aset logo asli pada bagian 1. Contoh periode tanggal adalah ringkasan; layar aktual menampilkan jam mulai/akhir dan zona sesuai ketentuan, akhir eksklusif. Catatan penyerahan pada SCR-38 adalah draft sebelum konfirmasi, bukan bukti transaksi nyata. Raster bukan jaminan ukuran CSS, aksesibilitas, kontras atau implementasi aplikasi. Modal konfirmasi, program/katalog admin dan state koreksi mengikuti teks SCR-37/SCR-38; tidak seluruh state memiliki gambar terpisah.
+
+Dimensi raster aktual: SCR-37 852x1846; SCR-38 1586x992. Target 390x844/1440x900 merupakan viewport acuan, bukan dimensi file.

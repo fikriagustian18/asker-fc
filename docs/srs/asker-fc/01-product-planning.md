@@ -1,8 +1,8 @@
 # Product Planning — Asker FC
 
-- Versi: 2.5 · Tanggal: 12 November 2026
-- Status: dokumentasi v2.5; spider chart menjadi satu-satunya visualisasi statistik sesuai keputusan pengguna. Penalti lengkap; konten autentik dan validasi lapangan tetap terbuka.
-- Upstream: [Implementation Plan v2.11](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna “proses implementation plan tersebut”, 11 November 2026. Parameter rencana menjadi baseline dokumentasi, belum hasil kalibrasi klub.
+- Versi: 2.7 · Tanggal: 14 November 2026
+- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
+- Upstream: [Implementation Plan v2.13](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna “proses implementation plan tersebut”, 11 November 2026. Parameter rencana menjadi baseline dokumentasi, belum hasil kalibrasi klub. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Nama kerja: **Asker FC**. Nama komunitas sudah diberikan; tidak diperlukan kandidat nama produk baru. Tidak ada klaim ketersediaan merek/domain.
 - Konsep ditetapkan pengguna: **“Kick & Kumpul” — website komunitas fun football.** Asker FC tetap nama komunitas; Kick & Kumpul menjadi konsep pengalaman dan pesan produk.
 - Sumber keputusan: jawaban pengguna, rencana disetujui; fakta eksternal pada bagian sumber. Persona, masalah operasional dan UVP adalah hipotesis kecuali disebut sebagai keputusan pengguna.
@@ -106,6 +106,8 @@ Seluruh MVP masuk scope yang disetujui. Urutan di bawah menunjukkan dependensi p
 | FEAT-26 | Tim peserta antar-komunitas | PAIN-01 → GOAL-01 | MVP; tim tamu dalam kegiatan Asker FC | FEAT-01,02,04; akun tamu terbatas |
 | FEAT-27 | Toko/Merchandise opsional | PAIN-04 → GOAL-04 | Opsional; belum aktif, katalog/pesan WhatsApp sebagai usulan batas awal | Keputusan aktivasi, produk asli |
 | FEAT-28 | Penilaian sembilan kategori, achievement dan keterlacakan sumber poin | PAIN-04 → GOAL-04 | MVP; apresiasi lintas posisi dengan input sederhana sesuai instruksi terbaru | FEAT-03,05,07,08,09,10; aturan penilaian berversi |
+
+FEAT-29 (MVP diperluas), PAIN-06/GOAL-06 dan KPI-06 melengkapi katalog ini; rincian program loyalitas pada [bagian 16](#16-loyalitas-anggota--feat-29).
 
 ## 7. Goals, OKR dan definisi KPI
 
@@ -214,3 +216,21 @@ Pilot tetap empat kegiatan menurut KPI lama; tambahkan pengamatan beban input Go
 ## 15. Penyajian statistik v2.5
 
 Spider chart/radar menjadi satu-satunya jenis grafik pada Event dan Profil; tidak ada pemilih jenis grafik. Tujuannya membantu anggota melihat bentuk kontribusi sembilan kategori tanpa mengubah nilai atau menyamakan makna nilai event relatif dan akumulasi profil. Data numerik tetap tersedia untuk aksesibilitas/ketelitian. Jenis grafik tidak menambah input statistik atau hak baca; detail implementasi mengikuti Details/Mockup. Ini perluasan presentasi FEAT-10/FEAT-28 yang sudah diminta pengguna, bukan penambahan metrik atau klaim hasil uji kegunaan.
+
+## 16. Loyalitas anggota — FEAT-29
+
+Sumber: instruksi pengguna 14 November 2026 dan rencana v2.12 bagian 14. PAIN-06 adalah hipotesis kebutuhan apresiasi frekuensi main yang belum dipenuhi statistik. GOAL-06: mendukung partisipasi berulang melalui reward yang dapat diklaim; dampak retensi belum terbukti.
+
+| ID | Fitur/fungsi | Pain → goal | Nilai/fase | Dependensi |
+|---|---|---|---|---|
+| FEAT-29 | Poin loyalitas, saldo/riwayat, katalog, klaim, pemenuhan dan koreksi | PAIN-06 → GOAL-06 | MVP diperluas; apresiasi anggota yang sering main | FEAT-01/02/03/09; verifikasi kehadiran/partisipasi, anggaran dan petugas reward |
+
+| ID | Definisi outcome | Sumber | Baseline/target | Periode |
+|---|---|---|---|---|
+| GOAL-06 / KPI-06 | Anggota penerima kredit sah bulan M yang bermain pada >=1 event sah bulan M+1 / seluruh anggota penerima kredit sah bulan M x100% | Presensi/partisipasi dan riwayat kredit aktif setelah koreksi | Belum diukur / belum ditetapkan | Bulanan, zona program; tunggu M+1 selesai; denominator nol = tidak berlaku |
+
+Hitung anggota unik, catat versi koreksi. KPI mengukur partisipasi berulang, bukan membuktikan reward menyebabkan kenaikan. Pilot mengumpulkan alasan hadir/tidak hadir dan beban pemenuhan hadiah; tidak mengarang target.
+
+Usulan baseline memberi nominal tetap sekali per event selesai dengan hadir dan minimal satu laga terverifikasi, terlepas dari performa/posisi. Saldo awal 0, tanpa cap 100 atau konversi statistik. Ketentuan lengkap dan keputusan aktivasi mengikuti rencana bagian 14. Tamu dan event sebelum aktivasi tidak memperoleh poin otomatis.
+
+Risiko: presensi palsu ditangani verifikasi sumber; biaya/stok hadiah ditangani kuota dan pemilik anggaran; klaim ganda ditangani reservasi; koreksi setelah hadiah diterima ditangani riwayat selisih poin dan penahanan klaim. Saldo negatif bukan utang uang. Program bukan penjualan poin; reward terpisah dari toko opsional FEAT-27. Pemenuhan manual tidak menambahkan checkout/pengiriman atau kanal notifikasi baru. Gratis main harus direkonsiliasi petugas kas melalui prosedur koreksi berwenang dengan rujukan klaim, bukan otomatis dianggap pembayaran.
