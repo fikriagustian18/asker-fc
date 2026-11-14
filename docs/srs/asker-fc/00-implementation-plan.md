@@ -1,12 +1,15 @@
 # Implementation Plan Proyek — Asker Football Club
 
-- Versi: 2.13
+- Versi: 2.17
 - Tanggal: 14 November 2026
-- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
+- Status: revisi profil, penghapusan Kapten dan penghargaan tahunan diselaraskan sampai Mockup SRS v2.8; 40 layar berspesifikasi, 14 PNG baseline dan referensi gambar statis. Parameter tahunan dan validasi produksi tetap terbuka.
 - Bahasa: Indonesia; user story mengikuti format Inggris pada referensi skill.
 - Tujuan file: rencana penyusunan paket SRS dan gambaran pembangunan produk; bukan otorisasi implementasi aplikasi.
 - Upstream: jawaban pengguna butir 1–8 pada percakapan ini (tanpa nomor versi), ide awal, lampiran Untitled-1.txt, dan skill srs-documentation beserta referensi intake-and-plan. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Prioritas sumber: jawaban terbaru pengguna mengungguli lampiran awal yang masih menyebut “pengelola ruang”.
+
+
+> **Keputusan berlaku v2.9 — pembagian tim:** Anggota mendaftar kegiatan secara individu; sistem mengacak peserta dengan mempertimbangkan skill agar tim seimbang. Admin mengatur jumlah/kapasitas tim, memeriksa kelengkapan data, memicu pembagian, meninjau hasil dan mengunci susunan; bukan memilih pemain ke tim secara manual. UI Roster Admin, undangan/pengajuan/penerimaan roster antartim dan mode acak murni tidak digunakan pada alur ini. Ketentuan antartim/tagihan tim pada bagian lama menjadi catatan scope sebelumnya, bukan alur aktif; bila dibutuhkan sebagai format terpisah harus ditentukan kembali. Daftar tim hasil sistem tetap dapat dibaca. Rating tetap dihitung sistem; sumber/skala skill dan toleransi keseimbangan harus ditetapkan sebelum implementasi, tanpa otomatis menyamakan skill dengan rating.
 
 ## 1. Ringkasan dan dasar keputusan
 
@@ -67,7 +70,7 @@ Posisi bayar iuran setelah skor/foto adalah alur utama yang diminta pengguna; ak
 | Kalender dan peta | Kalender desktop dan agenda/list yang mudah dipakai di HP; setiap sesi memuat alamat, pin peta dan aksi buka petunjuk arah. Jika peta gagal, alamat dan tautan arah tetap tersedia | Provider peta, pengelolaan koordinat dan biaya integrasi belum dipilih |
 | Profil pemain | Foto, posisi dan nomor punggung dapat dikelola melalui profil/roster. Rekomendasi nomor unik dalam satu tim/kegiatan, bukan unik seluruh komunitas; posisi dan nomor boleh belum diisi | Visibilitas profil/foto dan aturan nomor pada tim tetap versus tim sementara perlu ditetapkan |
 | Top skor dan MVP bulanan | Top skor memakai rincian gol hasil final, mengecualikan gol bunuh diri dan menandai data belum lengkap. MVP pertandingan dan Pemain Terbaik Bulan Ini dipilih melalui voting terpisah; periode, publikasi dan revisi tercatat | Voting sudah ditetapkan pengguna; kelayakan pemilih/kandidat, periode, privasi suara dan aturan seri perlu dirinci |
-| Antar-komunitas | Asker FC tetap penyelenggara satu komunitas; kegiatan dapat diikuti tim yang mewakili komunitas lain. Liga satu putaran tetap baseline format. Ini perluasan peserta kegiatan, dengan penamaan/asal tim yang jelas | Aturan akun/pendaftaran peserta tamu dan cakupan kapten/pencatat eksternal harus dirinci. Dukungan ini tidak otomatis mengaktifkan onboarding tenant atau format gugur |
+| Antar-komunitas | Asker FC tetap penyelenggara satu komunitas; kegiatan dapat diikuti tim yang mewakili komunitas lain. Liga satu putaran tetap baseline format. Ini perluasan peserta kegiatan, dengan penamaan/asal tim yang jelas | Aturan akun/pendaftaran peserta tamu dan cakupan Admin/pengelola dan pencatat eksternal harus dirinci. Dukungan ini tidak otomatis mengaktifkan onboarding tenant atau format gugur |
 | Galeri | Pengelola menautkan album ke pertandingan dan mengelola publikasi foto serta highlight. Rekomendasi MVP mengunggah foto dan mencatat tautan video/preview dari layanan yang disepakati; tanpa sistem transcoding/streaming sendiri | Sumber media, batas unggah, layanan video, izin publikasi, moderasi dan akses album belum ditetapkan |
 | Kas dan iuran bulanan | Tambahkan tagihan per anggota/periode, verifikasi manual, saldo awal, pemasukan terverifikasi, biaya sewa lapangan dan ringkasan kas. Pisahkan jenis tagihan bulanan dan biaya kegiatan; catat transaksi sekali saja, beserta pelaku dan alasan koreksi | Tarif, jatuh tempo, penanggung jawab kas, kewenangan pencatatan pengeluaran dan aturan koreksi/saldo awal perlu ditetapkan. Rekomendasi penerbitan tagihan bulanan dilakukan manual per periode dengan pencegahan duplikasi |
 | Kontak dan sponsor | Admin yang diberi kewenangan mengelola nomor WhatsApp publik, tautan media sosial dan logo sponsor beserta tautan opsional. Gunakan logo yang disediakan, bukan sponsor rekaan | Kontak resmi, akun sosial, aset sponsor dan urutan penempatan belum diberikan |
@@ -84,17 +87,24 @@ Rekomendasi di atas belum diperlakukan sebagai keputusan pengguna. Rincian yang 
 
 Akses publik/anggota ini masih rekomendasi untuk review, bukan pengesahan bahwa semua data boleh dibuka. Batasan lama “halaman publik dan publikasi foto di luar MVP” digantikan oleh scope halaman baru dengan aturan publikasi yang perlu dirinci.
 
-### Peran dan batas akses awal
+### Peran dan batas akses — klarifikasi pengguna 14 November 2026
+
+**Keputusan pengguna v2.15:** peran Kapten tidak lagi digunakan. Pada revisi tersebut pengelolaan roster dialihkan ke Admin; keputusan terbaru v2.9 menggantinya dengan pembagian tim otomatis berdasarkan skill. Dokumen SRS turunan v2.8 telah diselaraskan terhadap penghapusan peran ini.
+
+Dua peran utama untuk pengelolaan profil adalah **Admin/pengelola** dan **Member/Anggota**. Admin memelihara profil klub dan data resmi pemain; Member dapat mengustomisasi data miliknya hanya pada field yang diizinkan. Superadmin dan pencatat skor di bawah tetap merupakan kewenangan operasional yang sudah ada, bukan akses bebas untuk mengubah profil atau rating.
 
 | Peran | Cakupan |
 |---|---|
 | Superadmin | Seluruh komunitas, pengaturan, anggota, penugasan pengelola dan akses |
-| Admin/pengelola | Kegiatan yang ditugaskan, peserta, tim, jadwal, validasi hasil dan biaya |
-| Kapten | Roster timnya pada kegiatan terkait, tunduk pada tenggat dan persetujuan pengelola |
+| Admin/pengelola | Memelihara profil klub dan data resmi pemain sesuai penugasan; mengelola kegiatan, peserta, tim, jadwal, validasi hasil dan biaya dalam cakupan izin |
 | Pencatat skor | Hasil pertandingan yang ditugaskan; koreksi mengikuti aturan audit |
-| Anggota | Profil sendiri, pendaftaran, informasi kegiatan, jadwal dan hasil yang diizinkan |
+| Member/Anggota | Mengustomisasi field profil sendiri yang diizinkan; pendaftaran, informasi kegiatan, jadwal dan hasil sesuai akses. Tidak mengedit profil klub, data anggota lain atau nilai hasil perhitungan sistem |
 
 Rekomendasi: satu akun boleh memiliki beberapa peran, dengan otorisasi berdasarkan komunitas, kegiatan, tim, atau pertandingan. Detail konflik kewenangan akan diturunkan pada PRD dan Product Details.
+
+**Usulan batas field untuk dirinci dalam SRS:** Member dapat mengubah foto, nama panggilan, bio dan preferensi tampilan miliknya. Identitas resmi pemain, status keanggotaan, peran, roster, posisi resmi dan nomor punggung dalam tim dipelihara Admin; Member dapat mengajukan koreksi atau preferensi. Perubahan posisi profil tidak mengubah snapshot posisi event yang sudah final. Pengelolaan profil klub memerlukan izin tingkat komunitas; penugasan sebagai pengelola event saja tidak otomatis memberikannya. Daftar field final dan aturan moderasi foto masih perlu ditetapkan.
+
+**Rating tetap dikelola sistem:** sembilan kategori, overall, achievement statistik, poin loyalitas dan peringkat bukan field yang dapat ditulis langsung oleh Admin maupun Member. Admin mencatat/mengesahkan fakta sumber serta koreksi beralasan; sistem menghitung ulang sesuai versi aturan dan menyimpan jejak perubahan. Member melihat hasil dan mengajukan koreksi. Pembatasan field, kepemilikan data dan cakupan petugas harus ditegakkan di API, termasuk jika request dikirim langsung.
 
 ## 2. Matriks stack
 
@@ -131,8 +141,8 @@ Desain multi-komunitas awal: identitas komunitas pada data dan batas akses domai
 
 1. Akun, profil anggota, penugasan peran, serta login email dan Google. Penyatuan akun harus diverifikasi, bukan semata-mata mencocokkan email.
 2. Kegiatan liga dan fun football rutin; konfigurasi kapasitas, waktu, lapangan, serta buka/tutup pendaftaran.
-3. Dua mode pendaftaran per kegiatan: individu atau antartim. Rekomendasi tidak mencampur kedua mode dalam satu kegiatan pada MVP untuk menghindari konflik roster.
-4. Pembagian otomatis peserta individu dengan pilihan mode acak atau seimbang berdasarkan skill, kapasitas tim terjaga, pratinjau, perubahan manual dan penguncian roster. Mode skill menggunakan penilaian yang didefinisikan dan dapat ditinjau; aturan penilaian serta penanganan data belum lengkap harus dirinci sebelum implementasi.
+3. Pendaftaran individu melalui RSVP; peserta dibagi otomatis ke tim berdasarkan skill.
+4. Pengacakan tim berbasis skill dengan kapasitas terjaga, pratinjau metrik keseimbangan dan penguncian. Tidak ada mode acak murni atau pemindahan pemain manual; data skill belum lengkap menahan pembagian.
 5. Rekomendasi liga satu putaran; pembentukan jadwal memperhitungkan durasi, lapangan, dan larangan tim bermain bersamaan. Jadwal dapat direvisi oleh pengelola dengan pemeriksaan benturan.
 6. Input hasil, validasi/finalisasi, koreksi beralasan dan jejak perubahan; klasemen dihitung dari hasil yang sah.
 7. Rekomendasi poin menang/seri/kalah 3/1/0; urutan peringkat poin, selisih gol, lalu gol memasukkan. Jika tetap sama, tampilkan peringkat bersama; penentuan juara mengikuti aturan tambahan yang ditetapkan sebelum kegiatan dimulai, bukan keputusan ad hoc setelah hasil diketahui. Nilai dan urutan ini merupakan usulan untuk review, bukan aturan resmi klub.
@@ -168,7 +178,7 @@ Ketentuan berikut merupakan rekomendasi untuk menghilangkan ambiguitas scope, bu
 | Area | Dasar perencanaan MVP |
 |---|---|
 | Fun football rutin | Satu kegiatan untuk setiap sesi/tanggal, dapat dibuat dengan menyalin konfigurasi kegiatan sebelumnya; tanpa mesin pengulangan kalender. Laga persahabatan dapat dicatat tanpa klasemen liga |
-| Pendaftaran antartim | Kapten memilih peserta berakun dan masing-masing mengonfirmasi; tim dapat mewakili komunitas lain dalam kegiatan Asker FC. Alur tamu perlu dirinci; pemain tanpa akun tidak otomatis diizinkan dan kapten tidak membuat identitas pribadi tanpa persetujuan |
+| Pendaftaran antartim | Admin/pengelola yang ditugaskan memilih peserta berakun dan masing-masing mengonfirmasi; tim dapat mewakili komunitas lain dalam kegiatan Asker FC. Alur tamu perlu dirinci; pemain tanpa akun tidak otomatis diizinkan dan Admin/pengelola tidak membuat identitas pribadi tanpa persetujuan |
 | Keunikan peserta | Satu anggota hanya masuk satu roster dalam kegiatan yang sama. Kapasitas diperiksa kembali ketika pendaftaran dikonfirmasi, termasuk permintaan bersamaan |
 | Kuota dan pembatalan | Pendaftaran ditolak saat penuh dengan alasan jelas; waiting list otomatis di luar MVP. Pengunduran diri sebelum roster terkunci membebaskan kuota; setelah terkunci diproses pengelola dengan jejak perubahan |
 | Pembagian tim | Dilakukan sebelum roster terkunci; pengacakan ulang ditinjau sebelum disimpan. Perubahan setelah jadwal terbit harus memperlihatkan dampaknya dan tidak menghapus hasil yang sudah dicatat |
@@ -194,7 +204,7 @@ Implementasi aplikasi dan deployment produksi dalam tugas dokumentasi ini; aplik
 
 **Usulan untuk review: MVP membatasi akun dan peserta pada usia 18 tahun ke atas**, dengan deklarasi usia, informasi batas usia yang jelas, penanganan laporan akun tidak sesuai, dan pemeriksaan terbatas oleh pengelola bila diperlukan. Hindari pengumpulan salinan identitas secara rutin. Pembatasan ini adalah pilihan scope yang diusulkan, bukan keputusan pengguna atau jaminan kepatuhan.
 
-Jika klub memang memiliki peserta di bawah 18 tahun, scope harus diperbarui sebelum PRD difinalkan: mekanisme usia dan persetujuan orang tua/wali, verifikasi wali, batas akses profil, penarikan persetujuan, retensi/penghapusan, dan prosedur operasional. Jangan sekadar mengizinkan kapten mendaftarkan anak tanpa proses tersebut.
+Jika klub memang memiliki peserta di bawah 18 tahun, scope harus diperbarui sebelum PRD difinalkan: mekanisme usia dan persetujuan orang tua/wali, verifikasi wali, batas akses profil, penarikan persetujuan, retensi/penghapusan, dan prosedur operasional. Jangan sekadar mengizinkan Admin/pengelola mendaftarkan anak tanpa proses tersebut.
 
 Asumsi yurisdiksi Indonesia perlu dikonfirmasi sebelum peluncuran. UU 27/2022 Pasal 25 mengatur persetujuan orang tua/wali untuk pemrosesan data anak. PP 17/2025 mendefinisikan anak sebagai seseorang di bawah 18 tahun serta memuat perlindungan dalam layanan elektronik. Penerapan lengkap, aturan pelaksana terkini dan mekanisme verifikasi perlu ditinjau berdasarkan layanan aktual; rekomendasi ini bukan kesimpulan legal final.
 
@@ -274,7 +284,7 @@ Target awal pengguna adalah 8–12 minggu; baseline 10–12 minggu dibuat untuk 
 | Tahap baseline v1.4 | Alokasi historis, belum direestimasi | Hasil dasar yang tetap dibutuhkan |
 |---|---|---|
 | Fondasi | Minggu 1–2 | Struktur React/API, PostgreSQL, Docker, CI, autentikasi, batas akses, model komunitas dan lingkungan staging |
-| Keanggotaan/kegiatan | Minggu 3–4 | Anggota, kegiatan, dua mode daftar, roster, kapten dan pembagian tim |
+| Keanggotaan/kegiatan | Minggu 3–4 | Anggota, kegiatan, dua mode daftar, pengelolaan roster oleh Admin/pengelola dan pembagian tim |
 | Kompetisi | Minggu 5–6 | Jadwal liga, pemeriksaan konflik, skor, koreksi dan klasemen |
 | Operasional | Minggu 7–8 | Presensi, statistik, pembayaran manual, tautan WhatsApp dan alur admin |
 | Penguatan/pilot | Minggu 9–10 | Regresi lintas fitur, latihan backup/restore, UAT dan pilot satu kegiatan dari pendaftaran hingga hasil final |
@@ -884,3 +894,30 @@ Progres: enam dokumen diselaraskan; pemeriksaan revisi dicatat pada [Traceabilit
 Instruksi pengguna melanjutkan hingga mockup SRS mengotorisasi dua gambar tambahan: SCR-37 Reward Saya (390x844) dan SCR-38 Kelola Reward (1440x900). Total referensi aktif menjadi 14 setelah produksi dan inspeksi. Ketentuan sebelumnya yang membatasi revisi loyalitas pada teks digantikan oleh scope ini. Angka gambar adalah data sintetis, bukan penetapan nominal program. Produksi menggunakan built-in imagegen; status produksi dan inspeksi selesai. Rencana v2.13 menyelaraskan paket v2.7 dengan manifest-v7.
 
 Hasil kelanjutan: dua PNG asli tersimpan lokal, diperiksa visual, prompt aktual dan dimensi tercatat pada [manifest v7](./mockups/manifest-v7.json). Kedua layar memakai wordmark referensi; implementasi tetap memakai logo asli. Angka sintetis tidak menetapkan nominal klub. Seluruh kebutuhan sampai Mockup SRS tersedia; aktivasi program tetap memerlukan parameter yang tercatat.
+
+### 14.2. Penghargaan tahunan — keputusan pengguna v2.14
+
+**Keputusan pengguna:** selain reward keaktifan bagi anggota yang sering main, ada penghargaan akhir tahun untuk pemilik poin tertinggi, dengan status bergengsi seperti Ballon d'Or. Status ini ditampilkan pada profil pemain beserta tahun penghargaan. Nama resmi penghargaan belum ditetapkan; “Pemain Terbaik Tahunan Asker FC” merupakan nama kerja. Kebutuhan ini telah diturunkan ke SRS v2.8 dan mockup gambar; aplikasi belum diimplementasikan.
+
+**Usulan dasar poin:** gunakan total poin loyalitas yang diperoleh dari partisipasi sah dalam satu tahun, setelah koreksi sumber. Jangan memakai saldo tersisa setelah klaim: penukaran reward, reservasi atau pembatalan klaim tidak menaikkan/menurunkan poin peringkat tahunan. Rating statistik/overall tetap mengikuti bagian 13 dan tidak dikonversi ke loyalitas. Pilihan basis loyalitas ini masih usulan karena pengguna belum menentukan jenis poin untuk penghargaan tahunan; jika yang dimaksud prestasi statistik, rumus agregasi tahunan perlu ditentukan terpisah sebelum implementasi.
+
+**Usulan alur sistem:**
+
+1. Tetapkan periode tahun kalender dan zona waktu komunitas, kelayakan peserta, versi aturan serta kebijakan seri sebelum periode aktif. Tahun pertama hanya menghitung sumber sejak aktivasi program, kecuali migrasi historis disahkan secara eksplisit.
+2. Sistem menampilkan peringkat sementara dari sumber yang sudah terverifikasi. Sumber yang belum final tidak menentukan pemenang; data tidak lengkap diberi status yang jelas.
+3. Setelah periode tutup dan verifikasi selesai, sistem menghitung pemenang. Admin berwenang memfinalisasi/publikasi hasil berbasis perhitungan tersebut, tanpa memilih pemenang atau mengisi poin secara manual. Jika tidak ada peserta dengan poin sah, tidak ada penerima otomatis.
+4. Simpan penghargaan per tahun pada profil dan riwayat pemenang. Periode baru memulai perolehan tahunan baru tanpa menghapus saldo loyalitas atau penghargaan tahun sebelumnya. Finalisasi ulang/retry tidak menggandakan status atau hadiah.
+5. Koreksi sumber setelah finalisasi harus beralasan dan tercatat, menghitung ulang peringkat serta menerbitkan revisi penghargaan dengan histori penerima sebelumnya. Status tahunan tidak menjadi tambahan rating atau poin yang menghitung dirinya sendiri.
+
+**Keputusan terbuka:** basis poin final, nama/status visual, zona dan tenggat finalisasi, syarat kelayakan anggota, aturan seri (usulan juara bersama), visibilitas peringkat serta hadiah fisik/manfaat tambahan bila ada. Status tahunan adalah reward yang sudah diminta; hadiah material dan nominalnya belum ditetapkan. Ketentuan ini harus selesai sebelum program tahunan diaktifkan.
+
+**Pekerjaan paket yang dituntaskan pada v2.16:** penyelarasan Planning, PRD, Details, Mockup SRS dan Traceability untuk izin field profil, peringkat tahunan, finalisasi/koreksi penghargaan dan badge profil. Cakup uji akses silang anggota, penolakan edit rating langsung oleh semua peran, klaim reward tanpa perubahan peringkat tahunan, pergantian tahun, poin seri, tidak ada peserta layak, koreksi sumber dan retry finalisasi. Inventaris 14 gambar saat ini tetap baseline v2.13 dan belum memvisualisasikan penghargaan tahunan.
+
+
+### 14.3. Penyelesaian revisi profil dan penghargaan — v2.16
+
+Instruksi pengguna melanjutkan hingga Mockup SRS telah diproses: Planning, PRD, Details, Mockup SRS dan Traceability v2.8 memuat izin field, penghapusan Kapten, penanggung jawab tagihan tim serta FEAT-30 penghargaan tahunan. Relasi US-37–39, AC-154–166, FLOW-30/31, STATE-26 dan SCR-39/40 ditambahkan tanpa mengganti ID lama. [Mockup gambar statis](./mockups/profile-awards-v2.9.png) memperlihatkan profil Member, profil klub, peringkat dan finalisasi dengan data contoh. Basis loyalitas dan parameter tahunan tetap usulan yang menahan aktivasi; dokumentasi tidak mengesahkan rumus baru atau membangun aplikasi.
+
+### Penyelarasan pembagian tim v2.9
+
+UI Roster Admin dihapus dari gambar aktif. Alur berlaku: RSVP individu → pengacakan otomatis berbasis skill → pratinjau keseimbangan → simpan/kunci → lihat susunan. Referensi antartim, undangan tim, acak murni dan penempatan manual dalam baseline lama tidak berlaku untuk alur ini. ID lama dipertahankan untuk ketertelusuran; bagian yang digantikan bukan persyaratan aktif.

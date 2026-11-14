@@ -1,11 +1,14 @@
 # Product Planning — Asker FC
 
-- Versi: 2.7 · Tanggal: 14 November 2026
-- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
-- Upstream: [Implementation Plan v2.13](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna “proses implementation plan tersebut”, 11 November 2026. Parameter rencana menjadi baseline dokumentasi, belum hasil kalibrasi klub. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
+- Versi: 2.9 · Tanggal: 14 November 2026
+- Status: revisi akses profil, penghapusan peran Kapten dan penghargaan tahunan selesai sampai spesifikasi Mockup SRS v2.8; referensi gambar statis menyertai revisi. Parameter tahunan belum disahkan; bukan implementasi aplikasi.
+- Upstream: [Implementation Plan v2.16](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna “proses implementation plan tersebut”, 11 November 2026. Parameter rencana menjadi baseline dokumentasi, belum hasil kalibrasi klub. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Nama kerja: **Asker FC**. Nama komunitas sudah diberikan; tidak diperlukan kandidat nama produk baru. Tidak ada klaim ketersediaan merek/domain.
 - Konsep ditetapkan pengguna: **“Kick & Kumpul” — website komunitas fun football.** Asker FC tetap nama komunitas; Kick & Kumpul menjadi konsep pengalaman dan pesan produk.
 - Sumber keputusan: jawaban pengguna, rencana disetujui; fakta eksternal pada bagian sumber. Persona, masalah operasional dan UVP adalah hipotesis kecuali disebut sebagai keputusan pengguna.
+
+
+> **Keputusan berlaku v2.9 — pembagian tim:** Anggota mendaftar kegiatan secara individu; sistem mengacak peserta dengan mempertimbangkan skill agar tim seimbang. Admin mengatur jumlah/kapasitas tim, memeriksa kelengkapan data, memicu pembagian, meninjau hasil dan mengunci susunan; bukan memilih pemain ke tim secara manual. UI Roster Admin, undangan/pengajuan/penerimaan roster antartim dan mode acak murni tidak digunakan pada alur ini. Ketentuan antartim/tagihan tim pada bagian lama menjadi catatan scope sebelumnya, bukan alur aktif; bila dibutuhkan sebagai format terpisah harus ditentukan kembali. Daftar tim hasil sistem tetap dapat dibaca. Rating tetap dihitung sistem; sumber/skala skill dan toleransi keseimbangan harus ditetapkan sebelum implementasi, tanpa otomatis menyamakan skill dengan rating.
 
 ## 1. Ringkasan produk dan nilai
 
@@ -15,7 +18,7 @@ Asker FC adalah **website komunitas fun football berkonsep “Kick & Kumpul”**
 
 Makna konsep: **Kick** mewakili bermain bola untuk kesenangan dan aktivitas bersama; **Kumpul** mewakili pertemuan, pertemanan, dan rasa menjadi bagian dari komunitas. Sesi fun football rutin menjadi pengalaman utama; liga dan turnamen menjadi variasi kegiatan komunitas yang tetap mendukung semangat bermain bersama. Skor, klasemen dan statistik berfungsi sebagai informasi pendukung dengan penyajian yang ramah.
 
-Contoh utama: **buka link → lihat jadwal → RSVP → terima pengingat WhatsApp → main → lihat skor dan foto → bayar iuran**. Login mengembalikan anggota ke sesi semula; RSVP individu yang memenuhi syarat cukup satu aksi. Iuran tidak menunggu publikasi hasil/foto dan tetap dapat dibuka langsung. Biaya kegiatan di muka, bila ditetapkan, adalah cabang yang diumumkan sebelum RSVP, bukan alur utama semua sesi. Pada kegiatan antartim, kapten mengajukan roster dan setiap anggota menyetujui sendiri.
+Contoh utama: **buka link → lihat jadwal → RSVP → terima pengingat WhatsApp → main → lihat skor dan foto → bayar iuran**. Login mengembalikan anggota ke sesi semula; RSVP individu yang memenuhi syarat cukup satu aksi. Iuran tidak menunggu publikasi hasil/foto dan tetap dapat dibuka langsung. Biaya kegiatan di muka, bila ditetapkan, adalah cabang yang diumumkan sebelum RSVP, bukan alur utama semua sesi. Pada kegiatan antartim, pengelola mengajukan roster dan setiap anggota menyetujui sendiri.
 
 Pengelolaan melalui WhatsApp dan spreadsheet diasumsikan oleh pengguna, belum diamati langsung. Produk tidak menggantikan percakapan sosial; tautan WhatsApp membawa pengguna ke informasi resmi kegiatan.
 
@@ -35,7 +38,6 @@ Persona berikut berbasis peran, belum hasil wawancara. Motivasi yang akan divali
 |---|---|---|---|
 | Anggota | Mudah tahu jadwal main, daftar dan bayar; merasa menjadi bagian dari tim saat bermain bersama | Membuka tautan kegiatan dari WhatsApp di HP, memeriksa jadwal/biaya dan status daftar/bayar | Informasi jadwal, slot, pembayaran dan teman satu tim belum jelas |
 | Pengelola | Memudahkan anggota berkumpul dan memastikan kegiatan ramah serta tertib | Desktop untuk konfigurasi, HP di lapangan | Administrasi berulang, pergantian roster, cuaca dan perubahan jadwal |
-| Kapten | Mengajukan tim dengan roster yang benar | Mengundang anggota terdaftar, memantau konfirmasi | Pemain masuk dua tim atau belum menyetujui |
 | Pencatat skor | Mengirim hasil tanpa salah pertandingan | HP, perhatian terbagi di lapangan | Koneksi tidak stabil, input bersamaan |
 | Superadmin | Mengelola anggota dan penugasan secara terkendali | Mengurus akses, audit dan penanganan laporan | Akun berlebihan atau data tidak semestinya terbuka |
 
@@ -117,7 +119,7 @@ Objective produk: **memudahkan anggota tahu jadwal main, daftar, dan bayar, seka
 |---|---|---|
 | Tahu jadwal main | FEAT-03, FEAT-06, FEAT-12 | Anggota dapat menemukan waktu, lokasi/lapangan dan versi jadwal terbaru; amati kebutuhan bantuan |
 | Daftar | FEAT-01, FEAT-04 | Anggota memahami kuota, menyelesaikan pendaftaran/konfirmasi dan mengenali statusnya; KPI-01 tetap digunakan |
-| Bayar | FEAT-11, FEAT-23 | Pada kegiatan berbayar, anggota/kapten memahami nominal, tujuan transfer, tenggat, unggah bukti dan hasil verifikasi; catat hambatan dan bantuan yang diperlukan |
+| Bayar | FEAT-11, FEAT-23 | Pada kegiatan berbayar, pemilik tagihan memahami nominal, tujuan transfer, tenggat, unggah bukti dan hasil verifikasi; catat hambatan dan bantuan yang diperlukan |
 | Kebersamaan tim | FEAT-04, FEAT-05, FEAT-09 | Tanyakan apakah anggota mengetahui rekan satu tim dan merasa dilibatkan saat bermain bersama; kumpulkan umpan balik kualitatif, tanpa menganggap kehadiran sebagai bukti rasa kebersamaan |
 
 Validasi di atas belum dilakukan. Tujuan kebersamaan merupakan keputusan produk; keberhasilan mencapainya belum menjadi fakta riset. Tidak ada baseline atau target numerik baru yang diasumsikan.
@@ -153,7 +155,7 @@ Pemicu evaluasi skalabilitas adalah hasil pengukuran latensi, beban puncak dan w
 
 ## 10. Peluncuran dan adopsi
 
-Segmen awal hanya anggota Asker FC. Pengelola mengumumkan satu tautan melalui grup WhatsApp, kapten membantu konfirmasi anggota, dan satu petugas mendampingi pada pilot. Pesan: **“Kick & Kumpul: yuk main bola dan kumpul bareng Asker FC. Pilih sesi, daftar, lalu ketemu di lapangan.”** Informasi jadwal dan hasil tetap tersedia sebagai pendukung. Tidak diperlukan iklan berbayar atau akuisisi komunitas lain.
+Segmen awal hanya anggota Asker FC. Pengelola mengumumkan satu tautan melalui grup WhatsApp, pengelola membantu konfirmasi anggota, dan satu petugas mendampingi pada pilot. Pesan: **“Kick & Kumpul: yuk main bola dan kumpul bareng Asker FC. Pilih sesi, daftar, lalu ketemu di lapangan.”** Informasi jadwal dan hasil tetap tersedia sebagai pendukung. Tidak diperlukan iklan berbayar atau akuisisi komunitas lain.
 
 Eksperimen aktivasi: amati jumlah anggota yang menyelesaikan konfirmasi tanpa bantuan (KPI-01), alasan gagal, dan waktu bantuan. Jika rendah, sederhanakan instruksi/formulir dalam scope sebelum menambah kanal. Evaluasi empat kegiatan pertama untuk melihat pola adopsi; jangan menyimpulkan market fit dari satu acara.
 
@@ -234,3 +236,21 @@ Hitung anggota unik, catat versi koreksi. KPI mengukur partisipasi berulang, buk
 Usulan baseline memberi nominal tetap sekali per event selesai dengan hadir dan minimal satu laga terverifikasi, terlepas dari performa/posisi. Saldo awal 0, tanpa cap 100 atau konversi statistik. Ketentuan lengkap dan keputusan aktivasi mengikuti rencana bagian 14. Tamu dan event sebelum aktivasi tidak memperoleh poin otomatis.
 
 Risiko: presensi palsu ditangani verifikasi sumber; biaya/stok hadiah ditangani kuota dan pemilik anggaran; klaim ganda ditangani reservasi; koreksi setelah hadiah diterima ditangani riwayat selisih poin dan penahanan klaim. Saldo negatif bukan utang uang. Program bukan penjualan poin; reward terpisah dari toko opsional FEAT-27. Pemenuhan manual tidak menambahkan checkout/pengiriman atau kanal notifikasi baru. Gratis main harus direkonsiliasi petugas kas melalui prosedur koreksi berwenang dengan rujukan klaim, bukan otomatis dianggap pembayaran.
+
+## 17. Profil terkelola dan penghargaan tahunan — v2.8
+
+Otorisasi: instruksi pengguna melanjutkan rencana v2.15 hingga Mockup SRS. Admin/pengelola memelihara profil klub dan data resmi pemain; Member mengustomisasi profil sendiri dalam batas field. Peran Kapten dihapus, termasuk pada tim tamu. Persetujuan roster tetap dilakukan setiap pemain. Penanggung jawab tagihan tim adalah relasi kepemilikan tagihan, bukan peran baru dengan hak roster.
+
+| ID | Kebutuhan | Nilai dan dependensi |
+|---|---|---|
+| FEAT-01/02 | Batas field profil, pengelolaan klub dan pemain, penolakan akses lintas anggota | Satu sumber data resmi; penugasan komunitas/event, audit dan verifikasi foto |
+| FEAT-30 | Peringkat dan penghargaan tahunan bagi poin tertinggi | Apresiasi tahunan di luar klaim reward; bergantung pada sumber poin sah, aturan periode dan finalisasi |
+| PAIN-07 → GOAL-07 | Apresiasi keaktifan belum memiliki pengakuan tahunan | Penghargaan berstatus dan bertahun pada profil; dampak motivasi masih hipotesis |
+
+Baseline rancangan menggunakan poin loyalitas yang diperoleh dalam tahun, bersih dari koreksi sumber; penukaran reward tidak mengurangi poin tahunan. Ini usulan, bukan keputusan jenis poin pengguna. Nama kerja Pemain Terbaik Tahunan Asker FC terinspirasi status seperti Ballon d'Or; bukan klaim afiliasi. Hadiah material tambahan belum ditetapkan. Rating statistik tetap dihitung sistem dan tidak dikonversi menjadi poin loyalitas.
+
+KPI-07 usulan: proporsi anggota aktif yang membuka peringkat tahunan pada periode publikasi; baseline/target belum tersedia, pengukuran memerlukan keputusan instrumentasi dan privasi. Pilot memeriksa pemahaman perbedaan saldo, poin tahunan dan rating, kejelasan status sementara/final serta proses koreksi. Tidak ada klaim peningkatan retensi sebelum pengukuran.
+
+### Penyelarasan pembagian tim v2.9
+
+UI Roster Admin dihapus dari gambar aktif. Alur berlaku: RSVP individu → pengacakan otomatis berbasis skill → pratinjau keseimbangan → simpan/kunci → lihat susunan. Referensi antartim, undangan tim, acak murni dan penempatan manual dalam baseline lama tidak berlaku untuk alur ini. ID lama dipertahankan untuk ketertelusuran; bagian yang digantikan bukan persyaratan aktif.

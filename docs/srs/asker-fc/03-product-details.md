@@ -1,10 +1,13 @@
 # Product Details — Asker FC
 
-- Versi: 2.7 · Tanggal: 14 November 2026
-- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
-- Upstream: [PRD v2.7](./02-prd.md), [Product Planning v2.7](./01-product-planning.md), [rencana v2.13](./00-implementation-plan.md), pelaksanaan persetujuan v2.7 tanggal 11 November 2026. ID lama dipertahankan; FLOW-22–26 baru untuk penilaian. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
+- Versi: 2.9 · Tanggal: 14 November 2026
+- Status: revisi akses profil, penghapusan peran Kapten dan penghargaan tahunan selesai sampai spesifikasi Mockup SRS v2.8; referensi gambar statis menyertai revisi. Parameter tahunan belum disahkan; bukan implementasi aplikasi.
+- Upstream: [PRD v2.8](./02-prd.md), [Product Planning v2.8](./01-product-planning.md), [rencana v2.16](./00-implementation-plan.md), pelaksanaan persetujuan v2.7 tanggal 11 November 2026. ID lama dipertahankan; FLOW-22–26 baru untuk penilaian. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Batas: perilaku pengguna dan aturan domain; tidak merancang API, skema database atau kode.
 - Asumsi: komunitas tunggal, pengguna 18+, satu mode pendaftaran per kegiatan, koneksi internet. Nilai batas formulir di bawah adalah **usulan spesifikasi**, bukan aturan klub yang sudah ada.
+
+
+> **Keputusan berlaku v2.9 — pembagian tim:** Anggota mendaftar kegiatan secara individu; sistem mengacak peserta dengan mempertimbangkan skill agar tim seimbang. Admin mengatur jumlah/kapasitas tim, memeriksa kelengkapan data, memicu pembagian, meninjau hasil dan mengunci susunan; bukan memilih pemain ke tim secara manual. UI Roster Admin, undangan/pengajuan/penerimaan roster antartim dan mode acak murni tidak digunakan pada alur ini. Ketentuan antartim/tagihan tim pada bagian lama menjadi catatan scope sebelumnya, bukan alur aktif; bila dibutuhkan sebagai format terpisah harus ditentukan kembali. Daftar tim hasil sistem tetap dapat dibaca. Rating tetap dihitung sistem; sumber/skala skill dan toleransi keseimbangan harus ditetapkan sebelum implementasi, tanpa otomatis menyamakan skill dengan rating.
 
 ## 1. Istilah dan aturan dasar
 
@@ -23,20 +26,20 @@
 
 ## 2. Matriks kewenangan
 
-“Pengelola” di bawah mencakup superadmin atau admin yang ditugaskan pada kegiatan itu. Penugasan kapten/pencatat hanya dapat dibuat oleh pengelola; hanya superadmin yang memberi peran pengelola kegiatan.
+“Pengelola” di bawah mencakup superadmin atau admin yang ditugaskan pada kegiatan itu. Penugasan pencatat hanya dapat dibuat oleh pengelola; hanya superadmin yang memberi peran pengelola kegiatan.
 
-| Tindakan | Anggota | Kapten | Pencatat | Pengelola | Superadmin |
-|---|---|---|---|---|---|
-| Profil sendiri dan pendaftaran pribadi | Ya | Ya | Ya | Ya | Ya |
-| Melihat kegiatan terbit/jadwal/hasil internal | Anggota aktif | Sama | Sama | Termasuk draft kegiatan tugasnya | Semua |
-| Undang/ubah roster sebelum terkunci | Persetujuan diri | Tim tugasnya | Tidak karena peran pencatat | Kegiatan tugasnya | Semua |
-| Konfigurasi/publikasi, pembagian dan jadwal | Tidak | Tidak | Tidak | Kegiatan tugasnya | Semua |
-| Kirim skor/partisipasi laga | Tidak | Tidak karena peran kapten | Laga tugasnya | Kegiatan tugasnya | Semua |
-| Finalisasi/koreksi hasil dan roster terkunci | Tidak | Tidak | Tidak karena peran pencatat | Kegiatan tugasnya, alasan wajib untuk koreksi | Semua |
-| Presensi kegiatan | Lihat diri | Lihat tim | Lihat roster laga | Catat/koreksi kegiatan tugasnya | Semua |
-| Bukti transfer | Tagihan pribadi | Tagihan timnya | Tidak karena peran pencatat | Kegiatan tugasnya | Semua |
-| Anggota/peran pengelola | Tidak | Tidak | Tidak | Lihat peserta yang diperlukan | Kelola |
-| Audit | Riwayat keputusan diri yang relevan | Tim/tagihan sendiri yang relevan | Status kiriman sendiri | Riwayat operasional kegiatan tugasnya | Semua |
+| Tindakan | Anggota | Pencatat | Pengelola | Superadmin |
+|---|---|---|---|---|
+| Profil sendiri dan pendaftaran pribadi | Ya | Ya | Ya | Ya |
+| Melihat kegiatan terbit/jadwal/hasil internal | Anggota aktif | Sama | Termasuk draft kegiatan tugasnya | Semua |
+| Undang/ubah roster sebelum terkunci | Persetujuan diri | Tidak karena peran pencatat | Kegiatan tugasnya | Semua |
+| Konfigurasi/publikasi, pembagian dan jadwal | Tidak | Tidak | Kegiatan tugasnya | Semua |
+| Kirim skor/partisipasi laga | Tidak | Laga tugasnya | Kegiatan tugasnya | Semua |
+| Finalisasi/koreksi hasil dan roster terkunci | Tidak | Tidak karena peran pencatat | Kegiatan tugasnya, alasan wajib untuk koreksi | Semua |
+| Presensi kegiatan | Lihat diri | Lihat roster laga | Catat/koreksi kegiatan tugasnya | Semua |
+| Bukti transfer | Tagihan pribadi atau tagihan tim sebagai penanggung jawab yang ditunjuk | Tidak karena peran pencatat | Kegiatan tugasnya | Semua |
+| Anggota/peran pengelola | Tidak | Tidak | Lihat peserta yang diperlukan | Kelola |
+| Audit | Riwayat keputusan diri yang relevan | Status kiriman sendiri | Riwayat operasional kegiatan tugasnya | Semua |
 
 Hak baca data kontak tidak otomatis mengikuti hak lihat roster. Tampilan roster menggunakan nama tampilan, bukan email/telepon. Akun dengan dua peran mendapat gabungan hak untuk objek yang ditugaskan, bukan akses global. Bila petugas juga pengelola, ia boleh memfinalkan hasilnya sendiri; sistem mencatat kedua tindakan. Pemisahan dua orang tidak dijanjikan MVP.
 
@@ -59,13 +62,13 @@ Aturan awal pembuatan kegiatan: superadmin membuat atau menyalin draft lalu menu
 | Periode daftar / STATE-03 | Ditutup | Buka ulang/pengelola | Belum berjalan, roster belum terkunci; alasan jika jadwal terbit | Terbuka | Kuota aktual ditampilkan | Ditolak bila kegiatan berjalan/batal |
 | Individu / STATE-04 | Belum daftar | Konfirmasi/anggota | Terbuka, aktif, unik, kuota tersedia | Terdaftar | Slot terisi tepat sekali | Tidak membuat pendaftaran |
 | Individu / STATE-04 | Terdaftar | Batal/anggota | Roster belum terkunci | Dibatalkan | Kuota dilepas; tagihan terpisah | Jika terkunci, hubungi pengelola |
-| Undangan / STATE-05 | Belum ada | Undang/kapten | Tim draft, anggota aktif | Menunggu | Anggota melihat undangan | Tidak membuat profil baru |
+| Undangan / STATE-05 | Belum ada | Undang/pengelola | Tim draft, anggota aktif | Menunggu | Anggota melihat undangan | Tidak membuat profil baru |
 | Undangan / STATE-05 | Menunggu | Terima/anggota | Tim belum diajukan, belum di roster lain | Disetujui | Pemain kandidat roster, belum peserta diterima | Jelaskan konflik terbaru |
 | Undangan / STATE-05 | Menunggu | Tolak/anggota | Milik anggota | Ditolak | Tidak menjadi kandidat | Tetap jika operasi belum diketahui |
-| Tim / STATE-06 | Draft | Ajukan/kapten | Jumlah kandidat disetujui memenuhi batas, nama unik | Diajukan | Roster menunggu pemeriksaan | Sorot pemain belum menyetujui |
+| Tim / STATE-06 | Draft | Ajukan/pengelola | Jumlah kandidat disetujui memenuhi batas, nama unik | Diajukan | Roster menunggu pemeriksaan | Sorot pemain belum menyetujui |
 | Tim / STATE-06 | Diajukan | Terima/pengelola | Periode terbuka, kuota tim dan keunikan anggota tersedia | Diterima | Tim dan pemain menjadi terdaftar | Tetap diajukan; alasan kekurangan/konflik |
-| Tim / STATE-06 | Diajukan | Kembalikan/pengelola | Alasan wajib | Draft | Kapten dapat memperbaiki | Tidak ada kuota diterima yang dilepas |
-| Tim / STATE-06 | Diterima | Tarik tim/kapten atau pengelola | Sebelum roster terkunci; konfirmasi dampak | Ditarik | Kuota tim/pemain dilepas, biaya tidak otomatis kembali | Sesudah terkunci hanya pengelola dan kebijakan withdrawal |
+| Tim / STATE-06 | Diajukan | Kembalikan/pengelola | Alasan wajib | Draft | Admin/pengelola dapat memperbaiki | Tidak ada kuota diterima yang dilepas |
+| Tim / STATE-06 | Diterima | Tarik tim/pengelola | Sebelum roster terkunci; konfirmasi dampak | Ditarik | Kuota tim/pemain dilepas, biaya tidak otomatis kembali | Sesudah terkunci hanya pengelola dan kebijakan withdrawal |
 | Roster / STATE-07 | Belum disusun | Simpan pembagian/pengelola | Setiap peserta unik, kapasitas valid | Draft | Roster tersimpan, dapat direvisi | Pratinjau tidak menimpa data |
 | Roster / STATE-07 | Draft | Kunci/pengelola | Pendaftaran ditutup, jumlah tim/pemain valid | Terkunci | Bekukan perubahan mandiri | Daftar pelanggaran terlihat |
 | Roster / STATE-07 | Terkunci | Koreksi/pengelola | Alasan dan dampak diperiksa | Terkunci, versi baru | Jadwal/partisipasi yang terdampak ditangani eksplisit | Dilarang memindahkan pemain yang sudah tampil untuk mengubah riwayat |
@@ -84,7 +87,7 @@ Aturan awal pembuatan kegiatan: superadmin membuat atau menyalin draft lalu menu
 | Presensi / STATE-11 | Belum dicatat | Tandai/pengelola | Peserta terdaftar | Hadir/Tidak hadir | Masuk cakupan KPI presensi | Tidak mengubah peserta lain |
 | Presensi / STATE-11 | Hadir/Tidak hadir | Koreksi/pengelola | Alasan setelah kegiatan selesai | Status terkoreksi | Statistik direvisi | Jika sudah tampil, ubah partisipasi terkait secara eksplisit sebelum tidak hadir |
 
-Kegiatan selesai tidak dibuka ulang secara otomatis; koreksi terbatas dilakukan pengelola dengan audit. Kegiatan dibatalkan tidak menerima laga/pendaftaran baru. Roster tidak boleh dibuka oleh kapten setelah terkunci. Pembayaran tidak berubah menjadi refund hanya karena peserta membatalkan.
+Kegiatan selesai tidak dibuka ulang secara otomatis; koreksi terbatas dilakukan pengelola dengan audit. Kegiatan dibatalkan tidak menerima laga/pendaftaran baru. Roster terkunci hanya dapat dikoreksi pengelola berwenang dengan alasan, pemeriksaan dampak dan versi baru; anggota tidak dapat membukanya. Pembayaran tidak berubah menjadi refund hanya karena peserta membatalkan.
 
 ## 4. Alur fitur
 
@@ -100,7 +103,7 @@ FEAT-01 · US-01 · AC-01–AC-04, AC-87–AC-88. Aktor calon anggota/anggota. P
 4. Masuk Google memerlukan penyelesaian profil/usia/kebijakan di SCR-02 jika belum lengkap. Persetujuan dibatalkan di penyedia: kembali ke SCR-01, tidak membuat peserta.
 5. Jika perlu menautkan akun, pengguna masuk akun lama dan menyetujui penautan; jika tidak bisa membuktikannya, tidak digabung otomatis.
 6. Lupa sandi SCR-03: tampil pesan netral; tautan reset usulan berlaku 30 menit dan sekali pakai. Sandi baru tidak masuk riwayat tampilan.
-7. Setelah masuk/profil lengkap, kembali ke tujuan internal yang masih berhak, atau SCR-04. Profil sendiri dapat diperbarui di SCR-12: unggah foto sah atau gunakan inisial, isi posisi dan nomor roster terkait, pilih cakupan tayang yang diizinkan. Nomor diperiksa pada tim/kegiatan, bukan unik global; kontak tidak ikut direktori. Data kosong ditandai tanpa foto rekaan. Perubahan email memerlukan verifikasi alamat baru dan tidak langsung mengubah identitas aktif.
+7. Setelah masuk/profil lengkap, kembali ke tujuan internal yang masih berhak, atau SCR-04. Profil sendiri dapat diperbarui di SCR-12: unggah foto sah atau gunakan inisial, isi nama panggilan dan bio, pilih cakupan tayang yang diizinkan; posisi resmi dan nomor roster diajukan sebagai koreksi kepada Admin/pengelola. Nomor diperiksa pada tim/kegiatan, bukan unik global; kontak tidak ikut direktori. Data kosong ditandai tanpa foto rekaan. Perubahan email memerlukan verifikasi alamat baru dan tidak langsung mengubah identitas aktif.
 8. Bila sesi habis saat mengubah data, masuk ulang dan muat status terbaru sebelum kirim; teks nonrahasia yang masih berada dalam sesi halaman boleh dipulihkan, tidak dijanjikan lintas perangkat.
 
 ### FLOW-02 — Anggota, peran dan penugasan
@@ -109,7 +112,7 @@ FEAT-02 · US-02 · AC-05–AC-07. Aktor superadmin/pengelola sesuai cakupan. Pr
 
 1. Superadmin membuka SCR-21, mencari anggota dan melihat detail yang diperlukan.
 2. Pilih aktif/nonaktif atau peran pengelola dengan kegiatan spesifik; tinjau ringkasan lalu simpan.
-3. Pengelola kegiatan menggunakan area penugasan SCR-13 untuk menunjuk kapten tim/pencatat laga dari anggota aktif, tanpa memberi dirinya akses komunitas lain.
+3. Pengelola kegiatan menggunakan area penugasan SCR-13 untuk menunjuk pencatat laga dari anggota aktif, tanpa memberi dirinya akses komunitas lain.
 4. Sistem menolak cakupan kosong untuk peran yang membutuhkannya dan mencegah hilangnya superadmin terakhir.
 5. Perubahan langsung berlaku pada permintaan berikutnya. Form yang sebelumnya terbuka tidak memberi izin lama. Riwayat pelaku/waktu terlihat pada SCR-22 sesuai cakupan.
 6. Batal mengembalikan detail anggota tanpa perubahan. Tidak ada email/WhatsApp otomatis karena perubahan peran; pengguna melihat tugasnya setelah memuat data terbaru.
@@ -126,28 +129,17 @@ FEAT-03 · US-03 · AC-08–AC-11. Aktor pengelola. Titik masuk SCR-13; hasil dr
 6. Selesaikan menunjukkan hasil/presensi belum beres. Pengecualian presensi diberi alasan dan tetap “belum dicatat”, tidak dipalsukan menjadi tidak hadir.
 7. Batalkan memerlukan alasan dan ringkasan peserta/tagihan terdampak. Riwayat dipertahankan; pekerjaan pengingat belum terkirim dibatalkan melalui FLOW-15. Refund tetap manual dan komunikasi tambahan dilakukan petugas sesuai kebutuhan.
 
-### FLOW-04 — Pendaftaran individu dan antartim
+### FLOW-04 — Pendaftaran individu
 
-FEAT-04 · US-04 · AC-12–AC-15. Aktor anggota/kapten/pengelola. Prasyarat kegiatan terbit dan periode terbuka. Hasil peserta unik atau penolakan.
+FEAT-04 · US-04 · AC-12–15. Anggota membuka SCR-05, melihat kuota/biaya dan memilih Gabung Main setelah masuk. Simpan RSVP unik dengan pemeriksaan kuota serentak. SCR-06 menampilkan status dan pembatalan sesuai tenggat; tidak ada undangan tim. Setelah pendaftaran ditutup, kumpulan peserta sah menjadi masukan FLOW-05. Pembatalan tidak otomatis mengembalikan biaya.
 
-1. SCR-05 sudah menampilkan mode, kuota, biaya dan aturan. Mode individu yang memenuhi syarat memakai Gabung Main langsung pada SCR-05 dalam satu aksi; status tersimpan terlihat di sana. SCR-06 menjadi detail status/batal/undangan, bukan konfirmasi wajib kedua. Jika belum masuk, kembali ke SCR-05 setelah login sebelum memilih aksi RSVP secara sadar.
-2. Mode individu: RSVP sendiri satu klik setelah login dan prasyarat terpenuhi. Kuota diperiksa saat penyimpanan; dua orang memperebutkan slot terakhir hanya satu berhasil. Submit ulang dari orang yang sama menampilkan pendaftaran awal.
-3. Mode tim: kapten membuat tim di SCR-07 dan mengundang anggota terdaftar. Teks undangan tampil di SCR-06 anggota; undangan tidak mengirim email/WhatsApp otomatis.
-4. Anggota menerima/menolak sendiri. Beberapa undangan boleh menunggu, tetapi hanya satu persetujuan roster aktif pada kegiatan yang sama diperbolehkan. Sebelum tim diterima, anggota dapat menarik persetujuan dan kapten harus memperbaiki roster.
-5. Kapten mengajukan roster yang seluruhnya disetujui. Pengelola memeriksa lewat SCR-15 dan menerima jika kuota tim, batas roster dan keunikan masih valid. Penolakan dikembalikan ke draft dengan alasan.
-6. Setelah tim diterima, perubahan roster sebelum terkunci harus diajukan ulang; versi lama tetap resmi sampai revisi diterima. Pemain pengganti wajib menyetujui; pemain yang keluar tidak dihapus dari riwayat.
-7. Individu membatalkan melalui SCR-06; kapten menarik tim sebelum terkunci melalui SCR-07. Dialog memisahkan akibat kuota dan biaya. Setelah terkunci, tampil kontak pengelola untuk permintaan manual, bukan perubahan otomatis.
-8. Kuota penuh atau tenggat lewat: CTA ditolak dengan alasan terkini; tidak membuat waiting list. Kembali ke SCR-05 mempertahankan status peserta yang telah tersimpan.
+### FLOW-05 — Pengacakan tim berbasis skill
 
-### FLOW-05 — Pembagian tim dan roster terkunci
+FEAT-05/16 · US-05/16 · AC-16–18, AC-80–81. Admin membuka SCR-16 setelah daftar ditutup. Tetapkan jumlah tim dan kapasitas; sistem memeriksa skill semua peserta. Data belum lengkap atau jumlah peserta tidak layak menahan pembagian.
 
-FEAT-05 · US-05 · AC-16–AC-18. Aktor pengelola. Prasyarat daftar ditutup; hasil roster terkunci.
+Sistem membentuk kandidat pembagian acak, memeriksa kapasitas, setiap peserta tepat sekali, beda jumlah maksimal satu dan keseimbangan skill sesuai ukuran/toleransi yang ditetapkan. Skala, sumber skill, algoritme serta toleransi masih perlu dirinci; tidak mengklaim hasil selalu seimbang sempurna. Jika tidak ada susunan memenuhi batas, tampilkan alasan dan jangan menyimpan hasil sebagai seimbang.
 
-1. Buka SCR-16 dari SCR-13/15. Pada mode individu, pilih jumlah tim yang layak berdasarkan peserta, min/maks roster; pada mode tim, gunakan tim diterima tanpa pembagian acak.
-2. Pilih mode Acak atau Seimbang berdasarkan skill. Mode acak tidak mengklaim keseimbangan kemampuan; mode skill memakai FLOW-14. Susun pratinjau: setiap peserta terdaftar tepat satu kali, beda jumlah maksimal satu dan tidak melebihi batas. Bila peserta tidak cukup, jelaskan jumlah minimal dan kembali ke konfigurasi/pendaftaran tanpa menyimpan.
-3. Pindah pemain menggunakan tombol “Pindahkan ke tim” selain drag jika disediakan. Acak ulang hanya mengubah pratinjau. Batal mengembalikan roster tersimpan.
-4. Simpan draft lalu Kunci dengan ringkasan kapasitas dan peserta. Roster terkunci menjadi dasar jadwal.
-5. Koreksi setelah terbit memerlukan alasan dan tinjauan jadwal/partisipasi terdampak. Pemain yang sudah tampil tidak dipindahkan secara retroaktif; koreksi data historis hanya lewat alur koreksi hasil/partisipasi.
+Admin meninjau ringkasan jumlah/skill tiap tim tanpa memilih atau memindahkan pemain. Acak ulang tetap memenuhi batas yang sama, tercatat dan hanya mengubah pratinjau. Simpan membentuk versi susunan lalu Kunci menjadi dasar jadwal. Perubahan peserta sebelum main memerlukan hitung ulang dengan alasan; setelah pemain tampil, jangan mengacak ulang histori. Koreksi fakta hasil/partisipasi mengikuti alur audit tersendiri.
 
 ### FLOW-06 — Jadwal liga dan rutin
 
@@ -188,7 +180,7 @@ FEAT-08 · US-08 · AC-26–AC-27. Aktor anggota aktif. Pemicu SCR-05 → SCR-11
 FEAT-09 · US-09 · AC-28–AC-30. Aktor pengelola untuk presensi; pencatat ditugaskan untuk partisipasi laga.
 
 1. Pengelola membuka SCR-19, memfilter tim dan menandai hadir/tidak hadir. Default “belum dicatat”. Simpan memperlihatkan jumlah berhasil dan bila ada kegagalan parsial menyebut peserta yang belum berubah.
-2. Anggota melihat presensi diri di SCR-12; kapten hanya membaca timnya. Tidak ada self check-in atau QR pada MVP.
+2. Anggota melihat presensi diri di SCR-12; anggota lain tidak memperoleh presensi privat pemain. Tidak ada self check-in atau QR pada MVP.
 3. Pada SCR-10 pilih pemain tampil dari roster yang hadir. Jika belum dicatat/tidak hadir, arahkan pengelola ke SCR-19; pencatat tidak dapat mengubah presensi hanya karena peran pencatat.
 4. Partisipasi satu pemain satu kali per laga; tidak mencatat menit bermain/pergantian secara rinci pada MVP. Tautan pencetak gol harus konsisten dengan pemain tampil.
 5. Koreksi setelah selesai memerlukan alasan, memperlihatkan dampak dan menjaga riwayat. Jika hendak menandai tidak hadir pemain yang sudah tampil, selesaikan koreksi partisipasi/gol terkait lebih dahulu atau tolak dengan penjelasan.
@@ -204,9 +196,9 @@ FEAT-10 · US-10 · AC-31–AC-32, AC-89–AC-90. Aktor anggota atau pembaca pro
 
 ### FLOW-11 — Tagihan, bukti dan verifikasi
 
-FEAT-11 · US-11 · AC-33–AC-36. Aktor peserta individu/kapten, pengelola. Prasyarat tagihan biaya kegiatan atau iuran bulanan aktif dan dimiliki pengirim; kewenangan verifikasi mengikuti jenis/cakupan tagihan.
+FEAT-11 · US-11 · AC-33–AC-36. Aktor pemilik tagihan dan pengelola berwenang. Prasyarat tagihan biaya kegiatan atau iuran bulanan aktif dan dimiliki pengirim; kewenangan verifikasi mengikuti jenis/cakupan tagihan.
 
-1. SCR-28 (Kas & Iuran) atau SCR-06/07/05 membawa pengirim ke SCR-20 untuk melihat nominal, tujuan transfer, tenggat dan kebijakan. Basis tagihan per individu/per tim sesuai mode; anggota tim selain kapten tidak memperoleh bukti tim.
+1. SCR-28 (Kas & Iuran) atau SCR-06/07/05 membawa pengirim ke SCR-20 untuk melihat nominal, tujuan transfer, tenggat dan kebijakan. Basis tagihan per individu/per tim sesuai mode; hanya penanggung jawab tagihan tim yang ditunjuk dan petugas berwenang dapat membaca bukti tim; anggota lain tidak memperoleh akses.
 2. Transfer dilakukan di luar sistem. Pengirim mengunggah bukti; sistem menampilkan pratinjau/konfirmasi lalu status menunggu verifikasi. Hanya satu bukti aktif menunggu per tagihan; riwayat versi tetap tersimpan.
 3. SCR-20 memiliki tampilan pengelola: antrean → detail bukti → terima/tolak. Pengelola wajib memeriksa mutasi bank secara manual; gambar bukti bukan konfirmasi bank.
 4. Penolakan wajib alasan dan memungkinkan penggantian berkas. Pengiriman ganda/keputusan bersamaan tidak menghasilkan dua keputusan aktif. Bukti yang sudah terverifikasi tidak dapat diganti pengirim; koreksi keputusan hanya pengelola dengan alasan.
@@ -273,7 +265,7 @@ Pengingat jadwal WhatsApp otomatis masuk MVP melalui FLOW-15. Tidak ada notifica
 |---|---|---|---|---|---|---|---|
 | Daftar email | Pemilik alamat | Email transaksional | Setelah form diterima, usulan tautan 24 jam | “Verifikasi alamat email untuk mengaktifkan akun.” | SCR-03 | Diperlukan untuk login email | Kirim ulang usulan jeda 60 detik; akun tetap menunggu |
 | Lupa sandi | Pemilik alamat terdaftar | Email transaksional | Setelah permintaan, tautan usulan 30 menit | “Atur ulang sandi akun Anda.” | SCR-03 | Keamanan akun | UI selalu netral; tautan sekali pakai, token lama tidak dipakai kembali |
-| Daftar/konfirmasi/undangan | Anggota/kapten | Pesan pada SCR-06/07 | Setelah hasil simpan diketahui | “Keikutsertaan dikonfirmasi.” | Detail status peserta | Tidak perlu preferensi | Tidak mengirim kanal eksternal; muat ulang status jika ragu |
+| Daftar/konfirmasi/undangan | Anggota/pengelola | Pesan pada SCR-06/07 | Setelah hasil simpan diketahui | “Keikutsertaan dikonfirmasi.” | Detail status peserta | Tidak perlu preferensi | Tidak mengirim kanal eksternal; muat ulang status jika ragu |
 | Hasil diajukan/dikembalikan/final | Pencatat/pengelola/anggota berhak | Badge SCR-09/18 dan klasemen | Saat memuat hasil terbaru | “Perlu perbaikan: skor belum sesuai.” | SCR-10/18 | Tidak perlu preferensi | Finalisasi tetap sah tanpa pengguna sedang membuka layar |
 | Bukti diterima/ditolak | Pengirim | Status SCR-20 | Saat keputusan tersimpan/dimuat | “Bukti ditolak: tanggal transfer tidak terbaca.” | Unggah bukti pengganti | Tidak perlu preferensi | Tidak menganggap pengirim sudah membaca |
 | Bagikan kegiatan/jadwal | Penerima pilihan pengirim | Tautan WhatsApp manual | Hanya setelah pengirim memilih | “Asker FC — Liga Sabtu, 14 Nov 2026 07.00 WIB. Info: [tautan].” | SCR-05/08 setelah masuk | Pengguna memilih kirim/batal | Salin tautan bila gagal, tanpa status terkirim |
@@ -282,7 +274,7 @@ Pengiriman email gagal tidak membuat verifikasi berhasil; pendaftaran akun dapat
 
 ## 8. Privasi, audit dan keputusan sebelum produksi
 
-Data contoh dalam mockup sepenuhnya sintetis. Kontak dan bukti tidak muncul di roster/klasemen. Bukti dibatasi pada pengirim/pengelola; pemindahan peran kapten memerlukan pengelola meninjau hak tagihan tim dan tidak membagikan riwayat privat sembarangan.
+Data contoh dalam mockup sepenuhnya sintetis. Kontak dan bukti tidak muncul di roster/klasemen. Bukti dibatasi pada pengirim/pengelola; perubahan penanggung jawab tagihan tim memerlukan pengelola meninjau hak tagihan dan tidak membagikan riwayat privat sembarangan.
 
 Usulan minimisasi usia: simpan deklarasi 18+, waktu, versi kebijakan dan status penanganan laporan; tidak mengumpulkan tanggal lahir/identitas rutin. Jika usia diragukan, pengelola menangguhkan partisipasi dan menangani melalui kontak operasional; penetapan metode verifikasi memerlukan keputusan pemilik komunitas sebelum produksi.
 
@@ -309,7 +301,7 @@ Bagian ini memberikan default yang konkret agar desain/skenario sintetis dapat d
 | Retry pengingat | Usulan maksimal 3 percobaan terkonfirmasi gagal dengan jeda 5 lalu 15 menit, hanya sebelum sesi dimulai. Status belum diketahui wajib rekonsiliasi dahulu; bila provider tidak mendukung deduplikasi/cek status, jangan otomatis mengirim ulang dan arahkan ke pemeriksaan petugas. Tidak mengklaim exactly-once lintas provider |
 | Iuran | Petugas kas menerbitkan manual per bulan. Tarif, tanggal jatuh tempo, daftar anggota yang dikenai dan saldo awal wajib diisi dari keputusan klub, tanpa angka default yang disangka tarif resmi. Tidak otomatis menagih tamu bulanan |
 | Publikasi | Draft default. Publik atau anggota/kegiatan dipilih eksplisit untuk sesi/hasil/album; foto profil mengikuti pilihan cakupan yang diizinkan. Iuran, bukti, suara dan nilai tidak dapat dijadikan konten publik |
-| Tamu | Akun 18+ dengan konfirmasi sendiri, ditandai tamu untuk kegiatan yang diizinkan. Tidak menjadi anggota aktif klub atau penerima tagihan bulanan otomatis. Kapten tamu hanya mengelola roster timnya |
+| Tamu | Akun 18+ dengan konfirmasi sendiri, ditandai tamu untuk kegiatan yang diizinkan. Tidak menjadi anggota aktif klub atau penerima tagihan bulanan otomatis. Roster tim tamu dikelola Admin/pengelola Asker FC yang ditugaskan |
 
 Pemilihan yang sedang terbuka memakai snapshot kandidat/pemilih yang disahkan saat buka; kandidat dan aturan tidak diubah diam-diam. Akun yang dinonaktifkan tidak dapat mengirim suara baru. Bila kelayakan atau hasil laga dikoreksi dan memengaruhi voting, hentikan/tandai perlu tinjau dan ikuti pembatalan/revisi beralasan, bukan menghitung ulang pemenang diam-diam.
 
@@ -408,11 +400,11 @@ FEAT-25 · US-25 · AC-71–AC-73. Aktor semua pembaca. Hasil tema terbaca dan p
 
 ### FLOW-21 — Tim tamu antar-komunitas
 
-FEAT-26 · US-26 · AC-74–AC-76. Aktor kapten tamu/pemain/pengelola. Prasyarat sesi antartim menerima tamu, akun aktif 18+ dan persetujuan roster.
+FEAT-26 · US-26 · AC-74–AC-76. Aktor pemain tamu dan pengelola yang ditugaskan. Prasyarat sesi antartim menerima tamu, akun aktif 18+ dan persetujuan roster.
 
-1. Tautan sesi publik → SCR-05, kapten masuk/melengkapi akun kemudian SCR-07. Cantumkan nama dan asal tim, status tamu; tidak membuat tenant baru atau memberi role superadmin komunitas lain.
-2. Pemain tamu membuat/masuk akun sendiri dan menyetujui undangan melalui SCR-06. Pengelola meninjau SCR-15; kuota/keunikan sama dengan tim internal. Persetujuan kapten tidak menggantikan persetujuan pemain.
-3. Tim diterima melihat roster/jadwal/hasil dan album yang memang dibagikan untuk kegiatan itu. Tagihan tim kegiatan dikelola kapten dengan batas bukti FLOW-11; kas komunitas, direktori internal di luar sesi dan voting bulanan anggota tidak otomatis terbuka.
+1. Tautan sesi publik → SCR-05, pengelola yang ditugaskan membuka SCR-07. Cantumkan nama dan asal tim, status tamu; tidak membuat tenant baru atau memberi role superadmin komunitas lain.
+2. Pemain tamu membuat/masuk akun sendiri dan menyetujui undangan melalui SCR-06. Pengelola meninjau SCR-15; kuota/keunikan sama dengan tim internal. Persetujuan pengelola tidak menggantikan persetujuan pemain.
+3. Tim diterima melihat roster/jadwal/hasil dan album yang memang dibagikan untuk kegiatan itu. Tagihan tim kegiatan diakses penanggung jawab tagihan yang ditunjuk dengan batas bukti FLOW-11; kas komunitas, direktori internal di luar sesi dan voting bulanan anggota tidak otomatis terbuka.
 4. Penugasan pencatat tamu hanya bila pengelola menunjuk laga tertentu. Selesai/ditarik mencabut tindakan aktif sesuai status tanpa menghapus hasil/presensi sah; hak baca riwayat mengikuti cakupan yang diumumkan. Permintaan tanpa izin ditolak, tidak menambah anggota aktif atau iuran bulanan.
 
 ## 12. Status, validasi dan pemulihan tambahan
@@ -765,3 +757,52 @@ Status Ditolak/Dibatalkan tidak dibuka kembali; pengajuan berikutnya adalah klai
 Notifikasi eksternal baru tidak diperlukan. Kredit, klaim, penahanan dan keputusan terlihat pada riwayat SCR-37; sukses/error diumumkan pada layar yang sedang dibuka. Pengelola melihat antrean SCR-38. Tidak menambahkan email, WhatsApp otomatis atau notification center; refresh gagal tidak membatalkan transaksi yang sudah sah.
 
 Contoh sintetis, bukan tarif klub: kredit 10 per event dan reward 30. Tiga event sah → total 30. Klaim → total 30/reservasi 30/tersedia 0. Penuhi → total 0/reservasi 0. Batal sebelum dipenuhi → total 30/reservasi 0. Koreksi satu event sebelum penuhi → total 20/reservasi 30/tersedia 0, klaim Ditahan dan selisih 10 terlihat. Koreksi setelah penuhi → total -10/reservasi 0/tersedia 0; tidak ada tagihan uang. Koreksi saldo karena sumber berbeda dari pembatalan manfaat, sehingga keduanya mempunyai alasan dan transaksi terpisah.
+
+## 15. Profil terkelola dan penghargaan tahunan — v2.8
+
+### 15.1. Daftar izin field dan tanggung jawab
+
+| Data | Member | Admin/pengelola | Sistem |
+|---|---|---|---|
+| Foto, nama panggilan, bio, tema dan preferensi | Edit milik sendiri, sesuai validasi dan publikasi | Moderasi/koreksi dengan delegasi dan alasan | Validasi jenis/ukuran foto, sanitasi teks, audit |
+| Identitas resmi, status anggota, posisi/nomor resmi | Baca sesuai izin; ajukan koreksi | Pemelihara sesuai cakupan; perubahan peran tetap superadmin | Simpan versi; jangan ubah snapshot event final |
+| Nama, deskripsi, logo dan kontak resmi klub | Baca yang diterbitkan | Delegasi tingkat komunitas wajib | Validasi/publikasi, audit |
+| Rating, overall, achievement, saldo dan poin tahunan | Baca sesuai izin; koreksi sumber dapat diajukan | Verifikasi fakta sumber, tanpa input nilai hasil | Hitung dengan versi aturan yang berlaku |
+
+FLOW-01/SCR-12 untuk edit diri; SCR-21 untuk data resmi pemain; SCR-35 diperluas untuk profil klub, kontak dan sponsor. Simpan hanya field dalam daftar izin; request campuran berisi field terlarang ditolak seluruhnya. Nama panggilan wajib mengikuti batas nama tampilan; bio opsional. Teks terlalu panjang, foto tidak sah dan revisi usang diberi error pada field. Batas ukuran/panjang produksi mengikuti konfigurasi yang harus ditetapkan; tidak membuat batas numerik baru seolah keputusan pengguna. Perubahan sensitif akun tetap melalui verifikasi akun. Saat konflik versi, muat ulang dan tinjau perbedaan sebelum simpan.
+
+Penghapusan Kapten berlaku juga pada API, penugasan dan akses lama: jika aplikasi kelak memigrasikan data, hak tersebut dicabut tanpa otomatis menjadikan pemiliknya Admin. Penanggung jawab tagihan tim adalah anggota berakun yang ditunjuk dan menyetujui tanggung jawab tagihan; tidak mendapat hak roster/administrasi. Sebelum tagihan tim diterbitkan, pengelola memilih penanggung jawab; bila belum tersedia, penerbitan ditahan. Tidak ada perluasan akses bukti lama otomatis saat penanggung jawab berganti. Persetujuan roster pemain tidak sama dengan persetujuan menjadi penanggung jawab tagihan.
+
+### FLOW-30 — Peringkat dan profil penghargaan tahunan
+
+FEAT-30 · US-38 · AC-159–AC-162. Aktor anggota, pembaca profil sesuai izin. Masuk SCR-24/SCR-37/SCR-12 → SCR-39; kembali ke asal tanpa kehilangan tahun pilihan.
+
+1. Pilih tahun; tampilkan rentang, zona komunitas, basis poin, status program dan waktu pembaruan. Default anggota yang masuk; akses publik hanya setelah aturan publikasi disahkan.
+2. Baseline usulan: total kredit loyalitas dari event selesai dalam rentang [1 Januari 00.00, 1 Januari tahun berikutnya 00.00), memakai zona program. Koreksi mengikuti tahun event sumber meski diproses tahun berikutnya. Tahun pertama mulai aktivasi; migrasi historis harus eksplisit. Klaim, reservasi dan saldo sisa tidak masuk agregasi.
+3. Tampilkan peringkat, poin dan nama tampilan; jangan tampilkan kontak, bukti, alasan sensitif atau rating privat. Tampilkan posisi diri meskipun di luar daftar teratas. Nilai sama berbagi peringkat; urutan nama hanya untuk tampilan, bukan penentu pemenang.
+4. Hasil Sementara tidak memberi badge pemenang. Final menaut ke profil penerima dengan tahun penghargaan; Revisi tersedia menunjukkan versi terakhir dan ringkasan alasan yang aman dibaca.
+
+### FLOW-31 — Finalisasi, publikasi dan koreksi tahunan
+
+FEAT-30 · US-39 · AC-163–AC-166. Superadmin atau petugas dengan delegasi penghargaan komunitas, masuk SCR-13/SCR-38 → SCR-40 → SCR-39/SCR-22. Penugasan event atau pemenuhan reward saja tidak memberi izin penghargaan tahunan.
+
+1. Tetapkan basis, periode/zona, kelayakan, seri, visibilitas dan versi sebelum aktivasi. Parameter belum disahkan mengunci aktivasi/finalisasi. Nama kerja boleh dipratinjau sebagai contoh; hadiah fisik tidak dibuat otomatis.
+2. Tutup periode, selesaikan verifikasi/koreksi tertunda lalu hitung pratinjau dari snapshot sumber. Sistem menghasilkan kandidat tertinggi; tidak tersedia pemilih pemenang manual.
+3. Tinjau dan finalisasi dengan konfirmasi; periksa ulang izin, periode, versi sumber dan keunikan transaksi. Publikasi adalah aksi eksplisit setelah finalisasi. Retry mengembalikan hasil yang sama; perubahan sumber menandai pratinjau usang.
+4. Koreksi final membuka revisi beralasan, menghitung ulang dan menampilkan perubahan penerima/poin sebelum publikasi ulang. Pertahankan hasil terbit sebelumnya dengan label Dalam peninjauan hingga revisi disahkan; badge aktif diperbarui bersama versi publikasi secara atomik.
+5. Pemenuhan hadiah tambahan, bila kelak ditetapkan, perlu aturan sendiri; publikasi badge tidak mengurangi saldo, menambah rating atau membuat klaim reward otomatis.
+
+| Entitas/status | Pemicu dan syarat | Hasil |
+|---|---|---|
+| Tahun / STATE-26: Belum aktif | Aturan lengkap disahkan, periode berlaku | Berjalan; belum ada pemenang |
+| Tahun / STATE-26: Berjalan | Periode berakhir | Menunggu verifikasi; peringkat sementara |
+| Tahun / STATE-26: Menunggu verifikasi | Semua sumber selesai, petugas berwenang finalisasi | Final belum terbit; tanpa peserta layak dicatat tanpa penerima |
+| Tahun / STATE-26: Final belum terbit | Publikasi sesuai izin | Terbit; badge dan hasil aktif |
+| Tahun / STATE-26: Terbit | Koreksi sumber disahkan | Dalam peninjauan; versi lama berlabel |
+| Tahun / STATE-26: Dalam peninjauan | Hitung ulang, finalisasi dan publikasi revisi | Terbit versi baru, histori tetap |
+
+Baseline kelayakan mengikuti program loyalitas; penanganan anggota yang nonaktif sebelum tutup tahun masih keputusan terbuka. Usulan seri: juara bersama. Seluruh parameter ini menahan aktivasi tahunan, bukan penyusunan mockup. Error jaringan tidak menampilkan nol palsu; simpan gagal mempertahankan form. Status finalisasi tidak diketahui → Cek status sebelum retry. Tidak ada kanal pesan eksternal baru. Inventaris: 31 flow dan 26 state.
+
+### Penyelarasan pembagian tim v2.9
+
+UI Roster Admin dihapus dari gambar aktif. Alur berlaku: RSVP individu → pengacakan otomatis berbasis skill → pratinjau keseimbangan → simpan/kunci → lihat susunan. Referensi antartim, undangan tim, acak murni dan penempatan manual dalam baseline lama tidak berlaku untuk alur ini. ID lama dipertahankan untuk ketertelusuran; bagian yang digantikan bukan persyaratan aktif.

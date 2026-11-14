@@ -1,0 +1,8 @@
+{
+  "version": "2.9",
+  "generator": "built-in imagegen",
+  "file": "profile-awards-v2.9.png",
+  "edit_target": "archive/v2.8/profile-awards-v2.8.png",
+  "prompt": "Edit this Asker FC SRS mockup board. REMOVE the entire 'Roster Admin' panel including invite and submit roster controls. Reflow the FOUR remaining panels into a balanced 2 by 2 grid: Profil Member top left, Profil klub top right, Penghargaan tahunan bottom left, Finalisasi Admin bottom right. Preserve all text and values within those four panels, Indonesian typography, black charcoal gold palette, title and subtitle 'Data contoh · Aturan tahunan masih usulan'. No new panel, no roster administration, no invitations or team selection. Maintain read-only official profile fields 'Dikelola Admin', editable nickname and bio, 'Rating dihitung sistem', provisional 2026 ranking and disabled annual finalization. High quality sharp readable static UI board, no device frame.",
+  "inspection": "Four panels inspected. Roster Admin removed; profile, club, provisional awards and disabled finalization preserved."
+}

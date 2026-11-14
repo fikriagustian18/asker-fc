@@ -1,9 +1,12 @@
 # Traceability dan Pemeriksaan — Asker FC
 
-- Versi: 2.7 · Tanggal: 14 November 2026
-- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
-- Upstream: [rencana v2.13](./00-implementation-plan.md), [Planning v2.7](./01-product-planning.md), [PRD v2.7](./02-prd.md), [Details v2.7](./03-product-details.md), [Mockup SRS v2.7](./04-mockup-srs.md). Perluasan loyalitas diotorisasi pengguna 14 November 2026.
+- Versi: 2.9 · Tanggal: 14 November 2026
+- Status: revisi akses profil, penghapusan peran Kapten dan penghargaan tahunan selesai sampai spesifikasi Mockup SRS v2.8; referensi gambar statis menyertai revisi. Parameter tahunan belum disahkan; bukan implementasi aplikasi.
+- Upstream: [rencana v2.16](./00-implementation-plan.md), [Planning v2.8](./01-product-planning.md), [PRD v2.8](./02-prd.md), [Details v2.8](./03-product-details.md), [Mockup SRS v2.8](./04-mockup-srs.md). Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Dasar otorisasi: instruksi pengguna 11 November 2026 “proses implementation plan tersebut” setelah review v2.7. Tidak menjalankan implementasi aplikasi, pengiriman pesan atau deployment.
+
+
+> **Keputusan berlaku v2.9 — pembagian tim:** Anggota mendaftar kegiatan secara individu; sistem mengacak peserta dengan mempertimbangkan skill agar tim seimbang. Admin mengatur jumlah/kapasitas tim, memeriksa kelengkapan data, memicu pembagian, meninjau hasil dan mengunci susunan; bukan memilih pemain ke tim secara manual. UI Roster Admin, undangan/pengajuan/penerimaan roster antartim dan mode acak murni tidak digunakan pada alur ini. Ketentuan antartim/tagihan tim pada bagian lama menjadi catatan scope sebelumnya, bukan alur aktif; bila dibutuhkan sebagai format terpisah harus ditentukan kembali. Daftar tim hasil sistem tetap dapat dibaca. Rating tetap dihitung sistem; sumber/skala skill dan toleransi keseimbangan harus ditetapkan sebelum implementasi, tanpa otomatis menyamakan skill dengan rating.
 
 ## 1. Matriks kebutuhan
 
@@ -270,3 +273,41 @@ Kelanjutan pengguna mengotorisasi dua gambar loyalitas, menggantikan batas teks 
 Inspeksi visual dilakukan pada kedua keluaran; prompt aktual, dimensi PNG dan keterbatasan dicatat di Mockup bagian 11/manifest. Dua belas gambar lama dipertahankan tanpa klaim audit visual baru. Dokumen sampai mockup selesai; kebijakan/nominal program dan kesiapan produksi tetap terbuka.
 
 Audit berkas kelanjutan: enam dokumen UTF-8 dan seluruh target tautan lokal valid; 14 PNG ada dan dimensi cocok manifest; 153 definisi AC tetap unik. Saldo contoh 50-20=30 dan 50-30=20 diperiksa; harga jersey 80 minus tersedia 30 = kekurangan 50. Tidak ada aplikasi yang diuji.
+
+## 12. Revisi profil, peran dan penghargaan tahunan — v2.8
+
+Otorisasi: pengguna menghapus peran Kapten dan meminta kelanjutan hingga Mockup SRS. Rencana v2.16 menyelaraskan lima dokumen v2.8 dan referensi gambar statis. Semua angka/penerima pada mockup sintetis; aturan tahunan belum aktif.
+
+| Kebutuhan | Fitur / story / AC | Alur / state | Layar |
+|---|---|---|---|
+| Kustomisasi Member dan pemeliharaan klub/pemain | FEAT-01/02; US-37; AC-154/155/157 | FLOW-01/02/19 | SCR-12/21/35 |
+| Tanpa Kapten, persetujuan roster pribadi | FEAT-02/04/05; US-37; AC-156, AC-13/18 | FLOW-02/04/05/21 | SCR-06/07/15/21 |
+| Privasi tagihan tim | FEAT-11; US-37; AC-158 | FLOW-11 | SCR-20 |
+| Poin tahunan terpisah dari saldo | FEAT-30; US-38; AC-159–162 | FLOW-30; STATE-26 | SCR-39/12/24/37 |
+| Penghargaan dari hasil sistem dan koreksi | FEAT-30; US-39; AC-163–166 | FLOW-31; STATE-26 | SCR-40/39/22 |
+
+| Skenario pemeriksaan rancangan | Hasil yang diwajibkan |
+|---|---|
+| Member mengedit orang lain/field resmi; Admin mengirim rating langsung | Ditolak tanpa perubahan parsial |
+| Pemilik hak Kapten lama mengundang pemain | Ditolak; tidak otomatis menjadi Admin |
+| Admin event mengubah profil klub/publikasi penghargaan tanpa delegasi | Ditolak |
+| Pemilik tagihan berganti | Hak bukti historis ditinjau, tidak dibuka otomatis |
+| Perolehan tahunan 100, klaim 30, reservasi 20 | Poin tahunan tetap 100; saldo total 70 dan tersedia 50 |
+| Koreksi kredit 10 dari tahun lalu | Peringkat tahun sumber direvisi; bukan pengurangan perolehan tahun berjalan |
+| Tahun baru, batas zona dan sumber belum final | Sumber masuk tahun sesuai zona program; hasil belum final berlabel |
+| Seri, tidak ada peserta layak, finalisasi serentak | Aturan seri tersimpan; tanpa penerima; satu versi aktif |
+| Koreksi mengubah penerima setelah terbit | Versi lama berlabel, revisi diaudit, badge aktif diganti saat publikasi ulang |
+
+Inventaris terkini: 30 fitur, 39 story, 166 AC, 31 flow, 26 state dan 40 layar. Pemeriksaan dokumen/gambar tidak sama dengan pengujian aplikasi atau API. Basis poin, nama penghargaan, kelayakan, seri, zona, tanggal penutupan, visibilitas serta hadiah tambahan masih menahan aktivasi tahunan. Tidak ada hasil uji produksi yang diklaim.
+
+### Pemeriksaan aktual v2.8 — 14 November 2026
+
+- Semua target berkas relatif pada enam dokumen ditemukan; `git diff --check` dan diagnostik editor tidak menemukan error.
+- AC-154–166 lengkap dan unik. PRD memuat 160 definisi AC berbentuk bullet dan enam definisi lama AC-39–44 di tabel, sehingga total 166; FLOW-30/31, STATE-26 dan SCR-39/40 tersedia beserta relasinya.
+- Referensi HTML sebelumnya diganti atas instruksi pengguna dengan satu PNG empat panel; HTML dihapus. Pemeriksaan interaksi browser sebelumnya hanya berlaku pada artefak lama, bukan gambar pengganti.
+- Inspeksi visual PNG: empat panel lengkap, foto menggunakan inisial, data resmi dilabeli Dikelola Admin, rating dihitung sistem, peringkat 2026 Sementara dan finalisasi Belum aktif. Tidak ada klaim uji responsif atau interaksi pada gambar statis.
+- Pengujian backend, otorisasi, koreksi atomik dan konkurensi tetap pekerjaan implementasi.
+
+### Penyelarasan pembagian tim v2.9
+
+UI Roster Admin dihapus dari gambar aktif. Alur berlaku: RSVP individu → pengacakan otomatis berbasis skill → pratinjau keseimbangan → simpan/kunci → lihat susunan. Referensi antartim, undangan tim, acak murni dan penempatan manual dalam baseline lama tidak berlaku untuk alur ini. ID lama dipertahankan untuk ketertelusuran; bagian yang digantikan bukan persyaratan aktif.

@@ -1,15 +1,18 @@
 # Product Requirements Document — Asker FC
 
-- Versi: 2.7 · Tanggal: 14 November 2026
-- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
-- Upstream: [Product Planning v2.7](./01-product-planning.md), [Implementation Plan v2.13](./00-implementation-plan.md), pelaksanaan rencana v2.7 yang disetujui pengguna 11 November 2026. ID lama dipertahankan. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
+- Versi: 2.9 · Tanggal: 14 November 2026
+- Status: revisi akses profil, penghapusan peran Kapten dan penghargaan tahunan selesai sampai spesifikasi Mockup SRS v2.8; referensi gambar statis menyertai revisi. Parameter tahunan belum disahkan; bukan implementasi aplikasi.
+- Upstream: [Product Planning v2.8](./01-product-planning.md), [Implementation Plan v2.16](./00-implementation-plan.md), pelaksanaan rencana v2.7 yang disetujui pengguna 11 November 2026. ID lama dipertahankan. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Asumsi relevan: satu komunitas, peserta 18+, 100–500 anggota, koneksi internet, proses saat ini belum divalidasi lapangan.
+
+
+> **Keputusan berlaku v2.9 — pembagian tim:** Anggota mendaftar kegiatan secara individu; sistem mengacak peserta dengan mempertimbangkan skill agar tim seimbang. Admin mengatur jumlah/kapasitas tim, memeriksa kelengkapan data, memicu pembagian, meninjau hasil dan mengunci susunan; bukan memilih pemain ke tim secara manual. UI Roster Admin, undangan/pengajuan/penerimaan roster antartim dan mode acak murni tidak digunakan pada alur ini. Ketentuan antartim/tagihan tim pada bagian lama menjadi catatan scope sebelumnya, bukan alur aktif; bila dibutuhkan sebagai format terpisah harus ditentukan kembali. Daftar tim hasil sistem tetap dapat dibaca. Rating tetap dihitung sistem; sumber/skala skill dan toleransi keseimbangan harus ditetapkan sebelum implementasi, tanpa otomatis menyamakan skill dengan rating.
 
 ## 1. Produk, masalah dan nilai
 
 **Tujuan utama: memudahkan anggota tahu jadwal main, daftar, dan bayar, sekaligus membangun rasa kebersamaan tim.** Jadwal, pendaftaran dan pembayaran membentuk pengalaman inti anggota menuju kegiatan Kick & Kumpul. Alur utama: **buka link → lihat jadwal → RSVP → terima pengingat → main → lihat skor dan foto → bayar iuran**. Kas & Iuran dapat dibuka langsung tanpa menunggu foto/hasil. Biaya kegiatan di muka hanya cabang jika diumumkan sejak awal; kegiatan gratis tidak menimbulkan tagihan kegiatan tetapi iuran bulanan tetap terpisah.
 
-Asker FC adalah **website komunitas fun football berkonsep “Kick & Kumpul”**, yang memudahkan anggota main bola, bertemu teman, dan berkumpul melalui sesi rutin. Anggota memperoleh kepastian slot, teman satu tim dan jadwal; pengelola memperoleh satu catatan operasional. Liga, turnamen, hasil dan klasemen menjadi sarana pendukung kegiatan komunitas. Pencatat hasil dan kapten menjalankan tugas dengan kewenangan terbatas.
+Asker FC adalah **website komunitas fun football berkonsep “Kick & Kumpul”**, yang memudahkan anggota main bola, bertemu teman, dan berkumpul melalui sesi rutin. Anggota memperoleh kepastian slot, teman satu tim dan jadwal; pengelola memperoleh satu catatan operasional. Liga, turnamen, hasil dan klasemen menjadi sarana pendukung kegiatan komunitas. Pencatat hasil dan pengelola menjalankan tugas dengan kewenangan terbatas.
 
 Hipotesis masalah awal adalah informasi pendaftaran, jadwal dan skor tersebar di chat dan spreadsheet. Hipotesis ini tidak diperlakukan sebagai hasil wawancara. Keberhasilan produk dinilai dari penyelesaian kegiatan dan pengurangan bantuan/rekap, bukan jumlah fitur yang dibuat.
 
@@ -18,7 +21,6 @@ Hipotesis masalah awal adalah informasi pendaftaran, jadwal dan skor tersebar di
 | Aktor | Kebutuhan dan perilaku (hipotesis) | Batas kewenangan |
 |---|---|---|
 | Anggota | Membuka tautan dari grup di HP, mengetahui jadwal main, daftar, membayar bila berbayar dan mengenal teman satu tim | Data sendiri dan informasi kegiatan yang diizinkan |
-| Kapten | Memilih roster dan memantau persetujuan anggota | Tim yang ditugaskan, dalam kegiatan terkait |
 | Pencatat skor | Mengirim hasil dari lapangan | Pertandingan yang ditugaskan; bukan memfinalkan karena peran pencatat saja |
 | Pengelola | Mengatur kegiatan, peserta, jadwal dan validasi | Kegiatan yang ditugaskan |
 | Superadmin | Mengelola keanggotaan dan penugasan akses | Seluruh komunitas MVP |
@@ -44,9 +46,9 @@ Definisi mengikuti Planning v2.5 dan tidak diubah di PRD. KPI mengukur kelancara
 ## 4. Skenario utama
 
 1. **Sesi individu:** pengelola menyiapkan kegiatan → anggota mendaftar → kuota dikonfirmasi → tim dibagi dan dikunci → jadwal dipublikasikan → presensi dicatat → hasil dikirim dan difinalkan → anggota melihat klasemen/statistik.
-2. **Liga antartim:** kapten mengajukan tim → anggota mengonfirmasi undangan → roster memenuhi batas dan diajukan → pengelola menerima tim → jadwal liga disusun → pertandingan berjalan.
+2. **Liga antartim:** pengelola mengajukan tim → anggota mengonfirmasi undangan → roster memenuhi batas dan diajukan → pengelola menerima tim → jadwal liga disusun → pertandingan berjalan.
 3. **Koreksi hasil:** pengelola membuka hasil final yang salah → mencatat alasan dan hasil revisi → memeriksa dampak → menyimpan koreksi → peringkat dan statistik diperbarui dengan riwayat tetap terlihat.
-4. **Kegiatan berbayar:** peserta atau kapten melihat tagihan → mengunggah bukti → pengelola menerima/menolak → pengirim melihat keputusan. Status bayar tidak disamakan dengan status peserta.
+4. **Kegiatan berbayar:** pemilik tagihan melihat tagihan → mengunggah bukti → pengelola menerima/menolak → pengirim melihat keputusan. Status bayar tidak disamakan dengan status peserta.
 5. **Sesi rutin:** pengelola menyalin konfigurasi kegiatan lama → memilih tanggal baru → mengosongkan peserta/hasil lama → menjalankan laga persahabatan tanpa klasemen liga.
 
 ## 5. Scope dan kebutuhan fungsional MVP
@@ -81,10 +83,10 @@ Setiap US mengacu fitur Planning. Setiap AC memuat kondisi, aksi dan hasil yang 
 
 ### FEAT-04 — Pendaftaran dan roster antartim
 
-**US-04 → FEAT-04:** As a member or captain, I want to confirm participation with a valid roster so that my event slot is unambiguous.
+**US-04 → FEAT-04:** As a member or assigned administrator, I want to confirm participation with a valid roster so that my event slot is unambiguous.
 
 - **AC-12 → US-04:** Given mode individu terbuka dan kuota tersedia, when anggota aktif mengonfirmasi, then satu pendaftaran terdaftar dibuat; permintaan ganda mengembalikan pendaftaran yang sama, bukan tambahan kuota.
-- **AC-13 → US-04:** Given mode antartim, when kapten mengundang anggota berakun dan mereka menyetujui, then roster yang memenuhi batas dapat diajukan dan diterima pengelola; anggota yang belum menyetujui tidak dihitung sebagai pemain terkonfirmasi.
+- **AC-13 → US-04:** Given anggota sudah RSVP dan daftar ditutup, when pembagian dimulai, then hanya peserta sah masuk kumpulan pengacakan berbasis skill; tidak ada undangan atau pengajuan roster oleh Admin.
 - **AC-14 → US-04:** Given kuota penuh, periode tertutup, anggota sudah masuk roster kegiatan, atau roster tidak memenuhi syarat, when pendaftaran/konfirmasi dicoba termasuk secara bersamaan, then pelanggaran ditolak tanpa melebihi kuota atau menduplikasi peserta.
 - **AC-15 → US-04:** Given roster belum terkunci, when anggota membatalkan dengan konfirmasi, then status menjadi dibatalkan dan kuota dilepas; jika roster sudah terkunci, then pengunduran diarahkan ke pengelola dan tidak mengubah hasil lama.
 
@@ -94,7 +96,7 @@ Setiap US mengacu fitur Planning. Setiap AC memuat kondisi, aksi dan hasil yang 
 
 - **AC-16 → US-05:** Given peserta individu terkonfirmasi dan konfigurasi kapasitas layak, when pembagian diminta, then setiap peserta muncul tepat satu kali dan selisih jumlah pemain antartim maksimal satu, pada mode acak. Mode skill menggunakan penilaian sah, memperlihatkan dasar keseimbangan serta kekurangannya, dan tidak menjanjikan keseimbangan sempurna.
 - **AC-17 → US-05:** Given pratinjau atau edit roster belum terkunci, when pengelola memindahkan pemain atau mengacak ulang, then pemeriksaan duplikasi/kapasitas dijalankan; pembatalan pratinjau mempertahankan versi tersimpan.
-- **AC-18 → US-05:** Given roster memenuhi batas, when pengelola menguncinya, then kapten/anggota tidak dapat mengubah roster; koreksi oleh pengelola memerlukan alasan dan pemeriksaan dampak pada jadwal/partisipasi.
+- **AC-18 → US-05:** Given roster memenuhi batas, when pengelola menguncinya, then anggota tidak dapat mengubah roster; koreksi oleh pengelola memerlukan alasan dan pemeriksaan dampak pada jadwal/partisipasi.
 
 ### FEAT-06 — Jadwal
 
@@ -139,7 +141,7 @@ Setiap US mengacu fitur Planning. Setiap AC memuat kondisi, aksi dan hasil yang 
 
 **US-11 → FEAT-11:** As a payer or organizer, I want to submit and verify transfer evidence so that event fees are traceable.
 
-- **AC-33 → US-11:** Given kegiatan berbayar, when peserta individu atau kapten tim membuka tagihan, then nominal, tujuan transfer, tenggat dan dampak belum bayar terlihat; kegiatan gratis tidak meminta bukti.
+- **AC-33 → US-11:** Given kegiatan berbayar, when pemilik tagihan individu atau penanggung jawab tagihan tim membuka tagihan, then nominal, tujuan transfer, tenggat dan dampak belum bayar terlihat; kegiatan gratis tidak meminta bukti.
 - **AC-34 → US-11:** Given pengirim berhak dan berkas memenuhi batas, when bukti diunggah, then status menjadi menunggu verifikasi dan hanya pengirim serta pengelola berwenang yang dapat mengakses bukti.
 - **AC-35 → US-11:** Given bukti menunggu verifikasi, when pengelola menerima/menolak, then keputusan, pelaku dan waktu tercatat; penolakan wajib beralasan dan pengirim dapat mengirim bukti pengganti dengan riwayat terjaga.
 - **AC-36 → US-11:** Given tagihan belum terverifikasi, when tenggat terlewati, then konsekuensi yang sudah ditetapkan ditampilkan; perubahan peserta tidak terjadi diam-diam. Pembatalan/refund diproses manual dan tidak otomatis memindahkan uang.
@@ -276,9 +278,9 @@ Pemetaan fase ini mengikuti Planning v2.5; US-19–US-26 adalah MVP, US-27 opsio
 
 ### FEAT-26 — Peserta antar-komunitas
 
-**US-26 → FEAT-26:** As a visiting captain, I want to register my team's consenting players for an Asker FC event so that we can play together without joining a separate tenant.
+**US-26 → FEAT-26:** As an assigned administrator, I want to register a visiting team's consenting players for an Asker FC event so that they can play together without joining a separate tenant.
 
-- **AC-74 → US-26:** Given kegiatan menerima tim tamu, when kapten berakun mengajukan nama/asal tim dan roster pemain berakun yang menyetujui, then pengelola meninjau dengan batas kuota/keunikan yang sama.
+- **AC-74 → US-26:** Given kegiatan menerima tim tamu, when pengelola berakun mengajukan nama/asal tim dan roster pemain berakun yang menyetujui, then pengelola meninjau dengan batas kuota/keunikan yang sama.
 - **AC-75 → US-26:** Given akun tamu diterima pada satu kegiatan, when ia membuka direktori internal, iuran bulanan atau kegiatan lain yang terbatas, then akses ditolak; ia hanya mendapat informasi/tindakan sesuai tugas dan partisipasinya.
 - **AC-76 → US-26:** Given tamu selesai atau ditarik dari kegiatan, when akses ditinjau, then riwayat hasilnya tetap sah dan kewenangan aktif mengikuti cakupan terbaru; tidak membuat komunitas penyelenggara baru otomatis.
 
@@ -297,14 +299,14 @@ Pemetaan fase ini mengikuti Planning v2.5; US-19–US-26 adalah MVP, US-27 opsio
 ### Perincian AC pada fitur lama yang dipromosikan/diperluas
 
 - **AC-79 → US-16:** Given penilai diberi kewenangan, when nilai skill pada skala yang disepakati disimpan, then pemain, penilai, nilai dan waktu/versi tercatat; pihak tanpa kewenangan tidak dapat mengubah atau membaca nilai privat.
-- **AC-80 → US-16:** Given mode skill dipilih tetapi nilai peserta belum lengkap, when pembagian diminta, then daftar data kurang terlihat; pengguna melengkapi nilai atau memilih mode acak secara eksplisit, tanpa pengisian nilai rekaan.
-- **AC-81 → US-16:** Given pratinjau skill dibuat, when perubahan manual dilakukan, then ukuran sebaran nilai diperbarui, kapasitas/keunikan diperiksa dan keterbatasan hasil ditampilkan.
+- **AC-80 → US-16:** Given skill peserta belum lengkap, when pembagian diminta, then pembagian ditahan dengan daftar data kurang; tidak mengisi nilai rekaan atau beralih ke acak murni.
+- **AC-81 → US-16:** Given semua skill valid, when sistem mengacak susunan, then kapasitas, keunikan peserta dan metrik keseimbangan diperiksa; acak ulang tetap memakai batas yang sama dan tidak tersedia pemindahan pemain manual.
 - **AC-82 → US-15:** Given peserta terkonfirmasi memiliki nomor dan persetujuan yang berlaku, when waktu pengingat sebelum sesi tiba, then satu pengingat berisi sesi, waktu/zona, lokasi dan tautan diproses; RSVP bukan persetujuan kanal secara otomatis.
 - **AC-83 → US-15:** Given sesi batal, peserta mundur, preferensi dimatikan atau jadwal direvisi, when pengingat belum dikirim dievaluasi, then pekerjaan lama dibatalkan/diperbarui; tidak mengirim jadwal usang.
 - **AC-84 → US-15:** Given pengiriman gagal atau hasil belum diketahui, when petugas meninjau status, then alasan/status tersedia, retry hanya dilakukan sesuai batas dan setelah memeriksa kiriman yang mungkin berhasil; kegagalan tidak membatalkan RSVP.
 - **AC-85 → US-15:** Given layanan pulih atau status pengiriman diterima berulang, when pekerjaan dilanjutkan, then tidak membuat pengingat tambahan untuk konteks yang sama; status diproses tanpa mundur dari bukti yang lebih baru.
 - **AC-86 → US-15:** Given anggota menolak atau mencabut persetujuan pengingat, when preferensi disimpan, then pengingat berikutnya dihentikan dan jadwal tetap dapat dilihat di situs; publik tidak dapat membaca nomor peserta.
-- **AC-87 → US-01:** Given pemilik profil mengisi foto/posisi/nomor punggung dan cakupan tayang yang diizinkan, when disimpan, then profil diperbarui; foto tidak sah ditolak dan nomor diperiksa dalam cakupan tim terkait, bukan unik seluruh klub.
+- **AC-87 → US-01:** Given pemilik profil mengisi foto, nama panggilan, bio dan preferensi yang diizinkan, when disimpan, then hanya field tersebut diperbarui; posisi resmi dan nomor roster hanya dapat diubah Admin/pengelola berwenang, dengan nomor diperiksa dalam tim terkait dan histori event final tetap.
 - **AC-88 → US-01:** Given profil belum lengkap atau foto tidak diizinkan, when direktori dibuka, then hanya informasi yang boleh dilihat dan placeholder berlabel tampil; email/nomor WhatsApp pribadi tidak ikut.
 - **AC-89 → US-10:** Given daftar top skor dibuka, when periode dipilih, then urutan memakai gol sah dari hasil final tanpa gol bunuh diri dan cakupan data/seri terlihat.
 - **AC-90 → US-10:** Given apresiasi pemain ditampilkan pada direktori/profil, when periode atau laga dipilih, then hasil voting yang sudah diterbitkan ditautkan dengan konteksnya; belum ada pemenang tidak ditampilkan sebagai nol prestasi yang pasti.
@@ -435,3 +437,41 @@ Sumber: Planning v2.6, GOAL-06/PAIN-06. KPI-06 mengikuti kohort bulanan pada Pla
 - **AC-153 → US-36:** Given klaim Dipenuhi perlu dikoreksi, when petugas merekonsiliasi dengan alasan/bukti, then histori asli tetap ada, poin dikembalikan sekali setelah manfaat dibatalkan/dikembalikan dan stok hanya dipulihkan bila dapat digunakan kembali; retry tidak menggandakan pengembalian.
 
 Batas baseline MVP: tanpa transfer/pembelian/pencairan/kedaluwarsa poin, migrasi statistik atau kredit retroaktif otomatis. Nominal, hadiah nyata, harga poin, anggaran dan kebijakan program perlu ditetapkan sebelum aktivasi.
+
+## 16. Profil dan penghargaan tahunan — v2.8
+
+Ketentuan berikut melengkapi FEAT-01/02 dan menambahkan FEAT-30. Batas field merupakan baseline rancangan; basis poin tahunan, nama resmi, zona, kelayakan, aturan seri dan hadiah tambahan belum disahkan. Implementasi/aktivasi mengikuti keputusan tersebut.
+
+### US-37 → FEAT-01/02 — Profil dan izin field
+
+As a member, I want to customize allowed personal fields so that my profile reflects me while official records remain controlled.
+
+- **AC-154 → US-37:** Given Member masuk, when mengubah foto, nama panggilan, bio atau preferensi miliknya, then hanya field dalam daftar izin diperbarui; edit milik anggota lain atau field resmi ditolak di API tanpa perubahan parsial.
+- **AC-155 → US-37:** Given Admin/pengelola memiliki penugasan yang sesuai, when memelihara profil klub atau data resmi pemain, then cakupan diperiksa dan perubahan diaudit; pengelola event tanpa delegasi komunitas tidak dapat mengedit profil klub atau peran anggota.
+- **AC-156 → US-37:** Given peran Kapten dan UI Roster Admin dihapus, when request undang/ajukan roster atau penempatan pemain manual dicoba, then ditolak; susunan tim berasal dari sistem setelah RSVP anggota.
+- **AC-157 → US-37:** Given pengguna termasuk Admin mengirim nilai rating, overall, achievement atau poin secara langsung, when request diproses, then ditolak; koreksi hanya melalui fakta sumber, verifikasi dan hitung ulang sistem berversi.
+- **AC-158 → US-37:** Given tagihan tim, when anggota selain penanggung jawab atau petugas tanpa cakupan membuka bukti, then akses ditolak; pergantian penanggung jawab diaudit dan tidak otomatis membagikan bukti historis.
+
+### US-38 → FEAT-30 — Peringkat tahunan
+
+As a member, I want to see annual earned points and award status so that I understand my progress toward yearly recognition.
+
+- **AC-159 → US-38:** Given basis loyalitas disahkan, when periode tahun dipilih, then total berasal dari kredit partisipasi sah pada periode itu dikurangi pembalikan sumber; saldo awal, reservasi dan penukaran reward tidak memengaruhi total tahunan.
+- **AC-160 → US-38:** Given aturan belum disahkan atau sumber belum lengkap, when peringkat dibuka, then tampil Belum aktif atau Sementara dengan penjelasan; tidak ada pemenang final rekaan, dan data kosong dibedakan dari gagal muat.
+- **AC-161 → US-38:** Given tahun berganti, when membuka tahun baru, then perolehan tahunan mulai dari sumber tahun baru; saldo loyalitas dan riwayat penghargaan tahun lalu tetap. Zona/periode terlihat dan batas waktu tidak mengikuti zona perangkat.
+- **AC-162 → US-38:** Given hasil final sudah dipublikasikan, when profil penerima dibuka sesuai izin, then nama status, tahun dan tautan hasil tampil; rating privat tidak ikut dibuka dan badge tidak dapat diedit Member.
+
+### US-39 → FEAT-30 — Finalisasi dan revisi penghargaan
+
+As an authorized administrator, I want to publish system-calculated annual results so that awards remain verifiable and corrections are traceable.
+
+- **AC-163 → US-39:** Given aturan periode lengkap, periode ditutup dan sumber terverifikasi, when petugas komunitas berwenang memfinalisasi, then sistem memilih poin tertinggi sesuai aturan seri tersimpan; Admin tidak memilih penerima manual. Tanpa peserta layak tidak ada penerima.
+- **AC-164 → US-39:** Given finalisasi diulang atau dikirim bersamaan, when diproses, then hanya satu versi aktif penghargaan per periode dan penerima; sumber yang berubah membatalkan pratinjau lama dan meminta hitung ulang.
+- **AC-165 → US-39:** Given koreksi sumber disahkan setelah publikasi, when dihitung ulang, then revisi dengan alasan, versi dan penerima sebelum/sesudah disimpan; publikasi ulang mengganti badge aktif tanpa menghapus histori.
+- **AC-166 → US-39:** Given poin seri, when hasil diproses, then aturan yang ditetapkan sebelum periode berlaku; baseline usulan juara bersama, tanpa pemecah seri ad hoc atau pemilihan manual.
+
+Inventaris terkini: 30 fitur, 39 user story dan 166 AC. ID sebelumnya dipertahankan; AC-87 serta alur roster/tagihan diperbarui sesuai kewenangan baru.
+
+### Penyelarasan pembagian tim v2.9
+
+UI Roster Admin dihapus dari gambar aktif. Alur berlaku: RSVP individu → pengacakan otomatis berbasis skill → pratinjau keseimbangan → simpan/kunci → lihat susunan. Referensi antartim, undangan tim, acak murni dan penempatan manual dalam baseline lama tidak berlaku untuk alur ini. ID lama dipertahankan untuk ketertelusuran; bagian yang digantikan bukan persyaratan aktif.

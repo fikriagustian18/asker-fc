@@ -1,9 +1,12 @@
 # Mockup SRS — Asker FC
 
-- Versi: 2.7 · Tanggal: 14 November 2026
-- Status: dokumentasi loyalitas selesai sampai mockup SRS; 14 referensi aktif termasuk SCR-37/SCR-38. Parameter program dan validasi produksi tetap terbuka.
-- Upstream: [Product Details v2.7](./03-product-details.md), [PRD v2.7](./02-prd.md), [rencana v2.13](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna 11 November 2026. Tidak membuat aplikasi atau menambah jatah gambar. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
+- Versi: 2.9 · Tanggal: 14 November 2026
+- Status: revisi akses profil, penghapusan peran Kapten dan penghargaan tahunan selesai sampai spesifikasi Mockup SRS v2.8; referensi gambar statis menyertai revisi. Parameter tahunan belum disahkan; bukan implementasi aplikasi.
+- Upstream: [Product Details v2.8](./03-product-details.md), [PRD v2.8](./02-prd.md), [rencana v2.16](./00-implementation-plan.md), pelaksanaan rencana v2.7 atas instruksi pengguna 11 November 2026. Tidak membuat aplikasi atau menambah jatah gambar. Perluasan loyalitas diotorisasi pengguna 14 November 2026.
 - Seluruh angka/nama pada contoh sintetis. Gambar referensi bukan prototipe atau bukti uji aksesibilitas; teks spesifikasi mengatur perilaku. Default domain usulan mengikuti Details, belum aturan klub yang disahkan.
+
+
+> **Keputusan berlaku v2.9 — pembagian tim:** Anggota mendaftar kegiatan secara individu; sistem mengacak peserta dengan mempertimbangkan skill agar tim seimbang. Admin mengatur jumlah/kapasitas tim, memeriksa kelengkapan data, memicu pembagian, meninjau hasil dan mengunci susunan; bukan memilih pemain ke tim secara manual. UI Roster Admin, undangan/pengajuan/penerimaan roster antartim dan mode acak murni tidak digunakan pada alur ini. Ketentuan antartim/tagihan tim pada bagian lama menjadi catatan scope sebelumnya, bukan alur aktif; bila dibutuhkan sebagai format terpisah harus ditentukan kembali. Daftar tim hasil sistem tetap dapat dibaca. Rating tetap dihitung sistem; sumber/skala skill dan toleransi keseimbangan harus ditetapkan sebelum implementasi, tanpa otomatis menyamakan skill dengan rating.
 
 ## 1. Sistem visual dan layout bersama
 
@@ -65,8 +68,8 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 | SCR-03 Verifikasi email dan pemulihan sandi | Pemilik akun | FEAT-01 / FLOW-01 / AC-01,04 | SCR-01/02 atau tautan email → SCR-01 atau tujuan masuk semula | Responsif; 390×844; default terisi | Tidak; spesifikasi teks |
 | SCR-04 Beranda komunitas | Publik/anggota sesuai cakupan konten | FEAT-19, FLOW-13, AC-45–AC-47 | Tautan komunitas/nav Beranda → SCR-05/SCR-23/SCR-24 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-05 Detail kegiatan dan RSVP | Publik pembaca sesi terbit; anggota peserta; pengelola scoped | FEAT-03, FEAT-04, FEAT-12, FEAT-20, FLOW-03, FLOW-04, FLOW-12, FLOW-13, AC-08–AC-15, AC-37–AC-38, AC-48–AC-50 | Tautan langsung/SCR-04/SCR-23 → SCR-06/SCR-07/SCR-09/SCR-27/SCR-28/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-06 Status pendaftaran dan undangan | Anggota/kapten untuk diri/tim | FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36 | SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
-| SCR-07 Tim dan roster | Anggota pembaca, kapten tim, pengelola | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
+| SCR-06 Status pendaftaran dan undangan | Anggota untuk diri sendiri; pengelola untuk tim yang ditugaskan | FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36 | SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
+| SCR-07 Tim dan roster | Anggota pembaca dan pengelola yang ditugaskan | FEAT-04, FEAT-05 / FLOW-04, FLOW-05 / AC-13–18 | SCR-05/06/11 → SCR-06/05/20; pengelola SCR-15/16 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
 | SCR-08 Jadwal pertandingan | Anggota, pencatat, pengelola | FEAT-06, FEAT-12 / FLOW-06, FLOW-12 / AC-19–21,37–38 | SCR-04/05/17 → SCR-09/10 sesuai peran; kembali SCR-05 | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
 | SCR-09 Detail hasil pertandingan | Pembaca sesuai izin hasil; petugas laga/pengelola | FEAT-07, FEAT-09, FEAT-21, FEAT-22, FEAT-23, FLOW-07, FLOW-09, FLOW-16, FLOW-17, FLOW-18, AC-22–AC-25, AC-29–AC-30, AC-51–AC-56, AC-59, AC-67 | SCR-08/SCR-11/SCR-12 → SCR-10/SCR-18/SCR-25/SCR-27/SCR-28 | Responsif; default/empty/error/success | Lihat manifest; lainnya teks |
 | SCR-10 Pencatatan skor dan partisipasi | Pencatat laga/pengelola | FEAT-07, FEAT-09 / FLOW-07, FLOW-09 / AC-22,25,29 | SCR-08/09 → SCR-09; pengelola ke SCR-19 bila presensi kurang | Responsif; 390×844; contoh terisi | Sesuai manifest aktif v7; bila tidak tercantum, spesifikasi teks |
@@ -97,7 +100,12 @@ Inventaris final revisi: 35 layar MVP dan satu layar toko kondisional, total 36.
 | SCR-35 Kelola kontak dan sponsor | Delegasi publikasi komunitas | FEAT-24, FLOW-19, AC-68–AC-70 | SCR-13 → SCR-29/SCR-22 | Responsif 390×844/1440×900; default/empty/error | Sesuai manifest; lainnya teks |
 | SCR-36 Toko/Merchandise kondisional | Anggota/publik bila modul disahkan aktif | FEAT-27, AC-77 | Lainnya hanya jika aktif → WhatsApp/kembali | Responsif 390×844/1440×900; default/empty/error | Sesuai manifest; lainnya teks |
 
-Inventaris diperluas menjadi 38 layar dengan SCR-37/SCR-38 pada [bagian 10](#10-loyalitas-dan-reward--perluasan-v26); keduanya memiliki spesifikasi teks dan gambar referensi baru. Navigasi Lainnya dan profil diri menautkan Reward Saya, dashboard pengelola menautkan Kelola Reward sesuai delegasi.
+Inventaris terkini berjumlah 40 layar: SCR-37/SCR-38 pada [bagian 10](#10-loyalitas-dan-reward--perluasan-v26), serta SCR-39/SCR-40 pada bagian 12. Navigasi Lainnya dan profil diri menautkan Reward Saya; dashboard pengelola menautkan Kelola Reward sesuai delegasi. Peringkat dan finalisasi tahunan menggunakan referensi gambar v2.8.
+
+| Layar tambahan v2.8 | Aktor | Relasi | Navigasi | Referensi |
+|---|---|---|---|---|
+| SCR-39 Penghargaan tahunan | Anggota; publik hanya jika diizinkan | FEAT-30, US-38, AC-159–162, FLOW-30, STATE-26 | SCR-12/24/37 → SCR-39 → profil penerima/kembali | gambar statis; bagian 12 |
+| SCR-40 Kelola penghargaan tahunan | Delegasi penghargaan komunitas | FEAT-30, US-39, AC-163–166, FLOW-31, STATE-26 | SCR-13/38 → SCR-40 → SCR-39/22 | gambar statis; bagian 12 |
 
 ## 4. Spesifikasi screen-by-screen
 
@@ -194,9 +202,9 @@ Inventaris diperluas menjadi 38 layar dengan SCR-37/SCR-38 pada [bagian 10](#10-
 
 ### SCR-06 — Status pendaftaran dan undangan
 
-**Konteks/izin:** Anggota/kapten untuk diri/tim. FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36. Masuk/keluar: SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33. Hak terbaru diperiksa pada tiap aksi.
+**Konteks/izin:** Anggota untuk diri sendiri; pengelola untuk tim yang ditugaskan. FEAT-04, FEAT-11, FLOW-04, FLOW-11, AC-12–AC-15, AC-33, AC-36. Masuk/keluar: SCR-05/undangan → SCR-05/SCR-07/SCR-20/SCR-33. Hak terbaru diperiksa pada tiap aksi.
 
-**Hierarki dan konten:** Kembali, status diri, biaya/aturan, undangan beserta kapten/tim, Terima/Tolak undangan, batal sebelum kunci.
+**Hierarki dan konten:** Kembali, status diri, biaya/aturan, undangan beserta pengelola/tim, Terima/Tolak undangan, batal sebelum kunci.
 
 **State khusus:** Bukan konfirmasi wajib kedua setelah RSVP individu; tim diajukan belum berarti diterima. Roster terkunci mengarahkan pengunduran ke pengelola. Default/loading/selected/saving/empty/error/success/focus mengikuti bagian 2; status UI tidak mengubah status bisnis. Saat hasil simpan belum diketahui, Cek status mendahului retry.
 
@@ -208,26 +216,9 @@ Inventaris diperluas menjadi 38 layar dengan SCR-37/SCR-38 pada [bagian 10](#10-
 
 **Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
 
-### SCR-07 — Tim dan roster
+### SCR-07 — Susunan tim hasil sistem
 
-**Konteks:** Anggota pembaca, kapten tim, pengelola; izin mengikuti matriks Details. FEAT-04, FEAT-05, FLOW-04, FLOW-05, AC-13–18. Masuk: SCR-05/06/11. Keluar: SCR-06/05/20; pengelola SCR-15/16.
-
-**Hierarki layout:** Nama tim dan status → jumlah roster/batas → daftar pemain dengan konfirmasi dan kapten → undang anggota bagi kapten → Ajukan roster → riwayat/status terkunci.
-
-**Konten/komponen:** Contoh Tim Biru, 8 pemain, Kapten Dimas; data sintetis. Roster pembaca hanya nama dan peran; email/telepon tidak ditampilkan. Pemain belum menyetujui berlabel Menunggu.
-
-**State khusus:** Draft, diajukan, diterima, perlu perbaikan dan terkunci ditunjukkan. Tombol anggota biasa tidak sama dengan kapten. Revisi tim diterima tidak mengganti versi resmi sebelum disahkan. State bersama pada bagian 2 tetap berlaku, termasuk fokus, loading, error dan sukses.
-
-| Aksi | Kondisi | Respons/tujuan dan hasil |
-|---|---|---|
-| Undang anggota | Kapten, roster belum terkunci | Pemilih anggota aktif; simpan undangan tanpa kanal otomatis |
-| Ajukan roster | Seluruh kandidat menyetujui dan jumlah valid | Status diajukan; pengelola meninjau SCR-15 |
-| Tarik tim / lihat tagihan | Kapten sebelum kunci / tim berbayar | Dialog konfirmasi / SCR-20 sesuai izin |
-
-**Constraints dan aksesibilitas:** Form/kartu bertumpuk di HP; desktop memakai lebar konten terkontrol tanpa menyembunyikan field. Header dan CTA sticky hanya bila tidak menutup konten; bagian tengah scroll. Urutan keyboard mengikuti hierarki di atas; pesan error memindahkan fokus ke input terkait. Label status dapat dipahami tanpa warna. Modal/panel mengikuti aturan fokus bersama.
-
-
-
+Pembaca: peserta dan petugas sesuai izin. FLOW-05; AC-13/18/81/156. Daftar tim dan pemain hanya baca, dengan label Pratinjau/Tersimpan/Terkunci dan versi pembagian. Tidak ada Undang anggota, Ajukan roster, Tarik tim atau Pindahkan pemain. Admin menuju SCR-16 untuk menjalankan pembagian otomatis berbasis skill; Member melihat hasil untuk kegiatan yang diikuti. Data belum dibagi menampilkan “Tim belum dibentuk”; gagal muat tidak menampilkan daftar kosong palsu. Privasi skill mengikuti izin, bukan otomatis terlihat oleh seluruh peserta. Layout kartu bertumpuk di HP dan kolom tim di desktop; status teks dan fokus keyboard mengikuti aturan bersama.
 
 ### SCR-08 — Jadwal pertandingan
 
@@ -314,7 +305,7 @@ Panel Kejadian khusus memiliki pemilih pencetak gol pertama, pemilih pencetak go
 
 **State khusus:** Kontak pribadi hanya diri/petugas yang perlu; skill diri privat terpisah, nilai anggota lain tidak tampil. Foto kosong berlabel; nol beda belum dicatat. Default/loading/selected/saving/empty/error/success/focus mengikuti bagian 2; status UI tidak mengubah status bisnis. Saat hasil simpan belum diketahui, Cek status mendahului retry.
 
-**Interaksi:** Edit profil memvalidasi foto/posisi/nomor 1–99 dalam tim terkait; apresiasi ke SCR-25; pengingat ke SCR-33; ubah tema tanpa kehilangan form. Nomor bukan unik seluruh klub. Batal/Tutup tidak melakukan commit; form kotor meminta konfirmasi Buang perubahan, membatalkan dialog mempertahankan input dan mengembalikan fokus. Data tersimpan tetap saat kembali/masuk ulang; data lokal belum tersimpan tidak dijanjikan lintas perangkat.
+**Interaksi:** Edit profil Member hanya memvalidasi foto, nama panggilan, bio dan preferensi; posisi/nomor resmi hanya baca dengan aksi Ajukan koreksi. Admin/pengelola berwenang memvalidasi posisi/nomor 1–99 dalam tim terkait; apresiasi ke SCR-25; pengingat ke SCR-33; ubah tema tanpa kehilangan form. Nomor bukan unik seluruh klub. Batal/Tutup tidak melakukan commit; form kotor meminta konfirmasi Buang perubahan, membatalkan dialog mempertahankan input dan mengembalikan fokus. Data tersimpan tetap saat kembali/masuk ulang; data lokal belum tersimpan tidak dijanjikan lintas perangkat.
 
 **Constraints/responsive:** Referensi 390×844 atau 1440×900, uji 360/390/430 px dan desktop. Form bertumpuk, toolbar membungkus; tabel menjadi kartu atau scroll di area berlabel, bukan halaman. Konten panjang dapat dibaca; ruang bawah mencegah CTA/nav sticky menutupi isi. Sidebar admin menjadi drawer; dialog hampir penuh di HP.
 
@@ -377,29 +368,17 @@ Contoh Tim A-Striker: Event F100/P79,37/D79,37/TW100/Disc100/Com100/Cons100/I100
 | Aksi | Kondisi | Respons/tujuan dan hasil |
 |---|---|---|
 | Terima tim | Roster lengkap, unik dan kuota tersedia | Dialog → diterima, kuota diperbarui |
-| Kembalikan | Tim diajukan, alasan valid | Draft dengan alasan yang dilihat kapten |
+| Kembalikan | Tim diajukan, alasan valid | Draft dengan alasan yang dilihat pengelola |
 | Lanjut roster | Daftar ditutup dan siap | SCR-16 |
 
 **Constraints dan aksesibilitas:** Tabel/list mempunyai header, filter berlabel dan alternatif kartu di HP; scroll horizontal dibatasi pada area tabel, bukan halaman. Header dan CTA sticky hanya bila tidak menutup konten; bagian tengah scroll. Urutan keyboard mengikuti hierarki di atas; pesan error memindahkan fokus ke input terkait. Label status dapat dipahami tanpa warna. Modal/panel mengikuti aturan fokus bersama.
 
 
-### SCR-16 — Pembagian tim acak/skill dan penguncian roster
+### SCR-16 — Pembagian otomatis berdasarkan skill
 
-**Konteks/izin:** Pengelola kegiatan. FEAT-05, FEAT-16, FLOW-05, FLOW-14, AC-16–AC-18, AC-42, AC-79–AC-81. Masuk/keluar: SCR-13/SCR-15 → SCR-32/SCR-17/SCR-22. Hak terbaru diperiksa pada tiap aksi.
+Admin kegiatan membuka dari SCR-13/15. Tampilkan jumlah peserta sah, kelengkapan skill, jumlah/kapasitas tim, tombol “Acak tim berdasarkan skill”, pratinjau jumlah dan metrik keseimbangan per tim, Acak ulang, Simpan dan Kunci. Tidak ada pilihan Acak murni/Skill, drag pemain, atau pemilih anggota tim manual. Skill tidak lengkap → daftar kekurangan dan pembagian disabled; konfigurasi tidak layak → alasan; hasil di luar toleransi → belum dapat disimpan. Simpan/Kunci memeriksa versi peserta dan skill terbaru; pratinjau usang meminta hitung ulang. Acak ulang dicatat dan tetap memakai batas keseimbangan yang sama. Mobile menumpuk kartu tim, desktop berkolom; informasi skill hanya untuk petugas berhak.
 
-**Hierarki dan konten:** Status peserta/tim, radio Acak/Seimbang berdasarkan skill, kelengkapan nilai, Susun/Acak ulang, kartu jumlah/rerata/selisih, Pindahkan, Simpan draft/Kunci.
-
-**State khusus:** Pratinjau bukan versi tersimpan; nilai kurang menahan mode skill, pilih Lengkapi atau pindah Acak eksplisit. Antartim tidak diacak; roster terkunci hanya koreksi beralasan. Tidak menjanjikan optimum fairness. Default/loading/selected/saving/empty/error/success/focus mengikuti bagian 2; status UI tidak mengubah status bisnis. Saat hasil simpan belum diketahui, Cek status mendahului retry.
-
-**Interaksi:** Lengkapi nilai ke SCR-32; susun pratinjau lalu simpan; pindah via pemilih tanpa drag wajib memperbarui metrik; Kunci setelah draft tersimpan dan daftar ditutup → SCR-17; batal tidak menimpa. Batal/Tutup tidak melakukan commit; form kotor meminta konfirmasi Buang perubahan, membatalkan dialog mempertahankan input dan mengembalikan fokus. Data tersimpan tetap saat kembali/masuk ulang; data lokal belum tersimpan tidak dijanjikan lintas perangkat.
-
-**Constraints/responsive:** Referensi 390×844 atau 1440×900, uji 360/390/430 px dan desktop. Form bertumpuk, toolbar membungkus; tabel menjadi kartu atau scroll di area berlabel, bukan halaman. Konten panjang dapat dibaca; ruang bawah mencegah CTA/nav sticky menutupi isi. Sidebar admin menjadi drawer; dialog hampir penuh di HP.
-
-**Aksesibilitas:** Label permanen, nama ikon, heading berurutan, urutan fokus sesuai hierarki, pesan tanpa warna saja dan target sentuh usulan ≥44 px. Fokus ke field salah pertama; dialog menahan fokus dan kembali ke pemicu saat tutup. Pemilih menggantikan drag wajib. Kedua tema mengikuti token bagian 1.
-
-**Referensi gambar:** Lihat manifest bagian 5; layar lain tetap spesifikasi teks sesuai batas 12 gambar.
-
-**Perluasan v2.2 — FLOW-05/FLOW-22, AC-92, AC-124, AC-129:** konfirmasi posisi penilaian sebelum Simpan pembagian. Helper “Poin awal event 50 pada sembilan kategori; bukan nilai skill”. Skill privat 1–5 tetap di panel terpisah. Pratinjau belum membentuk poin; Simpan membentuk baseline sekali, Kunci bukan baseline kedua. Acak ulang/pindah pada event sama tidak mereset poin; perubahan sesudah main memerlukan alasan/dampak, tidak memindahkan sumber lama ke pengganti. Roster antartim tidak diacak lintas tim.
+Baseline sembilan kategori event 50 dibentuk sekali saat susunan pertama disimpan, bukan nilai skill; acak ulang pada event sama tidak meresetnya. Roster terkunci dan histori pemain yang sudah tampil dilindungi. Referensi PNG lama yang menampilkan mode Acak/Skill atau pemindahan manual menjadi riwayat, bukan acuan perilaku aktif.
 
 ### SCR-17 — Penyusunan jadwal
 
@@ -882,3 +861,53 @@ Inspeksi langsung SCR-37: total 50 dikurangi reservasi 20 menghasilkan tersedia 
 Batas visual: wordmark ASKER FC dipakai pada referensi agar tidak membuat crest rekaan; implementasi tetap menggunakan aset logo asli pada bagian 1. Contoh periode tanggal adalah ringkasan; layar aktual menampilkan jam mulai/akhir dan zona sesuai ketentuan, akhir eksklusif. Catatan penyerahan pada SCR-38 adalah draft sebelum konfirmasi, bukan bukti transaksi nyata. Raster bukan jaminan ukuran CSS, aksesibilitas, kontras atau implementasi aplikasi. Modal konfirmasi, program/katalog admin dan state koreksi mengikuti teks SCR-37/SCR-38; tidak seluruh state memiliki gambar terpisah.
 
 Dimensi raster aktual: SCR-37 852x1846; SCR-38 1586x992. Target 390x844/1440x900 merupakan viewport acuan, bukan dimensi file.
+
+## 12. Mockup akses profil dan penghargaan tahunan — v2.8
+
+Sumber: rencana v2.16, PRD US-37–US-39 dan Details bagian 15. Peran Kapten tidak tersedia pada pemilih peran, label roster atau aksi. Sistem membentuk susunan dari RSVP individu melalui pengacakan berbasis skill. SCR-20 membedakan pemilik tagihan tim dari petugas pengelola tanpa membuat peran baru.
+
+### Pembaruan layar yang ada
+
+| Layar | Perubahan UI dan akses | Relasi |
+|---|---|---|
+| SCR-07, SCR-15 | SCR-07 membaca hasil sistem; SCR-15 menampilkan peserta RSVP; tidak ada undang/ajukan/tarik roster manual | FLOW-04/05; AC-13/18/156 |
+| SCR-12 | Edit foto, nama panggilan, bio dan preferensi; data resmi hanya baca + Ajukan koreksi. Status tahunan bertahun menaut SCR-39. Nilai sistem tidak menjadi input | FLOW-01/30; AC-154/157/162 |
+| SCR-21 | Form data resmi pemain sesuai delegasi; tidak ada pilihan Kapten; revisi beralasan dan konflik versi | FLOW-02; AC-155/156 |
+| SCR-35 | Form profil klub: nama, deskripsi, logo dan kontak/sponsor; hanya delegasi komunitas. Pratinjau dan simpan/publikasi terpisah | FLOW-19; AC-155 |
+| SCR-20 | Label Penanggung jawab tagihan; bukti hanya pemilik/petugas sesuai cakupan; pergantian pemilik tidak membuka histori otomatis | FLOW-11; AC-158 |
+| SCR-24, SCR-37 | Tautan Penghargaan tahunan; saldo penukaran tetap terpisah dari perolehan tahun | FLOW-30; AC-159–162 |
+| SCR-13, SCR-38 | Tautan Kelola penghargaan hanya dengan delegasi tahunan | FLOW-31; AC-163–166 |
+
+SCR-12: urutan identitas → status tahunan → data resmi → Kustomisasi profil → statistik privat yang sudah ada. Aksi Ajukan koreksi meminta field/alasan dan menampilkan status permohonan; tidak langsung mengubah data resmi. Simpan profil memeriksa daftar izin dan versi. Foto kosong memakai inisial, tanpa foto rekaan. Badge penghargaan bukan kontrol editable. Form klub dan pemain menampilkan alasan perubahan; kehilangan izin saat simpan menolak perubahan dengan penjelasan. Ketentuan validasi, error, fokus dan responsif bersama tetap berlaku.
+
+### SCR-39 — Penghargaan tahunan
+
+**Konteks:** Anggota masuk, publik hanya jika diizinkan. FEAT-30, US-38, FLOW-30, STATE-26, AC-159–162. Masuk SCR-12/24/37; pilih penerima → SCR-12, kembali ke layar asal dan tahun terpilih.
+
+**Hierarki:** Kembali → judul → pemilih tahun → status + periode/zona → basis poin → kartu poin tahunan sendiri → daftar peringkat → penerima final/riwayat. Helper: “Penukaran reward tidak mengurangi poin tahunan.” Nama kerja penghargaan dan basis loyalitas ditandai Usulan selama parameter belum disahkan. Poin tahunan tidak menggantikan kartu saldo SCR-37 atau Spider statistik SCR-12.
+
+**State:** Belum aktif (jelaskan parameter belum disahkan), loading, Sementara (bukan pemenang), kosong (belum ada sumber sah), error dengan Coba lagi, Final, Dalam peninjauan dan Revisi terbit. Seri menampilkan peringkat sama dan teks Juara bersama hanya jika aturan itu disahkan. Tanpa peserta layak tampil “Tidak ada penerima tahun ini”. Perubahan tahun membatalkan respons lama agar hasil tahun sebelumnya tidak menimpa pilihan baru. Angka contoh diberi label Data contoh.
+
+**Responsif/aksesibilitas:** 390×844 dan 1440×900; daftar menjadi kartu di HP, angka rata kanan, tahun berlabel, status teks, fokus terlihat. Nama panjang membungkus tanpa membuka kontak. Pengumuman loading/error memakai live region; heading dan label memberi konteks tahun. Tabel/daftar dapat dibaca tanpa warna dan tanpa grafik tambahan.
+
+### SCR-40 — Kelola penghargaan tahunan
+
+**Konteks:** Superadmin/petugas delegasi tahunan; pemeriksaan API pada tiap aksi. FEAT-30, US-39, FLOW-31, STATE-26, AC-163–166. SCR-13/38 → SCR-40 → SCR-39 atau audit SCR-22.
+
+**Hierarki:** Tahun + status → ringkasan aturan/versi → kelengkapan sumber → pratinjau hasil sistem → perubahan terhadap versi sebelumnya → alasan revisi → aksi Hitung ulang, Finalisasi, Publikasikan. Penerima hanya baca. Halaman awal parameter belum lengkap menampilkan daftar yang perlu disahkan dan Finalisasi disabled dengan alasan teks. Nama kerja, kelayakan, basis, zona dan seri terlihat dalam pratinjau aturan; perubahan berlaku menurut versi, tidak mengubah histori diam-diam.
+
+**Interaksi/state:** Konfirmasi finalisasi menyebut tahun, kandidat, aturan seri dan versi; konfirmasi publikasi menyebut cakupan tayang. Pratinjau usang meminta Hitung ulang. Tidak ada peserta layak memfinalisasi tanpa penerima. Revisi memerlukan alasan, menampilkan sebelum/sesudah, mempertahankan versi lama berlabel sampai publikasi baru. Retry tidak menggandakan penghargaan. Error mempertahankan input, status tidak diketahui menawarkan Cek status; akses dicabut menutup aksi. Dialog mengikuti fokus bersama dan kembali ke pemicu. Mobile bertumpuk; desktop dua kolom aturan dan hasil.
+
+### Referensi visual gambar
+
+[Buka mockup gambar v2.9](./mockups/profile-awards-v2.9.png) menyajikan empat tampilan: profil Member (SCR-12), profil klub (SCR-35), peringkat tahunan (SCR-39), dan finalisasi (SCR-40). Satu papan gambar menampilkan empat panel dengan data sintetis; bukan aplikasi atau bukti otorisasi backend. Badge 2025 adalah contoh hasil periode final; peringkat 2026 masih Sementara dan finalisasi Belum aktif. Interaksi serta variasi state tetap dijelaskan dalam spesifikasi teks.
+
+Inventaris menjadi 40 layar berspesifikasi, dengan 14 PNG baseline tetap sebagai referensi historis visual dan satu referensi gambar revisi. Gambar lama tidak diklaim menggambarkan batas edit profil atau penghargaan baru; spesifikasi v2.8 dan gambar menjadi acuan untuk area yang direvisi. Satu PNG baru diproduksi dengan built-in imagegen dan diinspeksi: empat panel terbaca, batas edit profil dan status usulan terlihat, serta finalisasi nonaktif. Total 15 berkas gambar referensi, termasuk 14 PNG baseline. Gambar gabungan bukan bukti layout responsif per viewport.
+
+![Mockup profil, klub dan penghargaan tahunan — data contoh](./mockups/profile-awards-v2.9.png)
+
+Prompt produksi tersimpan pada [profile-awards-prompts-v2.9.json](./mockups/profile-awards-prompts-v2.9.json). Metode: built-in imagegen; gambar disimpan asli tanpa resize.
+
+### Penyelarasan pembagian tim v2.9
+
+UI Roster Admin dihapus dari gambar aktif. Alur berlaku: RSVP individu → pengacakan otomatis berbasis skill → pratinjau keseimbangan → simpan/kunci → lihat susunan. Referensi antartim, undangan tim, acak murni dan penempatan manual dalam baseline lama tidak berlaku untuk alur ini. ID lama dipertahankan untuk ketertelusuran; bagian yang digantikan bukan persyaratan aktif.
